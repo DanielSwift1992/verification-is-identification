@@ -1,0 +1,1388 @@
+[
+  {
+    "accepted" : true,
+    "case" : "PermutedPromise",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedPromiseMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedPromiseMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedPromiseMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedPromiseWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedPromiseWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedPromiseMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedPromiseMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedPromiseWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: C-edge does not separate source classes",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "PermutedOldRelation",
+    "diagnostic" : "",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedOldRelationMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedOldRelationMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedOldRelationMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedOldRelationWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedOldRelationWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedOldRelationMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedOldRelationMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "PermutedOldRelationWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: incomplete C-edge coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "IndependentPromise",
+    "diagnostic" : "",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentPromiseMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentPromiseMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentPromiseMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentPromiseWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentPromiseWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentPromiseMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentPromiseMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentPromiseWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: incomplete C-edge coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "UnrestrictedImage",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnrestrictedImageMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnrestrictedImageMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnrestrictedImageMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnrestrictedImageWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnrestrictedImageWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnrestrictedImageMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnrestrictedImageMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "DuplicateImage",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateImageMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateImageMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateImageMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateImageWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateImageWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateImageMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateImageMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateImageWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: C-edge does not separate source classes",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "DuplicateOutputPlaces",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateOutputPlacesMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateOutputPlacesMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateOutputPlacesMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateOutputPlacesWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateOutputPlacesWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateOutputPlacesMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateOutputPlacesMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateOutputPlacesWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: C-edge does not separate source classes",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "LeftMarginal",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LeftMarginalMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LeftMarginalMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LeftMarginalMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LeftMarginalWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LeftMarginalWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LeftMarginalMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LeftMarginalMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "RightMarginal",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RightMarginalMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RightMarginalMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RightMarginalMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RightMarginalWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RightMarginalWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RightMarginalMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RightMarginalMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "AliasedImage",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedImageMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedImageMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedImageMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedImageWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedImageWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedImageMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedImageMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedImageWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: C-edge does not separate source classes",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "TwoSortImage",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortImageMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortImageMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortImageMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortImageWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortImageWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortImageMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortImageMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "ScalarImage",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarImageMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarImageMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarImageMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarImageWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarImageWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarImageMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarImageMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarImageWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: C-edge does not separate source classes",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "ChainedImage",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedImageMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedImageMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedImageMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedImageWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedImageWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedImageMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedImageMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedImageWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: C-edge does not separate source classes",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "OmittedIndependentPlaces",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OmittedIndependentPlacesMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OmittedIndependentPlacesMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OmittedIndependentPlacesMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OmittedIndependentPlacesWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OmittedIndependentPlacesWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OmittedIndependentPlacesMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OmittedIndependentPlacesMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "SourceIsNotOutput",
+    "diagnostic" : "SourceIsNotOutput.Promise: unsupported or conditional declaration: $continuation0",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnreadPromiseAxis",
+    "diagnostic" : "UnreadPromiseAxis.Promises: unread axis in the declared whole",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : false,
+    "case" : "DifferentPromiseSorts",
+    "diagnostic" : "DifferentPromiseSorts.Promise: endpoints have different sorts",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : false,
+    "case" : "MalformedImagePromise",
+    "diagnostic" : "MalformedImagePromise.Promise: endpoint shapes differ",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnrootedImage",
+    "diagnostic" : "UnrootedImage.Image: unsupported or conditional declaration: $continuation0",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : true,
+    "case" : "HiddenPairPromise",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenPairPromiseMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenPairPromiseMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenPairPromiseMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenPairPromiseWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenPairPromiseWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenPairPromiseMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenPairPromiseMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenPairPromiseWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: C-edge does not separate source classes",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "HiddenMixedPromise",
+    "diagnostic" : "",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenMixedPromiseMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenMixedPromiseMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenMixedPromiseMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenMixedPromiseWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenMixedPromiseWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenMixedPromiseMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenMixedPromiseMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenMixedPromiseWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: incomplete C-edge coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ImageTemplateIsNotAChoice",
+    "diagnostic" : "ImageTemplateIsNotAChoice.Image: expected the same source places as a HiddenActions member",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : true,
+    "case" : "HiddenDifferentOutputShape",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDifferentOutputShapeMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDifferentOutputShapeMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDifferentOutputShapeMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDifferentOutputShapeWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDifferentOutputShapeWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDifferentOutputShapeMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDifferentOutputShapeMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDifferentOutputShapeWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: C-edge does not separate source classes",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "HiddenScalarOutput",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenScalarOutputMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenScalarOutputMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenScalarOutputMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenScalarOutputWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenScalarOutputWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenScalarOutputMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenScalarOutputMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenScalarOutputWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: C-edge does not separate source classes",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "MultiImagePromise",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MultiImagePromiseMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MultiImagePromiseMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MultiImagePromiseMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MultiImagePromiseWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MultiImagePromiseWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MultiImagePromiseMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MultiImagePromiseMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MultiImagePromiseWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: C-edge does not separate source classes",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "MixedImagePromises",
+    "diagnostic" : "",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MixedImagePromisesMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MixedImagePromisesMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MixedImagePromisesMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MixedImagePromisesWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MixedImagePromisesWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MixedImagePromisesMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MixedImagePromisesMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MixedImagePromisesWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: incomplete C-edge coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MalformedImageFamily",
+    "diagnostic" : "MalformedImageFamily.HiddenActions.Left: expected a complete Image-shaped step",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : true,
+    "case" : "OmittedSortImage",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OmittedSortImageMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OmittedSortImageMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OmittedSortImageMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OmittedSortImageWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OmittedSortImageWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OmittedSortImageMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OmittedSortImageMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "JointLeft",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointLeftMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointLeftMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointLeftMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointLeftWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointLeftWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointLeftMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointLeftMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointLeftWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: C-edge does not separate source classes",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "JointRight",
+    "diagnostic" : "",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointRightMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointRightMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointRightMissingMembers",
+    "diagnostic" : "certificate.images: incomplete member coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointRightWrongMember",
+    "diagnostic" : "certificate.images[0].member: different declared member",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointRightWrongSourceClassIndex",
+    "diagnostic" : "certificate.images[0].classes[0]: block is not the induced source class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointRightMissingOutputClasses",
+    "diagnostic" : "certificate.images[0].classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointRightMissingOutputConnections",
+    "diagnostic" : "certificate.images[0].connections: incomplete output class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "JointRightWrongPromise",
+    "diagnostic" : "certificate.images[0].promise: incomplete C-edge coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  }
+]

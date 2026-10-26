@@ -1,0 +1,598 @@
+[
+  {
+    "accepted" : true,
+    "case" : "PreservesEqualities",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesLostClosure",
+    "diagnostic" : "certificate.dynamics.stable.actions: incomplete closure coverage",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesNoStable",
+    "diagnostic" : "certificate.dynamics.stable: wrong preservation premise",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesMissingEvidence",
+    "diagnostic" : "certificate.dynamics.actions: incomplete member coverage",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesExtraEvidence",
+    "diagnostic" : "certificate.dynamics.actions: incomplete member coverage",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesWrongMember",
+    "diagnostic" : "certificate.dynamics.actions[0].member: different address or order",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesMissingEdgeGround",
+    "diagnostic" : "certificate.dynamics.actions[0].preservation: incomplete E-edge coverage",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesObservedValuesGround",
+    "diagnostic" : "certificate.dynamics.actions[0].preservation[0]: observed value coincidence is not source equality",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesWrongEdgeGround",
+    "diagnostic" : "certificate.dynamics.actions[0].preservation[0]: different source addresses are not identical",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesFalseRefusal",
+    "diagnostic" : "certificate.dynamics.actions[0].preservation.edge: partition does not separate images of this E-edge",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesMissingForests",
+    "diagnostic" : "certificate.dynamics.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesMissingForestEdge",
+    "diagnostic" : "certificate.dynamics.connections[0]: incomplete class forest",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesReversedForestEdge",
+    "diagnostic" : "certificate.dynamics.connections[0][0]: E-edge does not connect the next class member",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesWrongSort",
+    "diagnostic" : "certificate.dynamics.classes[0]: repeated leaf or different sort",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesMissingWitness",
+    "diagnostic" : "certificate.dynamics.stable.classes: incomplete view",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesWrongQuestion",
+    "diagnostic" : "certificate.dynamics.stable.classes[0].question: route projects an opaque source place",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesUnknownWordMember",
+    "diagnostic" : "certificate.dynamics.stable.classes[0].word[0]: no member at this address",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesUnknownBlock",
+    "diagnostic" : "certificate.dynamics.stable.representatives[0]: expected a leaf in the selected class",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesBadWitnessGround",
+    "diagnostic" : "certificate.dynamics.stable.classes[0].basis: observed value coincidence is not source equality",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesWrongRepresentative",
+    "diagnostic" : "certificate.dynamics.stable.representatives[0]: expected a leaf in the selected class",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesWrongView",
+    "diagnostic" : "certificate.dynamics.stable.view: term differs from the representatives",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesWrongImageMember",
+    "diagnostic" : "certificate.dynamics.stable.actions[0]: member or closure-edge coverage differs",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesMissingTargets",
+    "diagnostic" : "certificate.dynamics.stable.actions[0]: member or closure-edge coverage differs",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesInvalidTarget",
+    "diagnostic" : "certificate.dynamics.stable.actions[0].targets[0]: closure edge has another image class",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesMissingImageSelections",
+    "diagnostic" : "certificate.dynamics.stable.actions[0].selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesWrongImageProgram",
+    "diagnostic" : "certificate.dynamics.stable.actions[0].program: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesWrongImageGround",
+    "diagnostic" : "certificate.dynamics.stable.actions[0].selections[0].basis: different source addresses are not identical",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesMissingDecoder",
+    "diagnostic" : "certificate.dynamics.stable.decoder.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesWrongDecoderProgram",
+    "diagnostic" : "certificate.dynamics.stable.decoder.program: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "PreservesEqualitiesWrongDecoderGround",
+    "diagnostic" : "certificate.dynamics.stable.decoder.selections[0].basis: observed value coincidence is not source equality",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "PreservesEqualitiesOtherRepresentative",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "U7 normalized certificate",
+    "request" : "PreservesEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "BreaksEqualities",
+    "diagnostic" : "",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "BreaksEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "BreaksEqualitiesUnknownRefusalEdge",
+    "diagnostic" : "certificate.dynamics.actions[0].preservation.edge: partition does not separate images of this E-edge",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "BreaksEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "BreaksEqualitiesFalsePreservation",
+    "diagnostic" : "certificate.dynamics.actions[0].preservation[0]: different source addresses are not identical",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "BreaksEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "BreaksEqualitiesMissingEvidence",
+    "diagnostic" : "certificate.dynamics.actions: incomplete member coverage",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "BreaksEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "CyclicQuestion",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "U7 normalized certificate",
+    "request" : "CyclicQuestion",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "CyclicQuestionLostClosure",
+    "diagnostic" : "certificate.dynamics.stable.actions: incomplete closure coverage",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "CyclicQuestion",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "CyclicQuestionLostEmptyWord",
+    "diagnostic" : "certificate.dynamics.stable.classes: the empty word must cover every Question class",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "CyclicQuestion",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "CyclicQuestionWrongWord",
+    "diagnostic" : "certificate.dynamics.stable.classes[1].word: pullback reaches another class",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "CyclicQuestion",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "CyclicQuestionDuplicateClass",
+    "diagnostic" : "certificate.dynamics.stable.classes: repeated class",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "CyclicQuestion",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "CyclicQuestionLostRepresentative",
+    "diagnostic" : "certificate.dynamics.stable.classes: incomplete view",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "CyclicQuestion",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "CyclicQuestionWrongClosureTarget",
+    "diagnostic" : "certificate.dynamics.stable.actions[0].targets[0]: closure edge has another image class",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "CyclicQuestion",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "CyclicQuestionUnbalancedView",
+    "diagnostic" : "certificate.dynamics.stable.view: term differs from the representatives",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "CyclicQuestion",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "EmptyActions",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "U7 normalized certificate",
+    "request" : "EmptyActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "EmptyActionsLostEmptyWord",
+    "diagnostic" : "certificate.dynamics.stable.classes[0].word[0]: no member at this address",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "EmptyActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "EmptyActionsWrongDecoder",
+    "diagnostic" : "certificate.dynamics.stable.decoder.program: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "EmptyActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "EmptyActionsUnknownView",
+    "diagnostic" : "certificate.dynamics.stable.view: term differs from the representatives",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "EmptyActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "NoncommutingWords",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "U7 normalized certificate",
+    "request" : "NoncommutingWords",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "NoncommutingWordsLostClosure",
+    "diagnostic" : "certificate.dynamics.stable.actions: incomplete closure coverage",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "NoncommutingWords",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "NoncommutingWordsReversedWord",
+    "diagnostic" : "certificate.dynamics.stable.classes[2].word: pullback reaches another class",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "NoncommutingWords",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "NoncommutingWordsPermutedImageActions",
+    "diagnostic" : "certificate.dynamics.stable.actions[0]: member or closure-edge coverage differs",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "NoncommutingWords",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "NoncommutingWordsPermutedEvidence",
+    "diagnostic" : "certificate.dynamics.actions[0].member: different address or order",
+    "holds" : false,
+    "layer" : "U7 normalized certificate",
+    "request" : "NoncommutingWords",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "SortChangingAction",
+    "diagnostic" : "SortChangingAction.Actions.Left: expected a complete Source-shaped action",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : false,
+    "case" : "MalformedActionShape",
+    "diagnostic" : "MalformedActionShape.Actions: expected a complete Source-shaped action",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnrootedAction",
+    "diagnostic" : "UnrootedAction.Actions: unsupported or conditional declaration: $continuation0",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnreadActionAxis",
+    "diagnostic" : "UnreadActionAxis.Action: unread axis in the declared whole",
+    "layer" : "Swift reading only"
+  }
+]

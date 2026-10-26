@@ -20,17 +20,26 @@ concurrency:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-26
+    env:
+      # Xcode supplies the SDK and XCTest, not the Swift/DocC reader.
+      DEVELOPER_DIR: /Applications/Xcode_26.2.app/Contents/Developer
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # The documentation reader is a declared premise: DocC 26.6 refuses what
-      # 26.2 accepted, so a runner upgrade must fail loudly, not change it.
-      - uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: '26.6'
+      - name: Record the runner's Xcode toolchain before selecting Swift.org
+        env:
+          DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+          TOOLCHAINS: com.apple.dt.toolchain.XcodeDefault
+          SDKROOT: ''
+        run: python3 Checks/toolchain-info.py runner-xcode
+
+      - uses: ./.github/actions/swift
+
+      - name: Record the declared Swift.org toolchain
+        run: python3 Checks/toolchain-info.py swift-org
 
       # every law this repository holds itself to lives in ./check.sh, so a
       # person at a desk and this runner ask for the same list. The mirror
@@ -42,7 +51,6 @@ jobs:
       # diagnostics are repeated as annotations, which the public API serves.
       - name: Generate the combined documentation site
         run: |
-          xcodebuild -version | tr '\n' ' ' | sed 's/^/::notice::/'; echo
           set +e
           swift package \
             --allow-writing-to-directory "$GITHUB_WORKSPACE/_site" \
@@ -93,15 +101,19 @@ jobs:
   # result, so it never belonged in the same line of work. Run it locally
   # before pushing source: swift run Tools grammar
   law:
-    runs-on: macos-latest
+    runs-on: macos-26
+    env:
+      # Xcode supplies the SDK and XCTest, not the Swift/DocC reader.
+      DEVELOPER_DIR: /Applications/Xcode_26.2.app/Contents/Developer
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: '26.6'
+      - uses: ./.github/actions/swift
+
+      - name: Record the declared Swift.org toolchain
+        run: python3 Checks/toolchain-info.py swift-org
 
       - name: Distinct source carriers are read back and their emitted formations build
         run: python3 Checks/ci-check.py --only law

@@ -1,6 +1,6 @@
 name = "u5"
 version = "0.1.0"
-defaultTargets = ["U5", "U6", "U7"]
+defaultTargets = ["U5", "U6", "U7", "U8"]
 
 [[lean_lib]]
 name = "U5"
@@ -10,3 +10,6 @@ name = "U6"
 
 [[lean_lib]]
 name = "U7"
+
+[[lean_lib]]
+name = "U8"

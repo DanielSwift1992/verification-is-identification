@@ -1,0 +1,12 @@
+Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk3s5   460Gi   419Gi   9.1Gi    98%    7.9M   95M    8%   /System/Volumes/Data
+Sources/Court/CourtSourcesReport.swift:24:30: warning: trailing closure in this context is confusable with the body of the statement; pass as a parenthesized argument to silence this warning
+ 22 |     static func aggregate(_ rows: [Row]) -> String {
+ 23 |         for outcome in ["unsupported", "refused", "not-established", "holds"] {
+ 24 |             if rows.contains { $0.outcome == outcome } { return outcome }
+    |                              `- warning: trailing closure in this context is confusable with the body of the statement; pass as a parenthesized argument to silence this warning
+ 25 |         }
+ 26 |         return "empty"
+351 U11 Swift observations exported; translation is not a theorem
+Build completed successfully (20 jobs).
+{"observations": 351, "accepted": 14, "rejected": 337, "inputsUnchanged": true, "frozenArtifactsMatch": true}

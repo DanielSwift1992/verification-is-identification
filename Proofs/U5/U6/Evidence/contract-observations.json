@@ -1,0 +1,342 @@
+[
+  {
+    "accepted" : true,
+    "case" : "RetainOneClass",
+    "diagnostic" : "",
+    "leaves" : 1,
+    "request" : "RetainOneClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainOneClassMissingLeaf",
+    "diagnostic" : "certificate.retention.leaves: expected exactly one leaf per missing class",
+    "leaves" : -1,
+    "request" : "RetainOneClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainOneClassExtraLeaf",
+    "diagnostic" : "certificate.retention.leaves: expected exactly one leaf per missing class",
+    "leaves" : -1,
+    "request" : "RetainOneClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainOneClassObservedLeaf",
+    "diagnostic" : "certificate.retention.leaves[0]: not a distinct required missing E-class",
+    "leaves" : -1,
+    "request" : "RetainOneClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainOneClassWrongView",
+    "diagnostic" : "certificate.retention.view: assembled source view differs from its addresses",
+    "leaves" : -1,
+    "request" : "RetainOneClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainOneClassWrongProgram",
+    "diagnostic" : "certificate.retention.program: assembled term differs from the selected addresses",
+    "leaves" : -1,
+    "request" : "RetainOneClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainOneClassBadInput",
+    "diagnostic" : "certificate.retention.selections[0].input: route projects an opaque source place",
+    "leaves" : -1,
+    "request" : "RetainOneClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainOneClassBadOutput",
+    "diagnostic" : "certificate.retention.selections[0]: output or input is not the required leaf address",
+    "leaves" : -1,
+    "request" : "RetainOneClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainOneClassObservedValues",
+    "diagnostic" : "certificate.retention.selections[0].basis: observed value coincidence is not source equality",
+    "leaves" : -1,
+    "request" : "RetainOneClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainOneClassMissingSelection",
+    "diagnostic" : "certificate.retention.selections: incomplete output coverage",
+    "leaves" : -1,
+    "request" : "RetainOneClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainOneClassNoForestRows",
+    "diagnostic" : "certificate.residue.connections: incomplete class coverage",
+    "leaves" : -1,
+    "request" : "RetainOneClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainOneClassMissingNeeded",
+    "diagnostic" : "certificate.residue.needed: required classes or Question addresses differ",
+    "leaves" : -1,
+    "request" : "RetainOneClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainOneClassDuplicateNeeded",
+    "diagnostic" : "certificate.residue.needed: required classes or Question addresses differ",
+    "leaves" : -1,
+    "request" : "RetainOneClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainOneClassObservedNeeded",
+    "diagnostic" : "certificate.residue.needed: required classes or Question addresses differ",
+    "leaves" : -1,
+    "request" : "RetainOneClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainOneClassWrongQuestionPath",
+    "diagnostic" : "certificate.residue.needed: required classes or Question addresses differ",
+    "leaves" : -1,
+    "request" : "RetainOneClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "RetainTwoSorts",
+    "diagnostic" : "",
+    "leaves" : 2,
+    "request" : "RetainTwoSorts",
+    "sorts" : [
+      "$continuation0",
+      "$continuation1",
+      "$continuation2"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainTwoSortsPermutedNeeded",
+    "diagnostic" : "certificate.residue.needed: required classes or Question addresses differ",
+    "leaves" : -1,
+    "request" : "RetainTwoSorts",
+    "sorts" : [
+      "$continuation0",
+      "$continuation1",
+      "$continuation2"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainTwoSortsDuplicateClass",
+    "diagnostic" : "certificate.retention.leaves[1]: not a distinct required missing E-class",
+    "leaves" : -1,
+    "request" : "RetainTwoSorts",
+    "sorts" : [
+      "$continuation0",
+      "$continuation1",
+      "$continuation2"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "RetainTwoSortsPermutedRetention",
+    "diagnostic" : "",
+    "leaves" : 2,
+    "request" : "RetainTwoSorts",
+    "sorts" : [
+      "$continuation0",
+      "$continuation1",
+      "$continuation2"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainTwoSortsPermutationWithoutDecoder",
+    "diagnostic" : "certificate.retention.selections[1]: selected sort differs",
+    "leaves" : -1,
+    "request" : "RetainTwoSorts",
+    "sorts" : [
+      "$continuation0",
+      "$continuation1",
+      "$continuation2"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "RetainRepeatedClass",
+    "diagnostic" : "",
+    "leaves" : 1,
+    "request" : "RetainRepeatedClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainRepeatedClassLostRepeatedQuestion",
+    "diagnostic" : "certificate.residue.needed: required classes or Question addresses differ",
+    "leaves" : -1,
+    "request" : "RetainRepeatedClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainRepeatedClassPermutedQuestionPaths",
+    "diagnostic" : "certificate.residue.needed: required classes or Question addresses differ",
+    "leaves" : -1,
+    "request" : "RetainRepeatedClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "RetainFromClassOutsideViews",
+    "diagnostic" : "",
+    "leaves" : 1,
+    "request" : "RetainFromClassOutsideViews",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainFromClassOutsideViewsMissingForestEdge",
+    "diagnostic" : "certificate.residue.connections[0]: incomplete class forest",
+    "leaves" : -1,
+    "request" : "RetainFromClassOutsideViews",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainFromClassOutsideViewsReversedForestEdge",
+    "diagnostic" : "certificate.residue.connections[0][0]: E-edge does not connect the next class member",
+    "leaves" : -1,
+    "request" : "RetainFromClassOutsideViews",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainFromClassOutsideViewsUnknownForestEdge",
+    "diagnostic" : "certificate.residue.connections[0][0]: no declared E-edge at this address",
+    "leaves" : -1,
+    "request" : "RetainFromClassOutsideViews",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainFromClassOutsideViewsNoEqualityGround",
+    "diagnostic" : "certificate.retention.selections[0].basis: different source addresses are not identical",
+    "leaves" : -1,
+    "request" : "RetainFromClassOutsideViews",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "RetainFromClassOutsideViewsOtherRepresentative",
+    "diagnostic" : "",
+    "leaves" : 1,
+    "request" : "RetainFromClassOutsideViews",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "RetainNothing",
+    "diagnostic" : "",
+    "leaves" : 0,
+    "request" : "RetainNothing",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "RetainNothingBadBasis",
+    "diagnostic" : "certificate.selections[0].basis: observed value coincidence is not source equality",
+    "leaves" : -1,
+    "request" : "RetainNothing",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "MultiClassResidue",
+    "diagnostic" : "",
+    "leaves" : 2,
+    "request" : "MultiClassResidue",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "MultiClassResidueCoarseWithoutForest",
+    "diagnostic" : "certificate.residue.connections[1]: incomplete class forest",
+    "leaves" : -1,
+    "request" : "MultiClassResidue",
+    "sorts" : [
+      "$continuation0"
+    ]
+  }
+]

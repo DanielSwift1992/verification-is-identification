@@ -1,0 +1,37 @@
+ℹ [8/20] Replayed U5.Axioms
+info: U5/Axioms.lean:5:0: 'U5.closure_minimal' does not depend on any axioms
+info: U5/Axioms.lean:6:0: 'U5.construction_sound' depends on axioms: [propext, Quot.sound]
+info: U5/Axioms.lean:7:0: 'U5.construction_full_input' depends on axioms: [propext]
+info: U5/Axioms.lean:8:0: 'U5.obstruction_witnesses' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:9:0: 'U5.obstruction_no_decoder' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:10:0: 'U5.obstruction_not_universal' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:11:0: 'U5.conclusions_disjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:12:0: 'U5.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:13:0: 'U5.compatible_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:14:0: 'U5.accepted_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:15:0: 'U5.Codec.decode_encode' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:16:0: 'U5.Codec.decode_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:17:0: 'U5.Codec.encode_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:18:0: 'U5.Codec.decoding_unique' does not depend on any axioms
+ℹ [17/20] Replayed U6.Axioms
+info: U6/Axioms.lean:3:0: 'U6.forestFrom_sound' depends on axioms: [propext, Quot.sound]
+info: U6/Axioms.lean:4:0: 'U6.exact_classes' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:5:0: 'U6.partition_covers' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:6:0: 'U6.admitted_cuts_have_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:7:0: 'U6.missing_class_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:8:0: 'U6.missing_classes_complete' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:9:0: 'U6.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:10:0: 'U6.accepted_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:11:0: 'U6.leaf_count_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:12:0: 'U6.relative_least' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:13:0: 'U6.relative_least_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:14:0: 'U6.decoder_covers_missing' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:15:0: 'U6.semantic_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:16:0: 'U6.retention_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:17:0: 'U6.retention_semantic_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:18:0: 'U6.fewer_leaves_impossible' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:19:0: 'U6.structural_factor_through_adequate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:20:0: 'U6.zero_count_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [18/20] Built U6.Examples (289ms)
+✔ [19/20] Built U6 (252ms)
+Build completed successfully (20 jobs).

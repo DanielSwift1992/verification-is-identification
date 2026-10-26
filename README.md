@@ -118,7 +118,7 @@ The declared Swift.org release is in [`.swift-version`](.swift-version). Install
 
 The [boundary law](Documentation/DETAILS.md) holds the declared dependency and style debt to a shrinking ledger, with executable counterexamples.
 
-The Lean proofs of U5–U8 live in [Proofs/U5](Proofs/U5/README.md): run `cd Proofs/U5 && lake build`; from the repository root, `./check.sh --only proofs` also audits the declared claims’ axioms using the pinned `lean-toolchain`.
+Lean checks the U5–U8 proofs in [Proofs/U5](Proofs/U5/README.md): `cd Proofs/U5 && lake build`. From the repository root, `./check.sh --only proofs` also audits their axiom dependencies using [the declared Lean release](Proofs/U5/lean-toolchain).
 
 ## License
 

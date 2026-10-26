@@ -1,0 +1,289 @@
+{
+  "schema": 1,
+  "task": "T0116",
+  "started": "2026-10-26T04:03:43.526384+00:00",
+  "finished": "2026-10-26T04:03:58.084618+00:00",
+  "free_bytes_before": 15827353600,
+  "base": "b1b32f7a7212677b00b8c1ef112a2e9339eaee32",
+  "proofs_base": "350be4dee6e8b855b4a36214f2b29e28ba74d3e2",
+  "source_inputs": {
+    "sha256": "edb3034e2e2d71e542e6032b40c60e271869286918e7ee9d2d32a769bc0bbbfc",
+    "files": [
+      {
+        "path": "Record/Admission.lean",
+        "sha256": "21ad272d4457048e667a84afbae7814bbd94f5c0ab8e0b8c460b4ded7f5aa2c0"
+      },
+      {
+        "path": "Record/Axioms.lean",
+        "sha256": "37136285a3c66ce1110bf433bdc300121f7b755f4624a4ae28db91b3dcffdb55"
+      },
+      {
+        "path": "Record/Bytes.lean",
+        "sha256": "815bdadef252ce3f7b670fcfeedfd9213a3a4ccca4bcf3d852c6c1b7e4379356"
+      },
+      {
+        "path": "Record/Checker.lean",
+        "sha256": "a27d3401eb461aca60f98cab11dd9a442c7ba4ebab26ba855e446e1882a38caa"
+      },
+      {
+        "path": "Record/Main.lean",
+        "sha256": "eed72d66fe64189dbee2e0da5c4d593a21fd40927e350e53e05484763e953aed"
+      },
+      {
+        "path": "Record/Payload.lean",
+        "sha256": "c9db89d19f9a27c9ea47271dfda96c6e24a1453168dedbb3bc79bdd1915b0282"
+      },
+      {
+        "path": "Record/Schema.lean",
+        "sha256": "c259861262fc8a875eed3d3ef10e9e642a612b980ef8b36a05283ed9a72c731f"
+      },
+      {
+        "path": "Record/Semantics.lean",
+        "sha256": "74b03e85c90cf08c3e31aa423291fc3a2da1762a2c012ad6bf043bdc5449142b"
+      },
+      {
+        "path": "Record/Wire.lean",
+        "sha256": "256f56a6a0e1d346cbd09761e0441467e5b3525d56b67b1e10718e02234a9f23"
+      },
+      {
+        "path": "Record.lean",
+        "sha256": "1cefb82823f73bc4fcfa7ff610b062a3faf7df72508dc04fba0b526f93b4fbe1"
+      },
+      {
+        "path": "U5/Axioms.lean",
+        "sha256": "114b1db99b36da0a8ea94d966540f9c5c5c10e3ef9ee8a20c81f8e8bcf9750a7"
+      },
+      {
+        "path": "U5/Codec.lean",
+        "sha256": "6cd5d07cb48383eb496cd0bf3b05eafedfa11b0a3dc1beb5a2ff686382163760"
+      },
+      {
+        "path": "U5/Construction.lean",
+        "sha256": "e7ae0c4c15911095871cfa090dc5741ac247c7362724763c9472e0f88edea822"
+      },
+      {
+        "path": "U5/ContractCases.lean",
+        "sha256": "60cd30128bb5d3051359009eee1b58455652f496f75175b9c7023e97f77ae2a5"
+      },
+      {
+        "path": "U5/Examples.lean",
+        "sha256": "318d403b8ec9bbb11c40edd74a8a387d9f7f757ba26f0bbde9547789d5cdf61f"
+      },
+      {
+        "path": "U5/Model.lean",
+        "sha256": "058c2ae46b1d52c9e562d9911375ce6ce93604266db588fd49ec64e1d95101cd"
+      },
+      {
+        "path": "U5/Obstruction.lean",
+        "sha256": "139ee7915d4a7f28d86dd819d95847ace216957ccbd57a6d25ccee6ab87ec2e0"
+      },
+      {
+        "path": "U5.lean",
+        "sha256": "396c3ee89805c02f43f9e8b5a81fd7af4368668ebdfca43016901eb2b1654ad0"
+      },
+      {
+        "path": "U6/Axioms.lean",
+        "sha256": "9acfdccf1f94a4088cb51fbe0ef3ddd828f410dd3986d10ae882c224acf65567"
+      },
+      {
+        "path": "U6/ContractCases.lean",
+        "sha256": "c256a60cb8795575c5ea2ea77110812b5c5d8a9a7c42dadee47defd696ad263e"
+      },
+      {
+        "path": "U6/Examples.lean",
+        "sha256": "afa20d34e6b411344a5417b679ddda00f5052301e0bc8166a0131e7f5845ef15"
+      },
+      {
+        "path": "U6/Factor.lean",
+        "sha256": "7ecf99caec79e0deff42eedafd7405bc08f7d8d700b12ac9d521d69e05402213"
+      },
+      {
+        "path": "U6/Minimality.lean",
+        "sha256": "d0fb3503f851463bd8a69aa0c7bc42c928b1b7e24ec67d6cd7c12205c467b36b"
+      },
+      {
+        "path": "U6/Partition.lean",
+        "sha256": "f9d34774807049b636c9eef8250e0d8b7f020bf8a389d7fe3d229b58049907a4"
+      },
+      {
+        "path": "U6/Residue.lean",
+        "sha256": "0146b2025d8bca19100a4c50a46f29fafe64eedf055f7b552d57a97a237d0660"
+      },
+      {
+        "path": "U6/Retention.lean",
+        "sha256": "da9efd3b073d62b4f3ad7599eb098843c6a0848b7ae82ba4c2870035d2998c7c"
+      },
+      {
+        "path": "U6.lean",
+        "sha256": "08eee203ef57f319004b65ed22dfc3669a2a24458f89f0ed73b326a2f20bfc07"
+      },
+      {
+        "path": "U7/Actions.lean",
+        "sha256": "6fdde189f80322c689ba5374252fe660be692389fb7d0f76bdc5083d48bdf070"
+      },
+      {
+        "path": "U7/Axioms.lean",
+        "sha256": "498d6337997a1856efc28be1aec872fc680e9e582fb9c42233440f44d00e499c"
+      },
+      {
+        "path": "U7/Certificate.lean",
+        "sha256": "48cb858a70cf1d36d62fc67904fc1a610634dc1df1e080fe29fd61c9d084efcb"
+      },
+      {
+        "path": "U7/ContractCases.lean",
+        "sha256": "2b7d6153c54deeeae08b8c69b06ab059521651640ca62a3ce60645f49db8d201"
+      },
+      {
+        "path": "U7/Examples.lean",
+        "sha256": "45460294afaebc3b533f1fd03f014f58a153d945e334668d9b64aaf1732250c6"
+      },
+      {
+        "path": "U7/Reachability.lean",
+        "sha256": "e4099b461d201f7d0db209f1d1091cc986220d474f50464ba8eb8ba49c4cbfd0"
+      },
+      {
+        "path": "U7/Refusal.lean",
+        "sha256": "e479e8ec3a6ff33f6251e96f2eadfb4fe132d92b9e50ecc9a0cdb5b2585bad77"
+      },
+      {
+        "path": "U7/Soundness.lean",
+        "sha256": "2a060fb07849feec553766696887a1afc261f415fdc1ed51906bd954cf231230"
+      },
+      {
+        "path": "U7/Words.lean",
+        "sha256": "a60995f2db5a1d0c483b429739b7f8127a8416b80242ea6eca8083a73232b572"
+      },
+      {
+        "path": "U7.lean",
+        "sha256": "c9816bd1b7e9314e9ca8a96f213c39f71e6c409f4f3c5edb505a4d50bed823aa"
+      },
+      {
+        "path": "U8/Axioms.lean",
+        "sha256": "a383cedc1e5ff5eadfd0ac93de126305a7e914be02338cc7efe281c3c9cfec13"
+      },
+      {
+        "path": "U8/Certificate.lean",
+        "sha256": "7f378394cf65586cdc8f25179993c7b2c1804bb144ae4d09c3e358027d4f2cde"
+      },
+      {
+        "path": "U8/Characterization.lean",
+        "sha256": "59eafb688288e257d48df6b057856cfaaa28e8d306b67a5a8b68b5445de4a12c"
+      },
+      {
+        "path": "U8/ContractCases.lean",
+        "sha256": "fc73d22db5e726042ef292540a8480e3e85e97181ad741ec370f880793ff4d1e"
+      },
+      {
+        "path": "U8/Examples.lean",
+        "sha256": "1ca8cd30cd0045b6f6db0befcc749c3d818c3e1da69fb660a65798e8e83e382b"
+      },
+      {
+        "path": "U8/Inheritance.lean",
+        "sha256": "544ecb142ec0055e44130d94e279a5c558f8cbca5be9823474fb8ff1328af1f7"
+      },
+      {
+        "path": "U8/Model.lean",
+        "sha256": "862ea6b4f15f22b60928b606cff9d74501de1abe5f7c6a53ed8d6a36005e0f73"
+      },
+      {
+        "path": "U8/Separation.lean",
+        "sha256": "5d8faa84561673d05c880c1f2f15fc367ec06f03a50a783fbbcf76431016642d"
+      },
+      {
+        "path": "U8/Soundness.lean",
+        "sha256": "c121b24444b8cd1bd50fa9d94b5e7519fb4035e5f62d13e5c0530f80918fc10f"
+      },
+      {
+        "path": "U8.lean",
+        "sha256": "5e1f92db0015f7c522c124a69d243bd07f342d5d2ac4ab327a6ea3855effa0b1"
+      },
+      {
+        "path": "lake-manifest.json",
+        "sha256": "31b1fefdefef36e3c3b37b09922e11a8d37a2e18015171fb826ee275db65858a"
+      },
+      {
+        "path": "lakefile.toml",
+        "sha256": "8403877683859272d5f8c9c6a7a0e4bd34c43a754d295fa4aa3e729df87e5d01"
+      },
+      {
+        "path": "lean-toolchain",
+        "sha256": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c"
+      }
+    ]
+  },
+  "unchanged": true,
+  "clean": {
+    "command": [
+      "lake",
+      "clean"
+    ],
+    "exit": 0,
+    "seconds": 0.051332332999999994,
+    "log": "clean.txt"
+  },
+  "build": {
+    "command": [
+      "lake",
+      "build"
+    ],
+    "exit": 0,
+    "seconds": 7.876755333999999,
+    "log": "build.txt"
+  },
+  "axioms": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Record/Axioms.lean"
+    ],
+    "exit": 0,
+    "seconds": 0.2593677500000009,
+    "log": "axioms.txt"
+  },
+  "forbidden": {
+    "command": [
+      "rg",
+      "-n",
+      "\\b(sorry|native_decide|implemented_by|extern|axiom|unsafe|partial)\\b",
+      "Record",
+      "--glob",
+      "*.lean"
+    ],
+    "exit": 1,
+    "matches": 0
+  },
+  "native": {
+    "origin_commit": "fc533f0fc9affec327a661dadb44c84cdd0251d4",
+    "binary_sha256": "6635a293b73591e98e2aaffc23af109fbfbf2578c54c9404d3332ace24914e3a",
+    "source_diff_from_b1b32f7a": [],
+    "reused": true
+  },
+  "differential": {
+    "exit": 0,
+    "seconds": 6.348426750000002,
+    "log": "differential-stdout.txt"
+  },
+  "gates_run": false,
+  "ci_run": false,
+  "base_merge_head": "1651ccc8959316fb3ce7b5befe2e9a626244e7e4",
+  "execution_environment": {
+    "TMPDIR": "/tmp/vi-t0116-run/",
+    "native_configuration": "SwiftPM debug product from qualified T0109; source-identical to b1b32f7a for ContinuationRecord and RecordCourt",
+    "lean_configuration": "lake build; pinned leanprover/lean4:v4.35.0"
+  },
+  "qualification_inputs": [
+    {
+      "path": "Proofs/U5/Record/Tools/differential.py",
+      "sha256": "5d6a120baea54ad4be3d2b19a48677c4b2e0915071ccb322f958ffc4e6226943"
+    },
+    {
+      "path": "Proofs/U5/Record/Cases/worlds.json",
+      "sha256": "597627bffcba9ea92f51f5e1bb8d1fd5668c393b5a60fbbbdb624fa59121dd54"
+    },
+    {
+      "path": "Contracts/Court/continuation-relations-v1/contract.json",
+      "sha256": "46f0d099375fa13ca28ba004d670e4927967807c6db66600c8104d3c792236ad"
+    }
+  ]
+}

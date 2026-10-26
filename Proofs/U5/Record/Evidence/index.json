@@ -1,0 +1,42 @@
+[
+  {
+    "path": "axioms.txt",
+    "sha256": "aad15f987697d9ddb9fbb7ea1e0cd084cc205f5430b08a788ffb9018f9144483",
+    "bytes": 1756
+  },
+  {
+    "path": "build.json",
+    "sha256": "a86cb401e97b50d7aded615a55f65de5897e630ac97e99d43ce897d139476853",
+    "bytes": 9277
+  },
+  {
+    "path": "build.txt",
+    "sha256": "33d4ab30d4266b5c7afcac0a516077a98bb49f545a6cfa524cc1b289ddd5fdd9",
+    "bytes": 13441
+  },
+  {
+    "path": "clean.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  {
+    "path": "df.txt",
+    "sha256": "f39a89086fcb3680d4344c9ba050b19f819884c025317dd200991955568fc33e",
+    "bytes": 149
+  },
+  {
+    "path": "differential-stdout.txt",
+    "sha256": "f2d4c72c5c2667b244edf1d0515267e265d757a097b20d78eee7bf562461f05e",
+    "bytes": 663
+  },
+  {
+    "path": "differential.json",
+    "sha256": "870afbd321b2d5179006906d0dfe7ddb28a62f266e0205dc62f69bb56f0d1955",
+    "bytes": 115747
+  },
+  {
+    "path": "forbidden.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+]

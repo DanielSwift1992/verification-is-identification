@@ -1,6 +1,6 @@
 name = "u5"
 version = "0.1.0"
-defaultTargets = ["U5", "U6", "U7", "U8"]
+defaultTargets = ["U5", "U6", "U7", "U8", "Record", "record-check"]
 
 [[lean_lib]]
 name = "U5"
@@ -13,3 +13,10 @@ name = "U7"
 
 [[lean_lib]]
 name = "U8"
+
+[[lean_lib]]
+name = "Record"
+
+[[lean_exe]]
+name = "record-check"
+root = "Record.Main"

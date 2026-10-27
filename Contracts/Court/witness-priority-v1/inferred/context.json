@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "inferred/World.swift",
+      "source": "inferred/World.swift",
+      "sha256": "b3da948f2e42006bbedb76324c1975f623f4393a3267c29c4c84cf2fc0f7b31a",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "inferred/World.swift:1/input",
+        "source": "inferred/World.swift:1/source",
+        "sha256": "inferred/World.swift:1/sha256",
+        "namespace": "inferred/World.swift:1/namespace",
+        "module": "inferred/World.swift:1/module",
+        "role": "inferred/World.swift:1/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

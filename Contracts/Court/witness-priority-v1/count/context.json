@@ -1,0 +1,94 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "count/World.swift",
+      "source": "count/World.swift",
+      "sha256": "4bd3c9ceae425ef402a473621265c459de789d66dbeffd61af082c7f50926955",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Engine",
+        "One",
+        "Two"
+      ],
+      "at": {
+        "input": "count/World.swift:1/input",
+        "source": "count/World.swift:1/source",
+        "sha256": "count/World.swift:1/sha256",
+        "namespace": "count/World.swift:1/namespace",
+        "module": "count/World.swift:1/module",
+        "role": "count/World.swift:1/role",
+        "imports": [
+          "count/World.swift:1/imports",
+          "count/World.swift:1/imports",
+          "count/World.swift:1/imports"
+        ]
+      }
+    },
+    {
+      "input": "count/Primitive.swift",
+      "source": "count/Primitive.swift",
+      "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a",
+      "namespace": "Engine",
+      "module": "Engine",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "count/Primitive.swift:1/input",
+        "source": "count/Primitive.swift:1/source",
+        "sha256": "count/Primitive.swift:1/sha256",
+        "namespace": "count/Primitive.swift:1/namespace",
+        "module": "count/Primitive.swift:1/module",
+        "role": "count/Primitive.swift:1/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "count/One.swift",
+      "source": "count/One.swift",
+      "sha256": "241d2ecd85cf2b38bbb37c1db2953ee29060df8eb29fae3ea152e80b5630d73c",
+      "namespace": "One",
+      "module": "One",
+      "role": "borrowed",
+      "imports": [
+        "Engine"
+      ],
+      "at": {
+        "input": "count/One.swift:1/input",
+        "source": "count/One.swift:1/source",
+        "sha256": "count/One.swift:1/sha256",
+        "namespace": "count/One.swift:1/namespace",
+        "module": "count/One.swift:1/module",
+        "role": "count/One.swift:1/role",
+        "imports": [
+          "count/One.swift:1/imports"
+        ]
+      }
+    },
+    {
+      "input": "count/Two.swift",
+      "source": "count/Two.swift",
+      "sha256": "c1620972de83fe298483d8ee094bb1106d4d7116d55f2f5da50f7514cf0765a9",
+      "namespace": "Two",
+      "module": "Two",
+      "role": "borrowed",
+      "imports": [
+        "Engine"
+      ],
+      "at": {
+        "input": "count/Two.swift:1/input",
+        "source": "count/Two.swift:1/source",
+        "sha256": "count/Two.swift:1/sha256",
+        "namespace": "count/Two.swift:1/namespace",
+        "module": "count/Two.swift:1/module",
+        "role": "count/Two.swift:1/role",
+        "imports": [
+          "count/Two.swift:1/imports"
+        ]
+      }
+    }
+  ],
+  "intrinsics": []
+}

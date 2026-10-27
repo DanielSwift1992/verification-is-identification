@@ -1,0 +1,549 @@
+{
+  "schema": "vi.court.conformance/2",
+  "suite": "vi.court.witness-priority/1",
+  "reference_revision": "22da8badc29121cf29b271116db9b10768ef7906",
+  "scope": "Explicit local witnesses discharge inherited associated requirements; own-module roots precede imported homonyms. Inferred witnesses, two imports and generic carriers remain outside this fragment. Byte-bound replay rejects redirected edges; finite observations are not reader correctness.",
+  "versions": {
+    "context": "vi.court.context/2",
+    "normalization_canon": 4
+  },
+  "files": {
+    "alias/World.swift": {
+      "sha256": "0e594d62b6d99d77847ce2a964134e66963d2e0eb3f6a6719b795026afd5fb31",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "alias/context.json": {
+      "sha256": "b92e91bab4048f96b040bd12adb6f1ee20ab9aba8d521b5c2ad857e86e871de2",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "alias/valid.json": {
+      "sha256": "e363ff51d521b177439a7667bb304199e52fe446b716fdcf3080c43b919c6d07",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "alias/wrong-binding.json": {
+      "sha256": "fdc0fb770c0951605974eee17a47feeefca78dacd76a82070226e24887c39c85",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "count/One.swift": {
+      "sha256": "241d2ecd85cf2b38bbb37c1db2953ee29060df8eb29fae3ea152e80b5630d73c",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "count/Primitive.swift": {
+      "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "count/Two.swift": {
+      "sha256": "c1620972de83fe298483d8ee094bb1106d4d7116d55f2f5da50f7514cf0765a9",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "count/World.swift": {
+      "sha256": "4bd3c9ceae425ef402a473621265c459de789d66dbeffd61af082c7f50926955",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "count/context.json": {
+      "sha256": "e5028e3cbe84e54febfb62e3225789543c4aa1d60e524d7d48374ed515dbf2b8",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "generic/World.swift": {
+      "sha256": "706cfe1866a404b043fc903fcb89084b7891180c7397a8b2d39ad1d2dd549267",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "generic/context.json": {
+      "sha256": "c4894c92a4fad7f910f9cd9d0d458bb8ad6c47fa1c1c5c09934c898281ad455a",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "inferred/World.swift": {
+      "sha256": "b3da948f2e42006bbedb76324c1975f623f4393a3267c29c4c84cf2fc0f7b31a",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "inferred/context.json": {
+      "sha256": "b770497c42ab15afbc83c6c5ef2dd668cc48c12045bb3a4023709672efac8ba6",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "nested/World.swift": {
+      "sha256": "8f1df53d08270afb60776078143a5698daf6aebae7cc57bfde3c29fe01b6d59f",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "nested/context.json": {
+      "sha256": "af87aac36bebb0a7c6e6874932b92c2d81157ed40e2a1d72a2b96595af6da33f",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "own-module/Kit.swift": {
+      "sha256": "55ca07fc052df09704dccbd57e7c3f8724604933423192922f855e37d38ea78d",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "own-module/World.swift": {
+      "sha256": "2c7a8fc60f8de4e746d70638df50e8705e5523eb5f03c3037cbc941e6837af86",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "own-module/context.json": {
+      "sha256": "b9a8e5021588b4d85a3b751318c1b50140c6dc2e9a574247090767c89f1dd9b1",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "own-module/valid.json": {
+      "sha256": "d3514302312bd9ce654b939e6fa05eb92634b05a54b3c0e6f19127a0fe20cd3d",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "own-module/wrong-binding.json": {
+      "sha256": "615b473587c98422a584927b7259693e479a9b1b444ccc3afd63054bec783e4b",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "two-imports/Left.swift": {
+      "sha256": "55ca07fc052df09704dccbd57e7c3f8724604933423192922f855e37d38ea78d",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "two-imports/Right.swift": {
+      "sha256": "55ca07fc052df09704dccbd57e7c3f8724604933423192922f855e37d38ea78d",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "two-imports/World.swift": {
+      "sha256": "62521f7a02fa2e57943943f49a3880b4abdf24a36406974274263085145d1553",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    },
+    "two-imports/context.json": {
+      "sha256": "47474bec39210aebc9ebe28cd0e31693bf0362399cff1c105ae701c4ca63440f",
+      "origin": "T0145 declared witness/module priority contract; explicit binding counterfeits where named"
+    }
+  },
+  "missing_files": [],
+  "cases": [
+    {
+      "id": "alias",
+      "files": [
+        "alias/World.swift"
+      ],
+      "args": [
+        "--context",
+        "alias/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"alias/World.swift\",\"sha256\":\"0e594d62b6d99d77847ce2a964134e66963d2e0eb3f6a6719b795026afd5fb31\"},{\"path\":\"alias/context.json\",\"sha256\":\"b92e91bab4048f96b040bd12adb6f1ee20ab9aba8d521b5c2ad857e86e871de2\"}],\"outcome\":\"holds\",\"question\":\"where\",\"results\":[{\"diagnostics\":[],\"equalities\":1,\"memberships\":0,\"outcome\":\"holds\",\"path\":\"alias/World.swift\",\"readings\":0,\"source\":\"alias/World.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "alias/World.swift"
+        ],
+        "modules": [],
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "pass": "where"
+    },
+    {
+      "id": "nested",
+      "files": [
+        "nested/World.swift"
+      ],
+      "args": [
+        "--context",
+        "nested/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"nested/World.swift\",\"sha256\":\"8f1df53d08270afb60776078143a5698daf6aebae7cc57bfde3c29fe01b6d59f\"},{\"path\":\"nested/context.json\",\"sha256\":\"af87aac36bebb0a7c6e6874932b92c2d81157ed40e2a1d72a2b96595af6da33f\"}],\"outcome\":\"holds\",\"question\":\"where\",\"results\":[{\"diagnostics\":[],\"equalities\":1,\"memberships\":0,\"outcome\":\"holds\",\"path\":\"nested/World.swift\",\"readings\":0,\"source\":\"nested/World.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "nested/World.swift"
+        ],
+        "modules": [],
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "pass": "where"
+    },
+    {
+      "id": "own-module",
+      "files": [
+        "own-module/World.swift",
+        "own-module/Kit.swift"
+      ],
+      "args": [
+        "--context",
+        "own-module/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"own-module/Kit.swift\",\"sha256\":\"55ca07fc052df09704dccbd57e7c3f8724604933423192922f855e37d38ea78d\"},{\"path\":\"own-module/World.swift\",\"sha256\":\"2c7a8fc60f8de4e746d70638df50e8705e5523eb5f03c3037cbc941e6837af86\"},{\"path\":\"own-module/context.json\",\"sha256\":\"b9a8e5021588b4d85a3b751318c1b50140c6dc2e9a574247090767c89f1dd9b1\"}],\"outcome\":\"holds\",\"question\":\"where\",\"results\":[{\"diagnostics\":[],\"equalities\":1,\"memberships\":0,\"outcome\":\"holds\",\"path\":\"own-module/World.swift\",\"readings\":0,\"source\":\"own-module/World.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "own-module/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "own-module/Kit.swift"
+            ]
+          }
+        ],
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "pass": "where"
+    },
+    {
+      "id": "two-imports",
+      "files": [
+        "two-imports/World.swift",
+        "two-imports/Left.swift",
+        "two-imports/Right.swift"
+      ],
+      "args": [
+        "--context",
+        "two-imports/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"two-imports/Left.swift\",\"sha256\":\"55ca07fc052df09704dccbd57e7c3f8724604933423192922f855e37d38ea78d\"},{\"path\":\"two-imports/Right.swift\",\"sha256\":\"55ca07fc052df09704dccbd57e7c3f8724604933423192922f855e37d38ea78d\"},{\"path\":\"two-imports/World.swift\",\"sha256\":\"62521f7a02fa2e57943943f49a3880b4abdf24a36406974274263085145d1553\"},{\"path\":\"two-imports/context.json\",\"sha256\":\"47474bec39210aebc9ebe28cd0e31693bf0362399cff1c105ae701c4ca63440f\"}],\"outcome\":\"unsupported\",\"question\":\"where\",\"results\":[{\"diagnostics\":[\"two-imports/World.swift:3: ambiguous name Item: write Left.Item or Right.Item; visible: Left.Item at two-imports/Left.swift:1, Right.Item at two-imports/Right.swift:1\"],\"equalities\":0,\"memberships\":0,\"outcome\":\"unsupported\",\"path\":\"two-imports/World.swift\",\"readings\":0,\"source\":\"two-imports/World.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "two-imports/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Left",
+            "files": [
+              "two-imports/Left.swift"
+            ]
+          },
+          {
+            "name": "Right",
+            "files": [
+              "two-imports/Right.swift"
+            ]
+          }
+        ],
+        "exit": 1,
+        "diagnostic": "addressed"
+      },
+      "pass": "where"
+    },
+    {
+      "id": "inferred",
+      "files": [
+        "inferred/World.swift"
+      ],
+      "args": [
+        "--context",
+        "inferred/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"inferred/World.swift\",\"sha256\":\"b3da948f2e42006bbedb76324c1975f623f4393a3267c29c4c84cf2fc0f7b31a\"},{\"path\":\"inferred/context.json\",\"sha256\":\"b770497c42ab15afbc83c6c5ef2dd668cc48c12045bb3a4023709672efac8ba6\"}],\"outcome\":\"unsupported\",\"question\":\"where\",\"results\":[{\"diagnostics\":[\"unresolved definition reduction: cannot read projection 'Good.Axis': no definition of 'Axis' on 'Good'\"],\"equalities\":0,\"memberships\":0,\"outcome\":\"unsupported\",\"path\":\"inferred/World.swift\",\"readings\":0,\"source\":\"inferred/World.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "inferred/World.swift"
+        ],
+        "modules": [],
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "pass": "where"
+    },
+    {
+      "id": "generic",
+      "files": [
+        "generic/World.swift"
+      ],
+      "args": [
+        "--context",
+        "generic/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"generic/World.swift\",\"sha256\":\"706cfe1866a404b043fc903fcb89084b7891180c7397a8b2d39ad1d2dd549267\"},{\"path\":\"generic/context.json\",\"sha256\":\"c4894c92a4fad7f910f9cd9d0d458bb8ad6c47fa1c1c5c09934c898281ad455a\"}],\"outcome\":\"unsupported\",\"question\":\"where\",\"results\":[{\"diagnostics\":[\"cannot read line 1: nested declaration 'Child' has an unsupported enclosing type\"],\"equalities\":0,\"memberships\":0,\"outcome\":\"unsupported\",\"path\":\"generic/World.swift\",\"readings\":0,\"source\":\"generic/World.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "generic/World.swift"
+        ],
+        "modules": [],
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "pass": "where"
+    },
+    {
+      "id": "count",
+      "files": [
+        "count/World.swift",
+        "count/Primitive.swift",
+        "count/One.swift",
+        "count/Two.swift"
+      ],
+      "args": [
+        "--context",
+        "count/context.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"count/One.swift\",\"sha256\":\"241d2ecd85cf2b38bbb37c1db2953ee29060df8eb29fae3ea152e80b5630d73c\"},{\"path\":\"count/Primitive.swift\",\"sha256\":\"c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a\"},{\"path\":\"count/Two.swift\",\"sha256\":\"c1620972de83fe298483d8ee094bb1106d4d7116d55f2f5da50f7514cf0765a9\"},{\"path\":\"count/World.swift\",\"sha256\":\"4bd3c9ceae425ef402a473621265c459de789d66dbeffd61af082c7f50926955\"},{\"path\":\"count/context.json\",\"sha256\":\"e5028e3cbe84e54febfb62e3225789543c4aa1d60e524d7d48374ed515dbf2b8\"}],\"outcome\":\"holds\",\"question\":\"count\",\"results\":[{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"empty\",\"path\":\"count/One.swift\",\"readings\":0,\"source\":\"count/One.swift\",\"unchecked\":[]},{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"empty\",\"path\":\"count/Primitive.swift\",\"readings\":0,\"source\":\"count/Primitive.swift\",\"unchecked\":[\"count/Primitive.swift:49\"]},{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"empty\",\"path\":\"count/Two.swift\",\"readings\":0,\"source\":\"count/Two.swift\",\"unchecked\":[]},{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"holds\",\"path\":\"count/World.swift\",\"readings\":1,\"source\":\"count/World.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "count/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Engine",
+            "files": [
+              "count/Primitive.swift"
+            ]
+          },
+          {
+            "name": "One",
+            "files": [
+              "count/One.swift"
+            ]
+          },
+          {
+            "name": "Two",
+            "files": [
+              "count/Two.swift"
+            ]
+          }
+        ],
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "pass": "count"
+    },
+    {
+      "id": "alias-binding-valid",
+      "files": [
+        "alias/World.swift"
+      ],
+      "args": [
+        "--context",
+        "alias/context.json",
+        "--report",
+        "--bindings",
+        "alias/valid.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"alias/World.swift\",\"sha256\":\"0e594d62b6d99d77847ce2a964134e66963d2e0eb3f6a6719b795026afd5fb31\"},{\"path\":\"alias/context.json\",\"sha256\":\"b92e91bab4048f96b040bd12adb6f1ee20ab9aba8d521b5c2ad857e86e871de2\"},{\"path\":\"alias/valid.json\",\"sha256\":\"e363ff51d521b177439a7667bb304199e52fe446b716fdcf3080c43b919c6d07\"}],\"outcome\":\"holds\",\"question\":\"where\",\"results\":[{\"diagnostics\":[],\"equalities\":1,\"memberships\":0,\"outcome\":\"holds\",\"path\":\"alias/World.swift\",\"readings\":0,\"source\":\"alias/World.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "alias/World.swift"
+        ],
+        "modules": [],
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "pass": "where"
+    },
+    {
+      "id": "alias-binding-forged",
+      "files": [
+        "alias/World.swift"
+      ],
+      "args": [
+        "--context",
+        "alias/context.json",
+        "--report",
+        "--bindings",
+        "alias/wrong-binding.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"alias/World.swift\",\"sha256\":\"0e594d62b6d99d77847ce2a964134e66963d2e0eb3f6a6719b795026afd5fb31\"},{\"path\":\"alias/context.json\",\"sha256\":\"b92e91bab4048f96b040bd12adb6f1ee20ab9aba8d521b5c2ad857e86e871de2\"},{\"path\":\"alias/wrong-binding.json\",\"sha256\":\"fdc0fb770c0951605974eee17a47feeefca78dacd76a82070226e24887c39c85\"}],\"outcome\":\"unsupported\",\"question\":\"where\",\"results\":[{\"diagnostics\":[\"alias/World.swift:6: name binding reference differs at view byte 209\"],\"equalities\":0,\"memberships\":0,\"outcome\":\"unsupported\",\"path\":\"alias/World.swift\",\"readings\":0,\"source\":\"alias/World.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "alias/World.swift"
+        ],
+        "modules": [],
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "pass": "where"
+    },
+    {
+      "id": "own-module-binding-valid",
+      "files": [
+        "own-module/World.swift",
+        "own-module/Kit.swift"
+      ],
+      "args": [
+        "--context",
+        "own-module/context.json",
+        "--report",
+        "--bindings",
+        "own-module/valid.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"own-module/Kit.swift\",\"sha256\":\"55ca07fc052df09704dccbd57e7c3f8724604933423192922f855e37d38ea78d\"},{\"path\":\"own-module/World.swift\",\"sha256\":\"2c7a8fc60f8de4e746d70638df50e8705e5523eb5f03c3037cbc941e6837af86\"},{\"path\":\"own-module/context.json\",\"sha256\":\"b9a8e5021588b4d85a3b751318c1b50140c6dc2e9a574247090767c89f1dd9b1\"},{\"path\":\"own-module/valid.json\",\"sha256\":\"d3514302312bd9ce654b939e6fa05eb92634b05a54b3c0e6f19127a0fe20cd3d\"}],\"outcome\":\"holds\",\"question\":\"where\",\"results\":[{\"diagnostics\":[],\"equalities\":1,\"memberships\":0,\"outcome\":\"holds\",\"path\":\"own-module/World.swift\",\"readings\":0,\"source\":\"own-module/World.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "own-module/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "own-module/Kit.swift"
+            ]
+          }
+        ],
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "pass": "where"
+    },
+    {
+      "id": "own-module-binding-forged",
+      "files": [
+        "own-module/World.swift",
+        "own-module/Kit.swift"
+      ],
+      "args": [
+        "--context",
+        "own-module/context.json",
+        "--report",
+        "--bindings",
+        "own-module/wrong-binding.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"own-module/Kit.swift\",\"sha256\":\"55ca07fc052df09704dccbd57e7c3f8724604933423192922f855e37d38ea78d\"},{\"path\":\"own-module/World.swift\",\"sha256\":\"2c7a8fc60f8de4e746d70638df50e8705e5523eb5f03c3037cbc941e6837af86\"},{\"path\":\"own-module/context.json\",\"sha256\":\"b9a8e5021588b4d85a3b751318c1b50140c6dc2e9a574247090767c89f1dd9b1\"},{\"path\":\"own-module/wrong-binding.json\",\"sha256\":\"615b473587c98422a584927b7259693e479a9b1b444ccc3afd63054bec783e4b\"}],\"outcome\":\"unsupported\",\"question\":\"where\",\"results\":[{\"diagnostics\":[\"own-module/World.swift:4: name binding reference differs at view byte 124\"],\"equalities\":0,\"memberships\":0,\"outcome\":\"unsupported\",\"path\":\"own-module/World.swift\",\"readings\":0,\"source\":\"own-module/World.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "own-module/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "own-module/Kit.swift"
+            ]
+          }
+        ],
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "pass": "where"
+    }
+  ]
+}

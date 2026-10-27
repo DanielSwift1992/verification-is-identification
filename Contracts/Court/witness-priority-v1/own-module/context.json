@@ -1,0 +1,46 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "own-module/World.swift",
+      "source": "own-module/World.swift",
+      "sha256": "2c7a8fc60f8de4e746d70638df50e8705e5523eb5f03c3037cbc941e6837af86",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Kit"
+      ],
+      "at": {
+        "input": "own-module/World.swift:1/input",
+        "source": "own-module/World.swift:1/source",
+        "sha256": "own-module/World.swift:1/sha256",
+        "namespace": "own-module/World.swift:1/namespace",
+        "module": "own-module/World.swift:1/module",
+        "role": "own-module/World.swift:1/role",
+        "imports": [
+          "own-module/World.swift:1/imports"
+        ]
+      }
+    },
+    {
+      "input": "own-module/Kit.swift",
+      "source": "own-module/Kit.swift",
+      "sha256": "55ca07fc052df09704dccbd57e7c3f8724604933423192922f855e37d38ea78d",
+      "namespace": "Kit",
+      "module": "Kit",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "own-module/Kit.swift:1/input",
+        "source": "own-module/Kit.swift:1/source",
+        "sha256": "own-module/Kit.swift:1/sha256",
+        "namespace": "own-module/Kit.swift:1/namespace",
+        "module": "own-module/Kit.swift:1/module",
+        "role": "own-module/Kit.swift:1/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

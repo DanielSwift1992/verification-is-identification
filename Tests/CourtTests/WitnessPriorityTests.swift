@@ -62,10 +62,12 @@ final class WitnessPriorityTests: XCTestCase {
 
     func testUnrelatedLexicalCompetitorsAndGenericContainerStillRefuse() throws {
         XCTAssertThrowsError(try index([
-            ("World", "World.swift", "import Kit\npublic enum Leaf {}\npublic typealias Item = Leaf\nextension Item {}\n", ["Kit"]),
+            ("World", "World.swift", "import Kit\nextension Item {}\n", ["Kit"]),
+            ("World", "Own.swift", "public enum Leaf {}\npublic typealias Item = Leaf\n", []),
             ("Kit", "Kit.swift", "public enum Item {}\n", [])
         ])) { error in
-            XCTAssertTrue(String(describing: error).contains("World.swift:4: extension owner 'Item' is a local typealias"))
+            let text = String(describing: error)
+            XCTAssertTrue(text.contains("World.swift:2:") && text.contains("local typealias"), text)
         }
         for text in [
             "protocol P { associatedtype X }\nprotocol Q: P { typealias X = Never\n typealias Pick = X }\n",

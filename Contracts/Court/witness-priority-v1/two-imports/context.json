@@ -1,0 +1,66 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "two-imports/World.swift",
+      "source": "two-imports/World.swift",
+      "sha256": "62521f7a02fa2e57943943f49a3880b4abdf24a36406974274263085145d1553",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Left",
+        "Right"
+      ],
+      "at": {
+        "input": "two-imports/World.swift:1/input",
+        "source": "two-imports/World.swift:1/source",
+        "sha256": "two-imports/World.swift:1/sha256",
+        "namespace": "two-imports/World.swift:1/namespace",
+        "module": "two-imports/World.swift:1/module",
+        "role": "two-imports/World.swift:1/role",
+        "imports": [
+          "two-imports/World.swift:1/imports",
+          "two-imports/World.swift:1/imports"
+        ]
+      }
+    },
+    {
+      "input": "two-imports/Left.swift",
+      "source": "two-imports/Left.swift",
+      "sha256": "55ca07fc052df09704dccbd57e7c3f8724604933423192922f855e37d38ea78d",
+      "namespace": "Left",
+      "module": "Left",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "two-imports/Left.swift:1/input",
+        "source": "two-imports/Left.swift:1/source",
+        "sha256": "two-imports/Left.swift:1/sha256",
+        "namespace": "two-imports/Left.swift:1/namespace",
+        "module": "two-imports/Left.swift:1/module",
+        "role": "two-imports/Left.swift:1/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "two-imports/Right.swift",
+      "source": "two-imports/Right.swift",
+      "sha256": "55ca07fc052df09704dccbd57e7c3f8724604933423192922f855e37d38ea78d",
+      "namespace": "Right",
+      "module": "Right",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "two-imports/Right.swift:1/input",
+        "source": "two-imports/Right.swift:1/source",
+        "sha256": "two-imports/Right.swift:1/sha256",
+        "namespace": "two-imports/Right.swift:1/namespace",
+        "module": "two-imports/Right.swift:1/module",
+        "role": "two-imports/Right.swift:1/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

@@ -22,7 +22,7 @@ python3 Checks/court-contract.py \
     --implementation-id "local SwiftPM Tools build" \
     --compiler "$(command -v swiftc)" "$@"
 python3 Checks/court-contract.py \
-    --manifest Contracts/Court/context-names-v1/module-fragment-v3.json \
+    --manifest Contracts/Court/context-names-v1/module-fragment-v4.json \
     --command-json "$court_contract_command" \
     --implementation-id "local SwiftPM Tools build" \
     --compiler "$(command -v swiftc)" "$@"
@@ -57,7 +57,7 @@ python3 Checks/court-contract.py \
     --implementation-id "local SwiftPM Tools build" \
     --compiler "$(command -v swiftc)" "$@"
 python3 Checks/court-contract.py \
-    --manifest Contracts/Court/context-names-v1/review-v5.json \
+    --manifest Contracts/Court/context-names-v1/review-v6.json \
     --command-json "$court_contract_command" \
     --implementation-id "local SwiftPM Tools build" \
     --compiler "$(command -v swiftc)" "$@"

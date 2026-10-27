@@ -1,120 +1,36 @@
-# T0110 · проверяющий U5 в Lean 4
+# Lean proofs of the continuation checkers
 
-ГОТОВО к сверке. База: vi `a6ddd37cb132c6b7022dbda613290402d6d9d8c4`. Lean **4.35.0**, закреплён в `lean-toolchain`; внешних пакетов нет. Работа находится только в `Proofs/U5`, в ворота и CI не включена. Основания — [VI, §1c, U5](../../Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verification_is_identification.md), U3 и [договор continuation-relations-v1](../../Contracts/Court/continuation-relations-v1/README.md), разделы «The written relation» и «Conditional justification». §12 не продвигается.
+This Lean 4 project proves that the finite checkers for the continuation relations U5–U11 accept a certificate only when the certificate's claim holds. It also proves that `record-check` reads exactly the record bytes the contract defines. The relations, the world schemas and the certificate formats are defined in [continuation-record-v1](../../Contracts/Court/continuation-record-v1/README.md). The toolchain is pinned in `lean-toolchain`, and the project has no external packages.
 
-## Что доказано
+## What is proved
 
-`check_sound` в [Obstruction.lean](U5/Obstruction.lean) доказывает `check m cert = true → ∀ α i x, Gamma m i x → Claim m cert i x`. Вопрос — независимое поле `m.question`, сертификат не выбирает его. `true` означает принятие **доказательства**, а не обязательно положительный ответ на вопрос о продолжении: принимается и правильно обоснованное препятствие. `false` — непринятый вход или сертификат, не доказательство невозможности.
+Each checker is a total Lean function. Its soundness theorem says: if `check … = true`, then the claim the certificate makes holds for every filling compatible with the world, under every interpretation of the opaque sorts by nonempty sets. `true` means the certificate was accepted, which can be a correctly justified obstruction. `false` means the input or the certificate was not accepted, and it is not a proof of impossibility.
 
-Для `constructed` смысл Claim — `run program (Observation(x)) = some (Question(x))` для каждого совместимого заполнения и каждой интерпретации сортов. `construction_sound` следует из `walk_sound`, `basis_sound` и индукции `selections_sound`; сопоставление выходов и сборка программы не требуют повторного поиска продолжения. `construction_full_input` отдельно доказывает потребление всего списка выборок: ни потерянная, ни лишняя выборка не остаётся за проверкой.
+| Library | Relation | Main theorems |
+| --- | --- | --- |
+| `U5` | Construction of the Question from the Observation, or an obstruction | `U5.check_sound`; `construction_sound` and `construction_full_input` (the program reproduces the Question and consumes the whole selection list); `obstruction_witnesses` and `obstruction_no_decoder` (two compatible fillings with the same Observation and different Questions, so no decoder of the Observation gives the Question); codec `decode_encode`, `decode_iff`, `decoding_unique` |
+| `U6` | Retained residual classes | `U6.check_sound`; `missing_class_iff`, `missing_classes_complete`; `decoder_covers_missing` |
+| `U7`, `U8` | Stable view and decoder under declared actions; common action, outside witness or disagreement on the Observation | `U8.check_sound`; `stable_least`, `stable_closed`, `stable_decoder`; `universal_iff_class_conditions`, `disagreement_no_source_decoder` |
+| `U9` | Image and promise | `U9.check_sound`; `promise_iff`, `hidden_promise_iff` |
+| `U10` | Allocation by an optimal plan | `U10.check_sound`; `admissible_iff_optimal_plan`, `optimal_plan_minimal` |
+| `U11` | Return of the declared actions | `U11.check_sound`; `universal_return_iff_cycles`, `finite_common_return_iff` |
+| `Record` | Reading world records of schemas 1–4 | `read_write`, `write_read`, `write_injective` for each schema; `exit_bytes_sound` |
 
-Для `obstructed` смысл Claim — **нет одного универсального структурного продолжения**. `obstruction_witnesses` предъявляет два заполнения в разрешённой булевой интерпретации всех сортов: оба удовлетворяют E, Observation одинакова, Question различна. `obstruction_no_decoder` исключает даже произвольную функцию от Observation в этой интерпретации; `obstruction_not_universal` выводит отрицание универсального U3-продолжения. Это именно кванторы U5, а не ложное утверждение «для каждой интерпретации нет декодера». Пример `singleton_still_has_continuation` показывает, что на одноэлементном носителе продолжение остаётся. Поэтому отрицательная ветка Claim не отрицает точечный ответ в аргументе `i`: она отрицает универсальную разрешимость исходного вопроса. Формула без этого различия была бы неверна уже для `SameSortDifferentPlaces`.
+`exit_bytes_sound` joins the parts: an exit code 0 or 1 from `record-check` means that the world bytes were read into an admitted world, that writing that world back gives the same bytes, and that the soundness theorem of the selected checker holds for the resulting model.
 
-`compatible_nonempty` в [Model.lean](U5/Model.lean) — отдельная лемма: для каждого допущенного M и каждой интерпретации непустыми множествами существует заполнение Γ. По одному значению выбирается для каждого сорта, затем все его места получают это значение. `accepted_nonempty` переносит лемму на принятый сертификат. Непустота не спрятана в предпосылку «пусть уже существует совместимое заполнение» и не выводится из примеров. `conclusions_disjoint` исключает одновременное принятие конструкции и препятствия на одном M.
+## Checking
 
-В [Codec.lean](U5/Codec.lean) доказаны `decode_encode`, более сильная `decode_iff` (`decode bits = some t ↔ bits = encode t`), `encode_injective` и `decoding_unique`. Серийная запись — **битовая запись конечного терма с числовыми идентификаторами сортов**: лист s записывается как `0 1^s 0`, пара — `1 encode(left) encode(right)`. Она канонична для данного дерева и данной нумерации сортов, не для классов по переименованию или E. Унарная запись сорта выбрана ради прозрачного доказательства; компактность и байтовая упаковка не заявлены. Разбор ограничен длиной входа, поглощает ровно весь вход; `parse_consumes` доказывает отсутствие неучтённого префикса. Это собственный минимальный кодек модели, не доказательство кодека JSON существующего суда и не сериализация всего M/E/сертификата.
-
-## Носитель и посылки
-
-`Term α` — конечное бинарное дерево без терминала или пустого значения. В Source α = `SortId = Nat`; каждое **вхождение** листа — самостоятельное место неизвестного. Место задаётся путём из Left/Right (`false/true`); равенство путей — структурное равенство списков, равенство сортов — точное равенство идентификаторов. Один номер сорта в двух листьях не равенство их содержимого. Числовые коды — точные идентификаторы, не хеши; корректная взаимно однозначная привязка исходных имён к этим кодам — обязанность перевода, не следствие этой теоремы.
-
-Observation и Question — конечные деревья исходных путей, то есть нормальные формы U3. `Model.valid` проверяет, что каждый их лист указывает на действительный лист Source; что концы каждого E-ребра существуют и одного сорта; что адреса E-ребёр не повторяются. `Closure` задана рефлексивностью, симметрией, транзитивностью и ровно объявленными E-ребрами; `closure_minimal` доказывает, что это наименьшая содержащая E эквивалентность. Совпадение наблюдённых значений отдельным вариантом представлено и всегда отвергается.
-
-Интерпретация задаётся произвольным общим носителем α и семейством непустых подмножеств `carrier s`. Заполнение — функция от путей к α; Typed требует принадлежности сорту для каждого действительного листа Source, Compatible — всех объявленных равенств E, Gamma — их конъюнкция. Значения на несуществующих путях не используются допущенным чтением. Конечность относится к записи, а не к множествам значений. `interpretationOfFamily` вкладывает произвольное семейство непустых типов в дизъюнктное объединение: общий носитель не ограничивает размеры или различие сортов. Модель написана в одном фиксированном универсуме Lean `Type`; её теоремы не требуют конечности α.
-
-Предпосылки приложения к продукту названы отдельно: нормализованный M действительно прочитан из нужного живого источника; имена сортов не склеены при переводе; правила Source/проекций/пар/алиасов и сигнатура конструктора имеют заявленный смысл; исполняющий Lean или Swift механизм соответствует формальной программе. Ни одна из этих посылок не объявлена новой аксиомой Lean под цель. Формальная теорема относится к конкретным определениям в этом каталоге; проверка Swift-читателя, JSON-декодера, экспортёра и действующего Swift-проверяющего в неё не входит.
-
-## Поля договора → объекты модели
-
-Полное сопоставление ниже относится к **ядру U5 формата 2 без residue**. Модель принимает типизированные значения Lean, не произвольный JSON. Выбрать эту область — не разрешение молча отбрасывать поле в работающем суде: экспортёр для опытов явно создаёт разрешённый договором старый вариант без residue и повторно проверяет его Swift-судом. Исходный полный архив с расширением не считается проверенным Lean.
-
-| Поле существующего архива / записи | Объект и проверка модели | Граница |
-|---|---|---|
-| `format` | Выбрана область 2, ядро U5 | JSON-оболочка не моделируется; другие форматы не принимаются как U5 этим прототипом |
-| `certificate.request` | Фиксированный M с независимым Question | Привязка имени запроса к живому объявлению — посылка чтения |
-| `certificate.constructor` | Единственная операция `Term.pair` | Проверка имени/сигнатуры конструктора в живом языке — посылка |
-| `certificate.source` / Source, `ReadProof` | `Model.source : Term SortId`; листья — адресованные места | Доказательства раскрытия алиасов не переигрываются Lean; нормальная форма — вход |
-| `certificate.observation`, `RouteProof` | `Model.observation : Term Path`; проверка действительности всех исходных мест | Связывание доказательства чтения с объявлением — посылка |
-| `certificate.question`, `RouteProof` | `Model.question : Term Path`; тот же контроль, независимо от кандидата | Та же граница чтения |
-| `certificate.equalities`, `RouteProof?` | `Model.edges : List Edge`; отсутствие — пустой список | Совпадение форм двух деревьев концов проверяет предшествующее чтение; в модели уже перечислены пары листьев |
-| адрес и два конца E-ребра | `Edge.address`, `.left`, `.right` | Концы и сорт проверяет valid, уникальность адреса — тоже; происхождение адреса из дерева Equalities — чтение |
-| `conclusion.constructed.selections` | `Construction.selections : List Selection`; `packSelections` по форме Question | Пустота, лишние/недостающие записи, порядок и форма контролируются, остаток должен быть пуст |
-| `selections[].output` | `Selection.output`, проверяется против текущего пути Question | Перестановка выходов не меняет вопрос, а отказывает |
-| `selections[].input` | `Selection.input`, поиск листа в Observation и его исходного места | Несуществующее/нелистовое место отказывает; сорт сверяется с независимой целью |
-| `basis.address` | `Basis.address` | Только точное тождество исходных путей |
-| `basis.sourceRelation[]` | `Basis.sourceRelation`, непустой список `Step` | `walk` переигрывает предъявленную цепь, не вычисляет замыкание |
-| `steps[].edge`, `.reversed` | `Step.edge`, `.reversed` | Действительное объявленное ребро, его ориентация, непрерывность и точный конец |
-| `basis.observedValues` | `Basis.observedValues` | Всегда false |
-| `conclusion.constructed.program` | `Construction.program : Term Path` | Ровно дерево pick/pair из проверенных выборок; `run` исполняет эту нормальную форму |
-| `conclusion.obstructed.question` | `Obstruction.question` | Действительный лист Question; его исходное место находится в предъявленной полной разбивке |
-| `conclusion.obstructed.classes` | `List PartitionClass` | Каждый класс непуст, все листья Source ровно один раз, E не покидает блок, наблюдение не достигает блока цели |
-| `classes[].sort`, `.leaves` | `PartitionClass.sort`, `.leaves` | Каждый путь — лист Source именно этого сорта; `blockOf` — индекс предъявленного блока |
-| `obstructed.residue.connections`, `.needed[].block`, `.needed[].questions` | Не входят в тип ядра U5 | Дополнительная претензия об **точных** классах/остатке не доказана; допускаемая U5-разбивка может быть грубее замыкания E |
-| `retention`, `actions`, `hiddenActions`, `dynamics`, `repetition` | Не входят в `Certificate` | Иные вопросы U6–U11 исключены из задачи; их архивы здесь не переинтерпретируются |
-
-Бюджеты существующего суда (глубина, число шагов, размер JSON) не включены в математическую модель конечных термов; превышение бюджета продуктом должно оставаться unresolved. Полнота синтезатора, разрешимость произвольного Swift и доказательство нормализации всего языка U3 здесь не утверждаются. Проверяющий предъявленного конечного сертификата завершается структурной рекурсией; это уже не обещание о поиске сертификата.
-
-## Наблюдения договора и воспроизведение
-
-[ContractCases.lean](U5/ContractCases.lean) содержит **31** именованную проверку ядром Lean (`by decide`, не native): **12** принятых сертификатов и **19** отказных искажений. Они автоматически экспортированы из данных Swift-суда, собранного из неизменённых `Sources/Court/*.swift` указанного пина; никакого нового читателя Swift в экспортёре нет. Реальные случаи — AddressIdentity, OneEquality, EqualityChain, ReversedChain, JointQuestion, AliasedView, DisconnectedClass, SameSortDifferentPlaces, DisplayCoincidence, TwoSorts, DuplicatedOrigin, WholeAsObservation. Принятый сертификат препятствия соответствует Swift-вердикту `obstructed`, не `constructed`.
-
-Искажения: неверные адреса выхода/входа; основание observedValues или ложное address; пустая цепь, отсутствующее ребро, направление, разрыв и неверный конец; недостающая/лишняя выборка и другое дерево программы; неверный путь Question, потерянный/дублированный лист, пустой класс, наблюдаемый блок цели, неверный сорт и разрыв E разбивкой. Swift диагностировал отказ, после чего Lean отверг то же нормализованное ядро. Диагностики сохранены в [contract-observations.json](Evidence/contract-observations.json). Дополнительно [Examples.lean](U5/Examples.lean) содержит 10 примеров границ модели/кодека, включая допустимую грубую разбивку и одноэлементную интерпретацию.
-
-Это наблюдения соответствия **31 конкретного значения**, а не доказательство моста Swift→Lean. Общие теоремы в Model/Construction/Obstruction/Codec не импортируют ContractCases или Examples и не зависят от этой выборки. Зависимость направлена от примеров к доказанной модели.
-
-Из этого каталога, с установленным указанным toolchain:
+From `Proofs/U5`:
 
 ```sh
-df -h /System/Volumes/Data  # продолжать при >= 5 GiB
-~/.elan/bin/lake build
-~/.elan/bin/lake env lean Axioms.lean
-python3 Tools/observe-contract.py --output /private/tmp/reviewer-t0110-u5
+lake build
+lake exe record-check proof.json world.json
 ```
 
-`observe-contract.py` требует отсутствующий либо пустой выходной каталог, сверяет каждый файл Court, Primitive и вход договора с пином, собирает только маленький наблюдательный driver, воспроизводит 31 архив, сравнивает с замороженными Lean/JSON файлами, проверяет неизменность входов и записывает receipt. Его бинарь и module-cache удаляются после квитанции; наблюдения остаются в указанном каталоге. Скрипт не запускает ворота, CI или пакет Swift целиком. Квитанции этой сдачи — [fixture-receipt.json](Evidence/fixture-receipt.json) и [lean-build.txt](Evidence/lean-build.txt); исходные SHA-256 включены. SHA архива — привязка наблюдения, не основание теоремы.
+The first argument selects the checker: none for U5, `--retain` for U6, `--actions` for U7 and U8, `--image` for U9, `--agreement` for U10, `--repeat` for U11. Exit 0 and 1 are judged answers. Exit 2 means the record or the certificate was not read, and it is never an obstruction.
 
-`lake build` прошёл: 10 build jobs, включая все примеры и вывод аксиом. [Axioms.lean](Axioms.lean) проверяет 14 основных утверждений; объединение зависимостей — только стандартные `propext`, `Classical.choice`, `Quot.sound`. Исходники Lean не содержат `sorry`, пользовательских `axiom`, `native_decide`, `unsafe`, `partial`, `implemented_by` или `extern`. Малые примеры используют обычный проверяемый ядром `decide`. Загрузка пакетов/тулчейна не потребовалась.
+`Axioms.lean` is the single roster of claims. From the repository root, `python3 Checks/proofs.py` builds the project and reads Lean's `#print axioms` output for every rostered claim. It accepts only `propext`, `Classical.choice` and `Quot.sound`. The same law runs as the `proofs` job in CI.
 
-## Не утверждается
+## Limits
 
-Не доказаны соответствие существующей Swift-реализации модели, достоверность перевода/интернирования имён, Swift-семантика пользовательского источника, JSON-кодек архива, исполнение на физическом носителе, установление E, полнота синтеза, U6–U11, остаток как точный перечень классов, ограничение ресурсов работающего суда или корректность всего Lean toolchain как физического исполнителя. Теорема доказывает корректность определённого здесь конечного проверяющего, при явно указанной связи нормализованной записи с исходным объектом.
-
-## Продолжение T0111
-
-[U6: удержание и минимальность](U6/README.md) добавлено на базе vi `63cacb7a` в отдельной библиотеке того же Lake-проекта. Модули U5 и их исходные квитанции не менялись; локальный `lake build` теперь собирает U5 и U6. Наблюдательный скрипт T0110 выше сохраняет свой пин `a6ddd37c` и запускается на принятом дереве `1204b4e3`; для текущей базы служит `U6/Tools/observe-contract.py`. На этапе T0111 ворота и CI ещё не были подключены.
-
-## Продолжение T0113
-
-[U7: устойчивое замыкание](U7/README.md) продолжает ту же принятую линию на базе `63cacb7a`. Добавлены проверка сохранения E по порождающим рёбрам, наименьшесть замыкания классов Question под словами действий и корректность индуцированных действий устойчивого вида для всех интерпретаций. `lake build` собирает U5, U6 и U7; принятые модули U5/U6 и их квитанции сохранены. Наблюдения U7 воспроизводит `U7/Tools/observe-contract.py`; на этом этапе ворота и CI ещё не были подключены.
-
-## Продолжение T0114
-
-[U8: одно действие при скрытом выборе](U8/README.md) добавлено после переноса принятых Proofs на `eeb6ce81`. Доказаны обе стороны критерия общей программы для H, необходимость через двухзначные интерпретации, корректность общей программы и двух препятствий. `lake build` теперь собирает U5–U8; принятые математические модули и их квитанции сохранены. Новый скрипт наблюдений — `U8/Tools/observe-contract.py`; на этом этапе ворота и CI ещё не были подключены.
-
-## T0115: закон proofs
-
-Текущий способ проверки всей лестницы — `python3 Checks/proofs.py && python3 Checks/proofs-test.py` из корня репозитория, либо `./check.sh --only proofs` через единственный реестр `Checks/Laws.swift`. `lake build` в этом каталоге собирает математические библиотеки и проверяющий Record; отдельный запуск `lake env lean Axioms.lean` печатает зависимости основных утверждений из общего списка. При сдаче T0115 их было 83; последующие добавления объявляются в том же списке. Все их имена объявлены только в [Axioms.lean](Axioms.lean). Прежние четыре списка сведены в этот файл; математические модули и архивные квитанции T0110–T0114 сохранены. Числа задач сборки и длительности выше относятся к тем историческим деревьям.
-
-Lean закреплён в [lean-toolchain](lean-toolchain). Установка [elan](https://github.com/leanprover/elan#installation): `curl -sSfL https://elan.lean-lang.org/elan-init.sh | sh -s -- -y --default-toolchain none`, затем `export PATH="$HOME/.elan/bin:$PATH"` и, из корня репозитория, `elan toolchain install "$(cat Proofs/U5/lean-toolchain)"`. Отсутствующий `lake` — красный закон с этой инструкцией. Закон выбирает объявленную версию независимо от унаследованного `ELAN_TOOLCHAIN` и сверяет фактический ответ `lean --version`.
-
-Закон читает полный вывод `#print axioms`: ровно один ответ на каждое объявленное имя, только `propext`, `Classical.choice`, `Quot.sound`. Неизвестная аксиома, `sorryAx`, исчезнувшее утверждение, повтор, посторонний ответ или неразобранная диагностика — адресованный отказ. Пустой список утверждений тоже отказывает. Это закон зависимостей объявленных утверждений, не поиск запрещённых слов и не утверждение, что всякий неиспользуемый объект проекта был доказан. Доверенные посылки — ядро и указанный тулчейн Lean, получение его вывода и исполнение проверяющего Python; отрицательные контроли не доказывают корректность этого транспорта.
-
-В CI закон исполняется отдельным заданием `proofs` через тот же реестр; основной прогон явно пропускает `law` и `proofs` повторяемым `--skip`. Задание публикации по-прежнему зависит только от `build` и `law`. Полный локальный прогон не пропускает `proofs`; его защита неизменности входа включает каталог `Proofs`, исключая регенерируемый `.lake`. Наблюдательные `observe-contract.py` остаются воспроизводимыми квитанциями, в закон не входят. Эта интеграция не продвигает §12.
-
-## Продолжение T0116
-
-[Record: запись schema 1 и доказанный проверяющий U5/U6](Record/README.md) соединяет байты мира из T0109 с прежними `U5.check` и `U6.check`. Доказаны обе стороны канонического кодека, переходы `ByteArray` и цепочка выхода 0/1 → прочитанная модель → `check_sound`; `lake exe record-check [--retain] proof.json world.json` не читает Swift. JSON-декодер полезной нагрузки формата 8 остаётся названной посылкой. Утверждения Record входят в общий список `Axioms.lean`, который читает закон `proofs`.
-
-## T0119: фиксированное скрытое повторение U11
-
-[U11](U11/README.md) добавляет обе стороны критерия общего положительного возврата Q(x), первый возврат, НОК и его минимальность, проверяющий положительного/отрицательного сертификата и отдельный отказ сохранения E. В общий Axioms.lean добавлены 37 утверждений; со 125 утверждениями базы T0115–T0117 получается 162. Наблюдения repeat-владельца отделены от доказательства. §12 в физическом носителе не продвигается.
-
-## Продолжение T0120
-
-[U9: точный образ](U9/README.md) и [U10/U10a: построение согласия и остаток](U10/README.md) добавлены в тот же закреплённый Lake-проект. Утверждения объявлены в общем `Axioms.lean`, проверяемом существующим законом proofs; режимы ворот и CI этой задачей не изменяются. Упоминания недоказанных U9/U10 в исторических разделах выше относятся к прежнему состоянию. Новые теоремы относятся к нормализованному конечному проверяющему, а соответствие Swift остаётся наблюдаемой связью и названной посылкой. Физический §12 не продвигается.
-
-## T0121: запись для U9–U11
-
-[Record/Extended](Record/Extended/README.md) продолжает канонический вход schema 3/4 и --repeat на прежней schema 2. При сдаче T0121 общий список содержал 249 утверждений: 210 принятых и 39 новых. Доказанные кодеки и денотация новых полей соединены с U9.check/U10.check/U11.check одной цепочкой exit_bytes_sound; JSON payload, IO, исполнение и соответствие Swift остаются названными посылками. Исторические форматы schema 1/2 сохранены.
-
-T0124 усиливает `ImageDenotes` свидетелем принадлежности объявленного Image скрытой семье и сохраняет вычисляемый допуск. Тот же `exit_bytes_sound` теперь несёт усиленное соответствие. Общий список — 250 утверждений. Описание закона proofs называет весь проект Proofs/U5, U5–U11 и вход записью; команда и исчисление закона сохранены.
+The theorems are about these Lean models of the checkers. The Swift court is compared with `record-check` on fixtures by the scripts in `Record/Tools` and `Record/*/Tools`; that comparison is a test, not a proof that the two implementations agree. Admission has named resource bounds (input size, JSON depth, tree size, path depth); an input beyond them exits 2 and is not judged. The certificate is read by JSON envelope decoders in `Record/Payload.lean`, `Record/Actions/Payload.lean` and `Record/Extended/Payload.lean`; these decoders and their field translation are implementation premises, not proved. The soundness theorems apply to the typed certificates they produce, and no result is accepted without `check = true`. The Lean kernel, the toolchain and the IO driver in `Record/Main.lean` are premises as well.

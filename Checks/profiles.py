@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Physical profile execution and timing; debt T0084. Selection is a host filter over the Court projection (выборка — фильтр хоста поверх проекции суда)."""
+"""Physical profile execution and timing. Selection is a host filter over the Court projection."""
 import argparse
 import datetime
 import fcntl

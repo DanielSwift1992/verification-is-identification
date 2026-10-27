@@ -14,9 +14,9 @@ Each checker is a total Lean function. Its soundness theorem says: if `check …
 | `U9` | Image and promise | `U9.check_sound`; `promise_iff`, `hidden_promise_iff` |
 | `U10` | Allocation by an optimal plan | `U10.check_sound`; `admissible_iff_optimal_plan`, `optimal_plan_minimal` |
 | `U11` | Return of the declared actions | `U11.check_sound`; `universal_return_iff_cycles`, `finite_common_return_iff` |
-| `Record` | Reading world records of schemas 1–3 | `read_write`, `write_read`, `write_injective` for each schema; `exit_bytes_sound` |
+| `Record` | Reading world records of schemas 1–4 | `read_write`, `write_read`, `write_injective` for each schema; `exit_bytes_sound` |
 
-`exit_bytes_sound` joins the parts: an exit code 0 or 1 from `record-check` means that the input bytes were read into an admitted world, that writing that world back gives the same bytes, and that the soundness theorem of the selected checker holds for the resulting model.
+`exit_bytes_sound` joins the parts: an exit code 0 or 1 from `record-check` means that the world bytes were read into an admitted world, that writing that world back gives the same bytes, and that the soundness theorem of the selected checker holds for the resulting model.
 
 ## Checking
 
@@ -33,4 +33,4 @@ The first argument selects the checker: none for U5, `--retain` for U6, `--actio
 
 ## Limits
 
-The theorems are about these Lean models of the checkers. The Swift court is compared with `record-check` on fixtures by the scripts in `Record/Tools` and `Record/*/Tools`; that comparison is a test, not a proof that the two implementations agree. Admission has named resource bounds (input size, JSON depth, tree size, path depth); an input beyond them exits 2 and is not judged. The Lean kernel, the toolchain and the IO driver in `Record/Main.lean` are premises of these results.
+The theorems are about these Lean models of the checkers. The Swift court is compared with `record-check` on fixtures by the scripts in `Record/Tools` and `Record/*/Tools`; that comparison is a test, not a proof that the two implementations agree. Admission has named resource bounds (input size, JSON depth, tree size, path depth); an input beyond them exits 2 and is not judged. The certificate is read by JSON envelope decoders in `Record/Payload.lean`, `Record/Actions/Payload.lean` and `Record/Extended/Payload.lean`; these decoders and their field translation are implementation premises, not proved. The soundness theorems apply to the typed certificates they produce, and no result is accepted without `check = true`. The Lean kernel, the toolchain and the IO driver in `Record/Main.lean` are premises as well.

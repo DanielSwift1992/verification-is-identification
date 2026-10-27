@@ -1,7 +1,9 @@
 import Foundation
 
 /// Binds the admitted context's nominal references to full declaration places.
-/// The common lexical tape supplies positions; the fragment admits no shadowing.
+/// The common lexical tape supplies positions. Explicit witnesses discharge
+/// inherited requirements; a module root precedes imported homonyms. Other
+/// competing lexical declarations remain outside this finite fragment.
 enum ContextNameBinding {
     struct Place: Codable, Hashable {
         let components: [ScalarName]
@@ -148,17 +150,19 @@ enum ContextNameBinding {
         // Index supplied file-level nominal owners before visiting extensions.
         // The result does not depend on source order or the extension's module.
         var roots = NameMap<Set<Place>>()
+        var aliasRoots: Set<Place> = []
         for (file, tape) in tapes.enumerated() {
             var depth = 0
             for i in tape.words.indices {
                 let word = tape.words[i]
                 if WhereJudge.sameName(word, "}") { depth -= 1 }
-                if depth == 0, nominal.contains(word), i + 1 < tape.words.count,
+                if depth == 0, (nominal.contains(word) || WhereJudge.sameName(word, "typealias")), i + 1 < tape.words.count,
                    wordOffsets[file].contains(tape.starts[i + 1]),
                    i == 0 || ![".", "import"].containsName(tape.words[i - 1]),
                    !["func", "var", "let", "subscript", "init"].containsName(tape.words[i + 1]) {
-                    roots[tape.words[i + 1], default: []].insert(
-                        Place(parts: [files[file].context.module, tape.words[i + 1]]))
+                    let place = Place(parts: [files[file].context.module, tape.words[i + 1]])
+                    if WhereJudge.sameName(word, "typealias") { aliasRoots.insert(place) }
+                    else { roots[tape.words[i + 1], default: []].insert(place) }
                 }
                 if WhereJudge.sameName(word, "{") { depth += 1 }
             }
@@ -172,7 +176,13 @@ enum ContextNameBinding {
                 }
                 return Place(parts: names)
             }
-            let candidates = (roots[names[0]] ?? []).filter { available.contains($0.parts[0]) }
+            let ownRoot = Place(parts: [files[file].context.module, names[0]])
+            if aliasRoots.contains(ownRoot), !(roots[names[0]] ?? []).contains(ownRoot) {
+                try WhereJudge.fail("\(files[file].context.source):\(tapes[file].lines[token]): extension owner '\(names[0])' is a local typealias; resolving its target is outside this fragment")
+            }
+            let visible = (roots[names[0]] ?? []).filter { available.contains($0.parts[0]) }
+            let own = visible.filter { WhereJudge.sameName($0.parts[0], files[file].context.module) }
+            let candidates = own.isEmpty ? visible : own
             if candidates.count == 1, let root = candidates.first {
                 return Place(parts: root.parts + names.dropFirst())
             }
@@ -340,7 +350,10 @@ enum ContextNameBinding {
                 let place = Place(parts: names)
                 return imports.visible(files[file].context).contains(names[0]) && byPlace[place] != nil ? [place] : []
             }
-            return Set(imports.visible(files[file].context).compactMap { module in
+            let module = files[file].context.module
+            let root = Place(parts: [module, names[0]])
+            let visible = byPlace[root] == nil ? Array(imports.visible(files[file].context)) : [module]
+            return Set(visible.compactMap { module in
                 let place = Place(parts: [module] + names)
                 return byPlace[place] == nil ? nil : place
             })
@@ -442,9 +455,13 @@ enum ContextNameBinding {
                 // active lexical owner, or an intrinsic profile root.
                 let name = ScalarName(word)
                 var candidates: Set<Place> = []
-                for parent in moduleParents {
-                    let candidate = Place(components: parent.components + [name])
-                    if byPlace[candidate] != nil { candidates.insert(candidate) }
+                let ownRoot = Place(parts: [files[file].context.module, word])
+                if byPlace[ownRoot] != nil { candidates.insert(ownRoot) }
+                else {
+                    for parent in moduleParents {
+                        let candidate = Place(components: parent.components + [name])
+                        if byPlace[candidate] != nil { candidates.insert(candidate) }
+                    }
                 }
                 let memberScopes = active.filter {
                     position > $0.open || (!$0.extensionBody && byPlace[$0.place]?.kind == ScalarName("protocol"))
@@ -475,8 +492,27 @@ enum ContextNameBinding {
                     let candidate = Place(components: parent.components + [name])
                     if let row = byPlace[candidate], row.kind != ScalarName("parameter") { candidates.insert(candidate) }
                 }
-                for declaration in intrinsicRoots[name] ?? [] {
-                    candidates.insert(declaration.place)
+                // A declared member is the concrete witness of inherited
+                // associated slots, not a competing occurrence of their name.
+                // No inferred witness or unrelated lexical priority is added.
+                for scope in memberScopes {
+                    guard let owner = byPlace[scope.place], nominal.contains(owner.kind.text),
+                          owner.kind != ScalarName("protocol") else { continue }
+                    let own = Place(components: scope.place.components + [name])
+                    if let row = byPlace[own], candidates.contains(own),
+                       row.kind == ScalarName("typealias") || nominal.contains(row.kind.text) {
+                        for parent in visibleParents(scope) {
+                            let requirement = Place(components: parent.components + [name])
+                            if byPlace[requirement]?.kind == ScalarName("associatedtype") {
+                                candidates.remove(requirement)
+                            }
+                        }
+                    }
+                }
+                if byPlace[ownRoot] == nil {
+                    for declaration in intrinsicRoots[name] ?? [] {
+                        candidates.insert(declaration.place)
+                    }
                 }
                 if WhereJudge.sameName(word, "Self") {
                     let selected = active.last {

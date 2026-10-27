@@ -19,9 +19,12 @@ struct NotationScope {
     var declarations: [Declaration] = []
     var nested: [Int: String] = [:]
     var namespaces: NameSet = []
-    private var ownerStarts: [Int] = []
-    private var ownerIndices: [Int?] = []
-    private var subtreeEnds: [Int] = []
+    private
+    var ownerStarts: [Int] = []
+    private
+    var ownerIndices: [Int?] = []
+    private
+    var subtreeEnds: [Int] = []
 
     init(_ clean: String, enabled: Bool = true) throws {
         try self.init(clean, enabled: enabled, refusing: { try WhereJudge.fail($0) })
@@ -119,7 +122,10 @@ struct NotationScope {
 
     private mutating func recordOwner(at offset: Int, index: Int?) {
         if ownerStarts.last == offset { ownerIndices[ownerIndices.count - 1] = index }
-        else { ownerStarts.append(offset); ownerIndices.append(index) }
+        else {
+            ownerStarts.append(offset)
+            ownerIndices.append(index)
+        }
     }
 
     func name(_ spelling: String, at start: Int) -> String { nested[start] ?? spelling }

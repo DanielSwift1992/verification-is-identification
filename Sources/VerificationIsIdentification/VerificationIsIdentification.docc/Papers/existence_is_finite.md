@@ -4,17 +4,29 @@
 
 **Result.** Finite generation with recoverable operands and a separate constructor origin gives unique admitted tree representations (EF8). It leaves the admitted construction language open. Requiring every ordered pair to be constructible selects the full finite-tree medium, whose carrier is infinite even though each member is finite (EF5). These are distinct conclusions. Applying them to the closed whole requires establishing the corresponding relations there.
 
+### EF1
+
 **EF1 (Finite description versus finite object).** C6 motivates a finitist interpretation. It does not prove that every finitely specified object has finitely many constituents. For example, the rule naming all natural numbers is finite, while its extension in ordinary mathematics is infinite. Restricting actuality to finite generated objects is a substantive condition here. Every finite stage of a history can satisfy it without supplying a fixed bound on all stages or making their totality one finite tree.
+
+### EF2
 
 **EF2 (Construction must retain its inputs).** To recover a pair's two arguments, pairing must be injective. To recover whether construction occurred, its image must exclude the floor. These are the two constructor conditions in Definition 1. They are structural preservation requirements. In this grammar even equal children form a node distinct from the floor: collapsing every pair `(a,a)` to the floor would violate EF2. They do not follow just from having definite elements or a binary operation.
 
+### EF3
+
 **EF3 (Countermodel to generation alone).** Take the two-element carrier `{0,1}`, floor 0, and pairing `p(0,0)=1` with all other pairs mapped to 0. Both elements have finite generating terms. Equality is definite and decidable. Yet `p(p(0,0),0)=0`, so distinct finite trees denote the same element. The unique evaluation from syntax is onto and fails to be injective. This countermodel refutes the earlier step from generation and determinacy to unique tree representation.
 
+### EF4
+
 **EF4 (The Swift floor has two roles).** Mathematical tree syntax distinguishes a leaf from every constructed pair. The Swift `Null` protocol instead certifies equality of two associated types. Many nominal types can conform to it without being `Never`. Thus `Null` as an equality witness and the concrete syntax leaf must not be identified. `Checks/ClosedInformation.swift` accepts an equality witness with two `Never` sides and separately rejects its proposed identity with `Never`. The open protocol lattice needs a specified finite constructor interpretation before Theorem 1 applies to it.
+
+### EF5
 
 **EF5 (A free constructor medium cannot have a finite carrier).** If M has a floor and total pairing satisfying EF2, the disjoint constructors give an injection `1 + M² → M`. A finite cardinal m would therefore satisfy `1 + m² ≤ m`, which fails for every nonnegative integer m. Equivalently, start at t₀=⊥ and set t_(n+1)=⟨t_n,⊥⟩. All these elements are distinct: an alleged equality can be shortened by constructor injectivity until a pair equals the floor. Every t_n is finite, while their carrier is infinite. In ordinary set semantics Σ is countably infinite, since finite constructor strings enumerate it and this chain supplies infinitely many elements.
 
 Interference Is Substitution IiS17 applies this countability boundary to exact channel descriptions: a fixed-size matrix can contain unrestricted scalar values that no finite constructor string names. A finite symbolic family and an identified member of that family are different records.
+
+### EF6
 
 **EF6 (A finite search requires a uniform bound).** Let Σ_d contain the unlabeled ordered binary trees of height at most d, with leaf height zero. Then `|Σ₀|=1` and `|Σ_(d+1)|=1+|Σ_d|²`. The first cardinalities are 1, 2, 5, 26, 677. Each Σ_d is finite and their union is Σ. Pairing maps `Σ_d × Σ_d` into `Σ_(d+1)`, not generally back into Σ_d. A finite search may restrict constructor use to keep constructions within its declared bound. It cannot retain total free pairing on that same finite carrier.
 
@@ -24,7 +36,11 @@ VC23 separates another pair of quantifiers. For countably many finite-valued add
 
 Matter M69 gives a constructive use of this distinction. In its declared balanced graph family, a requested residual bridge with a finite side has a finite cut witness even when the graph is unbounded and other directions remain unresolved. The argument uses finitely many actual incidences for that question, rather than deriving a finite whole from C6. Finite support of a comparison, finite representation of each witness and a uniform bound on all witnesses are different requirements.
 
+### EF7
+
 **EF7 (Finite levels do not imply a finite tower).** The sequence of levels `L_n={t_n}` contains one finite candidate at each level and admits another level for every n. Likewise, repeatedly taking a finite power set yields a finite next level without producing a last one. Termination follows instead if every continued level strictly decreases a natural-number rank supplied at the start. A starting rank r allows at most r descents, by induction on r. Non-increase alone permits an endless repeated rank. This is the missing height premise in Verification Is Identification §5.16.
+
+### EF8
 
 **EF8 (Unique decomposition with partial construction).** Let M have a specified floor ⊥ and an ordered constructor p defined on D⊆M×M. Suppose every element has a finite generating tree of admitted applications. Suppose two single-valued readings recover the operands on the constructor range: l(p(a,b))=a and r(p(a,b))=b. Suppose an origin reading distinguishes ⊥ from every constructed output. Then each element of M has exactly one admitted finite constructor tree. Total pairing is not needed for this uniqueness.
 
@@ -40,6 +56,8 @@ This settles one global uniqueness question negatively under precise premises. E
 
 The origin reading is a premise about the represented construction, not a label capable of repairing an actual merger. If a putative node already equals the floor, no single-valued reading of that output can return distinct origins. The floor is a terminal in this grammar, not a claim that the whole reality once had no relations. Recovering ordered operands also names their roles. Keeping an unordered collection alone does not recover an ordered pair.
 
+### EF9
+
 **EF9 (Full retention does not make every local result a free constructor).** A construction can retain its context and both operands while projecting them to a noninjective local result. It can also restrict which operand pairs it admits. Thus full retention alone does not establish either local constructor recovery or total constructor availability.
 
 *Proof.* Write the prepared source as (h,(a,b)) and its complete retained result as ((h,(a,b)),a). The complete result recovers h,a,b. Its local result a identifies (a,b₀) with (a,b₁) whenever b₀≠b₁. The lost local distinction remains at its retained address. For the second assertion, admit only a=b and return the local node ⟨a,a⟩, retaining the entire prepared source in the same way. Every admitted construction retains its inputs, yet a pair with unequal operands is outside its domain. ∎
@@ -47,6 +65,8 @@ The origin reading is a premise about the represented construction, not a label 
 `RetainedConstruction` uses the existing `RetainedWhole` with context and operands in its actual input. `ConstructionRecoversOperands` derives the operand reading from `Permanent` and that address. `SameBoundaryForcesOperands` permits different contexts and local results while deriving the same operand answer. `RetainedOutputIdentifiesSource` derives input identity from an equality of complete retained outputs. None adds its concluding equality as a caller's premise. `DiagonalConstruction` computes its local pair from its one operand parameter and admits no independent second operand.
 
 The open `Permanent` equations alone do not establish fresh construction or an origin distinction: the assignment Left=Right=Never satisfies them. Explicit `RetainedWhole` outputs use the nominal Paired constructor, which is distinct from the Never leaf in the stated syntax. Repeated equal local results can therefore belong to distinct retained occurrences. Source recovery, fresh occurrence and finite generation remain separately addressed relations. A complete construction record can establish the first two in this grammar without granting total availability of every proposed interaction.
+
+### EF10
 
 **EF10 (A recursive axis, a settled output and a decision are different obligations).** IntegerValued requires only that Right conform to IntegerValued again. It specifies neither a terminal nor a unit on Left. The existing CyclicNumeral in Checks/FiniteBoundary.swift has Right equal to itself. Finite expressions in a declared Never/Succ grammar admit a natural-number interpretation by induction, and the existing SpendSuccessor constructor exposes the actual predecessor. This interpretation does not extend automatically to every conformer. The numeral Zero and the type Never can both serve as zero under different stated conventions without being the same nominal type. The runtime Structure.count reader is not the definition of this unary interpretation.
 
@@ -62,19 +82,46 @@ Decidable requires a Pair output. A tuple with both fields Lit2 satisfies this s
 
 The constructive replacements already exist for specific questions. PredicateReading names an application, while concrete projection constructors and ReadingFactors bind its actual source and result. SharedDecoder derives agreement through the same decoder application (Verdict VC10). G2f derives the zero relation of a generated tree difference through recursive constraints and source equalities. Those constructions establish their stated relations without a measurement runtime. A complete binary comparison additionally needs a positive nonzero witness and coverage of the declared finite domain. The marker names alone supply neither.
 
+Statements on this page:
+
+- <doc:existence_is_finite#EF1>: Finite description versus finite object.
+- <doc:existence_is_finite#EF2>: Construction must retain its inputs.
+- <doc:existence_is_finite#EF3>: Countermodel to generation alone.
+- <doc:existence_is_finite#EF4>: The Swift floor has two roles.
+- <doc:existence_is_finite#EF5>: A free constructor medium cannot have a finite carrier.
+- <doc:existence_is_finite#EF6>: A finite search requires a uniform bound.
+- <doc:existence_is_finite#EF7>: Finite levels do not imply a finite tower.
+- <doc:existence_is_finite#EF8>: Unique decomposition with partial construction.
+- <doc:existence_is_finite#EF9>: Full retention does not make every local result a free constructor.
+- <doc:existence_is_finite#EF10>: A recursive axis, a settled output and a decision are different obligations.
+- <doc:existence_is_finite#C1>: Something is.
+- <doc:existence_is_finite#C2>: Determinacy has a relational meaning.
+- <doc:existence_is_finite#C3>: A settled common answer preserves agreement.
+- <doc:existence_is_finite#C4>: A complement in a description supplies no outside substance.
+- <doc:existence_is_finite#C5>: A proposed binary constructor representation.
+- <doc:existence_is_finite#C6>: Finite generation is a further condition.
+
 ## Part I — From determinacy to a proposed construction grammar
 
 Start with the encountered content and ask which relations must remain for that content, or a specified act concerning it, to remain. A necessary condition, a sufficient construction and a chosen representation grammar have different roles in this inquiry.
 
-**C1 — Something is.** An occurring denial cannot cancel its own occurrence. The Cut's Step 1 starts with this given. Step 2 separately points to an encountered contrast, further content of that same actuality. It is marked as given, not derived from nonemptiness. An account that removes that contrast fails to preserve the exhibited datum. An arbitrary pair of names, or a contrast with a hypothetical absence, does not by itself establish two distinct actual contents.
+### C1
+
+**C1 (Something is).** An occurring denial cannot cancel its own occurrence. The Cut's Step 1 starts with this given. Step 2 separately points to an encountered contrast, further content of that same actuality. It is marked as given, not derived from nonemptiness. An account that removes that contrast fails to preserve the exhibited datum. An arbitrary pair of names, or a contrast with a hypothetical absence, does not by itself establish two distinct actual contents.
 
 The refusal has an exact source scope. A description claiming that the actuality containing its own occurring assertion is wholly empty fails to represent that actuality. A description concerning an absent object need not itself be absent. Its occurrence establishes neither the existence nor the impossibility of its stated referent. This is the report/source distinction below applied to the attempted empty account, not a derivation of permanence, internal cycles or the necessity of happening from the syntax of a denial. The Cut §5 separates these claims before introducing the record commitment.
 
-**C2 — Determinacy has a relational meaning.** The Cut's Step 3 adopts the rule that a proposed actual distinction must make a difference to some internal relation. A description that excludes every such difference adds no further state under that rule. This is the book's marked jurisdiction, not a consequence of nonemptiness alone. It also does not require every question about a determinate form to be settled already.
+### C2
 
-**C3 — A settled common answer preserves agreement.** If two readings of the same stated question must equal one common answer, they must equal each other. Positively different readings exclude that common-answer construction. Both records and their disagreement can still belong to one determinate whole. This is the scoped settlement condition of The Cut §18 and Verdict VC60, rather than a proof that every context has a single Boolean valuation or that storing a contradiction entails every statement.
+**C2 (Determinacy has a relational meaning).** The Cut's Step 3 adopts the rule that a proposed actual distinction must make a difference to some internal relation. A description that excludes every such difference adds no further state under that rule. This is the book's marked jurisdiction, not a consequence of nonemptiness alone. It also does not require every question about a determinate form to be settled already.
 
-**C4 — A complement in a description supplies no outside substance.** Under C2, an additional substrate contributes only where it introduces a distinguishable relation. Otherwise it adds a name without another admitted distinction. Writing "not this" marks what a description excludes; it does not require a second existing object outside the whole. Nor does identifying a relation establish two independently combinable parts. LQ15–LQ16 state the additional conditions for independent blocks and reconstructible contact roles.
+### C3
+
+**C3 (A settled common answer preserves agreement).** If two readings of the same stated question must equal one common answer, they must equal each other. Positively different readings exclude that common-answer construction. Both records and their disagreement can still belong to one determinate whole. This is the scoped settlement condition of The Cut §18 and Verdict VC60, rather than a proof that every context has a single Boolean valuation or that storing a contradiction entails every statement.
+
+### C4
+
+**C4 (A complement in a description supplies no outside substance).** Under C2, an additional substrate contributes only where it introduces a distinguishable relation. Otherwise it adds a name without another admitted distinction. Writing "not this" marks what a description excludes; it does not require a second existing object outside the whole. Nor does identifying a relation establish two independently combinable parts. LQ15–LQ16 state the additional conditions for independent blocks and reconstructible contact roles.
 
 The two compared roles of a contrast also do not determine an exhaustive binary partition. Fix a≠b in a described carrier X and require a total binary reading s with s(a)=0 and s(b)=1. Such a reading partitions X, but the contrast alone does not assign any further c to either class. On X={a,b,c}, both assignments to c retain the same contrast. In general the set s⁻¹(0) can be any subset containing a and excluding b until further relations constrain it. If the carrier is already established to contain exactly a and b, the partition is determined. The exhaustion of that carrier, as well as the demand for a total binary reading, is additional content. This is an insufficiency test for the description, not an assertion that the actual whole has a selectable third form or Boolean state space.
 
@@ -206,11 +253,15 @@ The next useful test must name one proposed invariant of the given joining, one 
 
 The centre inquiry now has an explicit dependency map in Space §5i. Exchanging roles in one contact gives an action on participant readings only when those readings determine their partners. Unique centres require another relation, and S32 shows that coherent exchanges still do not force medial scaling. Under the stronger division laws, S30 reconstructs composition. A reading that exactly preserves every reflection and doubling can nevertheless lose halving and unique centres: S32 identifies the omitted distinctions at each depth. S31 separately asks what participation and internal detail future combinations need. These results distinguish a shared role, a reversible centre, a calibrated midpoint and a terminal of the constructor grammar. No one of these names supplies the others or establishes universal physical recovery.
 
-**C5 — A proposed binary constructor representation.** Write a constructor form as ⟨a,b⟩ and its terminal as ⊥. In this representation each object is a terminal or a constructed pair. A finite division into more parts can be encoded with further binary divisions, provided the encoding retains the original roles and grouping. This does not identify a joint relation with its separate pair projections; VC23a supplies that obstruction. Equal children still form a node: ⟨a,a⟩ does not become ⊥ by the equality of its sides. Equality of sides and termination of construction are different relations (EF2, EF4). Labels and values must themselves receive representations if this is to be the complete constructor medium. EF8 identifies the recovery, origin and generation conditions under which such a representation is unique, including when construction is partial.
+### C5
+
+**C5 (A proposed binary constructor representation).** Write a constructor form as ⟨a,b⟩ and its terminal as ⊥. In this representation each object is a terminal or a constructed pair. A finite division into more parts can be encoded with further binary divisions, provided the encoding retains the original roles and grouping. This does not identify a joint relation with its separate pair projections; VC23a supplies that obstruction. Equal children still form a node: ⟨a,a⟩ does not become ⊥ by the equality of its sides. Equality of sides and termination of construction are different relations (EF2, EF4). Labels and values must themselves receive representations if this is to be the complete constructor medium. EF8 identifies the recovery, origin and generation conditions under which such a representation is unique, including when construction is partial.
 
 Liquid LQ16 supplies a separate route to recovering two roles: exact self-contact and contextual substitution reconstruct them from a ternary relation and force each admitted mixed result to be unique. Its two input places remain specified. Moreover, recombining an existing form with itself returns that form, whereas the free constructor here creates a distinct node. A rule for replacing fields and a rule for constructing a new retained form cannot be identified on the basis of their two argument places alone.
 
-**C6 — Finite generation is a further condition.** The finitist proposal admits as individual forms only those generated through finitely many constructor applications. This supplies an induction principle on each form and permits structural comparison to terminate. It does not give one bound on every form or every inquiry (EF6–EF7).
+### C6
+
+**C6 (Finite generation is a further condition).** The finitist proposal admits as individual forms only those generated through finitely many constructor applications. This supplies an induction principle on each form and permits structural comparison to terminate. It does not give one bound on every form or every inquiry (EF6–EF7).
 
 An unfinished enumeration does not prove that its subject is indeterminate. In the mathematical sequence presentation, the condition xᵢ=0 at every natural-number address fixes one infinite sequence. Every coordinate answer is settled by one relation, without listing every address. This is a counterexample to the proposed inference from determinate specification to a finite represented object. It does not establish that such a presentation is physically realized. A finitist ontology must justify its further restriction directly.
 
@@ -224,7 +275,7 @@ Part II therefore states finite generation, total pairing and constructor recove
 
 For the standard syntax-to-algebra construction, see [Niccolò Veltri, finite trees as an initial algebra](https://theorylunch.wordpress.com/2013/02/28/finite-trees-as-initial-algebra/).
 
-**Theorem 1 — One space.** Up to a single isomorphism there is one medium: the initial F-algebra
+**Theorem 1 (One space).** Up to a single isomorphism there is one medium: the initial F-algebra
 > Σ = μX. (1 + X²),
 the finite binary trees, with ⊥ the leaf and ⟨·,·⟩ the node.
 
@@ -234,13 +285,13 @@ The uniqueness is among media satisfying Definition 1. EF3 shows why an arbitrar
 
 **The least fixpoint.** In the mathematical interpretation, μ means the carrier consists of terms built by finitely many constructor applications. Every further finite term is already a member of Σ, while an infinite tree is not. The structure map `1 + Σ² ≅ Σ` expresses closure under the disjoint constructors. EF5 shows that this carrier is infinite despite each member being finite. Interpreting the grammar as potential rather than completed infinity is a separate ontological position. The initial-algebra theorem does not turn the collection of all finite terms into one finite term.
 
-**Theorem 2 — Conditional representation.** Every element of a medium satisfying Definition 1 has a unique finite-tree representation. Applying this to every existent additionally requires the ontological thesis and EF2 for the proposed whole.
+**Theorem 2 (Conditional representation).** Every element of a medium satisfying Definition 1 has a unique finite-tree representation. Applying this to every existent additionally requires the ontological thesis and EF2 for the proposed whole.
 
 *Proof.* Apply the inverse of the isomorphism in Theorem 1. ∎
 
 The mathematical result identifies the specified medium with finite-tree syntax. Whether all physical existence has this form remains the theory's foundational question.
 
-**Theorem 3 — Comparison is decidable.** There is a total decidable map COMPARE : Σ × Σ → {equal, unequal} with COMPARE(s, t) = equal exactly when s = t.
+**Theorem 3 (Comparison is decidable).** There is a total decidable map COMPARE : Σ × Σ → {equal, unequal} with COMPARE(s, t) = equal exactly when s = t.
 
 *Proof.* Recur on structure: COMPARE(⊥, ⊥) = equal; COMPARE(⟨a,b⟩, ⟨c,d⟩) = equal when COMPARE(a,c) and COMPARE(b,d) are both equal; otherwise unequal. Each call descends into a finite tree under Definition 1's generation premise, so each ends. Induction on the compared trees gives correctness. ∎
 

@@ -2,6 +2,12 @@
 
 This part contains the original derivations for repair continuation.
 
+Statements on this page:
+
+- <doc:interference_is_substitution__repair_continuation#IiS44>: A coherent probe chooses a minimax continuation.
+- <doc:interference_is_substitution__repair_continuation#IiS45>: Orthogonal recorded actions turn recovery into discrimination.
+- <doc:interference_is_substitution__repair_continuation#IiS46>: The retained decision must compose with the actual joint law.
+
 Family and original section headings: <doc:interference_is_substitution>.
 
 Section setting: <doc:interference_is_substitution#16s-Acquired-uncertainty-can-select-an-optimal-repair-without-identifying-the-fault>.
@@ -441,3 +447,5 @@ For full return, each known k leaves two equally likely orthogonal Pauli actions
 ## Cross-page mentions
 
 Labels mentioned here: <doc:interference_is_substitution__models_calibration#IiS12>, <doc:interference_is_substitution__models_calibration#IiS13>, <doc:interference_is_substitution__support_memory#IiS42>, <doc:interference_is_substitution__support_memory#IiS43>.
+
+Mentions of this page’s labels: <doc:interference_is_substitution> (IiS44), <doc:interference_is_substitution> (IiS46).

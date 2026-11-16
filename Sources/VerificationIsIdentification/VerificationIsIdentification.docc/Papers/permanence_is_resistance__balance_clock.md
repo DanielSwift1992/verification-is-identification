@@ -2,6 +2,13 @@
 
 This part contains the original derivations for balance clock.
 
+Statements on this page:
+
+- <doc:permanence_is_resistance__balance_clock#M64au>: Two cycle readings restore exact record admission, not its physical provenance.
+- <doc:permanence_is_resistance__balance_clock#M64av>: A joint balance can be sufficient without an autonomous model of the process.
+- <doc:permanence_is_resistance__balance_clock#M64aw>: Retaining a selected answer need not retain the contact that can apply it.
+- <doc:permanence_is_resistance__balance_clock#M64ax>: An internal clock can be omitted exactly for the answers its reweighting preserves.
+
 Family and original section headings: <doc:permanence_is_resistance>.
 
 Section setting: <doc:permanence_is_resistance#4g-Which-future-must-carry-a-real-distinction>.
@@ -262,3 +269,5 @@ The relation retained by a clock question is therefore more precise than “the 
 ## Cross-page mentions
 
 Labels mentioned here: <doc:learning_is_liquid__medium_contacts#LQ13>, <doc:permanence_is_resistance__reacquisition_residue#M64at>, <doc:permanence_is_resistance__recovery_remainder#M67>, <doc:permanence_is_resistance__forced_answers#M71e>.
+
+Mentions of this page’s labels: <doc:permanence_is_resistance> (M64au), <doc:permanence_is_resistance> (M64ax).

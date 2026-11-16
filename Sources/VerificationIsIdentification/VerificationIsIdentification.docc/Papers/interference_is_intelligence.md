@@ -4,6 +4,30 @@ The value of a question depends on what can be asked after its answer. A query t
 
 The mechanism studied here is finite decision-tree search. It is an established mathematical model, made explicit in VI so that claims about ordering can be checked. Retention and acquisition have the separate premises of Liquid LQ3 and LQ11. The term interference names relationships between query partitions. It does not establish quantum interference or automatic growth of intelligence.
 
+Statements on this page:
+
+- <doc:interference_is_intelligence#S1>: Conditional information in a deterministic choice.
+- <doc:interference_is_intelligence#S2>: The phase comparison is an analogy.
+- <doc:interference_is_intelligence#S2a>: Acting observations can make order informative.
+- <doc:interference_is_intelligence#S3>: Optimal continuation, replacing the local-optimality claim.
+- <doc:interference_is_intelligence#S3a>: A uniquely best local split can be globally worse.
+- <doc:interference_is_intelligence#S4>: Capability inclusion bounds optima.
+- <doc:interference_is_intelligence#S4a>: Exact random-order accounting.
+- <doc:interference_is_intelligence#S5>: Efficiency requires a common objective.
+- <doc:interference_is_intelligence#S5a>: Trajectory counting gain telescopes.
+- <doc:interference_is_intelligence#S5b>: The instance-to-policy quantifier gap.
+- <doc:interference_is_intelligence#S6>: What a library can contribute to ordering.
+- <doc:interference_is_intelligence#S11>: Refinement preserves optional capability.
+- <doc:interference_is_intelligence#S12>: A useful first observation can give no immediate target information.
+- <doc:interference_is_intelligence#S6a>: Observation, record and elimination.
+- <doc:interference_is_intelligence#S6b>: Relative certificate bound.
+- <doc:interference_is_intelligence#S6c>: Acquisition requires progress.
+- <doc:interference_is_intelligence#S7>: Resource trade-offs need a model.
+- <doc:interference_is_intelligence#S8>: The MBQC comparison remains an analogy.
+- <doc:interference_is_intelligence#S8a>: Theorems transfer with their premises.
+- <doc:interference_is_intelligence#S9>: Cache organization does not establish universality.
+- <doc:interference_is_intelligence#S10>: Equality depends on the tested relation.
+
 ## §0. Outcomes, Feedback and Choice
 
 Fix a finite nonempty candidate set K, an unknown actual x ∈ K, a target question q, and static total queries f_i: K → {0,1}. Each query costs one call, leaves the source unchanged, and remains available after every history. The full query table is known for policy synthesis. An executing policy reads its internal state and query outcomes, not the unknown index x. A sound history determines a compatible set B containing x. A policy may stop when q is constant on B.
@@ -22,11 +46,17 @@ A bandwidth β may count exposed feature values if the interface specifies which
 
 ## §1. What the Policy Knows
 
+### S1
+
 **S1 (Conditional information in a deterministic choice).** When Y = P(H), I(x; Y | H) = 0: knowing H already determines Y. This does not imply that Y is unconditionally independent of x, since H may contain information about x. Nor are the verdict and mismatch feedback independent because software computes them in different roles.
 
 *Proof.* A deterministic function of H has zero conditional entropy given H, so H(Y | H) = H(Y | x,H) = 0. Their difference is the conditional mutual information. A policy can affect what the next observation reveals without its choice itself adding information beyond H.
 
+### S2
+
 **S2 (The phase comparison is an analogy).** Reordering static observations can change the cost and intermediate compatible sets. If the same queries and answers are eventually retained, their final intersection is order-independent. Early stopping can instead produce different transcript partitions with the same final target answer (System IQ4–IQ6). None of these statements supplies complex amplitudes, a quantum state or an isomorphism to quantum phase.
+
+### S2a
 
 **S2a (Acting observations can make order informative).** S2 concerns queries that leave the source unchanged. When an observation acts on the source, the next observation reads the changed source, and the final record can depend on the order. The phase-gate chain of [OG78](../../../../Research/2026-10-10-gate-order-and-address-commutator.md) is an exact continuous example. Under its class conditions, an unknown source state Z passes two gates that differ only in their address operators A₁ and A₂. Gate k reads the quadratic form G_k(Z)=½⟨Z,A_kZ⟩ of its address operator A_k and rotates Z by an angle proportional to a prepared action parameter π₀. Its duration τ(G_k) enters one shared clock record. With π₀=0 the gates do not rotate Z, the record is a function of G₁(Z) and G₂(Z), and the two orders give the same record. With π₀≠0 the two records differ by 2π₀τ′(G₁)τ′(G₂)K(Z)+O(π₀²), where K(Z)=½⟨Z,i[A₁,A₂]Z⟩. For every sufficiently small π₀≠0, some admissible source receives different records from the two orders exactly when A₁ and A₂ do not commute. On a given source with K(Z)≠0 the two records differ for every π₀≠0 below a threshold that depends on that source. Even for noncommuting addresses, at a fixed π₀≠0 the condition K(Z)≠0 alone need not make the records different. One acting program also separates two sources with equal G₁ and G₂. The record then depends on the source beyond the forms that the gates read without acting, and only through the action on the source. This is one specified model class. It supplies neither quantum amplitudes nor an order effect for the static decision trees studied here.
 
@@ -35,6 +65,8 @@ A bandwidth β may count exposed feature values if the interface specifies which
 For a possible answer b to query i, write B_iᵇ = {y ∈ B: f_i(y) = b}. The realized counting gain is log₂|B| − log₂|B_iᵇ|. Before seeing the answer, a uniform-prior information-gain heuristic maximizes the binary answer entropy. This selects the most balanced available split. These are different optimization rules: one is evaluated on an actual branch, the other averages over possible branches.
 
 Two queries can be redundant on a branch when the second is constant on the compatible set left by the first. Pairwise overlap alone does not determine the cost of a complete policy. Under uniform sampling from B, |A ∩ C| = |A||C|/|B| expresses independence of two particular events. A smaller intersection expresses negative association of those events, not global search optimality.
+
+### S3
 
 **S3 (Optimal continuation, replacing the local-optimality claim).** Let W(B) be minimum worst-case remaining query count and V_π(B) minimum expected remaining query count for an exact policy. Both are zero when q is constant on B. Otherwise, minimizing over queries with two nonempty branches:
 
@@ -48,6 +80,8 @@ If no query has feasible continuations on all branches, the value is ∞. Querie
 *Proof.* Every nonterminal policy selects a first query and then a policy in each answer branch. Its continuation cost is at least that branch's optimum, giving the lower bound. Conversely, choose a minimizing root and minimizing policies on its branches to attain the expression. Induction on |B| establishes both equalities. The two objectives may select different trees.
 
 Maximizing the immediate counting gain or answer entropy does not minimize either recurrence in general. The earlier S3 proof established only the immediate comparison and therefore did not prove its conclusion about total calls.
+
+### S3a
 
 **S3a (A uniquely best local split can be globally worse).** Let K = {0,…,8}, q(x) = x and π uniform. Five queries have the following tables:
 
@@ -75,6 +109,8 @@ For completeness, a binary tree with three leaves has total depth at least 5, wi
 
 ## §3. What Speed Bounds Require
 
+### S4
+
 **S4 (Capability inclusion bounds optima).** If one policy class can simulate another with the same observations and costs, its optimal cost cannot be higher. This is the valid basis for a richer-feedback or larger-vocabulary hierarchy. It compares optima. A particular implementation can perform worse despite having more available information.
 
 For N candidates and binary queries, a complete identification tree has worst depth at least ceil(log₂N). Under uniform targets its mean depth is at least log₂N, not generally ceil(log₂N). Attaining these lower bounds requires suitable available partitions. For three equally likely candidates with all identity tests, an optimal tree has depths (1,2,2), mean 5/3 and worst depth 2.
@@ -82,6 +118,8 @@ For N candidates and binary queries, a complete identification tree has worst de
 If every reachable nonterminal candidate set has an available split with each branch of size at most ceil(|B|/2), repeatedly choosing such a split reaches identity in at most ceil(log₂N) queries. This is a recursive availability condition. High entropy at the initial state does not establish it at later states. Query alphabets and goals also matter: a particular binary question may settle without identifying all N candidates.
 
 Testing candidates in a uniformly random order until an explicit positive match has expected position (N+1)/2. If one instead stops once the last untested candidate is logically forced, the expectation is smaller by 1/N. The stopping rule must therefore accompany the formula.
+
+### S4a
 
 **S4a (Exact random-order accounting).** Suppose the entire finite query vocabulary of size m separates the target answer for actual x. Draw a uniformly random permutation without replacement, query in that order, and stop when q is constant on the compatible set. Then:
 
@@ -97,11 +135,17 @@ These limitations do not make greedy search useless. [Dasgupta's analysis of gre
 
 ## §4. Certificates and Implementable Strategies
 
+### S5
+
 **S5 (Efficiency requires a common objective).** For a finite positive cost C(P) of an exact policy and the corresponding optimum C*, define η = C*/C(P). The objective, prior where applicable, query vocabulary, initial knowledge and cost units must match. Then η = 1 means that P attains that optimum. It does not mean that every query is most informative locally or that every executed query adds a new useful record.
+
+### S5a
 
 **S5a (Trajectory counting gain telescopes).** Along any sound static-query trajectory B₀ ⊇ … ⊇ B_T, the sum of log₂|B_{k−1}| − log₂|B_k| equals log₂|B₀| − log₂|B_T|. For full identification from a uniform initial compatible set it equals log₂|B₀|, regardless of trajectory length. This is a counting identity. For a coarser target q, the terminal set may have several members and different successful policies can disclose different additional distinctions.
 
 A rare binary answer can leave a singleton from a large B and have realized counting gain above one bit. Binary answer entropy is still at most one bit in expectation. These quantities must not be substituted for each other. Nor does gain-per-call generally equal η: their numerators differ unless a separately established optimum matches the counting gain.
+
+### S5b
 
 **S5b (The instance-to-policy quantifier gap).** Let cert_B(x,q) be the minimum number of query keys whose answers on x exclude every y ∈ B with q(y) ≠ q(x). These are covers of wrong-answer candidates, or equivalently hitting sets of their distinguishing-key sets (Liquid LQ3/LQ11). Every correct policy's path on x has length at least cert_B(x,q).
 
@@ -113,7 +157,11 @@ Even a rule allowed to inspect the actual branch can fail to find its shortest c
 
 The distinction between instance certificates and decision-tree complexity is standard. See [Buhrman and de Wolf, §4.1](https://homepages.cwi.nl/~rdewolf/publ/qc/dectree.pdf). Saturating the query table makes the optimization problem specified. It does not collapse its quantifiers or make its solution computationally free.
 
+### S6
+
 **S6 (What a library can contribute to ordering).** A retained library can supply query models, scoped certificates or previously synthesized policies. Whether it contains a complete current query table is a separate premise. With that table and the declared costs, S3 computes optimal policies by finite search. The search may be expensive, and a deployed policy may be approximate. Library growth alone does not guarantee a better table, better query choices or greater η.
+
+### S11
 
 **S11 (Refinement preserves optional capability).** Suppose initial observation r refines observation s on B: s = h ∘ r there. The source is static, both observations have the same acquisition cost, all later queries and costs remain available, and local decoding is uncharged in this model. Then the optimal total worst-case and expected costs after obtaining r are no greater than those after obtaining s.
 
@@ -121,11 +169,15 @@ The distinction between instance certificates and decision-tree complexity is st
 
 If a richer observation changes the source, consumes a future resource, restricts available actions or costs more to acquire or decode, this simulation needs a new argument. S11 does not cross those boundaries.
 
+### S12
+
 **S12 (A useful first observation can give no immediate target information).** Let a,b be independent uniform bits and q = a XOR b. The only queries read a or b. Each read alone leaves q equally likely to be zero or one, so I(q;a) = I(q;b) = 0. Reading both determines q, giving I(q;a,b) = 1 bit. Every exact policy needs both reads.
 
 *Proof.* For either first reading, its two compatible states have opposite q values. Each joint reading identifies one pair and hence q. A policy that rejects every zero-immediate-target-information query would reject both possible first steps and never solve this task.
 
 The first observation prepares an interpretation of the second. This is a relation between questions in a history. For VI and The Cut, it motivates evaluating what a distinction makes accessible next, alongside what it resolves immediately. It suggests training against continuation cost or certified residual structure. An advantage of a learned policy under that objective remains an experimental question.
+
+### S6a
 
 **S6a (Observation, record and elimination).** Fix the static-query model of Liquid §0: a sound compatible set B, an actual x ∈ B, a question q and immutable keyed queries. A query can both restrict B and add a retained keyed answer. These effects need not both be positive, and retention requires an implemented update.
 
@@ -133,9 +185,13 @@ For a query outcome leaving B′, define h_id = log₂|B| − log₂|B′|. This
 
 Let h_str count distinct new retained keys, in records rather than bits. Over T calls, 0 ≤ Σh_str ≤ T. Equality on the right needs every call to use an uncached distinct key and the store to retain it. A newly encountered target alone does not prevent repeated queries. Zero growth does not require its full feature vector to be cached: the episode may repeat one known query forever, or q may already be settled.
 
+### S6b
+
 **S6b (Relative certificate bound).** Liquid LQ3 proves cert_G(x, q) ≤ d ≤ T for a settling episode that retains d distinct new answers relative to sound initial cache G. Liquid LQ11 identifies the sufficient key sets as covers of the remaining wrong-answer candidates. The bound becomes the usual empty-cache certificate bound when G is empty. This is an instance lower bound, not a proof that an unknown target can be located by an equally cheap adaptive policy.
 
 No physical dissipation bound follows from a count of records. Record volume, logical elimination, Shannon information and dissipated energy have different definitions. Reusing a sufficient partial certificate can require zero new observations even while other features remain unknown. The former Landauer corollary and the claim that full feature coverage is necessary for zero new records are withdrawn.
+
+### S6c
 
 **S6c (Acquisition requires progress).** More calls can mean more repeated observations or more redundant records. Neither forces improved ordering. The implication from inefficient search to self-correction therefore needs additional premises: the policy eventually selects distinguishing queries, observations are retained with a sound interpretation, and the implementation can exploit them at an acceptable cost.
 
@@ -145,19 +201,29 @@ For fixed finite B and q, eventual separation of every wrong-answer candidate is
 
 ## §5. Complementarity as a Research Question
 
+### S7
+
 **S7 (Resource trade-offs need a model).** Library coverage, observation resolution and policy flexibility are different coordinates. No universal three-way impossibility has been proved here. Optional stored information can be ignored under S11's simulation premises, so greater knowledge alone does not force a locked encoding or fewer useful choices. A trade-off would need an explicit shared resource budget, update dynamics or restriction on available policies.
 
 ## §6. Reuse Across Levels
 
+### S8
+
 **S8 (The MBQC comparison remains an analogy).** Adaptive choice of observations on a prepared resource resembles one part of measurement-based computation. A correspondence of these roles does not establish an isomorphism of state spaces, measurements or achievable computations. The previous table and universality inference supplied none of those maps. No quantum computational guarantee is claimed for a classical cache graph.
+
+### S8a
 
 **S8a (Theorems transfer with their premises).** A higher level may use structured records from a lower level as its candidates. S1–S6c apply there only after supplying the required finite candidate set, static query semantics, sound history, query availability, costs and policy information. Structural COMPARE's ability to inspect a tree does not provide the whole query table, eventual separating queries or an efficient policy. S6c therefore does not force saturation at every level or an infinite tower.
 
 ## §7. Several Agents
 
+### S9
+
 **S9 (Cache organization does not establish universality).** Agents may share identical caches, complementary records, overlapping libraries or a graph of communication links. Their usable combined information depends on consistent keys, interpretation, delivery and scope of reuse. Disjoint records can be redundant or contradictory, and distributed coverage need not survive failure of one holder. A cache-overlap graph alone proves neither fault tolerance nor computational universality. Those remain properties to establish for a specified communication and computation model.
 
 ## §8. Three Levels of Identity
+
+### S10
 
 **S10 (Equality depends on the tested relation).** Agreement on an output, equality of represented structure and interchangeability under later operations are different claims. A unique encoding-local survivor does not establish interchangeability across all encodings or contexts. A certificate transports only when its domain and subsequent context meet the relevant conditions (Verdict VC35–VC36). Closure under future readings gives a precise operational equivalence for the chosen vocabulary (VC38), not every possible meaning of “is”.
 

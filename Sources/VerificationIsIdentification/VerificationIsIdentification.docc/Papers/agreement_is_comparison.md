@@ -4,6 +4,16 @@ Two independently maintained records can drift between comparisons. This paper s
 
 The paper gives an edit model and two scope criteria. The model prices accumulation: the mean drift rises monotonically to N/(1+c), where N is the shared reach and c is the probability that a touch closes the divergence it lands on; the stationary law is Binomial(N, 1/(1+c)); stationary agreement has probability (c/(1+c))^N. The observation criterion asks whether every joint history compatible with the local record gives the same answer. When it does, structural inference can settle that answer without reading the other state. The generation criterion separates relations established between actual outputs by construction from an unestablished relation to what those outputs purport to record. V=I §5.21's instruction classification does not prohibit these inferences.
 
+Statements on this page:
+
+- <doc:agreement_is_comparison#AC1>: Mean, ceiling, stationary law.
+- <doc:agreement_is_comparison#AC2>: Parity at c = 1.
+- <doc:agreement_is_comparison#AC3>: The footprint is the statistic; the count is not.
+- <doc:agreement_is_comparison#AC4>: About the other side, the archive is the clock.
+- <doc:agreement_is_comparison#AC5>: Local evidence is sufficient exactly on constant answer fibers.
+- <doc:agreement_is_comparison#AC6>: Construction establishes its output relations under an actual source binding.
+- <doc:agreement_is_comparison#AC7>: Mean-only transfer preserves exactly affine response expectations on the full mixture family.
+
 ## §0. Derivation
 
 AC1–AC4 use the declared model D. The later scope criteria use question factorization and actual source bindings. From V=I: §5.20 (revelation, not creation), §5.21 (the admission rule for comparison events), §5.24 (two encodings of one task run as two non-communicating executions), §5.18 and §5.19 (a cached comparison transfers across games; a repeated run performs zero new comparisons). From Difference Is Distance: S7 (the distance between two perspectives is the symmetric difference of their caches), S9 (translation between encodings is a priced game). From Distance Is Cost: G2 (W is a metric; one traversal computes it), G4b (the sign of a divergence halts at the first divergent address; the magnitude costs a full traversal), the frontier. From Merge Is Commutation: Definitions 1–3 (law support, edit inputs and writes, and sufficient independence conditions), MiC1 through MiC4. From Record Is System: SW3. From Dynamics Is Substitution: the elementary move. From Halt Is Ignition: HF2 (an infinite deterministic finite-state run eventually repeats). From Permanence Is Resistance: M12, M21, M24, M27. From Interference Is Intelligence: the distinction between a retained record, an excluded possibility and a settled question. From Seam Is Game: SG1 through SG3, consequence (c). Two imports are declared where used, at the standing M24 gives its own physical premise: the edit model D of §1, together with the standard theory of finite reversible chains (detailed balance; Kac's return-time formula), and the chain of Ehrenfest (1907), which D reduces to at c = 1. The definitions below are those, assembled by the author.
@@ -20,23 +30,33 @@ AC1–AC4 use the declared model D. The later scope criteria use question factor
 
 ## §2. The interval's dynamics
 
+### AC1
+
 **AC1 (mean, ceiling, stationary law).** Under D, over the age t: (i) E[d_{t+1}] = E[d_t](1 − (1+c)/N) + 1, so E[d_t] = (N/(1+c))(1 − (1 − (1+c)/N)^t), monotone increasing to the fixed point d* = N/(1+c). The ceiling N/2 is the best case, c = 1; every process with c < 1 saturates higher. (ii) For 0 < c ≤ 1 the drift is a birth-death chain with up-probability (N−d)/N and down-probability cd/N per touch; detailed balance gives the stationary law Binomial(N, 1/(1+c)); stationary agreement has probability (c/(1+c))^N, and the expected return time to d = 0 is ((1+c)/c)^N touches. (iii) At c = 0 nothing closes: E[d_t] = N(1 − (1 − 1/N)^t), d increases to N, and no return exists.
 
 *Proof.* (i) One touch raises d by 1 with probability (N−d)/N, lowers it by 1 with probability cd/N, and leaves it unchanged with probability (1−c)d/N; take expectations; the recursion is linear with ratio 1 − (1+c)/N and fixed point N/(1+c). (ii) Detailed balance, π(d)(N−d)/N = π(d+1)·c(d+1)/N, gives π(d) ∝ C(N, d)c^(−d), normalized Binomial(N, 1/(1+c)); the return time is 1/π(0) (Kac). At c < 1 the chain has self-loops, is aperiodic, and its distribution converges; at c = 1 see AC2. (iii) Substitute c = 0: d counts the distinct addresses touched. ∎
 
 For a one-address reach, the same mean recurrence has ratio −c. At c > 0 it oscillates around 1/(1+c), so the monotone-mean statement requires the declared N ≥ 2 boundary. An interval starting with d₀ ≠ 0 instead has mean d* + (E[d₀] − d*)·(1 − (1+c)/N)^t.
 
+### AC2
+
 **AC2 (parity at c = 1).** At c = 1 every touch changes d by exactly 1, so d ≡ t (mod 2): the parity of drift equals the parity of age, agreement is reachable only at even ages, and P(d = 0) = 0 at every odd age. The chain is the Ehrenfest urn: period 2, Binomial(N, 1/2) as invariant measure, convergence on the even subsequence and in time average. At c < 1 the parity claim is void: a touch may leave d unchanged.
 
 ## §3. Observation closed
+
+### AC3
 
 **AC3 (the footprint is the statistic; the count is not).** Under D, the conditional law of d given side a's full history H_a and n_b depends on (H_a, n_b) only through (footprint of a, n_b). At c = 1 it depends only on (m_a, n_b). The count n_a is not sufficient.
 
 *Proof.* Sufficiency: an address permutation maps any history to a history in the same orbit, preserves both processes' laws (exchangeability of the address measure; independence of the sides), and preserves d (W is invariant under relabeling of addresses), so conditional laws agree across one orbit. At c = 1, write x_a for side a's parity vector and X_b for side b's: d = Σ over odd addresses of (1 − X_b) plus Σ over even addresses of X_b, and X_b given n_b is exchangeable, so the law depends on x_a through m_a alone. Insufficiency, by exhibit at c = 1: N = 3, n_a = 2, n_b = 1. The history "address 0 twice" has m_a = 0, and the law of d is {1: 1.0}. The history "address 0, address 1" has m_a = 2, and the law is {1: 2/3, 3: 1/3}. One count, two laws. ∎
 
+### AC4
+
 **AC4 (about the other side, the archive is the clock).** Fix n_b. For every event E of side b's touch process, P(E | H_a, n_b) = P(E | n_b): no function of side a's history carries anything about side b's touches beyond what n_b carries. Mixing over any clock prior preserves the equality, and the prior over n_b given a clock is supplied by D's declared rates, not by an observation of side b. Side a therefore holds its own displacement in its footprint, and its entire uncertainty about d is its uncertainty about the other side: a one-parameter family of laws indexed by n_b.
 
 *Proof.* The two touch processes are independent, so an event of side b's process is independent of every function of side a's process conditionally on n_b. A clock is independent of both processes' address choices by Definition 2, so mixing over its prior preserves the identity. ∎
+
+### AC5
 
 **AC5 (local evidence is sufficient exactly on constant answer fibers).** For an available local record h, let K_h be the nonempty family of joint histories compatible with h and the declared law. A deterministic answer to q is correct in every compatible history exactly when q is constant on K_h. A particular address j can be certified as divergent exactly when j belongs to the frontier in every member of K_h.
 
@@ -49,6 +69,8 @@ For c>0, a possible later closing touch can destroy that certificate. Whether it
 V=I §5.21 can reserve an explicit equality-classification event for the COMPARE instruction in its chosen pipeline. That syntactic rule does not prove that an equality or inequality cannot follow from other established relations. A static proof and a new comparison event are different objects.
 
 ## §4. The Scope of Construction
+
+### AC6
 
 **AC6 (construction establishes its output relations under an actual source binding).** Let a=f(s) and b=g(s) be generated from the same actual source s. Their relation is determined by these constructions. For example, f=g forces a=b for every s without a fresh comparison of the outputs. More generally, a proof of f(s)=g(s) on the admitted source family supplies that equality whenever the two actual applications have the required source. `SingletonVerdict` and `IndependentReadingOrders` already provide static instances of these two forms of reasoning.
 
@@ -77,6 +99,8 @@ A counterexample to monotone E[S(d_t)] uses N = 2 and c = 1, starting at agreeme
 The mean drift law therefore supplies neither monotone shell entropy nor a physical arrow of time. Record accumulation, posterior conditioning and the chosen entropy each need their own relation.
 
 ## §6a. What an average can answer
+
+### AC7
 
 **AC7 (Mean-only transfer preserves exactly affine response expectations on the full mixture family).** Let I be a real interval and q:I→ℝ a response. Consider every finitely supported probability law P on I. Its mean determines E_P[q(X)] for this entire family exactly when q is affine on I. These are explicit scalar and mixture premises for auditing a statistical representation, not consequences of The Cut.
 

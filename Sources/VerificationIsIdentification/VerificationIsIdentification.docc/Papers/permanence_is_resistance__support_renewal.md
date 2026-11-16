@@ -2,6 +2,20 @@
 
 This part contains the original derivations for support renewal.
 
+Statements on this page:
+
+- <doc:permanence_is_resistance__support_renewal#M64o>: The location of one contrast determines its sufficient support.
+- <doc:permanence_is_resistance__support_renewal#M64p>: Acquired profiles can make comparison available without full contact return.
+- <doc:permanence_is_resistance__support_renewal#M64q>: A sparse distinguishing certificate need not recover the profile law.
+- <doc:permanence_is_resistance__support_renewal#M64r>: A distinguishing support can be renewed before its old carrier changes.
+- <doc:permanence_is_resistance__support_renewal#M64s>: A different acquired branch can release an entire column.
+- <doc:permanence_is_resistance__support_renewal#M64t>: The exact capacity of support handover is a union-connectivity question.
+- <doc:permanence_is_resistance__support_renewal#M64u>: Paired replacement has an exact two-cell reserve.
+- <doc:permanence_is_resistance__support_renewal#M64v>: A mixed support can retain an optimal adaptive instrument.
+- <doc:permanence_is_resistance__support_renewal#M64w>: Local facts can select an entry into a recurrent renewal family.
+- <doc:permanence_is_resistance__support_renewal#M64x>: Two working charts have an additional joint release condition.
+- <doc:permanence_is_resistance__support_renewal#M64y>: A shared binary correction preserves more freedom than independent permissions.
+
 Family and original section headings: <doc:permanence_is_resistance>.
 
 Section setting: <doc:permanence_is_resistance#4g-Which-future-must-carry-a-real-distinction>.
@@ -259,4 +273,4 @@ During the gap between the two matching odd exchanges, XZ and YZ remain usable, 
 
 Labels mentioned here: <doc:permanence_is_resistance__contact_rigidity#M64n>, <doc:permanence_is_resistance__forced_answers#M71a>.
 
-Mentions of this page’s labels: <doc:permanence_is_resistance__reusable_requests> (M64v), <doc:permanence_is_resistance__reusable_requests> (M64w), <doc:permanence_is_resistance__reusable_requests> (M64x), <doc:permanence_is_resistance__reusable_requests> (M64y).
+Mentions of this page’s labels: <doc:permanence_is_resistance> (M64o), <doc:permanence_is_resistance> (M64y), <doc:permanence_is_resistance__reusable_requests> (M64v), <doc:permanence_is_resistance__reusable_requests> (M64w), <doc:permanence_is_resistance__reusable_requests> (M64x), <doc:permanence_is_resistance__reusable_requests> (M64y).

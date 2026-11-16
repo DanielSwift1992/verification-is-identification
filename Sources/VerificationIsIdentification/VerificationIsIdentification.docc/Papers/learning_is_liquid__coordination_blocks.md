@@ -2,6 +2,11 @@
 
 This part contains the original derivations for coordination blocks.
 
+Statements on this page:
+
+- <doc:learning_is_liquid__coordination_blocks#LQ14>: Admission gives a necessary coordination scale, including all internal detours.
+- <doc:learning_is_liquid__coordination_blocks#LQ15>: Finite recombination determines a unique finest independent partition on fixed addresses.
+
 Family and original section headings: <doc:learning_is_liquid>.
 
 Section setting: <doc:learning_is_liquid#6c-Coordination-through-internal-changes>.

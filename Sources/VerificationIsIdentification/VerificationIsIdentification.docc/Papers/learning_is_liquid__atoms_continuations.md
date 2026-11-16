@@ -2,6 +2,13 @@
 
 This part contains the original derivations for atoms continuations.
 
+Statements on this page:
+
+- <doc:learning_is_liquid__atoms_continuations#LQ19>: A family of addressed relations forces one finest common independent partition.
+- <doc:learning_is_liquid__atoms_continuations#LQ20>: Minimal forbidden fillings determine the independent blocks.
+- <doc:learning_is_liquid__atoms_continuations#LQ21>: Minimal separate presentations have one source-bound transport.
+- <doc:learning_is_liquid__atoms_continuations#LQ22>: An internal return can carry an exact next act.
+
 Family and original section headings: <doc:learning_is_liquid>.
 
 Section setting: <doc:learning_is_liquid#6i-Atoms-of-a-whole-action>.

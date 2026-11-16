@@ -2,6 +2,17 @@
 
 This part contains the original derivations for local lifts.
 
+Statements on this page:
+
+- <doc:verdict_is_invariant__local_lifts#VC95>: One reversible law needs four positions; two total reversible lifts can force six.
+- <doc:verdict_is_invariant__local_lifts#VC95a>: A tree of reversible interventions.
+- <doc:verdict_is_invariant__local_lifts#VC96>: A finite witness of required multiplicity.
+- <doc:verdict_is_invariant__local_lifts#VC97>: The selected star's stage horizon is exactly r−1.
+- <doc:verdict_is_invariant__local_lifts#VC98>: Identical stage contacts, different internal continuations.
+- <doc:verdict_is_invariant__local_lifts#VC99>: The first failure of complete-stage determination is r=4.
+- <doc:verdict_is_invariant__local_lifts#VC99a>: The exact remaining phase-action ambiguity.
+- <doc:verdict_is_invariant__local_lifts#VC100>: Point-query cost with known parity.
+
 Family and original section headings: <doc:verdict_is_invariant>.
 
 Section setting: <doc:verdict_is_invariant#6zzd-Available-interventions-constrain-the-hidden-carrier>.
@@ -288,4 +299,4 @@ The finite witness preserves the original recorded answers and all four table en
 
 Labels mentioned here: <doc:permanence_is_resistance__records_entropy#M39>, <doc:permanence_is_resistance__records_entropy#M40>, <doc:permanence_is_resistance__uniform_routing#M65>, <doc:permanence_is_resistance__forced_answers#M71>, <doc:verdict_is_invariant__reusable_images#VC44>, <doc:verdict_is_invariant__reusable_images#VC52>, <doc:verdict_is_invariant__relative_questions#VC89>, <doc:verdict_is_invariant__finite_policies#VC90>, <doc:verdict_is_invariant__finite_policies#VC92>, <doc:verdict_is_invariant__finite_policies#VC94a>.
 
-Mentions of this page’s labels: <doc:permanence_is_resistance__contact_rigidity> (VC99), <doc:permanence_is_resistance__frame_acquisition> (VC100), <doc:permanence_is_resistance__frame_acquisition> (VC99a), <doc:verdict_is_invariant__calibration_residence> (VC95a), <doc:verdict_is_invariant__calibration_residence> (VC97), <doc:verdict_is_invariant__calibration_residence> (VC99), <doc:verdict_is_invariant__four_phase_catalogue> (VC100), <doc:verdict_is_invariant__four_phase_catalogue> (VC95a), <doc:verdict_is_invariant__four_phase_catalogue> (VC99), <doc:verdict_is_invariant__four_phase_catalogue> (VC99a).
+Mentions of this page’s labels: <doc:permanence_is_resistance__contact_rigidity> (VC99), <doc:permanence_is_resistance__frame_acquisition> (VC100), <doc:permanence_is_resistance__frame_acquisition> (VC99a), <doc:verdict_is_invariant> (VC100), <doc:verdict_is_invariant> (VC95), <doc:verdict_is_invariant__calibration_residence> (VC95a), <doc:verdict_is_invariant__calibration_residence> (VC97), <doc:verdict_is_invariant__calibration_residence> (VC99), <doc:verdict_is_invariant__four_phase_catalogue> (VC100), <doc:verdict_is_invariant__four_phase_catalogue> (VC95a), <doc:verdict_is_invariant__four_phase_catalogue> (VC99), <doc:verdict_is_invariant__four_phase_catalogue> (VC99a).

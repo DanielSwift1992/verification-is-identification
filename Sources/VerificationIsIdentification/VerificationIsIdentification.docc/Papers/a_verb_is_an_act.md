@@ -4,6 +4,20 @@ A record of a system is an encoding of its facts into sentences, and the reader 
 
 With this paper the author closes the encoding axis from its second side. In Seeing Is Encoding the author named the first wrong, an image too poor: a distinction the law drops. The dual wrong is an image too rich: a distinction the law invents. A record is faithful exactly between the two, and prose about a system is a record like any other.
 
+Statements on this page:
+
+- <doc:a_verb_is_an_act#P1>: Four forms.
+- <doc:a_verb_is_an_act#P2>: A pose is an invented loop.
+- <doc:a_verb_is_an_act#P3>: The typing refuses a will of a thing.
+- <doc:a_verb_is_an_act#P4>: An event is a firing.
+- <doc:a_verb_is_an_act#P5>: The agentless passive fails identification.
+- <doc:a_verb_is_an_act#P6>: A paragraph is a path's image.
+- <doc:a_verb_is_an_act#P7>: An instrument is a law.
+- <doc:a_verb_is_an_act#P8>: An attributive participle is a folded edge.
+- <doc:a_verb_is_an_act#P9>: An imperative is a presented act.
+- <doc:a_verb_is_an_act#P10>: Modality is a law's image.
+- <doc:a_verb_is_an_act#P11>: A reason is a path.
+
 ## §0. Derivation
 
 The cited papers motivate a model of written system descriptions. Definition 1 supplies the allowed edge types. Those choices are premises of this writing model, not a derivation of the possible relations in every physical or logical medium. From Existence Is Finite: the vertices, each a finite structure. From Dynamics Is Substitution: the act, one rule that one actor applies, and the laws, presented, that admit and refuse. From Program Is Path: the pedigree and the paragraph, each a path. From Seeing Is Encoding: the record, an encoding, judged by the reader through its image alone. From Distance Is Cost: the count of steps as a distance.
@@ -54,27 +68,49 @@ The proposed two failures are an image with unsupported distinctions and a recor
 
 ## §4. Properties of the sentence
 
+### P1
+
 **P1 (four forms).** The faithful sentence forms of a structure are the images of the four admitted shapes: the copula for an identity edge, the passive for an act edge (the reader reads the edge from its patient side, with the actor at the verb), the prepositional for a composition identity, and the existential for a vertex alone. And the typing admits a fifth shape for no structure.
+
+### P2
 
 **P2 (a pose is an invented loop).** Among the edge sorts of W there is no duration: states are vertices, and time is in acts and firings alone. A pose is a loop on a structure vertex with a duration label, so with a pose the writer invents. The reader's test is substitution: the reader replaces the pose with the copula and reads back. When the two readings are equal, the reader identifies an addition of nothing, and an addition of nothing is the phantom.
 
+### P3
+
 **P3 (the typing refuses a will of a thing).** A will of a thing is an act edge with a structure at the source. By the source lemma there is no such edge in W, so in a faithful image there is none either.
 
+### P4
+
 **P4 (an event is a firing).** A physical event is a firing edge, and its faithful images are three: the edge as a noun, the law at the subject, and the patient's passive with the firing at the verb.
+
+### P5
 
 **P5 (the agentless passive fails identification).** A passive whose label the writer cut is the forgetting image in one sentence: the act is real, and the reader returns it without its actor. At that verb the reader's candidate set of agents is larger than one, so the read is no identification (V=I). The passive's licence is the named agent, and nothing less.
 
 ## §5. Properties of the discourse
 
+### P6
+
 **P6 (a paragraph is a path's image).** A paragraph is the image of a path in W. An anaphor is a second name for one vertex, and it is faithful when the reader's candidate set for that vertex is one. A connective is the image of one step: so and because are the images of steps of a derivation. A gap in the image is an edge the reader invents to close the path: the writer's break, and the reader's phantom. A paragraph is faithful when its preimage is one connected path.
+
+### P7
 
 **P7 (an instrument is a law).** An instrument is a presented law, and an instrument's verbs are a law's contract: admits, keeps, drops. A sentence with an instrument at the subject and a contract verb at the verb is the image of a firing, and it is faithful.
 
+### P8
+
 **P8 (an attributive participle is a folded edge).** A participle before a noun is one edge the writer folded to a mark. The reader unfolds it into a sentence and reads back: the participle is faithful when the actor of the unfolded sentence is one. A participle the reader cannot unfold to a named actor is the agentless passive, folded once more.
+
+### P9
 
 **P9 (an imperative is a presented act).** An imperative is no image of a fact: it is a rule the writer presents with the reader at the actor's place. Its faithfulness is a presentation's: the writer states the rule whole, and the reader's act is its firing.
 
+### P10
+
 **P10 (modality is a law's image).** Can is the image of admits, cannot is the image of refuses, and must is the image of the one admitted. A modal sentence is faithful when its law is in W, with its name on the page.
+
+### P11
 
 **P11 (a reason is a path).** A because-sentence is the image of a derivation path. It is faithful when that path is in W, and with no path the writer invents an edge between facts.
 

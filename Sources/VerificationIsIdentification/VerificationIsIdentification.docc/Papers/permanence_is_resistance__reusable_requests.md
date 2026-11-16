@@ -2,6 +2,18 @@
 
 This part contains the original derivations for reusable requests.
 
+Statements on this page:
+
+- <doc:permanence_is_resistance__reusable_requests#M64z>: The number of mutually sufficient coordinates forces an incidence geometry.
+- <doc:permanence_is_resistance__reusable_requests#M64aa>: One missing coordinate is forced by the remaining relations.
+- <doc:permanence_is_resistance__reusable_requests#M64ab>: One successful joint change need not be a reusable generator.
+- <doc:permanence_is_resistance__reusable_requests#M64ac>: Removing the cyclic source law changes the reusable permission.
+- <doc:permanence_is_resistance__reusable_requests#M64ad>: A known change can change the question that the old fact must answer.
+- <doc:permanence_is_resistance__reusable_requests#M64ae>: Admitted changes determine the least reusable frame content.
+- <doc:permanence_is_resistance__reusable_requests#M64af>: A last unobserved change differs from a known transport.
+- <doc:permanence_is_resistance__reusable_requests#M64ag>: Actual reacquisition repairs the three-port crossing.
+- <doc:permanence_is_resistance__reusable_requests#M64ah>: Transporting the request can remove the need for more frame knowledge.
+
 Family and original section headings: <doc:permanence_is_resistance>.
 
 Section setting: <doc:permanence_is_resistance#4g-Which-future-must-carry-a-real-distinction>.
@@ -177,4 +189,4 @@ There is a compositional form. If successive source changes are τ_(j+1)=β_j τ
 
 Labels mentioned here: <doc:permanence_is_resistance__support_renewal#M64v>, <doc:permanence_is_resistance__support_renewal#M64w>, <doc:permanence_is_resistance__support_renewal#M64x>, <doc:permanence_is_resistance__support_renewal#M64y>, <doc:verdict_is_invariant__four_phase_catalogue#VC100c>, <doc:verdict_is_invariant__finite_records#VC15>, <doc:verdict_is_invariant__discovery_acquisition#VC38>.
 
-Mentions of this page’s labels: <doc:permanence_is_resistance__frame_acquisition> (M64ae), <doc:permanence_is_resistance__joint_laws> (M64ah).
+Mentions of this page’s labels: <doc:permanence_is_resistance> (M64ah), <doc:permanence_is_resistance> (M64z), <doc:permanence_is_resistance__frame_acquisition> (M64ae), <doc:permanence_is_resistance__joint_laws> (M64ah).

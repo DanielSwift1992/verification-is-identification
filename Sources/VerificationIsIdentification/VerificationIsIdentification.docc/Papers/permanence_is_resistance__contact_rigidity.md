@@ -2,6 +2,13 @@
 
 This part contains the original derivations for contact rigidity.
 
+Statements on this page:
+
+- <doc:permanence_is_resistance__contact_rigidity#M64k>: The least inequality support forcing an equality.
+- <doc:permanence_is_resistance__contact_rigidity#M64l>: Apply the acquired agreement without identifying the frames.
+- <doc:permanence_is_resistance__contact_rigidity#M64m>: Sparse contact comparisons can determine the whole intertwining.
+- <doc:permanence_is_resistance__contact_rigidity#M64n>: Two joint contacts forbid every partial merger.
+
 Family and original section headings: <doc:permanence_is_resistance>.
 
 Section setting: <doc:permanence_is_resistance#4g-Which-future-must-carry-a-real-distinction>.
@@ -335,4 +342,4 @@ The result complements VC100h: separately characterized actions or views can lea
 
 Labels mentioned here: <doc:permanence_is_resistance__frame_acquisition#M64d>, <doc:permanence_is_resistance__frame_acquisition#M64g>, <doc:permanence_is_resistance__frame_acquisition#M64h>, <doc:permanence_is_resistance__frame_acquisition#M64j>, <doc:permanence_is_resistance__uniform_routing#M65>, <doc:permanence_is_resistance__forced_answers#M71>, <doc:verdict_is_invariant__action_interfaces#VC100h>, <doc:verdict_is_invariant__bounded_calibration#VC107>, <doc:verdict_is_invariant__recovery_memory#VC23a>, <doc:verdict_is_invariant__relative_questions#VC85>, <doc:verdict_is_invariant__local_lifts#VC99>.
 
-Mentions of this page’s labels: <doc:interference_is_substitution__models_calibration> (M64n), <doc:permanence_is_resistance__forced_answers> (M64k), <doc:permanence_is_resistance__support_renewal> (M64n).
+Mentions of this page’s labels: <doc:interference_is_substitution__models_calibration> (M64n), <doc:permanence_is_resistance> (M64k), <doc:permanence_is_resistance> (M64n), <doc:permanence_is_resistance__forced_answers> (M64k), <doc:permanence_is_resistance__support_renewal> (M64n).

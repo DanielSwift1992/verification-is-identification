@@ -2,6 +2,19 @@
 
 This part contains the original derivations for calibration residence.
 
+Statements on this page:
+
+- <doc:verdict_is_invariant__calibration_residence#VC101>: A finite criterion for complete endpoint calibration.
+- <doc:verdict_is_invariant__calibration_residence#VC101a>: None of these six equations follows from the other five.
+- <doc:verdict_is_invariant__calibration_residence#VC101b>: The involution premise cannot be replaced by reversibility.
+- <doc:verdict_is_invariant__calibration_residence#VC102>: Complete calibration costs at least thirty control states.
+- <doc:verdict_is_invariant__calibration_residence#VC103>: Twenty profiles from twenty-three readings.
+- <doc:verdict_is_invariant__calibration_residence#VC103a>: Five readings already force a capacity or return obstruction.
+- <doc:verdict_is_invariant__calibration_residence#VC104>: Twenty-five equal readings followed by exit.
+- <doc:verdict_is_invariant__calibration_residence#VC104a>: A bounded return inside the observed passage.
+- <doc:verdict_is_invariant__calibration_residence#VC105>: The full residence and capacity boundary.
+- <doc:verdict_is_invariant__calibration_residence#VC106>: Recovering through the actually selected contact.
+
 Family and original section headings: <doc:verdict_is_invariant>.
 
 Section setting: <doc:verdict_is_invariant#6zzd-Available-interventions-constrain-the-hidden-carrier>.
@@ -299,4 +312,4 @@ If the recorder can also read the actual edge context, two symbols suffice: reco
 
 Labels mentioned here: <doc:permanence_is_resistance__records_entropy#M35>, <doc:verdict_is_invariant__relative_questions#VC85>, <doc:verdict_is_invariant__local_lifts#VC95a>, <doc:verdict_is_invariant__local_lifts#VC97>, <doc:verdict_is_invariant__local_lifts#VC99>.
 
-Mentions of this page’s labels: <doc:permanence_is_resistance__recovery_remainder> (VC104), <doc:permanence_is_resistance__recovery_remainder> (VC104a), <doc:permanence_is_resistance__recovery_remainder> (VC105), <doc:verdict_is_invariant__bounded_calibration> (VC101), <doc:verdict_is_invariant__bounded_calibration> (VC101a), <doc:verdict_is_invariant__bounded_calibration> (VC101b), <doc:verdict_is_invariant__bounded_calibration> (VC104), <doc:verdict_is_invariant__bounded_calibration> (VC104a), <doc:verdict_is_invariant__bounded_calibration> (VC106).
+Mentions of this page’s labels: <doc:permanence_is_resistance__recovery_remainder> (VC104), <doc:permanence_is_resistance__recovery_remainder> (VC104a), <doc:permanence_is_resistance__recovery_remainder> (VC105), <doc:verdict_is_invariant> (VC101), <doc:verdict_is_invariant> (VC106), <doc:verdict_is_invariant__bounded_calibration> (VC101), <doc:verdict_is_invariant__bounded_calibration> (VC101a), <doc:verdict_is_invariant__bounded_calibration> (VC101b), <doc:verdict_is_invariant__bounded_calibration> (VC104), <doc:verdict_is_invariant__bounded_calibration> (VC104a), <doc:verdict_is_invariant__bounded_calibration> (VC106).

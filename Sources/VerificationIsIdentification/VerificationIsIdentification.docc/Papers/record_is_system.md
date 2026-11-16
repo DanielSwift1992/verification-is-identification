@@ -4,6 +4,19 @@ Permanence Is Resistance §5 projects the framework onto physical systems, and T
 
 The evidence base is concrete: the repository around this paper. Its showcase is a whole organization (people, roles, documents, access policy, review cycles) written as pure types, and every page of the resulting site, every access verdict, every audit figure is read off those types at build time. After a policy edit, the next build re-derives two hundred pages, with no step where a description could lag the system it describes.
 
+Statements on this page:
+
+- <doc:record_is_system#SW0>: What the type check establishes.
+- <doc:record_is_system#SW1>: Every act is a write or a reading.
+- <doc:record_is_system#SW2>: Proof, documentation, and audit are projections.
+- <doc:record_is_system#SW3>: Regeneration removes a stale copy, not the reading's proof obligation.
+- <doc:record_is_system#SW3a>: An application needs the acting premises.
+- <doc:record_is_system#SW3b>: The published reading belongs to the root.
+- <doc:record_is_system#SW4>: A checked derivation covers its generic scope.
+- <doc:record_is_system#SW5>: The typed region is crystal, and adoption is a front.
+- <doc:record_is_system#SW6>: The medium's next floor writes its law in the floor below.
+- <doc:record_is_system#SW7>: What the medium cannot carry bounds what may be claimed.
+
 ## §0. The Projection Basis
 
 No new postulate. The author reads the coordinates off the theory:
@@ -24,11 +37,15 @@ The same distinction applies to editing a description. An actual edit is an even
 
 ## §1. Two Verbs Exhaust the Practice
 
+### SW0
+
 **SW0 (What the type check establishes).** The pure record consists of types and relations between their addresses. A caseless enum can satisfy a relation despite having no runtime values. In this medium, such absence is not falsity. `Null` equates its Left and Right; it does not erase the witness type or identify every equal-sided structure with Never.
 
 A protocol states a required relation. A conformance supplies a construction meeting it. A generic constructor derives a consequence when its parameters require only the premises (Law §T). Merely placing the desired conclusion in a `where` clause describes its scope; it does not establish that every source belongs there. A compiler refusal rules out the attempted construction under its constraints. It is not an object-level negation, and a timeout or unrelated build error is no refusal witness at all.
 
 This starting point needs no global Boolean valuation of all questions. Two records can coexist without agreeing (Verdict VC43); an answer can be readable within one scope without identifying its source (VC40–VC42). These are addressed structural relations. Classical reasoning can establish consequences of a specified fragment, but its additional premises must not be silently attributed to the whole of The Cut. The present construction does not claim a complete alternative logical calculus.
+
+### SW1
 
 **SW1 (Every act is a write or a reading).** On a pure-Σ artifact, every act available to practice either changes the record or leaves it unchanged. If it changes the record, it is a move, and there are two, expand or compress (Law §1: there is no third). If it leaves the record unchanged, its result is determined by the standing structure before the act (V=I §5.20: revelation, not creation): it is a reading. Running is not a third verb: §0′ leaves nothing to run.
 
@@ -37,6 +54,8 @@ This starting point needs no global Boolean valuation of all questions. Two reco
 The verbs of practice map accordingly: *implement* = write. *Build* = the referee's verdict on the position (Play Is Proof). Generate a document, report or audit = read. Author a new explanation = write. Review reads the record against the law. Checks of nearby incompatible constructions examine whether that law expresses the intended boundary (§4).
 
 ## §2. The Four Artifacts Are One Record
+
+### SW2
 
 **SW2 (Proof, documentation, and audit are projections).** Practice maintains four artifacts: the source, the proof, the documentation, the audit trail. Over the pure part they are one structure under four readings:
 
@@ -59,9 +78,13 @@ VC50–VC53 extend this reduction across representations. The source classificat
 
 Changing representation before or after joining a path gives the same boundary readings (VC53). The proof expressions themselves remain nominally different. The boundary relation is enough to reuse the result. Demanding identity of the whole proof expression would add a requirement that the question does not need. Physical storage, reading cost, and the process that finds a useful representation remain separate from this static equality.
 
+### SW3
+
 **SW3 (Regeneration removes a stale copy, not the reading's proof obligation).** If each build computes a specified reading from the current source, its output cannot retain an older source through failure to update a separately maintained copy. This removes that synchronization failure. It does not prove that the reading answers the intended question. A renderer that always prints the same verdict is perfectly reproducible and can still misdescribe the source.
 
 SW2 therefore requires both current-source binding and a justified reading. Authored explanations introduce their own questions and claims. Rendering a changed theorem beside an unchanged stronger slogan does not derive the slogan from the theorem. Difference Is Distance's comparison of encodings can measure an established discrepancy, but absence of a second maintained file alone does not establish semantic faithfulness.
+
+### SW3a
 
 **SW3a (An application needs the acting premises).** An unchanged theorem remains true under its stated conditions. Weakening the premises offered at a use site can make its former application unjustified. For example, `ConstantSecondFactors<T>` derives the second answer from the first under `T: Null`. Changing the supplied constraint to `T: Pair` removes the needed equality. The conditional theorem remains valid, while `RejectedUnmeasuredSecond` rejects that wider application (VC42).
 
@@ -87,6 +110,8 @@ There is no separate proved-status field here. A list of parent names, a revisio
 
 These inclusions concern a fixed question on comparable candidates. A change of representation or of the question itself additionally needs an established correspondence, as VC45 and VC50–VC53 require. Neither nominally preserving a claim ID nor retaining its earlier certificate transports that correspondence automatically.
 
+### SW3b
+
 **SW3b (The published reading belongs to the root).** `DocumentKit.CoveredStatement<Root>` renders one fixed statement form. The root contains an independently declared support, independently requested covered readings, the actual coverage construction, and an archive. The requested and actual constructions must cover the declared support in the same space and encoding, and their answers must agree. Both constructions and both answers are read from that root. The renderer takes no separate certificate argument from which it could choose another reading.
 
 In `DocumentKitDemo/Claim.swift`, the active support names three beams. `RequestedVisibleAnswers` specifies the required `VisibleReading` applications directly, without referring to the proposed coverage aliases. `ThreeBeamsCovered` derives the proposed common answer. The archived support names only the first two. `swift run DocumentKitDemo claim --write` produces the Examples page *A Covered Visible Answer* from this root. Its statement retains the support, space, encoding, requested readings and answer, actual derivation, operation and answer. The derivations display reading constructors rather than replacing them with a question label.
@@ -105,6 +130,8 @@ The existing Topics generator supplies a concrete limit. It maps protocol declar
 
 ## §4. A Test Estimates, a Compile Identifies
 
+### SW4
+
 **SW4 (A checked derivation covers its generic scope).** A successful generic conformance establishes the encoded relation for every admissible substitution of its parameters, subject to the toolchain premise. It need not select one nominal type: many types can satisfy the same relation. A concrete runtime test establishes an outcome for its tested input; extending that result requires a coverage argument. Exhausting a finite domain is one such argument, so the distinction concerns scope and coverage, beyond compile versus run.
 
 Re-executing a consequence already supplied by a generic derivation adds no scope to that derivation. A nearby incompatible construction serves another purpose: it checks that the encoded relation excludes the specific substitution it should exclude. This is useful when formulating the relation. Encoding adequacy, physical acquisition, performance and toolchain behavior also remain distinct questions. None requires storing a second runtime implementation of the mathematical claim.
@@ -115,13 +142,19 @@ The trace's next record is not a proof that an instrument has a fresh slot. The 
 
 ## §5. Trust Crystallizes by Region
 
+### SW5
+
 **SW5 (The typed region is crystal, and adoption is a front).** One part of a system written in the notation is decided: a wrong version does not build. The part beside it is still craft. Learning Is Liquid names this configuration (crystal behind a front, liquid ahead of it, LQ3, LQ10), and adoption is the front advancing one part at a time. The boundary is visible in the source, exactly where the types stop. Each part moved across joins the region where verification is a build. What secures the part also maps it: the record lays out the part's legal forms and collapses them to the survivor. **[interpretive**: LL's vocabulary as tools, its discipline inherited (LL §6), and the per-part guarantee itself is Theorem 2, solid**]**
 
 ## §6. The Laws Tower
 
+### SW6
+
 **SW6 (The medium's next floor writes its law in the floor below).** The tower has three floors, and each writes its law in the medium beneath it. The raw source text is under the grammar (Permission Is Existence): a law whose rules are declarations, whose prohibitions are absences, and whose jurisdiction includes the file that declares the lattice's own seed. The lattice built on that text is under ``Law``. The rendering surface (the layer that turns types into pages) is under `SurfaceLaw`, in the rendering module. All three share one two-part shape: a checkable subset enforced on every build, a remainder held by review. Each law is written *in* a medium a lower law governs, and each floor appears where the one below is saturated enough to build on: Permanence Is Resistance §4's tower, instantiated in a toolchain, where the crystallized floor becomes the fixed target the next level's law crystallizes against (M8 ignition, the cycle permanent → resistant → irreducible). Each law is itself a position in its own medium (Law §6), so the rulebook is on the board it governs, at every floor. **[interpretive**: the three laws and their shape are fact, and reading them *as* the tower is the projection**]**
 
 ## §7. The Walls Are the Encoding's
+
+### SW7
 
 **SW7 (What the medium cannot carry bounds what may be claimed).** The Solvability Criterion localizes all difficulty in the encoder (E2 §0). On the surface this arrives as *walls*: named, checked, and stopped at, never patched around. The render target has no column-width primitive, so no combinator claims one (SurfaceLaw [Surface history S15](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L219)). The type system has no higher-kinded holes, so no combinator takes an unapplied template ([Surface history S11](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L174)). Composition depth has a real stack bound, so a page is one screen's worth and a site is linked pages ([Surface history S16](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L239)), the anchor graph of Navigation Is Geometry, forced by the medium.
 

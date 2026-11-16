@@ -4,6 +4,40 @@ A finite structure exists. It is not nothing: there is a distinction. Equality o
 
 The paper studies one loop, 26 properties and five central theorems (compilation, safety, identifiability, finite extensional presentation, completeness). Their representation, finite-domain, control-flow and memory premises are stated separately. The existence of a finite structure alone does not establish an append-only cache. The inner pipeline uses finite encodings, fixed features and a fixed protocol. Its type constructions express the corresponding relations under Law §0′ without a runtime solver.
 
+Statements on this page:
+
+- <doc:verification_is_identification#U1>: A projection fixpoint does not count candidates.
+- <doc:verification_is_identification#U2>: Identify a singleton through its declared support.
+- <doc:verification_is_identification#U2a>: Identification from actual membership paths.
+- <doc:verification_is_identification#U2b>: Uniqueness from equations without a candidate census.
+- <doc:verification_is_identification#U2c>: Constraint determination is relative to the question.
+- <doc:verification_is_identification#U3>: Structural transport needs no leaf identification.
+- <doc:verification_is_identification#U4>: A sufficient rule for transporting an addressed claim.
+- <doc:verification_is_identification#U5>: Constructive structural continuation.
+- <doc:verification_is_identification#U6>: The least residual is relative to what remains.
+- <doc:verification_is_identification#U7>: Finite construction for all permitted structural continuations.
+- <doc:verification_is_identification#U8>: A hidden action needs a common induced action.
+- <doc:verification_is_identification#U9>: Derive the changed source relation, instead of assuming it persists.
+- <doc:verification_is_identification#U10>: Construct a requested agreement and retain an independent question.
+- <doc:verification_is_identification#U10a>: Retain the requested source binding, not just present agreement.
+- <doc:verification_is_identification#U11>: Derive a repeat block from the required return.
+- <doc:verification_is_identification#U12>: Preserve a connected partial use.
+- <doc:verification_is_identification#U12a>: Factorization does not supply reapplication.
+- <doc:verification_is_identification#SC1>: Constraint refinement and representation loss.
+- <doc:verification_is_identification#GC1>: Truth stability does not imply accessible retention.
+- <doc:verification_is_identification#GC2>: Exact law of sound retaining updates.
+- <doc:verification_is_identification#GC3>: Raw recovery needs a compatible cache decoder.
+- <doc:verification_is_identification#GC4>: Finite identification does not require a permanent comparison cache.
+- <doc:verification_is_identification#IQ1>: Information gain is conditional and question-specific.
+- <doc:verification_is_identification#IQ2>: Support refinement need not lower entropy on each branch.
+- <doc:verification_is_identification#IQ3>: The available questions determine cost and excess distinctions.
+- <doc:verification_is_identification#IQ4>: A successful transcript refines the answer.
+- <doc:verification_is_identification#IQ5>: Exact criterion for no excess distinctions.
+- <doc:verification_is_identification#IQ6>: Cost and excess need not select the same experiment.
+- <doc:verification_is_identification#CS1>: Count represented classes, not successful records.
+- <doc:verification_is_identification#CS2>: Coverage needs a usable dispatcher.
+- <doc:verification_is_identification#CS3>: Generalization also depends on the candidate family.
+
 ## §0. Derivation
 
 **Postulate.** A finite structure exists.
@@ -38,9 +72,13 @@ The bound in steps 7–9 belongs to the chosen encoding. A finite target has som
 
 **On uniqueness.** Identifying the complete candidate requires |S|=1. For a specified question q, a nonempty S needs only |q(S)|=1. The claims about a primitive (§2.5) and an equality-classification instruction (§5.21) concern the chosen representation and operation vocabulary. They have different premises. The former claim that I3 uniquely forces every information axis to align is replaced by the specific order-compatibility argument in §5.25.
 
+### U1
+
 **U1 (A projection fixpoint does not count candidates).** The Swift protocol `Unique: Monotone, Null` entails Left=Right=T and T.Left=T. Its constraints contain no candidate membership relation or counting rule. They do not identify its nominal carrier with Never, and do not constrain T.Right. The existing `EqualSidesWitness` in Checks/ClosedInformation.swift also conforms to Unique while remaining a different type from Never. The generic `UniqueWithResidual<A>` in the same checks satisfies the relation while retaining arbitrary A at its common side's Right address. Its recursive nominal side is not a finite tree of EiF's constructor grammar. These examples establish the scope of the open Swift protocol, not a counterexample to a singleton theorem with an explicit set interpretation.
 
 `SolutionSet=Never` can therefore name a chosen coordinate but does not by itself show that one candidate survived. Conversely, absence of a Unique conformance proves neither |S|=0 nor |S|>1. `IdentityCollapse` identifies its Left, Right and SolutionSet axes, without supplying membership or target adequacy. ExactlyOneSurvives and SystemCrystallizes need those separate links to interpret their coordinates as R4.
+
+### U2
 
 **U2 (Identify a singleton through its declared support).** The finite coverage grammar of Verdict §6b already records candidate leaves and joins without dropping a branch. Its support itself can identify its sole distinct member. CandidateLeaf<X> conforms to SingleCandidateSupport with Member=X. CandidateFork<L,R> conforms conditionally when both children conform and their Member types agree. It then carries that common member. CheckedCoverage compares the certificate's support with an independently declared support tree. DeclaredSingleCandidate derives equality between their Member coordinates from that coverage equality.
 
@@ -52,6 +90,8 @@ Identity readings provide a compatible specialization of the existing verdict me
 
 Two repeated leaves carrying X give two occurrences but one distinct candidate. Their support tree does not collapse to one leaf as a type. Similarly CandidateLeaf<Never> records one candidate type, despite Never having no runtime values. Distinct-candidate cardinality, support occurrence count and runtime inhabitance require their own interpretations. No integer runtime is needed for the supported singleton proof.
 
+### U2a
+
 **U2a (Identification from actual membership paths).** SelectCandidateLeaf<X> selects X from CandidateLeaf<X>. SelectCandidateLeft<P,R> embeds a child's path in the left branch of CandidateFork<P.Left,R>, retaining P.Right as its selected candidate. SelectCandidateRight<L,P> does the same on the right. A finite expression in these constructors gives an actual leaf occurrence in its source support. It does not imply that the support has only one distinct candidate.
 
 *Proof.* At a leaf the selected candidate is X. At either fork step the child path selects a member of that child, which is a member of the parent. Every leaf occurrence has such a finite path by descent through its address. On a singleton support, induction also derives that the selected candidate equals the support's Member. The base is X=X. For a left step, the induction hypothesis gives P.Right=P.Left.Member, and the parent's common member is P.Left.Member. For a right step, the hypothesis gives P.Right=P.Left.Member and the singleton fork equates that member with the left child's member. These are the conditional SingletonCandidateSelection conformances. They require the unselected sibling to have the same sole member, so membership in a mixed support cannot establish uniqueness. QED
@@ -60,6 +100,8 @@ IdentifyCoveredCandidates<C,P,T> binds both path sources to the actual independe
 
 This supplies Theorem 2's membership-to-identity step for the supported grammar. It does not infer that an arbitrary PASS label is membership, or that a declaration includes an intended physical target. The declaration must describe the survivor domain, and an intended target must have a membership path or a separate adequacy argument. Uniform identity readings can establish a singleton but are unnecessary when the support supplies it. The shared name Unique cannot replace these links. As in U2, arbitrary conformances outside the finite constructor grammar do not establish the path interpretation.
 
+### U2b
+
 **U2b (Uniqueness from equations without a candidate census).** The existing Coloring example uses two machines with A.Opposite=B and B.Opposite=A. Fix the first of four tasks to A and require each subsequent assignment to be the previous assignment's opposite. Then every assignment satisfying these equations is (A,B,A,B).
 
 *Proof.* Substitute the pin in the first edge equation to obtain B for the second task. Substitution in the next two equations gives A and B. Thus the three chain edges force the entire assignment. The fourth edge from the last task back to the first is satisfied since B.Opposite=A. The first part gives at most one assignment, while the constructed tasks and this closing check give existence of a valid four-cycle assignment. QED
@@ -67,6 +109,8 @@ This supplies Theorem 2's membership-to-identity step for the supported grammar.
 PinnedScheduleIsForced<A,B,C,D> checks the first part for arbitrary task types with the pin and the three edge equations. Its two sides are their actual ScheduleAssignment coordinates and the coordinates of the existing T0–T3 construction. No complete assignment equality is supplied as a premise. ClosingConflict checks the remaining edge separately. A closing edge can instead reject the forced assignment, as when closing a three-task chain with assignments (A,B,A). Uniqueness from a connected chain does not itself establish that additional constraints are satisfiable.
 
 This proof needs no enumeration of all schedules and no SolutionSet=Never choice. Equality concerns assigned machine coordinates, not nominal task wrapper types. Removing the pin admits the exchanged (B,A,B,A) assignment too. Exactly two unpinned assignments additionally uses the declared two-machine domain: the open Machine protocol permits other opposite maps. U2b gives a direct uniqueness proof where equations force every coordinate. U2–U2a remain useful for finite supports whose members are supplied through a coverage construction.
+
+### U2c
 
 **U2c (Constraint determination is relative to the question).** Fix a candidate carrier F, constraints C and the compatible set S={s∈F : every constraint in C is satisfied}. For a question q:F→A, an answer a is forced precisely when S is nonempty and q(s)=a for every s∈S. Equivalently, q(S)={a}. A concrete member establishes existence. To establish determination, compare any two compatible candidates and derive agreement of their q-readings. This proof need not enumerate F or construct a preferred candidate.
 
@@ -127,6 +171,8 @@ Sections §2–§5 describe the inner half: the author defines the building bloc
 
 Unknown content can already participate in a constructed relation. An action can use that relation without first identifying its contents. A relation written about a proposed source and a relation supplied by that source are different grounds. The first supports a conditional construction. Applying it to the second requires the corresponding source relation, not a repeated name or a successful example. The source, construction and reader may all be parts of one system; this does not remove their application obligations.
 
+### U3
+
 **U3 (structural transport needs no leaf identification).** Fix finite product shapes built from opaque sorts. Admit precisely these typed operations:
 
 ```
@@ -185,6 +231,8 @@ The following distinctions concern what a construction does. They are not trust 
 | Act on the source | The actual source–residual relation establishes the next premises. | The result can support the declared continuation. |
 | Revise the requirement | The new requirement is connected to its source of revision; any retained obligations are transported. | The new task is stated. Fulfillment of the old task needs its own derivation. |
 
+### U4
+
 **U4 (a sufficient rule for transporting an addressed claim).** Let X and Y be two declared description domains, with a relation T⊆X×Y. They need not describe every distinction of the physical whole. Let B(x) and B′(y) be the grounds of the two descriptions, Q(x) the original claim, and Q′(y) the claim proved in the second description. Keep these meanings fixed throughout the following derivations:
 
 All free variables in the premises below are universally quantified over their declared domains.
@@ -226,6 +274,8 @@ Fix a finite source shape T and a finite set E of equalities between same-sort l
 
 An independently specified question need not come from an external observer. It can select a target already carried by this same source. Independence here means that the required relation is not chosen to match the candidate's produced output. The origin of that internal target is a separate question; its address and its relation to the required result are part of this task.
 
+### U5
+
 **U5 (constructive structural continuation).** Let P:T→U and Q:T→V be U3 operations with source-address maps p and q. There is a structural R:U→V satisfying R(P(x))=Q(x) on X_E under every interpretation if and only if
 
 ```
@@ -237,6 +287,8 @@ for every leaf v of V, some leaf u of U satisfies p(u) ~E q(v).
 *Necessity.* If a requested class is absent from p, interpret its sort by a set with two distinct elements. Choose two fillings constant on every E-class, agreeing on all classes except the absent one. They have the same P-image and different Q-images. No function of that image alone can return both. This rules out even a nonstructural decoder in that interpretation, so in particular rules out a universal structural R. It does not rule out a decoder on a narrower source domain or for a special singleton carrier. QED
 
 The construction uses equivalence closure and projection paths, with no payload comparison and no enumeration of candidate programs. A certificate contains the selected output addresses and their E-paths. Checking it only checks those paths and the assembled term. For a refusal, a sort-respecting partition of the source leaves that contains every E-edge and separates the missing requested leaf from every same-sort P-leaf certifies the obstruction. Such a partition can be checked without repeating the construction's search for a decoder.
+
+### U6
 
 **U6 (the least residual is relative to what remains).** Let M select one source leaf from every Q-required E-class not represented in P. Then Q factors structurally through the same-source joint view ⟨P,M⟩. Every other adequate structural residual D contains each missing class, and M factors through D. Consequently the number of missing classes is the exact minimum number of additional leaves in this grammar. It is not a lower bound in bits or physical memory units. If no class is missing, P alone suffices: no new opaque constant or payload is introduced to represent the absence of an extra residual.
 
@@ -253,6 +305,8 @@ The function need only be defined on the joint image actually reached. This is a
 A least adequate residual in the **absolute** information order need not exist. On all bit pairs (a,b), retain P=a and request Q=b. Both D₁=b and D₂=a XOR b are adequate jointly with a. If C factors through each separately, C=f(b)=g(a XOR b); the two arguments vary independently, so C is constant. Then (a,C) cannot recover b. Hence there is no least adequate standalone residual in this example, although there is a least joint information class. XOR here supplies a counterexample in a larger, fixed bit interpretation; it is not an added operation of U3's opaque grammar.
 
 Every joint view above uses the same x. Independently sampled marginals do not supply it. Constructing M also requires its source fields to remain available, or to be retained as part of P's actual action. U6 cannot restore an omitted independent field from P alone. The logical product constructor does not establish physical copying or an acquisition interface.
+
+### U7
 
 **U7 (finite construction for all permitted structural continuations).** Let G be a finite family of U3 endomorphisms g:T→T. First require every g to preserve X_E. With source-address map σ_g, this is equivalent, universally over the declared interpretations, to
 
@@ -284,6 +338,8 @@ The finite certificate comprises the chosen classes, their reachable-word witnes
 
 **A fixed question and a transported question have different requirements.** For g(a,b,c)=(c,a,b), the fixed first-coordinate question after every power of g needs a,b,c. After one g, however, the second-coordinate question returns the original a. Following that original field asks a different family of questions. The updated reading path must itself be supplied by the actual action or another established control relation. It is not a free hidden clock or an unrecorded choice of decoder. For a noninvertible action, the original field may have no remaining output occurrence at all; U5 detects that case.
 
+### U8
+
 **U8 (a hidden action needs a common induced action).** U7 supplies an image action for each supplied g. It does not establish that an unknown choice of g can be executed on the retained view without access to that choice. Let H be a nonempty family of E-preserving structural actions, and let S be a nonempty set of E-classes. Universally over the preceding interpretations, one common action k satisfying
 
 ```
@@ -297,6 +353,8 @@ exists exactly when every γ_g maps S into S and all restrictions γ_g|S coincid
 Adding more source fields cannot repair the second contradiction: it already uses the same complete source x. A source-correlated action requires analysis of its actual joint relation instead of the full H×X_E domain used here. More generally, on R⊆H×X_E a common decoder exists on the realized V_S-image exactly when any two R-admitted cases with equal V_S-inputs have equal required V_S-outputs. The source–action dependence must not be replaced by separate lists of possible sources and actions.
 
 Established relations between repeated actions can suffice at the end of a block even when no common intermediate image action exists. For a nonempty family J of permitted finite words, apply U8 to their composite source maps. On two independent same-sort fields, a hidden fixed H chosen from identity and exchange has no common one-step image action on the full pair. The two joint words (identity,identity) and (exchange,exchange) nevertheless both induce identity. Independent choices would also permit exchange as the total action and would destroy this conclusion. No hidden choice was learned in the correlated case. The result concerns the end of that block; questions asked at intermediate cuts require their own conditions. An execution interface supporting these related repetitions remains necessary: the list of words does not itself construct that interface.
+
+### U9
 
 **U9 (derive the changed source relation, instead of assuming it persists).** For a structural P:T→U, define E_P on U's same-sort leaves by
 
@@ -316,6 +374,8 @@ For (a,b,c) with a=b, the permutation (a,b,c)↦(a,c,b) derives first=third at t
 
 **A relational promise can be weaker than recovering its fields.** If the request is only that output equalities C hold, the exact universal criterion for a supplied P is C⊆E_P. Sufficiency follows by the source paths; necessity again follows by separating distinct source classes. For a hidden P in a given family, with every choice admitted on the full X_E, check this inclusion for every admitted P. Their output values need not agree. For independent a,b of the same sort, identity and exchanging the two pairs of (a,a,b,b) both leave the first pair equal, although it can contain a or b. This does not guarantee retention of that pair's original value. Applying U7 to all participating fields would strengthen this relation-only request and could retain unnecessary information. Its least-view theorem is for the specified field-reading questions, not for every relational obligation.
 
+### U10
+
 **U10 (construct a requested agreement and retain an independent question).** The previous rules take P as given. A related construction can choose P itself. Fix a target output shape U, required same-sort equalities C on U, and the independent structural question Q on the original source T. Require the output to satisfy C; additional output equalities are allowed. For each sort s, let n_s count the distinct source E-classes selected by Q, and let m_s count all classes of sort s in the equivalence closure of C on U, including the singleton leaves of that sort.
 
 If a sort occurs in U but nowhere in T, no U3 operation P:T→U exists. Otherwise there are structural P, M and R, uniform over the source interpretations, with
@@ -334,6 +394,8 @@ sum over sorts s of max(n_s − m_s, 0).
 
 For three independent same-sort fields a,b,c, requiring an equal local pair while retaining all three original fields gives ((a,a),(b,c)): two residual leaves are necessary and sufficient. This uses U3's permission to reuse an input occurrence. A permutation alone cannot create a guaranteed equality between distinct output occurrences whose distinct source occurrences were not already E-related. Neither result is a physical cloning or dissipation law. For each chosen P, U6 separately establishes relative information minimality. The leaf bound above is not a universal information ordering between different choices of P. Fixed output assignments, stricter equality patterns, linear-use restrictions or unavailable routes change this task. As before, a zero residual means no additional carrier is needed.
 
+### U10a
+
 **U10a (retain the requested source binding, not just present agreement).** Preserving Q somewhere in the result does not make every new agreement an execution of the original request. With independent source fields (a,b), both ((a,a),b) and ((b,b),a) produce an equal local pair and retain the whole source. Only the first makes that pair equal to the original a.
 
 The request can therefore additionally prescribe source addresses for some output leaves: P(x)_u must equal x_i. These are obligations for the constructed P to meet, not assumed facts about its output. Within each output C-class, all prescribed addresses must have its sort and belong to the same source E-class. This compatibility condition is necessary and sufficient for the assignments, provided every output sort is available at the source.
@@ -347,6 +409,8 @@ sum over sorts s of max(n_s − r_s − u_s, 0).
 *Proof.* Sort mismatches violate the typing requirement; distinct prescribed classes of the same sort are separated by a two-element interpretation. Compatible fixed classes supply exactly r_s requested classes; each free class can supply at most one more. U5 gives the lower bound. Assign free classes to still-unrepresented requested classes, fill any remaining free classes from the source, and retain the rest in M. U5 constructs the decoder, attaining the bound. Repeated fixed classes count only once; a fixed class outside Q counts toward neither r_s nor u_s. QED
 
 In the example, requiring the first output leaf to use the original a binds the entire equal output pair to a. The construction ((b,b),a) is then refused on the full independent source domain, despite retaining a in its residual. The request's origin remains a separate ground. This refinement enforces its specified relation to the result; it does not derive a motive to choose it.
+
+### U11
 
 **U11 (derive a repeat block from the required return).** Suppose a nonempty finite H of E-preserving structural endomorphisms is specified by its source maps. One unknown h in H is fixed throughout a repeatable episode. Each call applies that same deterministic function to the current source; all these calls are available. The independently fixed question is Q, and its required answer refers to the source before an obligatory first call. Let S₀ be the classes selected by Q. We seek a common positive total call count k with
 
@@ -369,6 +433,8 @@ U5–U10a construct previously unspecified actions, suffixes and retained views 
 ## §1d. Derive the obligation from a connected use
 
 A receiver's applicability alone does not determine the result due from its source. For example, an exchange accepts every pair; supplying (a,a) instead of its original (a,b) remains applicable but changes the result when a≠b. The relevant ground is the connected source and use, not just the receiver's input domain. It also matters whether a replacement answer suffices or the same receiver must actually be applicable to the constructed boundary.
+
+### U12
 
 **U12 (preserve a connected partial use).** Let i:T→X and p:T→U be two specified readings of one source domain T. Let c:X⇀Y be a specified partial use, with domain D. Define its induced applicability and result by
 
@@ -395,6 +461,8 @@ Its domain and value are uniquely determined on the reached image p(T). There is
 This is a set-theoretic existence result, not an algorithm for acquiring or evaluating d. It needs no choice of representatives. If c is total on i(T), condition 1 is automatic and the result reduces to factorization of k through p. If only successful answers are preserved, condition 2 alone suffices; that weaker task need not preserve refusal. For example, reading only a from (a,b) cannot decide whether a receiver requiring a=b is applicable on the full two-element product, although its successful answer a is already present. Undefinedness here is absence of an admitted application, not a measured negative answer or a claim about physical nontermination.
 
 The result Y must include whatever residual and effects the assertion is intended to preserve. Matching only a displayed answer establishes only that answer. Any relevant environment or internal receiver condition must occur in the connected source and use; an omitted parameter is not thereby fixed.
+
+### U12a
 
 **U12a (factorization does not supply reapplication).** Suppose the task requires an adapter r:U→X from an explicitly available construction grammar, followed by the same c. It must separately establish, on reached arguments,
 
@@ -429,6 +497,8 @@ OUT:  Σ, COMPARE, Graph
 
 The syntax terminal NULL differs from Swift's `Null` protocol. The latter requires equality of two associated types. It neither collapses every equal-child pair to the terminal nor equates every equality witness with `Never` (EiF EF4). A binary serialization also does not require every physical interaction to be intrinsically binary.
 
+### SC1
+
 **SC1 (Constraint refinement and representation loss).** Fix a model domain K. Adding a predicate c to an admissible set D gives D'={x∈D:c(x)}, so D'⊆D. Replacing an encoding E by a coarser encoding E'=g∘E instead enlarges its equality classes: ker(E)⊆ker(E'). The first operation excludes candidates. The second can merge their representations. Both are called compression in the project's prose, but their set-theoretic directions differ.
 
 *Proof.* Every member of D' belongs to D by its definition. If E(x)=E(y), applying g gives E'(x)=E'(y). Neither implication establishes the other operation, a physical erasure, or an information gain from a new observation. In particular, asserting c does not prove that the actual input satisfies c.
@@ -457,15 +527,23 @@ Structural identity is decidable on finite structures: finitely many components,
 | I2 | The chosen operations and comparison semantics are fixed | The declared structural grammar and pure comparison on immutable inputs. Physical interventions require their own model. |
 | I3 | G is append-only: G' ⊇ G at every cache update | An explicit retaining update, such as G'=G∪Δ with verified entries Δ. It is not a consequence of truth stability alone. |
 
+### GC1
+
 **GC1 (Truth stability does not imply accessible retention).** Consider a closed whole `(a,b,C,R)` containing two fixed bits and two internal cache registers. Each register contains blank, equal or unequal. The transition `(a,b,C,R) → (a,b,R,C)` permutes all 36 whole states. The truth of a=b never changes. Starting with C holding that answer and R blank, the next accessible cache C is blank while R retains the answer. No distinction has left the whole. Thus a pure fixed comparison and whole-system reversibility allow retraction from a chosen accessible cache. The comparison can still be performed again.
+
+### GC2
 
 **GC2 (Exact law of sound retaining updates).** Fix a finite domain D of immutable comparison keys and its correct answer map c. Let `T={(d,c(d)):d∈D}` be the truth graph. A sound cache is G⊆T. Given such G, a next cache G' is both sound and retaining exactly when `G'=G∪Δ` for some Δ⊆T.
 
 *Proof.* Union with correct entries preserves both inclusion and soundness. Conversely, if G⊆G'⊆T, take Δ=G'∖G. Repeating the same insertion is idempotent. Strict growth occurs only when Δ contains a previously absent entry. The invariant follows by induction over these updates, rather than from the existence of T. An encoding revision or mutable input requires a new immutable key or a new cache context before this argument applies.
 
+### GC3
+
 **GC3 (Raw recovery needs a compatible cache decoder).** Suppose a raw update retains `(r,e)`, so r is recoverable. This does not alone prove `decode(r)⊆decode((r,e))`. A latest-event decoder that returns only decode(e) drops the old cache when the event is empty. The compatibility law `decode((r,e))=decode(r)∪decode(e)` supplies decoded retention. With sound old and inserted facts, GC2 also supplies soundness. This distinguishes the `Permanent` relation on a raw record from the semantic cache read from it.
 
 `AppendedCacheReading` pairs both raw records and their decoded collections. Under the stated union interpretation, `CacheByAppending` constructs `CachePermanent` from a structural frame and those readings. Its caller does not assume `CachePermanent`. Generic equality witnesses check that the raw and decoded transition endpoints match and that the old decoded collection is recoverable. The initial readings and inserted facts still need correct semantics. A bare `Permanent` conformance cannot establish them.
+
+### GC4
 
 **GC4 (Finite identification does not require a permanent comparison cache).** Given finite F and a total fixed test, enumerate every candidate and retain the passing set S or its count and unique witness. Every comparison may be recomputed without memoization. The procedure still terminates and gives the same S, including whether |S|=1. It needs working storage but not an append-only store of comparison results. A valid cache can reduce repeated comparison work. This does not identify correctness with cache persistence, and the absence of a logical cache does not assert physical destruction of information in Ω.
 
@@ -769,15 +847,21 @@ For a nonrepeating enumeration of finite E, if at least one encoding returns PAS
 
 *Information-theoretic interpretation.* Three quantities need separate premises: the entropy of a distribution, the content of an observed branch, and the cost of an available experimental strategy.
 
+#### IQ1
+
 **IQ1 (Information gain is conditional and question-specific).** Let X be an original candidate with a declared prior, Z=q(X) the required answer, R an already available record and Y a binary reading. Then `0≤I(Z;Y|R)≤H(Y|R)≤1` bit. Independence is not required. The quantities average over possible readings. Conditional entropy in this sense is an average of posterior entropies, as defined in [Shannon, 1948, §6](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf). Using R and Y as an agent's next knowledge state requires retaining them or a sufficient reading of them. A memory update that discards old evidence does not inherit this bound on uncertainty reduction (GC3).
 
 For a given prior, H(X)≤log₂|F|, with equality only for a uniform distribution on F. A verdict concerns H(q(X)), which can be smaller. A random-looking reading about another coordinate may give no information about this verdict. In a binary decision tree with no other uncounted source-dependent readings, exact recovery of Z requires mean depth at least H(Z). A worst depth d allows at most 2^d leaves, so d≥⌈log₂|q(F)|⌉ when every answer in q(F) must be covered. For full identification this uses q(X)=X. These are lower bounds on a successful protocol, not a construction of one. For the mean bound, complete leaf transcripts form a prefix code and determine Z. Their mean length is at least their entropy, which is at least H(Z).
+
+#### IQ2
 
 **IQ2 (Support refinement need not lower entropy on each branch).** Give A, B, C probabilities 9/10, 1/20, 1/20, and read Y=1 exactly when X is B or C. Initially H(X)≈0.568996 bits. On the rare branch Y=1, the support shrinks from three sources to two, but their probabilities become 1/2, 1/2 and posterior entropy is one bit. Mean conditional entropy is only 0.1 bit. Thus the reading gives I(X;Y)≈0.468996 bits on average, while this one posterior is more uncertain than the prior in the Shannon sense.
 
 For a noiseless event of prior probability p, the posterior/prior KL divergence is −log₂p: every retained probability is multiplied by 1/p. The rare branch here has gain log₂10≈3.321928 bits. This does not violate IQ1, whose one-bit bound concerns mean information. With a uniform prior and pure support restriction, posterior entropy instead equals the logarithm of the smaller support. The counterexample needs the nonuniform weights.
 
 This observation can occur entirely inside a closed finite whole. Let the whole be `(X,M,P)` with three source values, one memory bit and one readiness bit. The fixed map `(X,M,P)→(X,M XOR Y(X),1−P)` permutes its twelve states. Prepare M=P=0. One step records Y and marks readiness, the next returns to preparation. The joint entropy is unchanged, and memory becomes correlated with X during the readout window. The prior describes possible complete configurations. It introduces no external source of randomness, reservoir or controller. Logical reversibility here gives no thermodynamic cost bound.
+
+#### IQ3
 
 **IQ3 (The available questions determine cost and excess distinctions).** Take eight equiprobable sources. If the three binary-coordinate questions are available, full identification takes three questions. If only tests “is the source i?” for i=1,…,7 are available, the optimum is seven in the worst case and 35/8 on average. Every negative answer rules out at most one of those names. Testing each once and stopping at a positive answer attains these bounds. Entropy is three bits in both experiments.
 
@@ -789,6 +873,8 @@ The former N²≥log₂|F| assertion also fails without a bridge between what th
 
 `PreparedObservation` derives source retention, readiness and the declared reading as pure types. Distinct residuals need not coincide when their observations agree. The entropy and cost results follow from the mathematical arguments above, with their specified distributions and query vocabularies.
 
+#### IQ4
+
 **IQ4 (A successful transcript refines the answer).** Fix a finite source set F, a positive prior on every source, a target Z=q(X), and a finite vocabulary of noiseless nondestructive binary questions. A deterministic successful policy chooses each question from previous readings and eventually answers q(X). Let T(X) be its complete sequence of question indexes and readings, not just its terminal answer. Correctness gives Z=f(T), and determinism gives T=g(X). The entropy chain rule therefore yields
 
 ```
@@ -799,11 +885,15 @@ Define the least excess over successful available policies as `e*=min H(T|Z)`. S
 
 This uses standard information identities. The related [information bottleneck formulation, §3.1](https://arxiv.org/html/physics/0004057v1) optimizes compression while preserving information about a relevance variable. Here the extra restriction is that a representation must be a complete transcript realizable by the declared query vocabulary. An arbitrary encoder X↦q(X) does not supply such an experiment. This distinction is a research connection, not a claim of priority over information theory or decision trees.
 
+#### IQ5
+
 **IQ5 (Exact criterion for no excess distinctions).** Under IQ4's premises, e*=0 exactly when there is a successful policy whose every queried test is constant on each target class still possible at that node. The requirement is conditional on the branch, not global constancy of every available test on every target class.
 
 *Proof.* Full support makes H(T|Z)=0 equivalent to equal transcripts for every pair with equal target answers. If a queried test splits such a class at a reached node, those two paths have different prefixes forever, contradicting that equality. Conversely, a policy that never splits a possible target class gives every member of that class the same path. Success separates different answers, so the transcript partition is exactly the target partition. This supplies a finite recursive decision: stop on a single answer class. Otherwise choose a class-preserving strict split whose two children succeed. Each split reduces the support, so recursion terminates.
 
 For example, four sources A₁,A₂,B,C have answers A,A,B,C. Available tests are u=(0,0,1,1) and v=(0,1,0,1). Ask u first. After zero answer A. After one ask v to decide B or C. Although v separates A₁ and A₂ globally, it is never asked on their branch. Thus e*=0. Removing every globally incompatible test would remove v and falsely rule out this successful experiment.
+
+#### IQ6
 
 **IQ6 (Cost and excess need not select the same experiment).** Consider five uniform sources 0,…,4 with target q=(0,1,0,0,1) and four available tests:
 
@@ -830,9 +920,13 @@ For nonempty fixed F, `1−|S|/|F|` measures the fraction eliminated. It equals 
 
 **5.26. Cross-task saturation.** Fix a finite task collection D whose identified rules all belong to one common extensional family F under a shared decoding. Write g(t) for the required rule of task t, C=g(D), and K=|C|. These common-domain premises are necessary before rules from different games can be counted together. Four obligations remain separate: sound entries, retention, class coverage and selection of the right rule for the next task.
 
+#### CS1
+
 **CS1 (Count represented classes, not successful records).** Let L contain sound pairs (feature record, rule), with a retaining update. Its rule projection P(L)⊆C grows monotonically and has size at most K. The number of raw feature/rule pairs need not have that bound. Four tasks with rules (a,a,a,b) can produce three different feature records for a. Then |L|=3>K=2 while |P(L)|=1. Distinct successful tasks are not necessarily distinct represented rule classes.
 
 Starting with coverage P₀, exactly K−|P₀| insertions of previously unrepresented classes suffice for full coverage. Repeated classes do not count. An arbitrary stream may repeat a forever, so no bound on successful events alone guarantees coverage. A stream that eventually visits every class does give eventual coverage, but that visitation is an additional premise. Two complete raw libraries can differ in their feature records. Their rule projections both equal C. Raw equality requires a shared canonical representation as well.
+
+#### CS2
 
 **CS2 (Coverage needs a usable dispatcher).** Suppose the runtime can read only a feature map E:D→Z before selecting a cached rule. A deterministic exact dispatcher d with g=d∘E exists precisely when
 
@@ -843,6 +937,8 @@ E(t)=E(u) ⇒ g(t)=g(u).
 *Proof.* A function d returns the same result for the same input. Conversely, if each feature fiber has one required rule, assign that rule to its feature. The finite table defines d on E(D). A complete library supplies the selected rule only after this condition and its implementation are established. Two tasks with identical available features and different required rules defeat feature-only dispatch even when both rules are cached. This is the same factorization obligation used in Verdict §6c, now applied to task selection.
 
 An exhaustive search through C with a total verifier accepting exactly the required rule can replace that dispatcher. Its verifier and cost are additional premises. Passing only new examples supplies exact rule identification only under the R4 and representation conditions already stated in §5. Newly encountered comparison keys can still require work. Zero new comparisons follows from full coverage of the keys actually used, not from coverage of rule classes alone.
+
+#### CS3
 
 **CS3 (Generalization also depends on the candidate family).** Let U be a fixed finite input domain, H⊆{0,1}^U a declared family of laws, and B a consistent record of input/answer observations. Define
 

@@ -6,6 +6,28 @@ A declared finite library under W and a chosen radius define a graph. A walk tak
 
 The conditional results distinguish a supplied routing certificate, the cost of using it and the acquisition of the required anchors. N12 requires actual access for its hop bound. N18 separates approximation, anchored recovery and navigation. N19 shows why a global routing threshold can increase when the domain expands.
 
+Statements on this page:
+
+- <doc:navigation_is_geometry#N1>: Anchor graph.
+- <doc:navigation_is_geometry#N2>: Connectivity threshold.
+- <doc:navigation_is_geometry#N3>: Greedy descent.
+- <doc:navigation_is_geometry#N4>: Stretch.
+- <doc:navigation_is_geometry#N5>: Ballistic termination.
+- <doc:navigation_is_geometry#N6>: Holes carry addresses.
+- <doc:navigation_is_geometry#N7>: Decidability.
+- <doc:navigation_is_geometry#N8>: Monotonicity in radius.
+- <doc:navigation_is_geometry#N9>: Navigability threshold.
+- <doc:navigation_is_geometry#N10>: Query cost.
+- <doc:navigation_is_geometry#N11>: Nested separated covers.
+- <doc:navigation_is_geometry#N12>: A routing bound needs actual access.
+- <doc:navigation_is_geometry#N13>: Amortization.
+- <doc:navigation_is_geometry#N14>: Attachment signature.
+- <doc:navigation_is_geometry#N15>: Holes are repairable, constructively.
+- <doc:navigation_is_geometry#N16>: Existing improving edges are retained.
+- <doc:navigation_is_geometry#N17>: A failure can specify an acquisition question.
+- <doc:navigation_is_geometry#N18>: Different contracts sharing a metric.
+- <doc:navigation_is_geometry#N19>: Population preserves witnesses, not every global routing score.
+
 ## §0. Derivation
 
 The graph arguments assume a declared finite library, the specified W metric and the chosen radius. Routing policies, access and acquisition premises are stated separately.
@@ -23,17 +45,27 @@ The earlier papers built the entries. This document is about getting between the
 
 ## §1. The Anchor Graph
 
+### N1
+
 **N1 (Anchor graph).** For a library L and radius ρ, define Γ(L, ρ): nodes are the entries (anchors), edges are pairs (a, b) with W(a, b) ≤ ρ. Finite (I1), computed from the W-matrix (DiC G2a), recomputed incrementally on insertion: one row of traversals per new entry.
+
+### N2
 
 **N2 (Connectivity threshold).** Γ(L, ρ) is connected iff ρ ≥ ρ\*, where ρ\* is the largest edge weight of a minimum spanning tree of the W-matrix.
 
 *Proof.* If ρ ≥ ρ\*: every MST edge has weight ≤ ρ\* ≤ ρ, so the MST is a spanning connected subgraph of Γ. If ρ < ρ\*: let e be an MST edge of weight ρ\*. By the cut property, e is a minimum-weight edge across the cut it spans, and every other edge across that cut weighs ≥ ρ\* > ρ, so no edge of Γ(L, ρ) crosses it. Disconnected. QED
 
+### N3
+
 **N3 (Greedy descent).** Given a W-computable target τ (any structure in Σ: a query signature, a task encoding, another entry), the greedy walk from anchor s: move to the neighbor n minimizing W(n, τ), provided W(n, τ) < W(current, τ), and halt otherwise. Each step costs deg(current) traversals (one W per neighbor, G2a).
+
+### N4
 
 **N4 (Stretch).** For a walk that arrives, stretch = (hops taken) / (graph distance from start to arrival). Stretch ≥ 1, and its distribution over (start, target) pairs is a property of the geometry, measured, not bounded in general.
 
 ## §2. Descent
+
+### N5
 
 **N5 (Ballistic termination).** A greedy walk from s toward τ terminates in at most W(s, τ) hops.
 
@@ -41,11 +73,17 @@ The earlier papers built the entries. This document is about getting between the
 
 Termination is either arrival at an anchor with W = 0 to τ (identification of τ's entry, G2b: W = 0 forces identity) or a stop at an anchor with no strictly closer neighbor (N6).
 
+### N6
+
 **N6 (Holes carry addresses).** A greedy walk is *stuck* at s for target τ when no neighbor of s is strictly closer to τ. The triple (s, τ, ρ) is the hole's address, and it is constructive: it names the region (structures within ρ of s and closer to τ than s) in which L has no anchor. The failure does not say "lost": it says where the map is blank, with coordinates.
+
+### N7
 
 **N7 (Decidability).** For fixed L and ρ, greedy success or failure for every (start, target) pair over any finite target set is decidable: finitely many walks, each terminating (N5), each step computable (G2a). The whole routing table (and every hole in it) is computable offline, before any query arrives.
 
 ## §3. Thresholds
+
+### N8
 
 **N8 (Monotonicity in radius).** Stuckness is monotone: if s is stuck for τ at radius ρ′, it is stuck at every ρ ≤ ρ′. Equivalently, growing ρ only removes holes, never creates them.
 
@@ -53,7 +91,11 @@ Termination is either arrival at an anchor with W = 0 to τ (identification of �
 
 In substituted readings the same statement is monotonicity in capability: richer edge sets (more actions, more moves, more reachable variants per step) can only remove traps and never add one. An added action whose successor is already available removes none.
 
+### N9
+
 **N9 (Navigability threshold).** ρ_nav(L) = the least ρ at which greedy descent succeeds for every (start, target) pair over L. It exists: at ρ = diam(L) the graph is complete and the target's own entry is every node's neighbor, and every walk arrives in one hop. It is computable: success at fixed ρ is decidable (N7) and monotone in ρ (N8), so binary search over ρ ∈ [ρ\*, diam] finds the threshold in log₂(diam) probes.
+
+### N10
 
 **N10 (Query cost).** A routed query costs Σ deg(node) traversals along the walk, at most hops × max-degree. A linear scan costs |L| traversals. The routed computation uses fewer traversals exactly when Σ deg(node) < |L|. The bound hops × max-degree < |L| is sufficient. The win factor is a measured property of the graph, and the regime where it is large (few hops, modest degree) is the regime the conditional theorems below characterize.
 
@@ -61,7 +103,11 @@ In substituted readings the same statement is monotonicity in capability: richer
 
 The statements so far are unconditional. The useful regime (small ρ_nav, few hops) is not guaranteed by I1–I3. It is a property of the domain's geometry, with the same standing as the modulus (G10) and the compression criterion (G12): measurable, not derivable.
 
+### N11
+
 **N11 (Nested separated covers).** Premise: L admits a nested sequence of covers C₀ ⊃ C₁ ⊃ ... ⊃ C_m at scales r₀ > r₁ > ... > r_m, where C₀ is one ball of radius diam, each cluster at scale i is contained in a cluster at scale i−1, distinct clusters at scale i are separated by ≥ λ·rᵢ with λ > 2, and every cluster contains at least one anchor. This is the dendrogram condition: the library's hierarchical clustering has well-separated levels. Decidable for a given L by inspection of the W-matrix, and its empirical signature is a Gromov four-point constant δ small relative to the diameter (tree-likeness).
+
+### N12
 
 **N12 (A routing bound needs actual access).** Fix a target t in a finite graph and a level assignment ℓ_t with values in {0,…,m}, zero exactly at t. Suppose every other node has an actual permitted neighbor of lower level, and the routing policy selects such a neighbor. Then routing reaches t in at most m hops, because each hop strictly decreases a nonnegative integer. This is a bound from the supplied access and level relations. For finite tree outputs, G2h already supplies a stronger addressed form of progress: strict inclusion of the remaining differences to the same target. Its finite-chain proof does not require a separately represented scalar level.
 
@@ -71,17 +117,27 @@ A nested metric cover alone does not supply the necessary graph edges, a policy 
 
 ## §5. Economics
 
+### N13
+
 **N13 (Amortization).** Building the map costs |L|² traversals once (the W-matrix). For a fixed nonempty library and repeated routed queries each costing C = Σ deg(node) < |L| traversals under N10, each query saves |L| − C against the scan. The build cost is recovered when q(|L| − C) ≥ |L|², so the break-even threshold is |L|² / (|L| − C), and a strict net saving requires q above that threshold. These quantities are computable from the declared costs. If C ≥ |L|, this repeated-query bill has no finite crossover. Incremental maintenance costs one matrix row of traversals per insertion (N1).
+
+### N14
 
 **N14 (Attachment signature).** As the library grows by crystallization under a modulus (G10), new entries land within ω(·) of the classes that produced them: insertions attach near existing anchors. Anchors central to dense regions accumulate degree, and the degree distribution of Γ(L, ρ) skews toward hubs: ball centers in the sense of G11. The histogram of deg(a) is therefore a cheap diagnostic of clustered growth: skewed degrees are the signature of attachment, flat degrees the signature of uniform scatter. A signature, not a law: read it, do not assume it.
 
 ## §6. Repair
 
+### N15
+
 **N15 (Holes are repairable, constructively).** Given a hole (s, τ, ρ) with s≠τ and integer ρ≥1: any new anchor a with W(s, a) ≤ ρ and W(a, τ) < W(s, τ) removes it. Such structures exist in Σ: every geodesic from s toward τ passes through valid structures at every intermediate distance (DiC G2: the schedule is inside Σ throughout), so the required region is never empty as a region of Σ. For ρ=0 no distinct tree is accessible, so this repair claim does not apply. Whether the region contains a *certifiable entry* (a rule some task can certify) is the domain's affair: the hole names what to look for, and finding a task that crystallizes there is acquisition, not deduction.
+
+### N16
 
 **N16 (Existing improving edges are retained).** Under an insertion policy retaining old vertices and edges at a fixed radius, a strictly closer neighbor for a fixed pair (s,τ) remains available. A supplied path using old edges also remains available. New vertices can create new start/target pairs, and a changed routing policy can choose different paths. This local preservation result does not bound every walk in the expanded graph.
 
 *Proof.* Stuckness at (s, τ) is "no neighbor strictly closer." Insertion adds candidate neighbors and removes none, and an existing strict improvement persists. QED
+
+### N17
 
 **N17 (A failure can specify an acquisition question).** A witnessed missing improving neighbor gives a concrete region to examine. Supplying an admissible anchor in that region removes this particular hole, as N15–N16 show. It does not prove such a rule can be acquired or that the total number of holes decreases when new start/target pairs are added. A useful curriculum must therefore retain the failure coordinates, the actual repair witness and the domain over which progress is measured.
 
@@ -91,9 +147,13 @@ For a fixed finite library, target set and deterministic tie-breaking policy, th
 
 ## §8. Shared Metric, Distinct Obligations
 
+### N18
+
 **N18 (Different contracts sharing a metric).** Approximation, anchored recovery and navigation can use the same W, but require different relations. G12 gives the least number of representatives for a specified approximation error. G10–G11 require a task-to-rule bound or covered anchors and access to a containing search region. A navigation claim additionally names an edge radius, permitted moves, targets and a routing policy. Sharing the metric does not make these premises equivalent.
 
 G12's flat family has a one-center radius-1 cover and an exact direct reader. Thus a constant off-diagonal matrix excludes neither representative economy nor exact reuse. Conversely a small cover supplies no edges at an arbitrarily small navigation radius and no dispatcher from tasks to anchors. For a fixed finite library, its pairwise matrix can determine a chosen radius graph. It does not specify what task observations or operations are available outside that graph. There is no single clustering number deciding all three capacities.
+
+### N19
 
 **N19 (Population preserves witnesses, not every global routing score).** Under an explicit arrival and acquisition model establishing eventual coverage of a fixed finite rule set, retained entries eventually represent that set. G11 gives one IID sufficient model. Positive marginal probabilities alone are insufficient, as IiI §6 shows. Once the required anchors and transitions for a supplied routing certificate are present and retained, those paths remain available.
 

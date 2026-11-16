@@ -2,6 +2,12 @@
 
 This part contains the original derivations for recovery remainder.
 
+Statements on this page:
+
+- <doc:permanence_is_resistance__recovery_remainder#M66>: When records determine a fixed prerequisite order.
+- <doc:permanence_is_resistance__recovery_remainder#M67>: A fixed order determines its permitted serializations, not a universal clock.
+- <doc:permanence_is_resistance__recovery_remainder#M70>: Unrestricted internal completion does not select a local deterministic law.
+
 Family and original section headings: <doc:permanence_is_resistance>.
 
 Section setting: <doc:permanence_is_resistance#4h-Recovering-dependence-from-admissible-records>.
@@ -183,4 +189,4 @@ This constrains the internal interaction relations, beyond the amount of blank m
 
 Labels mentioned here: <doc:interference_is_substitution__positive_channels#IiS14>, <doc:interference_is_substitution__global_obstructions#IiS20>, <doc:interference_is_substitution__global_obstructions#IiS21>, <doc:learning_is_liquid__medium_contacts#LQ12>, <doc:learning_is_liquid__medium_contacts#LQ13>, <doc:learning_is_liquid__coordination_blocks#LQ14>, <doc:learning_is_liquid__coordination_blocks#LQ15>, <doc:learning_is_liquid__reconstructed_sides#LQ16>, <doc:permanence_is_resistance__records_entropy#M29>, <doc:permanence_is_resistance__records_entropy#M35>, <doc:permanence_is_resistance__records_entropy#M36>, <doc:permanence_is_resistance__records_entropy#M48>, <doc:permanence_is_resistance__retention#M51>, <doc:permanence_is_resistance__retention#M63>, <doc:permanence_is_resistance__retention#M72>, <doc:verdict_is_invariant__calibration_residence#VC104>, <doc:verdict_is_invariant__calibration_residence#VC104a>, <doc:verdict_is_invariant__calibration_residence#VC105>, <doc:verdict_is_invariant__recovery_memory#VC23b>, <doc:verdict_is_invariant__reusable_images#VC46>, <doc:verdict_is_invariant__reusable_images#VC47>, <doc:verdict_is_invariant__reusable_images#VC60>, <doc:verdict_is_invariant__reusable_images#VC62>, <doc:verdict_is_invariant__relative_questions#VC83>, <doc:verdict_is_invariant__relative_questions#VC84>.
 
-Mentions of this page’s labels: <doc:interference_is_substitution> (M70), <doc:interference_is_substitution__global_obstructions> (M70), <doc:interference_is_substitution__program_mediator> (M70), <doc:learning_is_liquid> (M67), <doc:learning_is_liquid__medium_contacts> (M67), <doc:learning_is_liquid__medium_contacts> (M70), <doc:learning_is_liquid__reconstructed_sides> (M70), <doc:permanence_is_resistance__balance_clock> (M67), <doc:permanence_is_resistance__forced_answers> (M70), <doc:permanence_is_resistance__records_entropy> (M70), <doc:verdict_is_invariant__relative_questions> (M66).
+Mentions of this page’s labels: <doc:interference_is_substitution> (M70), <doc:interference_is_substitution__global_obstructions> (M70), <doc:interference_is_substitution__program_mediator> (M70), <doc:learning_is_liquid> (M67), <doc:learning_is_liquid__medium_contacts> (M67), <doc:learning_is_liquid__medium_contacts> (M70), <doc:learning_is_liquid__reconstructed_sides> (M70), <doc:permanence_is_resistance> (M66), <doc:permanence_is_resistance> (M70), <doc:permanence_is_resistance__balance_clock> (M67), <doc:permanence_is_resistance__forced_answers> (M70), <doc:permanence_is_resistance__records_entropy> (M70), <doc:verdict_is_invariant__relative_questions> (M66).

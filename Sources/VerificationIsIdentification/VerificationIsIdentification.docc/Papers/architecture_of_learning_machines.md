@@ -4,6 +4,28 @@ An architecture earns a guarantee through a specified mechanism and its premises
 
 This paper projects VI onto learning architectures by asking what is checked, what is retained, how proposals arrive and what a certificate can be used for. The central result is a conditional wrapper theorem. It separates correctness of accepted outputs from the chance and cost of obtaining one. It does not claim that every learner is already an instance of VI or that adding a gate solves an arbitrary learning problem.
 
+Statements on this page:
+
+- <doc:architecture_of_learning_machines#AI1>: A sufficient construction is not an iff classification.
+- <doc:architecture_of_learning_machines#AI2>: A generator and a complete system have different boundaries.
+- <doc:architecture_of_learning_machines#AI3>: Reinforcement and formal checking can coexist.
+- <doc:architecture_of_learning_machines#AI4>: Search performance needs its own comparison.
+- <doc:architecture_of_learning_machines#AI5>: A resolution map requires a fixed criterion.
+- <doc:architecture_of_learning_machines#AI6>: Soundness, coverage and retention are separate.
+- <doc:architecture_of_learning_machines#AI7>: Current coverage differs from a retaining ledger.
+- <doc:architecture_of_learning_machines#AI8>: An acquired image can answer a family of future questions.
+- <doc:architecture_of_learning_machines#AI9>: Saturation is relative to the interaction family.
+- <doc:architecture_of_learning_machines#AI10>: An internal acquisition can target the unresolved classes.
+- <doc:architecture_of_learning_machines#AI11>: Workspace reuse and knowledge reuse have different conditions.
+- <doc:architecture_of_learning_machines#AI12>: Reusing evidence requires its applicability relation.
+- <doc:architecture_of_learning_machines#AI13>: Applicability can be acquired and then reused.
+- <doc:architecture_of_learning_machines#AI14>: An intervention changes what retained knowledge must determine.
+- <doc:architecture_of_learning_machines#AI15>: An exact learned representation can be smaller than the state it must acquire.
+- <doc:architecture_of_learning_machines#AI16>: A finite calibration basis can support arbitrary new data in a certified law family.
+- <doc:architecture_of_learning_machines#AI17>: An acquired law can reduce the required input interface.
+- <doc:architecture_of_learning_machines#AI18>: New consequences and new acquisition have different witnesses.
+- <doc:architecture_of_learning_machines#AI19>: Law evidence and data evidence constrain one joint question.
+
 ## §0. Declared Semantics
 
 Fix a task τ, a set of possible outputs Y and the subset C_τ of outputs correct under its declared semantics. A total checker accepts a set A_τ ⊆ Y. It is sound when A_τ ⊆ C_τ and complete for this output interface when C_τ ⊆ A_τ. Decidability means termination of checking, not either inclusion.
@@ -23,6 +45,8 @@ The generator, checker, store, source, seed and controller are internal parts of
 
 ## §1. Guarantees Have Separate Premises
 
+### AI1
+
 **AI1 (A sufficient construction is not an iff classification).** Sound checking plus emission only after acceptance suffices for scoped output correctness. Sound retaining updates suffice for preserving accessible keyed records under fixed semantics. Neither implication proves that this construction is necessary for every system with the corresponding behavior.
 
 A deterministic correct computation can recompute answers without retaining a comparison cache (System GC4). A mutable register can preserve its value. A deterministic program can reproduce its output without a checker. A program can abstain by returning no answer. Such examples refute the earlier universal iff claims about memory, reproducibility and abstention. Abstention alone also gives no coverage.
@@ -31,9 +55,13 @@ Certification does not by itself prove that a basis is minimal or transferable. 
 
 ## §2. Projection onto Systems
 
+### AI2
+
 **AI2 (A generator and a complete system have different boundaries).** A neural model can be used as a proposal component, coupled to a proof checker, a persistent store, a retrieval system or a tool environment. Which guarantees the resulting system has depends on that composition. Mutable parameters permit changes in behavior but do not prove that every update forgets a task. Deterministic inference and reproducible training are also different claims, each requiring the relevant inputs and execution conditions to be fixed.
 
 A claim about a particular model's failure rate, representational basis or reproducibility needs evidence about that model and setup. The label LLM does not prove the absence of every checking mechanism or the impossibility of a scoped certificate. The former universal classification as pure liquid is withdrawn.
+
+### AI3
 
 **AI3 (Reinforcement and formal checking can coexist).** A reward may score an estimate, an observed outcome or a formally checked proof. Its use in reinforcement learning does not decide which of these it is. A policy's estimated value is different from a certificate of a particular completed proof. [AlphaProof](https://pmc.ncbi.nlm.nih.gov/articles/PMC12999475/) combines reinforcement learning with formal proof search in Lean, providing an example of these roles operating together. It does not establish every VI premise for every task.
 
@@ -50,11 +78,15 @@ These are inspection questions, not a scorecard that derives a system's behavior
 
 ## §3. Search Quality and Correctness
 
+### AI4
+
 **AI4 (Search performance needs its own comparison).** Positive aggregate alignment does not ensure successful descent or generalization (Gradient GA6). A locally informative query can worsen optimal continuation cost (InI S3a). Therefore no speed or accuracy advantage follows from adding an alignment coordinate to the projection.
 
 Within AI6's sound-checking model, changing the generator cannot create an accepted wrong output if the checker and output path remain sound. It can change how often a correct proposal appears, how long it takes to check, and whether a budget is exhausted. These effects need a common workload, stopping rule and cost model. Correctness and efficiency have separate proof obligations, but a change in one component can affect both costs and coverage.
 
 ## §4. The Phase Vocabulary
+
+### AI5
 
 **AI5 (A resolution map requires a fixed criterion).** A library can resolve some questions and leave others open. Liquid LQ2 describes this map under fixed question semantics and sound retaining updates. A successful repeat can add no new record, and a new record can settle no new question (LQ3). Neither an advancing physical front nor laminar search follows from these facts.
 
@@ -75,6 +107,8 @@ The resulting target is an exact contract for a representation change: recover t
 M70 makes the resource side necessary for a claim of continued use. Every finite local deterministic table can occur for a prepared finite horizon inside some finite reversible whole. A fitting local rule and unchanged joint entropy therefore do not establish that the same local rule remains available indefinitely in the actual carrier. The learner's retained source, prepared record space and internal control must be included when certifying reuse. An unbounded record constructor supplies another admitted form at each extension in its grammar; it does not prove that a fixed physical store has that capacity. Law LT3–LT6 and LT15 now carry this distinction into the scope of identifying a dynamics.
 
 ## §5. The Conditional Wrapper Theorem
+
+### AI6
 
 **AI6 (Soundness, coverage and retention are separate).** Consider a fixed task, an actual proposal sequence y₁,y₂,… and a checker that accepts A_τ. A wrapper checks each processed proposal and emits only accepted proposals, or returns no certified answer.
 
@@ -108,6 +142,8 @@ A certificate that establishes q = a throughout a nonempty compatible set K also
 
 ## §6. What a Saturation Map Measures
 
+### AI7
+
 **AI7 (Current coverage differs from a retaining ledger).** Fix a finite nonempty task set D, checker scope, run conditions and evaluation budget. Current checked coverage C_t is the set of tasks whose evaluated outputs at version t pass. It need not grow across model updates or repeated stochastic runs.
 
 A historical ledger H_t = ⋃_{s≤t} C_s grows by definition when the certificates and their applicability are retained under fixed task semantics. It measures demonstrated past coverage, not necessarily the current model's unaided ability. A separate reuse mechanism is needed to turn old evidence into a present answer. Changing D, checker meaning or evaluation budget changes the measurement.
@@ -118,6 +154,8 @@ Compilation checks the relevant language constraints, a test suite checks its ex
 
 ## §7. The Type-Level Witness Boundary
 
+### AI8
+
 **AI8 (An acquired image can answer a family of future questions).** Suppose the permitted transitions have certified image updates, each target question factors through its final image, and the initial image has been acquired in a readable record. `QuestionAlongTransition` derives the future question's factorization through that initial image (VC45). `AnswerOnRefinement` then transports the answer to the acquired fact (VC41). Every constructed path with the required endpoints admits this derivation.
 
 In the two-swap fragment, VC44 establishes closure from two generic preservation relations. The same recorded complete image answers alpha after any permitted finite mixed continuation. A separate learned entry for every word is unnecessary for this guarantee. The operation word remains part of the question, while the decoder reads the original acquired fact. This is saturation of a specified family of relations, even when the family contains arbitrarily long words.
@@ -126,11 +164,15 @@ The guarantee concerns sufficiency and derivability. It does not assign a runtim
 
 For partial interactions, the image must also preserve where each action is available (VC46–VC47). Agreement on every successful result does not establish that domain condition. A complete acquired image can supply the resident equality required by `MatchedSwapTransition`, and its future answer still uses VC41 and VC45. After the step, availability concerns the successor's fields. A record of earlier success does not authorize repetition. A total extension's computed answer also does not establish that the partial action is available. Its differently specified question must remain explicit.
 
+### AI9
+
 **AI9 (Saturation is relative to the interaction family).** In the binary guarded-swap fragment, six classes suffice for the present alpha question and every available continuation (VC49). VC50–VC52 derive those classes and answers from a previously acquired complete image. The derived decoder's input is the fact, while the acquisition relation remains tied to its actual source. There is no separate observation of the source in this derivation.
 
 Adding the total swap requires eight classes (VC54). Two sources that shared the old blocked class now give different future answers. If the complete fact was retained, the new question can be answered from that fact by another certified factorization. If only the old class is accessible, no decoder on that class can distinguish the pair. Additional evidence, or a justified restriction of the source family, is then required.
 
 This separates two possible changes in a learner: finding a new consequence of retained evidence and acquiring a distinction that the accessible evidence does not determine. The finite example proves the distinction between these cases. It does not specify how a learner discovers the new factorization or which physical experiment can supply missing evidence. Those are further relations to establish. A minimal representation for a fixed family also need not be a good retention policy when future interactions are unknown.
+
+### AI10
 
 **AI10 (an internal acquisition can target the unresolved classes).** VC55–VC57 supply the next relation left open by AI9. The participant's old ready class already determines the full binary triple. At a blocked class, a prepared reading of beta supplies the missing distinction. The choice to read depends only on the accessible old class. The channel address contains the question and context, not the hidden answer. Its output fact is bound to the same source as the old trace.
 
@@ -138,23 +180,33 @@ The old class remains readable in the new memory prefix. The completed image the
 
 The inverse whole transition makes the newly acquired beta inaccessible again without losing the source. Repeating the forward acquisition while keeping all old records would require further prepared capacity, as M44 explains. Thus finding the missing relation, acquiring its answer and maintaining access to that answer require separate constructions. No independent observation is required for a consequence already determined by the ready class.
 
+### AI11
+
 **AI11 (workspace reuse and knowledge reuse have different conditions).** VC58–VC59 connect an acquisition decision from existing memory to preparation from a resident reserve and retention at an accessible archive address. The instrument can return to its prepared state while its answer remains available. The decision, acquisition source, resource input and retained evidence are checked relations. The final decoder accepts the old class and archived beta fact, without receiving the source as its input.
 
 This suggests a concrete separation in a learning architecture: deriving consequences of available evidence, acquiring a missing distinction, and relocating evidence so that an instrument can be reused. Only the second changes which members of an unresolved class can be distinguished in this example. The third changes the answer's address. Once the complete-image factorization exists, the declared future questions need no additional beta acquisition even if the reserve is empty. Conversely, resetting the entire accessible participant to an old unresolved state would remove the distinction needed by the answer.
 
 M45 counts reserve slots separately from information gained. This is not an argument that each training update must append a permanent new memory cell, nor a demonstrated speed or quality advantage over an existing learner. The static result is the connected acquisition and access contract. Discovering an unknown adequate channel, implementing its physical coupling and comparing learning performance remain separate tasks.
 
+### AI12
+
 **AI12 (reusing evidence requires its applicability relation).** VC62 gives a precise form of reuse: once two addressed applications on the same resident source are certified to agree, the existing observation and decoder for one answer the other without another acquisition. Prepared recording and archive access make that shared fact available inside the represented participant. The source relation remains part of the justification even though the memory payload need not duplicate both sources.
 
 VC63 prevents a circular use of this rule. In the binary pair example, a first-side fact is enough for the common answer on the compatible domain, but the same fact can come from a source outside that domain. Therefore a learner cannot treat possession of the fact as evidence that the transfer rule applies. Identical evidence plus identical additional storage remains indistinguishable across those cases. The missing work is to obtain a relation or observation that separates them, or justify a narrower source family. Within an already established family, reusing the fact requires neither a second measurement nor a second fact slot. These are static applicability and acquisition results, not a measured advantage over another learning architecture.
+
+### AI13
 
 **AI13 (applicability can be acquired and then reused).** VC64 completes the missing step in AI12 for two resident component readings. Their acquired facts share one actual trace. Comparing the memory decoders derives agreement or a positive source-answer distinction, without assuming the source answers agree. The classifier takes memory alone. Its three images retain precisely the common answer or its obstruction, while the full record preserves the ordered facts and sources.
 
 The acquired agreement can then license VC62's reuse. It is evidence about these addressed applications on this source, not an unrestricted law about unseen sources or later changed states. VC65 also gives a precise acquisition bound: when all four binary pairs are still possible and only component readings are allowed, one first-side fact always leaves a relevant distinction unresolved. One other-side reading is necessary and sufficient. A retained same-source second-side fact already supplies that distinction, so comparison then requires no new acquisition. This connects discovery of applicability with subsequent reuse in the static relation language. It does not establish how often useful relations occur in another learning problem or a training-performance advantage.
 
+### AI14
+
 **AI14 (an intervention changes what retained knowledge must determine).** VC66 transports the acquired common-answer class through side exchange. Its three classes suffice for every repetition of that operation. VC67 adds an exchange between the first answer coordinate and a prepared resident zero. The old failure class now needs its two orientations separated. The two original acquired facts already supply that distinction, so a future answer follows from them through the commuting square without another measurement.
 
 The fact remains about its original source. The future question names the operation, endpoint and required preparation. After the zero moves out of the reserve, repeating the same exchange can restore the displaced answer. A learner that keeps only the updated visible pair then omits a distinction needed by that continuation. This gives a precise retention question: which hidden or historical distinctions determine the allowed next results? The answer depends on the interaction family and on available evidence, not only on the present prediction. The construction establishes these static conditions, without a performance comparison between learners.
+
+### AI15
 
 **AI15 (an exact learned representation can be smaller than the state it must acquire).** VC69's comparison table has fifteen values over sixteen binary working configurations and determines every common-answer continuation under the two internal exchanges. The two merged configurations remain indistinguishable under that complete continuation family. Keeping their orientation adds no predictive distinction for this interface. VC70 shows exactly what reopens it: a direct component question.
 
@@ -163,6 +215,8 @@ VC71 still requires four component readings to acquire the fifteen-class object 
 The architectural obligation is concrete: state the questions, certify the representation's updates on the admitted operations, and retain source-bound evidence sufficient to recover that representation. When a new question separates an old class, identify its missing observation or an already accessible record. A finite proof basis can cover an unbounded family of constructed continuations while the memory payload omits distinctions that none of them uses. This establishes exact reuse within the declared grammar. Compilation cost, hardware cost and learning quality require their own measurements.
 
 VC72 supplies a further boundary without changing the question: one new internal connection makes the formerly omitted orientation consequential. If the original trace remains accessible, its old fact supplies the refinement. If only the fifteen-value image was retained, its all-B class needs one new coordinate reading. Thus a change in possible interactions can reopen learning even while the vocabulary of requested answers remains fixed.
+
+### AI16
 
 **AI16 (a finite calibration basis can support arbitrary new data in a certified law family).** VC73–VC76 turn a supplied interaction law into a recoverable object of observation. In the four-address routing family, two complete binary probes identify the selected input at each output. The same acquired signatures then determine routing on arbitrary structural data values, provided the new input is read and the same routing applies. Saturation here covers the declared coordinate-selection rule for all its data arguments. It does not require storing one example for every possible data tuple.
 
@@ -176,6 +230,8 @@ VC76 supplies two prepared resident instruments, their actual intermediate state
 
 VC77 makes stability a transport relation rather than a demand that the entire mechanism state freeze. A certified internal change can preserve the routing image and all its uses on read new inputs. Another internal exchange replaces the routing from a reserve, which old law-only evidence does not determine. M49 gives a finite case where uncertainty about the current law increases while its old record and all whole distinctions survive. A learner must therefore specify not only the law family it can identify, but the changes under which its acquired law representation remains sufficient.
 
+### AI17
+
 **AI17 (an acquired law can reduce the required input interface).** VC78 derives which new input coordinates a fixed routing needs. When all four outputs select the first input, the decoder accepts the law record and only that first value. Three unused values disappear from its argument type, and even the shape of an unused source branch ceases to be required. The source can retain those distinctions while this interface omits them.
 
 The law therefore does more than produce an answer after complete data acquisition: it can justify a smaller input question. Under channels that read one independently unknown coordinate at a time, a permutation needs all four coordinates and a repeated-first route needs only the first. If the law changes, its input requirement must be derived again or transported through a certificate preserving it. The checked identity counterexample has the same restricted observation on two inputs but different outputs.
@@ -187,6 +243,8 @@ VC79 locates the sensor's role in that interface. The same acquired response law
 `AllCoordinatesPresent`, `GateWrapper` and `SaturationMap` combine declared protocol coordinates. Their signatures do not quantify over proposal sequences, state the accepted/correct set inclusion, count trials or implement retention. The wrapper theorem requires the semantic and operational premises above.
 
 `Examples/LearningMachines.swift` provides illustrative type declarations. `CertifiedSelfPlay` uses Never coordinates and has no runtime learning loop. Its conformance is not evidence of a trained system's performance. The toy `LanguageModel` has a deliberately chosen non-Unique coordinate. Its failure to satisfy that particular declaration does not prove a limitation of actual language models. A pure-type witness supplies related coordinates and a derivation under its declared premises, with the relevant refusal boundary. It need not supply runtime inhabitants. An empirical performance claim needs its own operational evidence.
+
+### AI18
 
 **AI18 (new consequences and new acquisition have different witnesses).** VC80–VC81 provide one resident chain with three distinct obligations. The present first-coordinate question and the question after S read different consequences of the same acquired a/b memory. The mixed G/S question instead requires h on the unrestricted binary family. Equal old memories with positively different mixed answers establish that requirement. A declared resident third instrument acquires h, and the resulting record supports every finite word of the admitted exchanges through existing composition.
 
@@ -203,6 +261,8 @@ IiS11–IiS13 test what acquisition can establish within a declared model. In a 
 IiS15–IiS17 connect a positive factorization, operator normalization, prepared record and actual action. The static constructors retain common sources through arithmetic, composition, acquisition and Choi assembly. Full recovery and local dephasing are different readings of the same joint record. A map can have the right Choi partial trace and fail positivity, so neither a normalization label nor an unrelated matrix supplies the whole certificate. The detailed proofs and refusal cases belong to those claims, rather than a separate learning mechanism.
 
 A finite matrix has finitely many scalar slots. Exact finite storage also requires a representation of their values. EF5 and IiS17 explain why an arbitrary complex channel need not have such a description. A finite symbolic rule can instead prove a property uniformly over its parameter family, or a finite approximation can support a bounded-error question. The learner must distinguish these from identifying one exact member. The present integer constructions supply finite descriptions and source relations, without establishing a general empirical reconstruction method or a training-speed advantage.
+
+### AI19
 
 **AI19 (law evidence and data evidence constrain one joint question).** AI17 shows that a known law can reduce the new data an answer needs. VC82 gives the converse: supplied data equalities reduce which law distinctions matter. A learner answering the selected value on (a,a,b,b) needs the row response, while identifying the selecting law also needs its column. For constant data the answer needs no law probe. Widening the later data family can make that unresolved column necessary.
 

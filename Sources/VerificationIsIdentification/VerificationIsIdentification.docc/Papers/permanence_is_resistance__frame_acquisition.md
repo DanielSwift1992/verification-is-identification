@@ -2,6 +2,19 @@
 
 This part contains the original derivations for frame acquisition.
 
+Statements on this page:
+
+- <doc:permanence_is_resistance__frame_acquisition#M64a>: Two paired acquisitions can identify the relative action while both connections and the probe source remain unknown.
+- <doc:permanence_is_resistance__frame_acquisition#M64b>: A common change preserves a relative law exactly when it commutes with that law.
+- <doc:permanence_is_resistance__frame_acquisition#M64c>: An old policy needs agreement of frames only modulo the action it must implement.
+- <doc:permanence_is_resistance__frame_acquisition#M64d>: Exact acquisition of applicability from unresolved transformations.
+- <doc:permanence_is_resistance__frame_acquisition#M64e>: When question-preserving movements permit acquisition.
+- <doc:permanence_is_resistance__frame_acquisition#M64f>: Acquire through an excursion, then restore the question.
+- <doc:permanence_is_resistance__frame_acquisition#M64g>: Acquire applicability through two uncalibrated channels.
+- <doc:permanence_is_resistance__frame_acquisition#M64h>: Acquired local returns reflect a distinction without global calibration.
+- <doc:permanence_is_resistance__frame_acquisition#M64i>: Exhaustion by common returns; the origin need not be known.
+- <doc:permanence_is_resistance__frame_acquisition#M64j>: Acquire coverage from recorded returns, without a known generator.
+
 Family and original section headings: <doc:permanence_is_resistance>.
 
 Section setting: <doc:permanence_is_resistance#4g-Which-future-must-carry-a-real-distinction>.
@@ -343,4 +356,4 @@ There is a useful further reading of the positive branch. Its support consists o
 
 Labels mentioned here: <doc:permanence_is_resistance__retention#M60>, <doc:permanence_is_resistance__reusable_requests#M64ae>, <doc:permanence_is_resistance__reacquisition_residue#M64as>, <doc:permanence_is_resistance__forced_answers#M71>, <doc:verdict_is_invariant__local_lifts#VC100>, <doc:verdict_is_invariant__bounded_calibration#VC107>, <doc:verdict_is_invariant__finite_records#VC12>, <doc:verdict_is_invariant__local_lifts#VC99a>.
 
-Mentions of this page’s labels: <doc:permanence_is_resistance__contact_rigidity> (M64d), <doc:permanence_is_resistance__contact_rigidity> (M64g), <doc:permanence_is_resistance__contact_rigidity> (M64h), <doc:permanence_is_resistance__contact_rigidity> (M64j), <doc:permanence_is_resistance__reacquisition_residue> (M64a), <doc:permanence_is_resistance__reacquisition_residue> (M64b).
+Mentions of this page’s labels: <doc:permanence_is_resistance> (M64a), <doc:permanence_is_resistance> (M64j), <doc:permanence_is_resistance__contact_rigidity> (M64d), <doc:permanence_is_resistance__contact_rigidity> (M64g), <doc:permanence_is_resistance__contact_rigidity> (M64h), <doc:permanence_is_resistance__contact_rigidity> (M64j), <doc:permanence_is_resistance__reacquisition_residue> (M64a), <doc:permanence_is_resistance__reacquisition_residue> (M64b).

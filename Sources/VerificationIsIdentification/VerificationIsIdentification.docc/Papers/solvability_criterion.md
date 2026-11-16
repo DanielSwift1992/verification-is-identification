@@ -2,6 +2,15 @@
 
 This paper specifies one sufficient architecture for certified search: represent a candidate family, relate it to the intended task, delimit a search region, and check supplied candidates until an adequate witness is found or the declared budget ends. Distance Is Cost G10–G13 provide several ways to bound or compare that work. Other solvers may work without metric balls, and model adequacy remains a premise beyond compilation.
 
+Statements on this page:
+
+- <doc:solvability_criterion#C1>: Representability.
+- <doc:solvability_criterion#C2>: Adequate identification.
+- <doc:solvability_criterion#C3>: Optional representative economy.
+- <doc:solvability_criterion#C4a>: Anchored coverage.
+- <doc:solvability_criterion#C4b>: Access to a covering region.
+- <doc:solvability_criterion#C5>: Covered enumeration and a work bound.
+
 ## §0. The Factorization
 
 An implementation can separate proposal generation from checking. The checker establishes a declared relation for a candidate regardless of its proposal order, provided the actual candidate, applications and evidence are bound to that relation. V=I U1–U2 and Distance G13 state the relevant identity, membership and coverage obligations. Connecting that declared relation to the user's intended problem is another obligation.
@@ -12,15 +21,27 @@ The encoder and checker belong to the same relational whole. Their separation is
 
 Fix an evaluation domain D, a grammar E and a single-valued intended rule map f* on D. These are the domain of this specification, not a postulate about every task. A task allowing several equally adequate rules needs a set-valued acceptance contract instead.
 
+### C1
+
 **C1 (Representability).** For every τ∈D, the grammar can construct a rule representing f*(τ). A supplied construction proves reachability for that target. Exhaustion proves non-reachability only for a covered finite search domain. Failure to find a witness within a budget does not prove absence from an unbounded grammar.
+
+### C2
 
 **C2 (Adequate identification).** The declared candidate domain contains the intended rule, the observations are sound for it, and the restrictions isolate it within that domain. The actual checker implements those restrictions on admissible candidates, accepting exactly their survivors. With finite examples, this requires the separation and coverage premises of V=I U2. A singleton in an inadequate model can disagree with the intended behavior. Test failure signals a problem but does not by itself identify which representation, application, observation or coverage premise failed.
 
+### C3
+
 **C3 (Optional representative economy).** At a specified useful radius r, fewer representatives may cover the relevant rule set. G12 characterizes exactly that approximation contract. This is an optional efficiency premise for a representative-based design. It is not equivalent to a modulus, a favorable proposal rank or the ability to solve new tasks. Requiring only some positive radius makes this condition trivial for finite sets with more than one point.
+
+### C4a
 
 **C4a (Anchored coverage).** For every τ∈D, at least one retained training anchor a has W(f*(τ),a)≤2r. This is a relation between the actual evaluation targets and retained anchors. G11 supplies one sufficient construction: cover those targets by radius-r balls and retain an anchor in each ball. A stochastic arrival law may establish eventual coverage under its additional premises. Representability alone does not supply those retained anchors.
 
+### C4b
+
 **C4b (Access to a covering region).** The policy either selects an anchor satisfying C4a or searches the finite union of all anchored radius-2r balls. A modulus is one sufficient way to certify a selected radius, when its bound fits the chosen region. It is not the only possible dispatcher. Scanning N anchors incurs their access costs and the candidate checks inside the examined balls, not automatically O(N) total work.
+
+### C5
 
 **C5 (Covered enumeration and a work bound).** Supply a finite list c₁,…,cₘ covering the selected region, a procedure examining that list in order until acceptance or exhaustion, and bounds bⱼ on the work of producing and checking each entry, including admissibility and application checks. If setup costs at most b₀, require b₀+Σⱼbⱼ≤B for the declared budget B. The checker terminates on every listed entry, including invalid rule codes. This premise does not assume that a successful entry has already been found. G8 proves finiteness of tree balls, while the enumeration, its coverage and these work bounds need their own constructions.
 

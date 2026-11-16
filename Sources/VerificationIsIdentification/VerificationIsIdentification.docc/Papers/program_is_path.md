@@ -4,23 +4,45 @@ A string, a numeral, a PIN code and a program can each be represented by a finit
 
 Basis Is Residue's horn uses a finite basis with an unbounded generated reach. A finite path representation names one member without enumerating that reach. This interpretation can represent strings, numbers, keypads and programs, with different admissibility conditions.
 
+Statements on this page:
+
+- <doc:program_is_path#PiP1>: Finite members of an open reach.
+- <doc:program_is_path#PiP2>: Retaining emission.
+- <doc:program_is_path#PiP2a>: Transport a question through retained history.
+- <doc:program_is_path#PiP3>: Length and cost need an identified unit.
+- <doc:program_is_path#PiP4>: The next question can depend on the prefix.
+- <doc:program_is_path#PiP5>: Read the represented construction.
+- <doc:program_is_path#PiP6>: An explicit refusal policy.
+- <doc:program_is_path#PiP7>: Validity and identification are separate.
+- <doc:program_is_path#PiP8>: The capstone interface.
+- <doc:program_is_path#PiP9>: Completion reads admissible continuations.
+- <doc:program_is_path#PiP10>: Undo through a retained predecessor.
+
 ## §0. Derivation
 
 The path represents an emission order as an object. The finite path grammar, retaining record constructor, permitted transitions and chosen cost model are explicit premises below. They connect the horn of Basis Is Residue, proposal and checking in GD, represented reading order, and the metric of Distance Is Cost. A static interface alone does not choose these process laws.
 
 ## §1. The Reach Is a Path — the Horn, Expressed
 
+### PiP1
+
 **PiP1 (Finite members of an open reach).** Choose a finite token basis and a grammar of finite lists ending at a declared terminal. Each list has a natural-number length by structural induction, while unbounded admitted lengths give an infinite reach when the basis is nonempty. This does not require enumerating the reach to name one list. IntegerValued alone supplies no terminal or finite-depth proof (EiF EF7, EF10). HollowReach supplies selected numeral coordinates, without establishing a path's token membership, an infinite physical capacity or a bound on compiler work. The finite-list interpretation is the premise connecting represented paths to B8b.
 
 ## §2. Emission Accumulates, and Cost Is Length
 
+### PiP2
+
 **PiP2 (Retaining emission).** Let an admitted emission construct h'=PAIR(h,e), as in RetainedWhole<h,e>. Its first projection recovers h. Iterating this construction a finite number of times retains each earlier record at its corresponding finite prefix address. This models retained emission. Arbitrary editing need not use this update, and Permanent alone also admits a self-related terminal (EiF EF9). Fresh occurrence and a decreasing traversal budget require the explicit constructor and finite grammar.
+
+### PiP2a
 
 **PiP2a (Transport a question through retained history).** If p(h')=h and a reading q applies to h, define q'(h')=q(p(h')). Then q'(h')=q(h). For a finite sequence of retaining steps, compose their actual prefix projections in reverse order and then apply q. Induction proves preservation of the old answer at every such extension. No equality between h' and h, or between the new event and an old event, is needed.
 
 The existing PrefixMemoryAnswer<R,M> now exposes Application as SequentialReading of the actual first projection of M followed by R. Its seam is M.Left=R.Left, and its answer follows from this composition. RetainTraceAnswer already supplies the corresponding factorization for source-bound observation traces. Repeated retention therefore uses the existing constructor rather than a new invariant marker. JoinedTransition and QuestionAlongTransition supply the separate composition law for questions transported through changing source and image states (Verdict VC51–VC52).
 
 This preserves a question about the retained source. It does not freeze the current state or assert q(h')=q(h) for an unchanged current-state reading. All the sources and records belong to one represented whole. Accessibility of the old address and applicability of its decoder remain necessary for an actual participant to use the retained answer. Raw retention alone does not supply every local reader with that answer (V=I GC3).
+
+### PiP3
 
 **PiP3 (Length and cost need an identified unit).** A finite path of n emissions has length n. In a model charging one unit per emission its accumulated charge is n by addition. This is different from Distance Is Cost's W, whose unit is one valid tree-node edit. CostIsPathLength equates two associated coordinates but does not connect them to actual emitted tokens or charged edits.
 
@@ -32,17 +54,25 @@ More generally, for a finite sequence h₀,…,hₙ, its sum of edge distances i
 
 ## §3. Prefix-Conditioned Emission
 
+### PiP4
+
 **PiP4 (The next question can depend on the prefix).** An emission rule may take the current prefix as its input and define admissible next tokens from it. Such applications compose in prefix order when their actual inputs match preceding outputs. This is the chosen sequential representation. EmissionIsAutoregressive only requires a Permanent Encoding beside the inherited interfaces. It does not identify Encoding with Path, specify a next-token rule or prevent a whole path from being prepared by another construction. Prefix dependence does not alone prove an unavoidable physical execution order or prohibit parallel preparation. SequentialReading supplies the actual composition seam when the represented operations do form a chain.
 
 ## §4. Construction Is Reading Run Forward
+
+### PiP5
 
 **PiP5 (Read the represented construction).** A retained emission trace can be traversed to recover its previous records, as PiP2a establishes. Recovering that trace is a relation between a construction and a reader. It does not make every reading the inverse of emission: a reading may return only a coarse property. ConstructionIsReading joins interfaces without an inverse equation between a writer and reader. Particular inverse relations must use the actual source and output addresses, as in the existing recovery constructions of EiF EF9.
 
 ## §5. An Invalid Step Folds Onto the Path
 
+### PiP6
+
 **PiP6 (An explicit refusal policy).** A rejected construction supplies no instance of that attempted construction. The enclosing system's response is a separate choice: a system can preserve its previous path, append a failure record or expose another admitted outcome if its declared rules provide it. InvalidStepFolds requires Left=Right=Path, without an attempted transition, failure condition or execution rule. It names a stationary path coordinate. It does not prove that all refusals return to it or that this is the only total response. Matter M58 already distinguishes an explicit return relation from a return supposedly inferred from closure alone. A keypad's chosen failure representation needs its own construction to establish its sharing and size.
 
 ## §6. The Gate Decides Soundness
+
+### PiP7
 
 **PiP7 (Validity and identification are separate).** Fix a task's admissible domain S. A construction is valid for that task when its actual output belongs to S. If S has one member, this membership also identifies the output with that member (V=I Theorem 2). If S has several members, any of them can still be a correct output for the task of producing an admissible member.
 
@@ -59,13 +89,19 @@ For a sequence of steps, admissibility at each step gives a path guarantee when 
 
 ## §7. Program Is Path
 
+### PiP8
+
 **PiP8 (The capstone interface).** ProgramIsPath joins ReachIsPath, EmissionIsAutoregressive and GatedConstruction. Under their intended finite path interpretation, a construction records a sequence that can be read back. Checking its construction establishes the properties expressed by the actual checks. It does not identify every token uniquely or equate writing arbitrary text with proving it. PiP7 states the additional invariant argument needed for path validity.
 
 ## §8. Completion Is the Solution Set
 
+### PiP9
+
 **PiP9 (Completion reads admissible continuations).** An editor can present the candidates its checks admit at the current prefix. Equating its displayed list with that domain requires both admissibility of listed entries and coverage of the declared domain. V=I U2a gives membership paths through a finite covered support. More than one admissible continuation can remain. Selection need not wait for uniqueness. After a step, the next token's candidates belong to a new prefix context, so their list is not automatically a subset of the previous token's list. Monotone elimination applies to a fixed candidate domain under added constraints (V=I §5.22). CompletionIsSolutionSet's associated types alone do not prove a displayed list complete or its continuations semantically valid.
 
 ## §9. Erasure Is Head Recession
+
+### PiP10
 
 **PiP10 (Undo through a retained predecessor).** For the record update of PiP2, a reader can move to the actual predecessor projection. PiP2a then transports questions about that predecessor through the newer record. A separately stored history can keep a discarded edit even when the editing head moves back. The head, retained history and reachable objects must be distinguished: what is unreachable from one head need not be unreachable from every root. This construction permits an undo representation without deleting the retained record. It does not establish zero traversal, allocation or physical cost. ErasureIsRecession names retention interfaces but does not itself specify the head or a reclamation policy. Closure of the whole alone supplies neither an unlimited archive nor every participant's recovery path.
 

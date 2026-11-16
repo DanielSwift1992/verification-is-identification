@@ -274,6 +274,8 @@ func landingTopics(_ trailheads: [String]) -> String {
     topics += group("Why it exists", ["<doc:Purpose>"])
     topics += group("Encode your own", ["<doc:Encoding>"])
     topics += group("How these pages read", ["<doc:HowThesePagesRead>", "<doc:Results>"])
+    // Entry pages gather the statements of several papers on one theme. They add no claim.
+    topics += group("Start from a theme", ["<doc:EntryThemes>", "<doc:EntryLearning>", "<doc:EntryAcquisition>"])
     topics += group("Where it is", ["<doc:Neighbors>"])
     topics += group("Start here", symbols(trailheads))
     topics += group("The seed: one act and its fixpoint", symbols(names(SEED.sorted { title($0) < title($1) })))

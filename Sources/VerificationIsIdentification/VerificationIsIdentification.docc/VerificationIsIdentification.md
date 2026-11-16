@@ -77,6 +77,11 @@ The page's order follows each type's move. The papers' writing order gives a dif
 
 - <doc:HowThesePagesRead>
 - <doc:Results>
+### Start from a theme
+
+- <doc:EntryThemes>
+- <doc:EntryLearning>
+- <doc:EntryAcquisition>
 ### Where it is
 
 - <doc:Neighbors>

@@ -2,6 +2,13 @@
 
 Independent edits can share their results and the evidence for those results. The useful condition concerns what the edits read as well as what they write. A shared final position need not have the same history, and a successful merge need not mean that either branch already satisfied the entire task.
 
+Statements on this page:
+
+- <doc:merge_is_commutation#MiC1>: A verdict is a function of the support.
+- <doc:merge_is_commutation#MiC2>: Independent edits commute.
+- <doc:merge_is_commutation#MiC3>: The merged verdict is assembled from the applicable parts.
+- <doc:merge_is_commutation#MiC4>: Locality supplies a sufficient rechecking set.
+
 ## §0. Derivation
 
 The statements below use explicit finite record interfaces, actual deterministic edits and verdicts that factor through declared inputs. These are premises about the represented operations. Whole closure alone does not supply them. G14b constructs disjoint pair applications in bare Swift. Matter M66–M67 distinguish fixed prerequisites, permitted serializations and the richer records that can retain a chosen order.
@@ -24,11 +31,15 @@ Their added-law keys must also be disjoint. For transport of verdicts without a 
 
 ## §2. The locality lemma
 
+### MiC1
+
 **MiC1 (a verdict is a function of the support).** Two positions in the certified domain that agree on a law's support have the same verdict for that law.
 
 *Proof.* Its declared factorization applies the same function to the same input image. Therefore the answers agree. An edit preserving that image can reuse the verdict. Disjointness from the write set is one sufficient way to establish this preservation. QED
 
 ## §3. The commutation theorem
+
+### MiC2
 
 **MiC2 (independent edits commute).** Under Definition 3's edit conditions, applying F then G or G then F gives the same merged position.
 
@@ -39,6 +50,8 @@ Disjoint writes alone are insufficient. On a pair (x,y), let F write x←y and G
 G14b's `IndependentReadingOrders<F,G>` constructs the commutation for actual applications to disjoint pair fields. Equality concerns its input and selected final answer. Its retained operation histories remain distinct. M67's exchanges of incomparable occurrences transfer an answer only when the actual applications and their surrounding uses preserve that answer.
 
 ## §4. The transport theorem
+
+### MiC3
 
 **MiC3 (the merged verdict is assembled from the applicable parts).** Under the additional law-support conditions, with the source and destination positions in the domains of the certificates being transported, partition the retained laws into those touched by neither edit, by F alone, and by G alone. Add F's and G's new laws to their respective groups. Then
 
@@ -54,6 +67,8 @@ This is not the conjunction of the two complete branch verdicts. On two bits, re
 If both complete branches are valid, the displayed formula does imply validity of the merge. The converse needs further premises, such as validity of the base for the old laws in this fixed-law model. Without such premises it is false. When a law reads both changed regions, a new joint certificate can still establish it. The disjoint-support theorem no longer supplies that certificate.
 
 ## §5. The incremental corollary
+
+### MiC4
 
 **MiC4 (locality supplies a sufficient rechecking set).** With a valid cache for the current law interpretations, an edit can retain every verdict whose support image it preserves. Rechecking all new or changed laws and old laws whose declared supports meet the write set is sufficient. If checking law i costs at most c_i, the additional checking cost is at most the sum of those c_i, plus the cost of establishing and locating that set.
 

@@ -2,6 +2,13 @@
 
 This part contains the original derivations for bounded calibration.
 
+Statements on this page:
+
+- <doc:verdict_is_invariant__bounded_calibration#VC107>: No unrestricted finite positive calibration test.
+- <doc:verdict_is_invariant__bounded_calibration#VC107a>: The exact first distinguishing experiment in this family.
+- <doc:verdict_is_invariant__bounded_calibration#VC108>: Complete finite test on a bounded continuation scope.
+- <doc:verdict_is_invariant__bounded_calibration#VC109>: A finite observed action forces an aliased pair of paths.
+
 Family and original section headings: <doc:verdict_is_invariant>.
 
 Section setting: <doc:verdict_is_invariant#6zzd-Available-interventions-constrain-the-hidden-carrier>.
@@ -116,4 +123,4 @@ Finally, U has not been assumed to possess a fixed map on V. It selects an actua
 
 Labels mentioned here: <doc:verdict_is_invariant__calibration_residence#VC101>, <doc:verdict_is_invariant__calibration_residence#VC101a>, <doc:verdict_is_invariant__calibration_residence#VC101b>, <doc:verdict_is_invariant__calibration_residence#VC104>, <doc:verdict_is_invariant__calibration_residence#VC104a>, <doc:verdict_is_invariant__calibration_residence#VC106>, <doc:verdict_is_invariant__finite_records#VC12>.
 
-Mentions of this page’s labels: <doc:learning_is_liquid__reconstructed_sides> (VC107), <doc:permanence_is_resistance__contact_rigidity> (VC107), <doc:permanence_is_resistance__forced_answers> (VC107), <doc:permanence_is_resistance__forced_answers> (VC108), <doc:permanence_is_resistance__frame_acquisition> (VC107).
+Mentions of this page’s labels: <doc:learning_is_liquid__reconstructed_sides> (VC107), <doc:permanence_is_resistance__contact_rigidity> (VC107), <doc:permanence_is_resistance__forced_answers> (VC107), <doc:permanence_is_resistance__forced_answers> (VC108), <doc:permanence_is_resistance__frame_acquisition> (VC107), <doc:verdict_is_invariant> (VC107), <doc:verdict_is_invariant> (VC109).

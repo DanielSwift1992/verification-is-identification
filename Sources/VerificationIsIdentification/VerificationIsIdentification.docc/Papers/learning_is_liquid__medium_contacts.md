@@ -2,6 +2,11 @@
 
 This part contains the original derivations for medium contacts.
 
+Statements on this page:
+
+- <doc:learning_is_liquid__medium_contacts#LQ12>: Admission and rearrangement specify different properties of a medium.
+- <doc:learning_is_liquid__medium_contacts#LQ13>: An internal contact determines the boundary of uniform replacement.
+
 Family and original section headings: <doc:learning_is_liquid>.
 
 Section setting: <doc:learning_is_liquid#6a-The-state-of-the-logical-medium>.

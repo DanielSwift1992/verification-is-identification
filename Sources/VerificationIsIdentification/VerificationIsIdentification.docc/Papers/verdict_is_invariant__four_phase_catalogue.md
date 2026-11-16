@@ -2,6 +2,14 @@
 
 This part contains the original derivations for four phase catalogue.
 
+Statements on this page:
+
+- <doc:verdict_is_invariant__four_phase_catalogue#VC100a>: A complete finite word presentation.
+- <doc:verdict_is_invariant__four_phase_catalogue#VC100b>: Two acquired facts identify the resident law in this catalogue.
+- <doc:verdict_is_invariant__four_phase_catalogue#VC100c>: The acquisition cost belongs to the requested effect.
+- <doc:verdict_is_invariant__four_phase_catalogue#VC100d>: Additional acquisition after a question changes.
+- <doc:verdict_is_invariant__four_phase_catalogue#VC100e>: Successive refinement has a sharp relative bound.
+
 Family and original section headings: <doc:verdict_is_invariant>.
 
 Section setting: <doc:verdict_is_invariant#6zzd-Available-interventions-constrain-the-hidden-carrier>.
@@ -187,4 +195,4 @@ The static consumer `CurrentValueOmitsAcquiredDistinction` derives the equal ear
 
 Labels mentioned here: <doc:verdict_is_invariant__local_lifts#VC100>, <doc:verdict_is_invariant__local_lifts#VC95a>, <doc:verdict_is_invariant__local_lifts#VC99>, <doc:verdict_is_invariant__local_lifts#VC99a>.
 
-Mentions of this page’s labels: <doc:permanence_is_resistance__reusable_requests> (VC100c), <doc:verdict_is_invariant__action_interfaces> (VC100d), <doc:verdict_is_invariant__action_interfaces> (VC100e).
+Mentions of this page’s labels: <doc:permanence_is_resistance__reusable_requests> (VC100c), <doc:verdict_is_invariant> (VC100a), <doc:verdict_is_invariant> (VC100e), <doc:verdict_is_invariant__action_interfaces> (VC100d), <doc:verdict_is_invariant__action_interfaces> (VC100e).

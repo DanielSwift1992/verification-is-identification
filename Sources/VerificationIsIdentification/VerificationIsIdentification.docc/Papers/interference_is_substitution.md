@@ -2,6 +2,27 @@
 
 Waves can cancel. The example checks cancellation of a supplied equal, opposite pair and two axis-aligned slot filters. Extending those checks to all interference or polarization requires a carrier that retains the distinctions needed by later measurements.
 
+Statements on this page:
+
+- <doc:interference_is_substitution#IiS1>: A discrete amplitude representation.
+- <doc:interference_is_substitution#IiS2>: Equal opposites cancel.
+- <doc:interference_is_substitution#IiS3>: A normal form depends on the rules.
+- <doc:interference_is_substitution#IiS4>: A conditional fringe relation.
+- <doc:interference_is_substitution#IiS5>: Axis filters on a restricted record.
+- <doc:interference_is_substitution#IiS6>: A diagonal analyzer exposes the omitted relation.
+
+Parts in reading order:
+
+- <doc:interference_is_substitution__models_calibration>: IiS7–IiS13, 7 statements.
+- <doc:interference_is_substitution__positive_channels>: IiS14–IiS19, 6 statements.
+- <doc:interference_is_substitution__global_obstructions>: IiS20–IiS24, 5 statements.
+- <doc:interference_is_substitution__program_mediator>: IiS25–IiS28, 4 statements.
+- <doc:interference_is_substitution__comparison_fluctuations>: IiS29–IiS32, 4 statements.
+- <doc:interference_is_substitution__support_calibration>: IiS33–IiS36, 4 statements.
+- <doc:interference_is_substitution__acquired_programs>: IiS37–IiS39, 3 statements.
+- <doc:interference_is_substitution__support_memory>: IiS40–IiS43, 4 statements.
+- <doc:interference_is_substitution__repair_continuation>: IiS44–IiS46, 3 statements.
+
 ## §0. Premises
 
 A declared finite contribution bag and a declared phase grid define the discrete model. Seeing Is Encoding requires an explicit path list or depth restriction, not just a finite scene graph. Light Is a Ruler's modular path coordinate is a discrete encoding. Its relation to physical optical phase requires a propagation model. Neither finite notation nor a cancellation rule derives wave optics by itself.
@@ -202,7 +223,7 @@ The worked instances in Light.swift check a supplied opposite pair, a doubled ma
 
 ## Cross-page mentions
 
-Labels mentioned here: <doc:learning_is_liquid__medium_contacts#LQ13>, <doc:learning_is_liquid__reconstructed_sides#LQ16>, <doc:permanence_is_resistance__records_entropy#M35>, <doc:permanence_is_resistance__recovery_remainder#M70>.
+Labels mentioned here: <doc:interference_is_substitution__models_calibration#IiS13>, <doc:interference_is_substitution__positive_channels#IiS14>, <doc:interference_is_substitution__positive_channels#IiS19>, <doc:interference_is_substitution__global_obstructions#IiS20>, <doc:interference_is_substitution__global_obstructions#IiS24>, <doc:interference_is_substitution__program_mediator#IiS25>, <doc:interference_is_substitution__program_mediator#IiS28>, <doc:interference_is_substitution__comparison_fluctuations#IiS29>, <doc:interference_is_substitution__comparison_fluctuations#IiS32>, <doc:interference_is_substitution__support_calibration#IiS33>, <doc:interference_is_substitution__support_calibration#IiS36>, <doc:interference_is_substitution__acquired_programs#IiS37>, <doc:interference_is_substitution__acquired_programs#IiS39>, <doc:interference_is_substitution__support_memory#IiS40>, <doc:interference_is_substitution__support_memory#IiS43>, <doc:interference_is_substitution__repair_continuation#IiS44>, <doc:interference_is_substitution__repair_continuation#IiS46>, <doc:interference_is_substitution__models_calibration#IiS7>, <doc:learning_is_liquid__medium_contacts#LQ13>, <doc:learning_is_liquid__reconstructed_sides#LQ16>, <doc:permanence_is_resistance__records_entropy#M35>, <doc:permanence_is_resistance__recovery_remainder#M70>.
 
 Mentions of this page’s labels: <doc:interference_is_substitution__models_calibration> (IiS6).
 

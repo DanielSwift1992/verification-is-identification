@@ -2,6 +2,49 @@
 
 This paper studies a retained result as a constraint on later operations. Permanence, uniqueness of a decoded answer and cost of using that answer require different premises. Their intersection is the formal role called matter here. A proved structural constraint applies to every realization of its premises, including actual interactions within the whole. The task is to identify those premises in the interaction, then derive what every compatible construction must preserve. The finite witnesses below separate a closed whole, accessible records and the entropy of a chosen reading.
 
+Statements on this page:
+
+- <doc:permanence_is_resistance#M1>: An operation clock.
+- <doc:permanence_is_resistance#M2>: Trace-determined state.
+- <doc:permanence_is_resistance#M3>: Replay equivalence.
+- <doc:permanence_is_resistance#M4>: Level-relative counts.
+- <doc:permanence_is_resistance#M5>: Conditional nesting bound.
+- <doc:permanence_is_resistance#M6>: Mutable target boundary.
+- <doc:permanence_is_resistance#M7>: A scoped stable result.
+- <doc:permanence_is_resistance#M8>: A sufficient handoff.
+- <doc:permanence_is_resistance#M9>: An internal successor needs a mechanism.
+- <doc:permanence_is_resistance#M10>: Iterated handoff.
+- <doc:permanence_is_resistance#M11>: Novel-comparison bound.
+- <doc:permanence_is_resistance#M12>: Stabilization of finite retaining records.
+- <doc:permanence_is_resistance#M13>: Properties of a library need witnesses.
+- <doc:permanence_is_resistance#M14>: Different descriptions can have different tasks.
+- <doc:permanence_is_resistance#M15>: Successor parameters require more than the library.
+- <doc:permanence_is_resistance#M16>: Conditional tower termination.
+- <doc:permanence_is_resistance#M17>: A constructed tree boundary.
+- <doc:permanence_is_resistance#M18>: A library with a lookup procedure.
+- <doc:permanence_is_resistance#M19>: Resistance during a declared comparison.
+- <doc:permanence_is_resistance#M20>: Reuse preserves a scoped answer.
+- <doc:permanence_is_resistance#M21>: Retention is a declared update property.
+- <doc:permanence_is_resistance#M22>: Lifetime follows the retention premise.
+- <doc:permanence_is_resistance#M23>: Cumulative capacity and overlap.
+
+Parts in reading order:
+
+- <doc:permanence_is_resistance__forced_answers>: M71–M71e, 6 statements.
+- <doc:permanence_is_resistance__cost>: M24–M28, 6 statements.
+- <doc:permanence_is_resistance__records_entropy>: M29–M49, 21 statements.
+- <doc:permanence_is_resistance__retention>: M50–M64, 16 statements.
+- <doc:permanence_is_resistance__frame_acquisition>: M64a–M64j, 10 statements.
+- <doc:permanence_is_resistance__contact_rigidity>: M64k–M64n, 4 statements.
+- <doc:permanence_is_resistance__support_renewal>: M64o–M64y, 11 statements.
+- <doc:permanence_is_resistance__reusable_requests>: M64z–M64ah, 9 statements.
+- <doc:permanence_is_resistance__joint_laws>: M64ai–M64am, 5 statements.
+- <doc:permanence_is_resistance__reacquisition_residue>: M64an–M64at, 7 statements.
+- <doc:permanence_is_resistance__balance_clock>: M64au–M64ax, 4 statements.
+- <doc:permanence_is_resistance__uniform_routing>: M65, 1 statement.
+- <doc:permanence_is_resistance__recovery_remainder>: M66–M70, 3 statements.
+- <doc:permanence_is_resistance__physical_models>: M68–M69, 2 statements.
+
 ## §0. One Act
 
 V=I §2 specifies a finite representation grammar using a structural primitive:
@@ -133,7 +176,7 @@ The `Ignites` intersection records a chosen architecture's saturation and matter
 
 ### M13
 
-**M13 (Properties of a library need witnesses).** Multiple entries can support shared structure or a shorter dispatch tree. They need not do so, and such structure can exist before coverage is complete. For identifying K nonempty answer classes with binary queries, worst-case depth is at least ⌈log₂K⌉ by the leaf bound. Attaining that depth requires suitable queries. Uniqueness of each class's answer supplies no such queries (S3a, S5).
+**M13 (Properties of a library need witnesses).** Multiple entries can support shared structure or a shorter dispatch tree. They need not do so, and such structure can exist before coverage is complete. For identifying K nonempty answer classes with binary queries, worst-case depth is at least ⌈log₂K⌉ by the leaf bound. Attaining that depth requires suitable queries. Uniqueness of each class's answer supplies no such queries (Interference S3a, S5).
 
 ### M14
 
@@ -298,7 +341,7 @@ Section 5 lists candidate bridges and the premises they still lack. None is coun
 
 ## Cross-page mentions
 
-Labels mentioned here: <doc:learning_is_liquid__reconstructed_sides#LQ16>, <doc:permanence_is_resistance__cost#M26>, <doc:permanence_is_resistance__cost#M27>, <doc:permanence_is_resistance__records_entropy#M29>, <doc:permanence_is_resistance__records_entropy#M30>, <doc:permanence_is_resistance__records_entropy#M33>, <doc:permanence_is_resistance__records_entropy#M36>, <doc:permanence_is_resistance__records_entropy#M37>, <doc:permanence_is_resistance__retention#M52>, <doc:permanence_is_resistance__forced_answers#M71>, <doc:verdict_is_invariant__discovery_acquisition#VC26a>, <doc:verdict_is_invariant__discovery_acquisition#VC35>, <doc:verdict_is_invariant__discovery_acquisition#VC36>, <doc:verdict_is_invariant__discovery_acquisition#VC42>.
+Labels mentioned here: <doc:learning_is_liquid__reconstructed_sides#LQ16>, <doc:permanence_is_resistance__cost#M24>, <doc:permanence_is_resistance__cost#M26>, <doc:permanence_is_resistance__cost#M27>, <doc:permanence_is_resistance__cost#M28>, <doc:permanence_is_resistance__records_entropy#M29>, <doc:permanence_is_resistance__records_entropy#M30>, <doc:permanence_is_resistance__records_entropy#M33>, <doc:permanence_is_resistance__records_entropy#M36>, <doc:permanence_is_resistance__records_entropy#M37>, <doc:permanence_is_resistance__records_entropy#M49>, <doc:permanence_is_resistance__retention#M50>, <doc:permanence_is_resistance__retention#M52>, <doc:permanence_is_resistance__retention#M64>, <doc:permanence_is_resistance__frame_acquisition#M64a>, <doc:permanence_is_resistance__reusable_requests#M64ah>, <doc:permanence_is_resistance__joint_laws#M64ai>, <doc:permanence_is_resistance__joint_laws#M64am>, <doc:permanence_is_resistance__reacquisition_residue#M64an>, <doc:permanence_is_resistance__reacquisition_residue#M64at>, <doc:permanence_is_resistance__balance_clock#M64au>, <doc:permanence_is_resistance__balance_clock#M64ax>, <doc:permanence_is_resistance__frame_acquisition#M64j>, <doc:permanence_is_resistance__contact_rigidity#M64k>, <doc:permanence_is_resistance__contact_rigidity#M64n>, <doc:permanence_is_resistance__support_renewal#M64o>, <doc:permanence_is_resistance__support_renewal#M64y>, <doc:permanence_is_resistance__reusable_requests#M64z>, <doc:permanence_is_resistance__uniform_routing#M65>, <doc:permanence_is_resistance__recovery_remainder#M66>, <doc:permanence_is_resistance__physical_models#M68>, <doc:permanence_is_resistance__physical_models#M69>, <doc:permanence_is_resistance__recovery_remainder#M70>, <doc:permanence_is_resistance__forced_answers#M71>, <doc:permanence_is_resistance__forced_answers#M71e>, <doc:verdict_is_invariant__discovery_acquisition#VC26a>, <doc:verdict_is_invariant__discovery_acquisition#VC35>, <doc:verdict_is_invariant__discovery_acquisition#VC36>, <doc:verdict_is_invariant__discovery_acquisition#VC42>.
 
 Mentions of this page’s labels: <doc:permanence_is_resistance__cost> (M15), <doc:permanence_is_resistance__cost> (M16), <doc:permanence_is_resistance__records_entropy> (M23).
 

@@ -2,6 +2,25 @@
 
 This part contains the original derivations for retention.
 
+Statements on this page:
+
+- <doc:permanence_is_resistance__retention#M50>: A historical distinction reaches a later reading exactly through a question-preserving factorization.
+- <doc:permanence_is_resistance__retention#M72>: Established recovery forces a witness at every complete intervening cut.
+- <doc:permanence_is_resistance__retention#M51>: Complete recurrence cannot carry a distinguishable lap count.
+- <doc:permanence_is_resistance__retention#M52>: Mutual recovery within each state does not imply recovery across states.
+- <doc:permanence_is_resistance__retention#M53>: Reciprocal input dependence still permits a joint merger.
+- <doc:permanence_is_resistance__retention#M54>: A complete set of faithful future witnesses gives whole-representation recovery.
+- <doc:permanence_is_resistance__retention#M55>: Addressed retention needs a proper record extension to define strict order.
+- <doc:permanence_is_resistance__retention#M56>: Knowledge acquisition and continuation scope change different information questions.
+- <doc:permanence_is_resistance__retention#M57>: Remaining law uncertainty can coexist with a determined consequence.
+- <doc:permanence_is_resistance__retention#M58>: A return can force a relation without choosing its components.
+- <doc:permanence_is_resistance__retention#M59>: Relative agreement can be known without absolute frame calibration.
+- <doc:permanence_is_resistance__retention#M60>: A shared contrast probe can determine relative calibration.
+- <doc:permanence_is_resistance__retention#M61>: Historical scope, available extension and actual continuation are different requirements.
+- <doc:permanence_is_resistance__retention#M62>: A sufficient relative fact can have less entropy than the acquired images.
+- <doc:permanence_is_resistance__retention#M63>: Refinement orders possibilities, while entropy averages their weights.
+- <doc:permanence_is_resistance__retention#M64>: An acquired relative fact can survive a change of both connections.
+
 Family and original section headings: <doc:permanence_is_resistance>.
 
 Section setting: <doc:permanence_is_resistance#4g-Which-future-must-carry-a-real-distinction>.
@@ -358,4 +377,4 @@ The result connects persistence to scoped change. Knowledge can survive a change
 
 Labels mentioned here: <doc:learning_is_liquid__medium_contacts#LQ13>, <doc:permanence_is_resistance__records_entropy#M31>, <doc:permanence_is_resistance__records_entropy#M32>, <doc:permanence_is_resistance__records_entropy#M33>, <doc:permanence_is_resistance__forced_answers#M71>, <doc:verdict_is_invariant__finite_records#VC18>, <doc:verdict_is_invariant__discovery_acquisition#VC37>, <doc:verdict_is_invariant__discovery_acquisition#VC38>, <doc:verdict_is_invariant__discovery_acquisition#VC40>, <doc:verdict_is_invariant__discovery_acquisition#VC42>, <doc:verdict_is_invariant__relative_questions#VC80>, <doc:verdict_is_invariant__relative_questions#VC81>, <doc:verdict_is_invariant__relative_questions#VC82>, <doc:verdict_is_invariant__relative_questions#VC83>.
 
-Mentions of this page’s labels: <doc:interference_is_substitution__models_calibration> (M59), <doc:interference_is_substitution__models_calibration> (M64), <doc:interference_is_substitution__models_calibration> (M72), <doc:interference_is_substitution__positive_channels> (M64), <doc:learning_is_liquid__medium_contacts> (M55), <doc:learning_is_liquid__medium_contacts> (M72), <doc:learning_is_liquid__reconstructed_sides> (M55), <doc:permanence_is_resistance> (M52), <doc:permanence_is_resistance__forced_answers> (M50), <doc:permanence_is_resistance__forced_answers> (M51), <doc:permanence_is_resistance__forced_answers> (M54), <doc:permanence_is_resistance__forced_answers> (M55), <doc:permanence_is_resistance__forced_answers> (M58), <doc:permanence_is_resistance__forced_answers> (M72), <doc:permanence_is_resistance__frame_acquisition> (M60), <doc:permanence_is_resistance__physical_models> (M63), <doc:permanence_is_resistance__records_entropy> (M50), <doc:permanence_is_resistance__records_entropy> (M64), <doc:permanence_is_resistance__recovery_remainder> (M51), <doc:permanence_is_resistance__recovery_remainder> (M63), <doc:permanence_is_resistance__recovery_remainder> (M72), <doc:permanence_is_resistance__uniform_routing> (M58), <doc:verdict_is_invariant> (M58), <doc:verdict_is_invariant> (M59), <doc:verdict_is_invariant> (M60), <doc:verdict_is_invariant__discovery_acquisition> (M55), <doc:verdict_is_invariant__discovery_acquisition> (M72), <doc:verdict_is_invariant__recovery_memory> (M55).
+Mentions of this page’s labels: <doc:interference_is_substitution__models_calibration> (M59), <doc:interference_is_substitution__models_calibration> (M64), <doc:interference_is_substitution__models_calibration> (M72), <doc:interference_is_substitution__positive_channels> (M64), <doc:learning_is_liquid__medium_contacts> (M55), <doc:learning_is_liquid__medium_contacts> (M72), <doc:learning_is_liquid__reconstructed_sides> (M55), <doc:permanence_is_resistance> (M50), <doc:permanence_is_resistance> (M52), <doc:permanence_is_resistance> (M64), <doc:permanence_is_resistance__forced_answers> (M50), <doc:permanence_is_resistance__forced_answers> (M51), <doc:permanence_is_resistance__forced_answers> (M54), <doc:permanence_is_resistance__forced_answers> (M55), <doc:permanence_is_resistance__forced_answers> (M58), <doc:permanence_is_resistance__forced_answers> (M72), <doc:permanence_is_resistance__frame_acquisition> (M60), <doc:permanence_is_resistance__physical_models> (M63), <doc:permanence_is_resistance__records_entropy> (M50), <doc:permanence_is_resistance__records_entropy> (M64), <doc:permanence_is_resistance__recovery_remainder> (M51), <doc:permanence_is_resistance__recovery_remainder> (M63), <doc:permanence_is_resistance__recovery_remainder> (M72), <doc:permanence_is_resistance__uniform_routing> (M58), <doc:verdict_is_invariant> (M58), <doc:verdict_is_invariant> (M59), <doc:verdict_is_invariant> (M60), <doc:verdict_is_invariant__discovery_acquisition> (M55), <doc:verdict_is_invariant__discovery_acquisition> (M72), <doc:verdict_is_invariant__recovery_memory> (M55).

@@ -2,6 +2,15 @@
 
 This part contains the original derivations for finite policies.
 
+Statements on this page:
+
+- <doc:verdict_is_invariant__finite_policies#VC90>: A bounded joint policy criterion.
+- <doc:verdict_is_invariant__finite_policies#VC91>: The complete resource boundary for this contact family.
+- <doc:verdict_is_invariant__finite_policies#VC92>: A local trap that no horizon removes.
+- <doc:verdict_is_invariant__finite_policies#VC93>: A complete finite control configuration supplies a horizon.
+- <doc:verdict_is_invariant__finite_policies#VC94>: Local contacts carry a verified bounded procedure.
+- <doc:verdict_is_invariant__finite_policies#VC94a>: Expansion preserves termination only through its actual internal progress.
+
 Family and original section headings: <doc:verdict_is_invariant>.
 
 Section setting: <doc:verdict_is_invariant#6zy-Finite-distributed-policies-with-shared-local-choices>.
@@ -221,4 +230,4 @@ Thus reducing aaab to ab preserves the chosen working answer while eliminating t
 
 Labels mentioned here: <doc:permanence_is_resistance__records_entropy#M34>, <doc:permanence_is_resistance__records_entropy#M39>, <doc:verdict_is_invariant__finite_records#VC19>, <doc:verdict_is_invariant__recovery_memory#VC21>, <doc:verdict_is_invariant__recovery_memory#VC23>, <doc:verdict_is_invariant__discovery_acquisition#VC31>, <doc:verdict_is_invariant__discovery_acquisition#VC33>, <doc:verdict_is_invariant__reusable_images#VC52>, <doc:verdict_is_invariant__relative_questions#VC81>, <doc:verdict_is_invariant__relative_questions#VC85>, <doc:verdict_is_invariant__relative_questions#VC86>, <doc:verdict_is_invariant__relative_questions#VC87>, <doc:verdict_is_invariant__relative_questions#VC89>.
 
-Mentions of this page’s labels: <doc:verdict_is_invariant__local_lifts> (VC90), <doc:verdict_is_invariant__local_lifts> (VC92), <doc:verdict_is_invariant__local_lifts> (VC94a).
+Mentions of this page’s labels: <doc:verdict_is_invariant> (VC90), <doc:verdict_is_invariant> (VC94a), <doc:verdict_is_invariant__local_lifts> (VC90), <doc:verdict_is_invariant__local_lifts> (VC92), <doc:verdict_is_invariant__local_lifts> (VC94a).

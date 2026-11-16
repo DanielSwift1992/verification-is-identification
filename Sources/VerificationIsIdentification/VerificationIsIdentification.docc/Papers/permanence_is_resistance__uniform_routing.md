@@ -2,6 +2,10 @@
 
 This part contains the original derivations for uniform routing.
 
+Statements on this page:
+
+- <doc:permanence_is_resistance__uniform_routing#M65>: Uniform interpretation and recoverability derive the two frame operations.
+
 Family and original section headings: <doc:permanence_is_resistance>.
 
 Section setting: <doc:permanence_is_resistance#4g-Which-future-must-carry-a-real-distinction>.
@@ -111,4 +115,4 @@ This supplies the requested structural exclusion of equality-dependent routing f
 
 Labels mentioned here: <doc:interference_is_substitution__positive_channels#IiS18>, <doc:interference_is_substitution__positive_channels#IiS19>, <doc:permanence_is_resistance__records_entropy#M30>, <doc:permanence_is_resistance__retention#M58>, <doc:verdict_is_invariant__finite_records#VC15>, <doc:verdict_is_invariant__reusable_images#VC58>, <doc:verdict_is_invariant__relative_questions#VC82>, <doc:verdict_is_invariant__relative_questions#VC84>.
 
-Mentions of this page’s labels: <doc:permanence_is_resistance__contact_rigidity> (M65), <doc:permanence_is_resistance__forced_answers> (M65), <doc:permanence_is_resistance__joint_laws> (M65), <doc:verdict_is_invariant__local_lifts> (M65), <doc:verdict_is_invariant__reusable_images> (M65).
+Mentions of this page’s labels: <doc:permanence_is_resistance> (M65), <doc:permanence_is_resistance__contact_rigidity> (M65), <doc:permanence_is_resistance__forced_answers> (M65), <doc:permanence_is_resistance__joint_laws> (M65), <doc:verdict_is_invariant__local_lifts> (M65), <doc:verdict_is_invariant__reusable_images> (M65).

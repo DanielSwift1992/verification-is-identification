@@ -2,6 +2,19 @@
 
 This part contains the original derivations for relative questions.
 
+Statements on this page:
+
+- <doc:verdict_is_invariant__relative_questions#VC80>: A new question can require either a different reading of old memory or one additional acquisition.
+- <doc:verdict_is_invariant__relative_questions#VC81>: The required distinctions close under the admitted continuation family.
+- <doc:verdict_is_invariant__relative_questions#VC82>: Data equalities coarsen sufficient law evidence.
+- <doc:verdict_is_invariant__relative_questions#VC83>: Answer preservation can survive a change of the law itself.
+- <doc:verdict_is_invariant__relative_questions#VC84>: Adequate input subsets form an upward-closed family, with an exact minimal basis.
+- <doc:verdict_is_invariant__relative_questions#VC85>: Exact reuse through a mode-dependent calibration.
+- <doc:verdict_is_invariant__relative_questions#VC86>: A binary answer can require three calibration symbols, while admission requires five.
+- <doc:verdict_is_invariant__relative_questions#VC87>: A record-dependent request changes the acquisition bound.
+- <doc:verdict_is_invariant__relative_questions#VC88>: The same conflict graph can require a different acquisition procedure.
+- <doc:verdict_is_invariant__relative_questions#VC89>: Minimum signaling for a free adequate choice.
+
 Family and original section headings: <doc:verdict_is_invariant>.
 
 Section setting: <doc:verdict_is_invariant#6zs-Existing-knowledge-a-new-question-and-one-necessary-acquisition>.
@@ -230,4 +243,4 @@ M25's rows {u,v}, {v,w}, {u,w} are a control against replacing the joint interse
 
 Labels mentioned here: <doc:permanence_is_resistance__cost#M25>, <doc:permanence_is_resistance__recovery_remainder#M66>, <doc:permanence_is_resistance__forced_answers#M71>, <doc:verdict_is_invariant__discovery_acquisition#VC30>, <doc:verdict_is_invariant__discovery_acquisition#VC31>, <doc:verdict_is_invariant__reusable_images#VC60>, <doc:verdict_is_invariant__reusable_images#VC62>, <doc:verdict_is_invariant__routing_laws#VC78>, <doc:verdict_is_invariant__routing_laws#VC79>, <doc:verdict_is_invariant__finite_records#VC9>.
 
-Mentions of this page’s labels: <doc:learning_is_liquid__coordination_blocks> (VC84), <doc:permanence_is_resistance__contact_rigidity> (VC85), <doc:permanence_is_resistance__forced_answers> (VC84), <doc:permanence_is_resistance__physical_models> (VC84), <doc:permanence_is_resistance__recovery_remainder> (VC83), <doc:permanence_is_resistance__recovery_remainder> (VC84), <doc:permanence_is_resistance__retention> (VC80), <doc:permanence_is_resistance__retention> (VC81), <doc:permanence_is_resistance__retention> (VC82), <doc:permanence_is_resistance__retention> (VC83), <doc:permanence_is_resistance__uniform_routing> (VC82), <doc:permanence_is_resistance__uniform_routing> (VC84), <doc:verdict_is_invariant__action_interfaces> (VC89), <doc:verdict_is_invariant__calibration_residence> (VC85), <doc:verdict_is_invariant__finite_policies> (VC81), <doc:verdict_is_invariant__finite_policies> (VC85), <doc:verdict_is_invariant__finite_policies> (VC86), <doc:verdict_is_invariant__finite_policies> (VC87), <doc:verdict_is_invariant__finite_policies> (VC89), <doc:verdict_is_invariant__local_lifts> (VC89).
+Mentions of this page’s labels: <doc:learning_is_liquid__coordination_blocks> (VC84), <doc:permanence_is_resistance__contact_rigidity> (VC85), <doc:permanence_is_resistance__forced_answers> (VC84), <doc:permanence_is_resistance__physical_models> (VC84), <doc:permanence_is_resistance__recovery_remainder> (VC83), <doc:permanence_is_resistance__recovery_remainder> (VC84), <doc:permanence_is_resistance__retention> (VC80), <doc:permanence_is_resistance__retention> (VC81), <doc:permanence_is_resistance__retention> (VC82), <doc:permanence_is_resistance__retention> (VC83), <doc:permanence_is_resistance__uniform_routing> (VC82), <doc:permanence_is_resistance__uniform_routing> (VC84), <doc:verdict_is_invariant> (VC80), <doc:verdict_is_invariant> (VC89), <doc:verdict_is_invariant__action_interfaces> (VC89), <doc:verdict_is_invariant__calibration_residence> (VC85), <doc:verdict_is_invariant__finite_policies> (VC81), <doc:verdict_is_invariant__finite_policies> (VC85), <doc:verdict_is_invariant__finite_policies> (VC86), <doc:verdict_is_invariant__finite_policies> (VC87), <doc:verdict_is_invariant__finite_policies> (VC89), <doc:verdict_is_invariant__local_lifts> (VC89).

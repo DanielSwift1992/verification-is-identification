@@ -2,6 +2,13 @@
 
 This part contains the original derivations for support calibration.
 
+Statements on this page:
+
+- <doc:interference_is_substitution__support_calibration#IiS33>: Optimal passive scale, one extra mode, and four calibration preparations.
+- <doc:interference_is_substitution__support_calibration#IiS34>: Projection witness, minimal outputs and probes, finite local configuration.
+- <doc:interference_is_substitution__support_calibration#IiS35>: The downstream question determines whether a local power certificate composes.
+- <doc:interference_is_substitution__support_calibration#IiS36>: Two mixed preparations identify a projection among all passive effects, with dimension-dependent tolerance.
+
 Family and original section headings: <doc:interference_is_substitution>.
 
 Section setting: <doc:interference_is_substitution#16h-The-residual-witness-has-a-passive-implementation-and-an-acquired-calibration>.
@@ -519,4 +526,4 @@ This separates a preparation obstruction from a restricted-control obstruction u
 
 Labels mentioned here: <doc:interference_is_substitution__models_calibration#IiS10>, <doc:interference_is_substitution__comparison_fluctuations#IiS31>, <doc:interference_is_substitution__models_calibration#IiS7>, <doc:verdict_is_invariant__discovery_acquisition#VC35>.
 
-Mentions of this page’s labels: <doc:interference_is_substitution__acquired_programs> (IiS34), <doc:interference_is_substitution__acquired_programs> (IiS35), <doc:interference_is_substitution__acquired_programs> (IiS36), <doc:interference_is_substitution__support_memory> (IiS34), <doc:interference_is_substitution__support_memory> (IiS36).
+Mentions of this page’s labels: <doc:interference_is_substitution> (IiS33), <doc:interference_is_substitution> (IiS36), <doc:interference_is_substitution__acquired_programs> (IiS34), <doc:interference_is_substitution__acquired_programs> (IiS35), <doc:interference_is_substitution__acquired_programs> (IiS36), <doc:interference_is_substitution__support_memory> (IiS34), <doc:interference_is_substitution__support_memory> (IiS36).

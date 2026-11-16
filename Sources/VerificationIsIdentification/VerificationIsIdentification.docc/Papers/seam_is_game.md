@@ -8,6 +8,14 @@ A **seam** is an addressed pair of declarations and a specified relation they mu
 
 Zero, one and several exhaust the cardinalities of a finite survivor set (SG1). An answer independent of unresolved revisions requires constancy over their admitted family (SG2). A declaration certificate applies to behavior through an established relation to the implementation (SG3). These are separate obligations, rather than consequences of one three-state vocabulary.
 
+Statements on this page:
+
+- <doc:seam_is_game#SG1>: Completeness of the finite cardinality classification.
+- <doc:seam_is_game#SG2>: Revision-independent answers.
+- <doc:seam_is_game#SG3>: Scope.
+- <doc:seam_is_game#SG4>: Exact elimination retains the constraints paired with a singular response.
+- <doc:seam_is_game#SG5>: A complete relative-phase cycle counts accessible internal directions.
+
 ## §0. Derivation
 
 The construction assumes addressed inputs, a finite correspondence family and a terminating acceptance relation. Counting gives the outcome classification. Question factorization determines which input distinctions are needed. The chosen compatibility relation and its connection to actual behavior require their own grounds.
@@ -46,6 +54,8 @@ Read at an address:
 | 0 | **parted** | No correspondence passes in that family |
 | >1 | **open** | More than one correspondence passes |
 
+### SG1
+
 **SG1 (Completeness of the finite cardinality classification).** A specified finite survivor set has zero, one or several members. These classes are disjoint and exhaustive. This does not classify every operational state of acquiring inputs or performing the check.
 
 *Proof.* The outcome classification, applied to the game of §1. QED
@@ -59,6 +69,8 @@ The cardinality result leaves three further questions.
 **(c) An exception changes a contract or adds a record.** A waiver can record that a known mismatch is temporarily accepted. It does not prove equal semantics. Waiver status can accompany the cardinality class without creating a fourth cardinality. If the waiver changes the acceptance relation, its survivor set belongs to that changed question.
 
 ## §3. Revision Scope Is Part of the Question
+
+### SG2
 
 **SG2 (Revision-independent answers).** Let K be a nonempty family of admitted revision pairs and q its declared seam question. One answer applies independently of the unresolved pair exactly when q is constant on K. Pinning the pair makes K a singleton and is sufficient. It is not necessary when a structural proof establishes the same answer throughout K.
 
@@ -88,6 +100,8 @@ SG4's internal-kernel example shows why this distinction matters beyond layout. 
 
 ## §4. What a Seam Certifies
 
+### SG3
+
 **SG3 (Scope).** A successful seam check certifies the stated relation between the supplied declarations. By itself it does not establish that an actual implementation realizes those declarations.
 
 *Proof.* If the admitted model permits two implementations with the same declarations and different relevant behaviors, a declaration-only check receives identical inputs in those two cases. Its result cannot distinguish them. Excluding that alternative requires a relation binding declaration and implementation. A source-bound construction or a proof under explicit semantics can supply such a relation for its domain. QED
@@ -97,6 +111,8 @@ If the contract asks for equal declarations, structural equality is appropriate.
 Choosing an input-output direction imposes another condition. A boundary relation is the graph of a map on its admitted inputs exactly when each has one compatible output. LiR12 supplies a model in which a resonant side mode prevents the boundary from being an invertible left-to-right transfer, while its scattering relation remains finite. An interface must preserve the relation before requiring a functional description in a chosen direction. This is a constraint on the representation of the physical contact, not a change in the given system caused by its description.
 
 ## §4a. Elimination, Sewing and Internal Response
+
+### SG4
 
 **SG4 (Exact elimination retains the constraints paired with a singular response).** Let X and Z be finite-dimensional complex inner-product spaces. Boundary coordinates x,y∈X and internal coordinates z∈Z obey
 
@@ -169,6 +185,8 @@ The right side is positive semidefinite. A phase change on the specified interna
 For one retained port S=e^{iχ}, this reads ∂χ/∂φ=‖Z‖². A physical delay interpretation additionally needs a calibrated relation φ(ω) and control of any frequency dependence in the component U. With U fixed, the contribution to ∂χ/∂ω is φ′(ω)‖Z‖². The narrowband connection between scattering phase and group delay is developed in [Patel and Michielssen, §II-A–§II-B](https://arxiv.org/html/2003.06985), using the opposite time-harmonic sign convention. Their broader electromagnetic formulas require field integrals and, in some geometries, correction terms. The finite identity here establishes neither all of those formulas nor the origin of time from one phase coordinate.
 
 This also tests a precise statement in the literature. [Kostrykin and Schrader, arXiv:math-ph/0008022v1, Eq. (3.4) and Theorem 3.9, pp. 8 and 12](https://arxiv.org/pdf/math-ph/0008022v1), extend the product to singular pairs and state continuity in each matrix argument. Set n₁=n₂=2, p=1, V=1, keep U⁽¹⁾=I₂ and vary U⁽²⁾=U_ε above. For ε≠0 their formula gives I₂∗U_ε=diag(1,−1), since the second diagonal is c−s²/(1−c)=−1 and the other off-diagonal blocks vanish. At ε=0 their singular extension gives I₂∗I₂=I₂. The output distance is 2 while the varying argument approaches I₂. This contradicts the unrestricted continuity statement in that version. The internal-response bound above supplies a valid conditional replacement. This comparison concerns the cited preprint statement, not an audit of the journal version or of all its graph-scattering results.
+
+### SG5
 
 **SG5 (A complete relative-phase cycle counts accessible internal directions).** Keep the finite unitary U and its port partition fixed. Apply the same phase z=e^{iφ} to every sewn output, and retain the coherent boundary map S(φ) over a complete cycle. Write D=U_ii and C=U_ie for this paragraph. Let H_dark be the span of D's eigenvectors with eigenvalues of modulus one, and H_vis its orthogonal complement. Then
 

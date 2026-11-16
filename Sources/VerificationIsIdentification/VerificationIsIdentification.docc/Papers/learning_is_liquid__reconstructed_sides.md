@@ -2,6 +2,15 @@
 
 This part contains the original derivations for reconstructed sides.
 
+Statements on this page:
+
+- <doc:learning_is_liquid__reconstructed_sides#LQ16>: Self-contact and contextual substitution force a determinate two-role contact.
+- <doc:learning_is_liquid__reconstructed_sides#LQ16a>: Coherent complementary exchanges force a shared boundary.
+- <doc:learning_is_liquid__reconstructed_sides#LQ16b>: An already given joint carrier requires inward closure.
+- <doc:learning_is_liquid__reconstructed_sides#LQ16c>: A retained incidence can determine continuation without a route index.
+- <doc:learning_is_liquid__reconstructed_sides#LQ17>: One ordered scale of exact regions forces nested partitions.
+- <doc:learning_is_liquid__reconstructed_sides#LQ18>: A fixed recombination cut and an autonomous reading are separate obligations.
+
 Family and original section headings: <doc:learning_is_liquid>.
 
 Section setting: <doc:learning_is_liquid#6e-Can-the-relation-supply-its-sides>.

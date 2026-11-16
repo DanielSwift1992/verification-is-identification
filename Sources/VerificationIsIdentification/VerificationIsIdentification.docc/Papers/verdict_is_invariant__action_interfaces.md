@@ -2,6 +2,17 @@
 
 This part contains the original derivations for action interfaces.
 
+Statements on this page:
+
+- <doc:verdict_is_invariant__action_interfaces#VC100f>: A common relation can be transported while the law changes.
+- <doc:verdict_is_invariant__action_interfaces#VC100g>: Two actions determine an intrinsic four-point frame.
+- <doc:verdict_is_invariant__action_interfaces#VC100h>: A unique frame need not give compatible joint actions.
+- <doc:verdict_is_invariant__action_interfaces#VC100i>: VC89 applied to a library of programs.
+- <doc:verdict_is_invariant__action_interfaces#VC100j>: Acting without identifying the remaining orientation.
+- <doc:verdict_is_invariant__action_interfaces#VC100k>: Changing context, and acquisition of an applicable correction.
+- <doc:verdict_is_invariant__action_interfaces#VC100l>: Acquire through a disturbing contact, then restore applicability.
+- <doc:verdict_is_invariant__action_interfaces#VC100m>: A common carrier for a repeatable interface.
+
 Family and original section headings: <doc:verdict_is_invariant>.
 
 Section setting: <doc:verdict_is_invariant#6zzd-Available-interventions-constrain-the-hidden-carrier>.
@@ -262,4 +273,4 @@ Finally, absence of readouts during execution does not assert permanent unobserv
 
 Labels mentioned here: <doc:permanence_is_resistance__forced_answers#M71>, <doc:verdict_is_invariant__four_phase_catalogue#VC100d>, <doc:verdict_is_invariant__four_phase_catalogue#VC100e>, <doc:verdict_is_invariant__relative_questions#VC89>.
 
-Mentions of this page’s labels: <doc:learning_is_liquid__reconstructed_sides> (VC100f), <doc:permanence_is_resistance__contact_rigidity> (VC100h), <doc:verdict_is_invariant__return_costs> (VC100k), <doc:verdict_is_invariant__return_costs> (VC100m).
+Mentions of this page’s labels: <doc:learning_is_liquid__reconstructed_sides> (VC100f), <doc:permanence_is_resistance__contact_rigidity> (VC100h), <doc:verdict_is_invariant> (VC100f), <doc:verdict_is_invariant> (VC100m), <doc:verdict_is_invariant__return_costs> (VC100k), <doc:verdict_is_invariant__return_costs> (VC100m).

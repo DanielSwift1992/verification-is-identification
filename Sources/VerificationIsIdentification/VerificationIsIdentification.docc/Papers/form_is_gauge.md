@@ -4,6 +4,17 @@ A rendered artifact can have several source representations. Call two forms equi
 
 The historical measurements are recorded on [the curve page of the showcase](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/curve). They motivate the question without proving a universal preferred packing.
 
+Statements on this page:
+
+- <doc:form_is_gauge#FiG1>: Content equivalence and preservation.
+- <doc:form_is_gauge#FiG2>: Cost may distinguish equivalent forms.
+- <doc:form_is_gauge#FiG3>: A checked minimum requires strict dominance and coverage.
+- <doc:form_is_gauge#FiG3a>: Exact robustness criterion for interval evidence.
+- <doc:form_is_gauge#FiG4>: A selected constant belongs to its full comparison context.
+- <doc:form_is_gauge#FiG5>: A representation change can avoid a specific failure.
+- <doc:form_is_gauge#FiG6>: Cost invariance requires factorization.
+- <doc:form_is_gauge#FiG7>: Choice after the checked requirements.
+
 ## §0. Derivation
 
 1. Fix a renderer R and define f ~ g exactly when R(f)=R(g).
@@ -14,19 +25,27 @@ The historical measurements are recorded on [the curve page of the showcase](htt
 
 ## §1. Content Is the Invariant
 
+### FiG1
+
 **FiG1 (Content equivalence and preservation).** Equality of rendered bytes is an equivalence relation. A concrete preservation argument is available when ordered leaves render strings, a grouping node renders the concatenation of its children and an empty group renders the empty string. Associativity of concatenation proves that reassociation preserves the rendered string. Induction on a grouping tree gives the concatenation of its leaves in order, independent of parenthesization.
 
 The argument covers reassociation. It does not authorize arbitrary permutation, since concatenation need not commute, and it does not cover a grouping node that emits additional markup. Such transformations require their own renderer equations. Byte comparisons validate the compared artifacts. A compiled PackingUnderContent declaration with a chosen SolutionSet is not a proof of all regroupings. Equality of rendered bytes also concerns that renderer's answer, without asserting equal compile cost or every other behavior.
 
 Interference Is Substitution IiS10 supplies a physical model of this scope requirement. Unitaries U and −U induce one standalone quantum channel, yet diag(I,U) and diag(I,−U) differ. This particular controlled extension requires a relation absent from the channel description. Controlling the order of two channel inputs is different: the fixed quantum switch is well-defined on those inputs. In the unitary case, each primitive phase appears equally in both orders and cancels from their relative operation. IiS10 derives this balance and its signed-mode static instance. An insufficient interface for one continuation can therefore suffice for another. VC15 asks for the actual preservation equation.
 
+### FiG2
+
 **FiG2 (Cost may distinguish equivalent forms).** Fixing rendered content permits study of cost differences between its forms. It does not make cost independent of content across other equivalence classes. A cost C(f,w,e) may depend jointly on form f, workload w and environment e. Holding w and e fixed defines the particular comparison. Changes in either can change its ordering.
 
 ## §2. The Sweep Is a Scoped Selection
 
+### FiG3
+
 **FiG3 (A checked minimum requires strict dominance and coverage).** For a nonempty finite F and a real-valued fixed C, let S be the set of its minimizers. It is nonempty. It is a singleton exactly when some f* satisfies C(f*)<C(g) for every g in F distinct from f*. This follows directly in both directions from the definition of a minimum. Finite candidates alone do not imply strictness. A tie-breaker defines another selection criterion.
 
 A timing sweep supplies recorded observations. A unique least recorded duration identifies that entry within the recorded comparison. It does not establish an immutable cost ordering for future runs. The record in Curve and the comments in CodeForm describe several timings, not one context-free cost function. No new timings are inferred here. PackingUnderCost's Never coordinate contains neither the candidates nor those comparisons.
+
+### FiG3a
 
 **FiG3a (Exact robustness criterion for interval evidence).** Suppose F has at least two members and each candidate's cost can independently take any value in its nonempty closed finite interval [l(f),u(f)]. Then f* is the unique minimizer for every admitted cost assignment exactly when
 
@@ -38,17 +57,25 @@ u(f*) < min { l(g) : g ∈ F, g ≠ f* }.
 
 This condition exposes what uncertain measurements would need to establish. Overlapping intervals do not establish a robust unique winner under these premises. Correlated cost constraints can admit fewer assignments and need their own comparison. Neither arbitrary intervals nor their coverage are inferred from a single timing.
 
+### FiG4
+
 **FiG4 (A selected constant belongs to its full comparison context).** The selected fanout can depend on the corpus and environment even with the compiler version fixed. It can also change with compiler version. A reusable result therefore needs a relation between the old and new comparison contexts, as M64 requires for calibration reuse. Shipping a reproduction command makes a comparison inspectable without proving the winner invariant.
+
+### FiG5
 
 **FiG5 (A representation change can avoid a specific failure).** A proven content-preserving transformation can change depth, grouping or file layout. If the tested checker succeeds on the transformed source, this demonstrates a way around that observed failure. It does not prove every legal source tractable or every future failure a form-only phenomenon.
 
 ## §3. When Cost Ignores the Class Representative
+
+### FiG6
 
 **FiG6 (Cost invariance requires factorization).** If C(f)=c(R(f)) for a function c, then f~g implies C(f)=C(g). Conversely, if C is constant on every R-class, define c on realized outputs by c(R(f))=C(f). Class constancy makes this well-defined. Thus factorization through content is exactly the condition for cost invariance on these classes.
 
 Linear growth does not imply that condition. If equivalent forms have different source-token counts, a cost equal to that count is linear and distinguishes them. Even a linear bound can contain form-dependent constants. Conversely, a cost equal to the square of the rendered length is nonlinear and constant on each rendered-content class. Therefore neither a unique packing minimum nor its absence characterizes superlinearity. The former claim that cost crystallizes exactly where the arbiter is superlinear is withdrawn. CostIsPathLength's coordinate equality does not supply a complexity proof (PiP3).
 
 A nearly flat finite timing sweep is evidence about those runs. It does not establish exact factorization over every admitted form. Verdict's existing factorization relations state the relevant kind of mathematical obligation. `ContentIsGaugeInvariant` binds its form to the actual observation source of `ReadingFactors`. `CostReadsGauge` binds its form and distance to an actual cost reading's input and answer. These supplied-reading equations do not establish a complete measured cost family. `LinearArbiter` was an unused synonym of `CostIsPathLength` and is retired. `GaugeCollapse` names the original parent directly.
+
+### FiG7
 
 **FiG7 (Choice after the checked requirements).** When several forms satisfy the requested semantic and cost conditions, other criteria can choose among them: navigation, readable diffs or a stable convention. Such selection does not weaken the properties already checked. Multiple admissible choices need not be errors (PiP7).
 

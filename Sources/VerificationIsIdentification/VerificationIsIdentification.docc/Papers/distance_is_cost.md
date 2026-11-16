@@ -6,6 +6,41 @@ Every structure is its set of distinctions. The minimal number of single-distinc
 
 The consequences follow. Equality acquires resolution, and the framework's own encodings carry derived geometry: Peano numerals recover arithmetic distance, grid cells recover taxicab locality. A fixed metric supports bounded search and approximation by representatives. These require explicit coverage, application and cost premises. Exact output certification and strict progress can also be expressed through addressed differences without a scalar loss.
 
+Statements on this page:
+
+- <doc:distance_is_cost#G1>: Constitution.
+- <doc:distance_is_cost#G1a>: Norm.
+- <doc:distance_is_cost#G1b>: Basepoint.
+- <doc:distance_is_cost#G2>: Distance.
+- <doc:distance_is_cost#G2a>: One traversal.
+- <doc:distance_is_cost#G2b>: Metric, not pseudometric.
+- <doc:distance_is_cost#G2c>: Conditional physical reading.
+- <doc:distance_is_cost#G2d>: The exact residual of a triangle.
+- <doc:distance_is_cost#G2e>: Construct the partition with its sources.
+- <doc:distance_is_cost#G2f>: Zero identifies the actual endpoints.
+- <doc:distance_is_cost#G2g>: A positive witness for nonzero distance.
+- <doc:distance_is_cost#G2h>: Strict progress without a distance count.
+- <doc:distance_is_cost#G3>: Reversible candidate paths with retaining records.
+- <doc:distance_is_cost#G4>: Three readings of one traversal.
+- <doc:distance_is_cost#G4a>: The invariant of a pair.
+- <doc:distance_is_cost#G4b>: Resolution costs.
+- <doc:distance_is_cost#G5>: Resolution family.
+- <doc:distance_is_cost#G6>: Number.
+- <doc:distance_is_cost#G7>: Grid.
+- <doc:distance_is_cost#G8>: Balls are finite.
+- <doc:distance_is_cost#G9>: Proposal order, unchanged gate.
+- <doc:distance_is_cost#G10>: Ball search.
+- <doc:distance_is_cost#G10a>: Rank and expected proposal cost.
+- <doc:distance_is_cost#G11>: Ball coverage and bounded recovery.
+- <doc:distance_is_cost#G12>: The exact scope of a covering number.
+- <doc:distance_is_cost#G13>: Zero loss and certified progress on examples.
+- <doc:distance_is_cost#G14>: A time bound requires a specified transition.
+- <doc:distance_is_cost#G14a>: Compatible rounds and the longest dependency chain.
+- <doc:distance_is_cost#G14b>: The round grammar and its actual applications.
+- <doc:distance_is_cost#G14c>: An influence bound uses dependency addresses.
+- <doc:distance_is_cost#G14d>: Reciprocity across a symplectic whole cut.
+- <doc:distance_is_cost#G15>: Distance and resistance answer different questions.
+
 ## §0. Derivation
 
 The structural metric below follows from the finite tree grammar and the declared single-node edit model. Its conversion to physical cost requires the implementation premises of Permanence Is Resistance M24.
@@ -22,6 +57,8 @@ The structural metric below follows from the finite tree grammar and the declare
 
 ## §1. The Set of Distinctions
 
+### G1
+
 **G1 (Constitution).** D : Σ → {finite prefix-closed subsets of {L,R}*} is a bijection.
 
 *Proof.* Well-defined: by induction on t. D(NULL) = ∅. D(PAIR(a, b)) = {ε} ∪ L·D(a) ∪ R·D(b), finite, and prefix-closed because every proper prefix of an internal address passes through PAIR nodes. Injective and surjective: given a finite prefix-closed A, reconstruct the unique tree whose nodes are A ∪ children(A), where an address is a PAIR iff it is in A and a NULL otherwise. Every PAIR has exactly its two children present, so the tree is valid, D of this tree is A, and two trees with the same D reconstruct identically. QED
@@ -30,7 +67,11 @@ Under D, a structure *is* its distinctions (a finite set of boundary-drawing act
 
 *Example.* peano(2) = PAIR(PAIR(NULL, NULL), NULL) has D = {ε, L}: one distinction at the root, one down its left side. ‖peano(2)‖ = 2. A cell atom(r, c, v) = PAIR(PAIR(row, col), value) has the skeleton {ε, L} plus the distinctions of its three numerals, and §6 computes with exactly these sets.
 
+### G1a
+
 **G1a (Norm).** Define ‖t‖ = |D(t)|: the number of distinctions constituting t. Then ‖t‖ = W(t, NULL) (G2 below). Under M24's uniform maintenance model, its bill is `c × ‖t‖` per cycle. The structural norm is defined without that physical model.
+
+### G1b
 
 **G1b (Basepoint).** NULL is the unique structure with ‖t‖ = 0. It has zero charged nodes under the uniform model, which says nothing about hardware overhead. (Σ, W, NULL) is a pointed metric space with the boundary as origin.
 
@@ -44,6 +85,8 @@ Under D, a structure *is* its distinctions (a finite set of boundary-drawing act
 Any other single toggle leaves an address without its parent: a set that fails prefix-closure, which no structure has (G1).
 
 **Definition (W).** W(s, t) = the length of the shortest path from s to t in the adjacency graph.
+
+### G2
 
 **Theorem G2 (Distance).** W(s, t) = |D(s) △ D(t)|, and W is a metric on Σ.
 
@@ -59,6 +102,8 @@ The Swift name `MetricProperty` currently checks only the shared endpoint of two
 
 *Remark (geodesics are inside Σ).* The lower bound is true even if invalid intermediate records were allowed: it counts toggled bits. The schedule shows validity costs nothing: geodesics exist entirely within the space of forms. The path through Σ is never longer than the raw bit distance.
 
+### G2a
+
 **G2a (One traversal).** W is computable by the same structural recursion that computes COMPARE (V=I §2.2), continued past the first divergence:
 
 ```
@@ -72,11 +117,17 @@ w(PAIR(a₁,b₁), PAIR(a₂,b₂))         = w(a₁,a₂) + w(b₁,b₂)
 
 In particular, extension by a common right context is an isometric embedding: W(PAIR(s,e),PAIR(t,e))=W(s,t). This concerns two extended sources. It does not make W(s,PAIR(s,e)) equal to one. Program Is Path PiP3 gives an actual retaining append with distance three, and uses TreePartition111 to transport the direct masks under a common append. PiP2a transports a retained question through the corresponding prefix projection.
 
+### G2b
+
 **G2b (Metric, not pseudometric).** Difference Is Distance S7 is a pseudometric on agents: two distinct agents with identical caches are at distance zero: identity of indiscernibles is true only on cache classes. On structures, W is a true metric: W = 0 forces s = t (G1). The geometry of forms is sharper than the geometry of perspectives, because a form has nothing besides its distinctions to differ by.
+
+### G2c
 
 **G2c (Conditional physical reading).** An edit of one tree node need not erase one unknown physical bit. If an implementation independently establishes that every charged edit resets one unbiased bit under M24's Landauer assumptions, then W edits give a lower heat bound `W(s,t) k_B T ln 2`. Equality and an upper budget do not follow. Reversible implementations need not pay that reset charge for each edit. The Bennett copy-and-uncompute construction prepares its output register blank for its stated copying-output contract. The cost of that preparation depends on the architecture (PiR M24). The metric measures edit count, with a physical conversion supplied by the implementation.
 
 > Argues: ``DistanceIsCost`` needs ``HasCost``.
+
+### G2d
 
 **G2d (The exact residual of a triangle).** Let A=D(s), B=D(u), C=D(t). Partition the addresses that do not agree across all three sets into:
 
@@ -98,6 +149,8 @@ The constructive content is a rearrangement of tagged occurrences. The two legs 
 `Examples.RegroupDistanceLegs` and `DistanceLegsRestored` check the rearrangement and recovery for arbitrary field types. `CancelDistanceDetour` derives the `Monotone` projection, and `DistanceDetourHasTwoCopies` derives equality of the residual field types from the shared part of the partition legs. No numerical answer, inequality, runtime count or result-equality premise is passed to these constructions. Here the common field is Y, a set of differences. It is not the intermediate tree u in a vertex diagram.
 
 This is the structural kernel of the bound. G2e supplies its partition from a finite constructor grammar of actual tree triples. An arbitrary `MetricProperty` conformer does not acquire that interpretation, and `DistanceOnStructures.Distance` is not thereby bound to W. The constructor domain matters. Adding another conformance label cannot replace it.
+
+### G2e
 
 **G2e (Construct the partition with its sources).** Use Never for the syntax leaf and Paired for the binary tree constructor. There is a finite type expression computing the G2d partition for every triple of finite trees in this grammar. It uses `EmptyTreePartition` and the seven `TreePartition001` through `TreePartition111` constructors in Examples/Distance.swift.
 
@@ -127,6 +180,8 @@ The open `TreePartitionShape` protocol describes the input/output layout. It doe
 
 An empty padded mask can have the form `(Never,(Never,Never))` and need not equal Never as a type. Set emptiness, nominal type equality and equality of a Pair's sides are different relations. In particular, testing `Mask: Null` would not supply the zero test of W. Any static zero test must respect this mask grammar.
 
+### G2f
+
 **G2f (Zero identifies the actual endpoints).** On the finite expression grammar of G2e, the following conditions are equivalent: the X and Z masks are empty, the first and last source trees are equal, and the expression admits the supplied `ZeroTreeDifference` conformance.
 
 `EmptyAddressMask` requires an empty root slot and two children with the same property. Never supplies the empty terminal. A conditional conformance gives `(Never,(l,r))` this property whenever l and r have it. Thus the relation recognizes empty padded masks without nominally collapsing their wrappers. More generally its recursive constraints exclude an occupied slot at every finite projection path. Induction on the path length proves this: the current root is empty and each next child carries the same constraint. The proof requires no finite bound on mask depth. The checked `RecursiveEmptyMask` points both child axes back to itself and still has no occupied finite address.
@@ -139,6 +194,8 @@ The middle tree is unconstrained by endpoint equality. In `TreePartition010<Empt
 
 This connects the zero question to actual source identity without first representing a numerical cardinality. Checks/Distance.swift exercises the generic consumer, a nested equal-endpoint construction, padded and recursive empty masks, and independent refusals of occupied masks and unequal sources. An arbitrary shape with empty masks but unequal sources cannot satisfy `ZeroTreeDifference`, nor can one with equal sources but an occupied direct mask. The full partition meaning of other fields still comes from G2e's constructor grammar.
 
+### G2g
+
 **G2g (A positive witness for nonzero distance).** The nonzero question needs an occupied direct-difference address. Failure to construct G2f's zero relation is not that witness. For a generated partition P, select X or Z from its actual direct pair. Read a finite mask address using ReadMaskRoot, ReadMaskLeft and ReadMaskRight. These are aliases of the existing FirstEvidenceImage, SecondEvidenceImage and SequentialReading constructors. Each next reading must receive the actual output of the preceding projection. The final answer is the root bit at the reached mask, computed from its Left field.
 
 `TreeDifferenceAt<P,R>` accepts the resulting reading when R starts at P's actual (X,Z) pair and its computed answer is Lit1. It retains P's source triple beside R. The reading's composed predicate records the projection route. The caller supplies a path construction, not a free answer parameter. The witness locates a difference but does not claim to choose the first or shallowest one.
@@ -148,6 +205,8 @@ This connects the zero question to actual source identity without first represen
 Thus G2f's zero construction and G2g's positive occupied-address construction cover all triples in the finite tree grammar and cannot both report their respective outcomes for one such triple. This statement uses the actual partition and projection-reading grammars. It does not cover an arbitrary PredicateReading declaration with an invented answer (Verdict VC10). Swift checks a supplied construction and its bindings. The existence proof does not claim that the compiler searches for the address or chooses a certificate by itself.
 
 The Y mask is excluded from the direct pair. It can be occupied even when the endpoints agree, as G2f shows. Checks reject using that detour as direct evidence, reading an empty address as occupied, attaching a continuation to the wrong child and reusing a reading with incompatible direct masks. Different source triples can legitimately share the same reading when their computed direct masks agree. Compatibility of those actual inputs matters, rather than nominal uniqueness of the source triple.
+
+### G2h
 
 **G2h (Strict progress without a distance count).** Fix finite trees s, u, t and G2e's partition of their actual address sets A, B, C. Interpret s as the current candidate, u as its proposed replacement, and t as the same target throughout. The following are equivalent:
 
@@ -176,6 +235,8 @@ The edit metric allows removal from a candidate tree. M21 imposes retention on t
 
 The steps of G2 change the candidate to be submitted (V=I §1 step 4: "reads the diagnostic and constructs a revised encoding"). The encoded domain still contains the same possible structures. A retaining implementation can preserve every comparison made during that walk in G. This is an update premise, not an effect of the candidate metric itself.
 
+### G3
+
 **G3 (Reversible candidate paths with retaining records).** W is symmetric: growing and shrinking candidate nodes reverse one another in the declared edit graph. If the cache updates retain prior records, its record set grows by inclusion along that path. Traversing the candidate path backward need not undo those records. This says nothing about absence of an inverse for the complete physical whole (M21, M29).
 
 The two projections can therefore exhibit different behavior: a candidate returns to its earlier position while an internal record still distinguishes the traversal. Additional memory and its access conditions must be included in a realization. Neither an eternal record nor a thermodynamic arrow follows from the edit metric.
@@ -183,6 +244,8 @@ The two projections can therefore exhibit different behavior: a candidate return
 ## §4. The Graded Comparison
 
 **Definition (frontier).** frontier(s, t) = the prefix-minimal elements of D(s) △ D(t): the addresses where one tree has a distinction, the other does not, and all shallower structure agrees.
+
+### G4
 
 **G4 (Three readings of one traversal).** The simultaneous structural recursion over (s, t) supports three outputs of strictly increasing resolution:
 
@@ -196,13 +259,19 @@ The two projections can therefore exhibit different behavior: a candidate return
 
 Binary COMPARE is the sign of W: it tests whether W = 0. The X-axis identifies one frontier address when the trees differ. Completing the traversal yields the gradient Δ: W and, on demand, the full set D(s) △ D(t) (G4).
 
+### G4a
+
 **G4a (The invariant of a pair).** |D(s) ∩ D(t)| = (‖s‖ + ‖t‖ − W(s, t)) / 2. The shared structure of two forms is computable from two norms and one distance. For a library L, the intersection over all entries is the domain's common skeleton: the invariant that costs nothing extra to carry because every entry already carries it.
+
+### G4b
 
 **G4b (Resolution costs).** Z may halt at the first divergence: cost bounded by the depth of the frontier. Δ must traverse both trees in full: cost Θ(‖s‖ + ‖t‖). The gradient is strictly more expensive than its sign. A bounded agent defaults to the sign, and magnitude is bought, never given. The loop runs on binary COMPARE by default because the gradient is the expensive projection: present in every comparison, priced above the default budget.
 
 ## §5. Resolution
 
 **Definition.** D_k(t) = {α ∈ D(t) : |α| < k}. d_k(s, t) = |D_k(s) △ D_k(t)|: the distance visible at depth k.
+
+### G5
 
 **G5 (Resolution family).** Each d_k is a pseudometric, d_k is monotonically non-decreasing in k, and d_k = W for all k beyond the deeper tree. Define s =_k t iff d_k(s, t) = 0: equality at resolution k.
 
@@ -214,6 +283,8 @@ Every binary judgment the system makes is a zero test at some resolution. Sharpe
 
 Permanence Is Resistance §5 maps the axioms onto external physical systems, and those mappings are structural analogies whose axiom-verification is empirical. The instances below are different in kind: they are theorems of the framework's own reference encodings. Exact, internal, no analogy.
 
+### G6
+
 **G6 (Number).** For the Peano encoding (V=I §4.1: encode(0) = NULL, encode(n) = PAIR(encode(n−1), NULL)):
 
 W(encode(n), encode(m)) = |n − m|
@@ -221,6 +292,8 @@ W(encode(n), encode(m)) = |n − m|
 *Proof.* D(encode(n)) = {ε, L, L², ..., L^{n−1}}, so ‖encode(n)‖ = n, and for n ≤ m the symmetric difference is {L^n, ..., L^{m−1}}: size m − n. QED
 
 The framework's own numerals recover the arithmetic metric. The order and rank features of V=I §4.4 are W-comparisons on numerals.
+
+### G7
 
 **G7 (Grid).** For the cell encoding (V=I §4.1: atom(r, c, v) = PAIR(PAIR(row, col), value)):
 
@@ -238,9 +311,13 @@ Taxicab geometry. Adjacent cells are at distance 1, and far cells are far. Grid 
 
 **Definition.** B(t, r) = {s ∈ Σ : W(s, t) ≤ r}.
 
+### G8
+
 **G8 (Balls are finite).** |B(t, r)| is finite for every t, r.
 
 *Proof.* A structure with p distinctions admits at most p + 1 grow moves (one per NULL leaf, and a tree with p PAIRs has p + 1 NULLs) and at most p shrink moves. Branching is finite at every structure, so the set reachable in ≤ r moves is finite, and by G2 that set is exactly B(t, r). QED
+
+### G9
 
 **G9 (Proposal order, unchanged gate).** Let the agent order its attempts by W: nearest library entries first (lookup), nearest candidates first (search). Every guarantee of V=I §5 is untouched: PASS is certified by compilation regardless of how the candidate was found (Theorem 2: safety is from verification, never from search), and a wrong proposal costs one REJECT (Intelligence Is Inevitable §2: the gate makes matching safe). The metric changes only the *order* of attempts, and order is exactly the agent's sole degree of freedom (V=I §5.25). W is entirely on the Y-axis (Interference Is Intelligence §0): zero new bits, full control over efficiency.
 
@@ -254,9 +331,13 @@ Intelligence Is Inevitable defines rule classes by structural identity: transfer
 
 **Definition (modulus).** Fix a task domain D and a single-valued target rule map τ ↦ f*(τ). A bound ω satisfies W(f*(τ),f*(τ′)) ≤ ω(W(τ,τ′)) for every pair in D. A complete finite table of those targets permits checking this bound on that domain. Measurements on a proper sample establish only the sampled inequalities. They do not certify the bound on other tasks.
 
+### G10
+
 **G10 (Ball search).** Suppose the bound applies to a new task τ and a certified anchor (τ₀,f₀=f*(τ₀)). If W(τ,τ₀)=ρ, then f*(τ)∈B(f₀,ω(ρ)), directly by the bound. G8 makes this a finite candidate region. Recovery additionally requires a rule representation, complete enumeration and a gate adequate for the intended target. A small known ω can make the region useful. Mere existence of a bound is weak: for any finite task domain, the constant diameter of its finite target set bounds every pair, without providing a smaller search region.
 
 If the bound is only a heuristic, an exhausted ball can be followed by broader search. The extra work includes the examined candidates and their gate costs. A sound gate preserves its declared guarantee under that change of order. Exhaustion within a limited budget is not proof that the intended rule lies outside the grammar.
+
+### G10a
 
 **G10a (Rank and expected proposal cost).** Fix a finite candidate set of size n≥1, one accepted target for each task, a task distribution, and an actual ordering of all candidates with a specified tie rule. Let R(τ)∈{1,…,n} be the target's position. If each candidate check costs one unit and search stops at the first accepted candidate, the number of checks is exactly R(τ). Expected checks are therefore E[R]. A uniformly random permutation has mean (n+1)/2 for every target. This ordering improves expected check count exactly when E[R]<(n+1)/2, before charging the work of producing the ordering.
 
@@ -265,6 +346,8 @@ A majority of tasks below median rank is insufficient. With n=100, rank 49 on 60
 A retrieval profile can thus measure a useful heuristic on a declared distribution, but it is not equivalent to a modulus, a small cover or a guarantee of low future cost. G10 gives an absolute radius bound. G10a gives a cost identity for an actual proposal order. Neither implies the other's efficiency premise.
 
 **Definition (covering number).** N_D(r) = the minimal number of W-balls of radius r covering {f*(τ) : τ ∈ D identifiable}.
+
+### G11
 
 **G11 (Ball coverage and bounded recovery).** Fix a nonempty rule set S and a finite cover B(cᵢ,r), i=1,…,N. Once each ball has a retained certified anchor aᵢ in it, every f∈S lies within 2r of at least one anchor. Indeed, choose a covering ball containing f. The triangle inequality gives W(f,aᵢ) ≤ W(f,cᵢ)+W(cᵢ,aᵢ) ≤ 2r. This is a deterministic consequence of the supplied cover and anchors. The cover need not be minimal, and overlapping balls may share an anchor.
 
@@ -275,6 +358,8 @@ Arrival time needs a separate model. Suppose certified rules arrive IID and ball
 At r=0, a cover by distinct centers is exact rule coverage and N(0)=|S| when S is finite. For r>0 a smaller cover can reduce the number of anchors required to bound the search region. It does not by itself supply the target dispatcher, reduce total search cost, or certify behavior on undeclared tasks. An arrival here already includes successful certification and retention. Raw task counts need the additional premise that each encountered required rule is obtained and retained.
 
 > Argues: ``BallSaturation`` needs ``LibrarySaturates``.
+
+### G12
 
 **G12 (The exact scope of a covering number).** Fix a nonempty finite set S of finite trees, radius r≥0, and centers allowed anywhere in Σ. An approximation through m representatives consists of centers c₁,…,cₘ and an assignment e:S→{1,…,m} satisfying W(s,c_{e(s)})≤r for every s∈S. Such an assignment exists iff those m balls cover S. Consequently the least number of representatives equals N_S(r).
 
@@ -304,6 +389,8 @@ The available questions and operations, the task-to-target relation, and the cha
 
 **Definition (loss).** Fix a finite indexed family of examples (Iₖ,Oₖ) and a candidate g whose application on every declared Iₖ is defined and yields a finite output tree Aₖ. Then loss(g) = Σₖ W(Aₖ,Oₖ). An undefined application has no value under this definition. It is not a zero contribution.
 
+### G13
+
 **G13 (Zero loss and certified progress on examples).** Under these premises, loss(g)=0 iff Aₖ=Oₖ for every declared index k. Each summand is nonnegative by G2 and is zero exactly when its two trees agree. Thus a zero sum forces every equality, and those equalities force a zero sum. The empty family has zero loss for every candidate, with no output identification. A nonempty family can still admit different rules with the same outputs. V=I U2's membership and coverage obligations determine when a rule itself is identified.
 
 Pack the outputs into the same fixed finite PAIR skeleton on both sides. Its common skeleton cancels and its leaf regions have disjoint address prefixes, so W(pack(Aₖ),pack(Oₖ)) = Σₖ W(Aₖ,Oₖ). This follows by induction from the two-output equation W(PAIR(a,b),PAIR(c,d)) = W(a,c)+W(b,d). G2f's existing ZeroTreeDifference construction can therefore equate the entire actual output tuple with the target tuple without a scalar sum. The application constructions must bind g and each declared Iₖ to those Aₖ. Supplying an unrelated equal tuple does not establish zero loss for g.
@@ -320,7 +407,11 @@ An agent can therefore use scalar loss to order proposals, or use an addressed w
 
 ## §10. Speed and Resistance
 
+### G14
+
 **G14 (A time bound requires a specified transition).** In G2's sequential edit model, a step changes one address. A path of n such steps therefore has n≥W(s,t). If one counted tick completes exactly one such edit, the same inequality bounds counted ticks. Matter M1 defines an operation clock but does not identify every operation with a single tree edit. M4 permits macros, and PiP4 distinguishes represented sequence from unavoidable execution order. The inequality is consequently a theorem about this edit interface, not a universal conversion from W to physical duration.
+
+### G14a
 
 **G14a (Compatible rounds and the longest dependency chain).** Define a different interface on the same finite trees. In one round, choose any set of pairwise prefix-incomparable addresses, each admitting a G2 grow or shrink on the tree at the start of that round. Apply all those edits. Unchanged branches are allowed. This model has no additional charge for dispatch or unchanged structure, and imposes no limit on the number of independent edits per round. It is a defined transition model, not an assertion about a physical machine's resources.
 
@@ -334,6 +425,8 @@ For A=D(s), C=D(t), write R=A\C for removals and P=C\A for additions. For a fini
 
 For B₀=NULL and B_{d+1}=PAIR(B_d,B_d), G2 gives W(NULL,B_d)=2^d−1 while this round model gives T_round(NULL,B_d)=d. Both follow by structural induction. The distinction is between total edits and dependent rounds. A compatible frontier is simultaneous only by this round contract. Neither closure of the whole nor the syntax tree alone selects that contract or a duration for its rounds.
 
+### G14b
+
 **G14b (The round grammar and its actual applications).** The finite Swift grammar has four forms: IdentityReading<Never,S,E>, GrowTreeRoot<S,E>, ShrinkTreeRoot<S,E>, and PairedTreeRound<L,R> with matching Sigma and Encoding. The first is the NULL identity. The next two construct a childless root from NULL and remove that actual childless root. The paired form keeps the parent and applies its two child rounds through PairedApplication.
 
 PairedApplication lifts each child reading through its actual input projection and combines the answers with the existing JointEvidence. It computes PAIR(F.Answer,G.Answer) from PAIR(F.Left,G.Left), with no supplied final-answer equality. The round grammar's soundness follows by induction: a root edit excludes all child edits, and paired children have disjoint address prefixes. Completeness follows by decomposing a permitted round. If the root changes, it is the sole edit. If both roots are NULL, use the identity. Otherwise the common parent remains and the round splits into its two child rounds. This covers exactly the specified compatible rounds over finite trees.
@@ -344,15 +437,21 @@ IndependentReadingOrders<F,G> derives equal paired inputs and answers for first-
 
 Disjoint input projections concern which fields an operation uses. They do not factor the preparation's joint probability law. LQ15's free cuts instead concern recombination of admitted forms, and AC7's cycle ratios concern joint weights. IiS12 exhibits an encoding that transports every local unitary and preserves independent preparation, yet fails on one joint controlled exchange. These meanings of independence therefore need their own transport relations.
 
+### G14c
+
 **G14c (An influence bound uses dependency addresses).** Consider one whole modeled by a finite directed graph of internal components. At each declared round, a fixed deterministic update computes component v's new state only from the previous states at its specified input neighbors, including itself when its rule uses its prior state. Include every controller, clock or other state on which this update depends in those input relations. No changing unrecorded input is permitted.
 
 After n rounds, v's state factors through the initial states with a directed path of length n into v. Equivalently, a conservative bound uses all initial components within n input edges. *Proof.* At round zero the required source is v itself. At the next round, the update uses only its declared neighbors. Substitute each neighbor's previous factorization and compose the paths. Induction establishes the claim. Two admitted prepared whole states agreeing on that source region therefore give the same answer at v after n rounds. QED
 
 This is a conditional locality result from actual input dependence. It does not require an external observer or source, and does not identify cache symmetric difference with communication distance. Exact clocks, asynchronous updates or longer-range inputs change the dependency relation and must be included in the model. Verdict's question-factorization construction and QuestionAlongTransition provide the existing application form for such composed questions. The arbitrary-graph theorem here is mathematical, not a new Swift encoding of all graphs or a derivation of a universal physical speed.
 
+### G14d
+
 **G14d (Reciprocity across a symplectic whole cut).** Let the whole be finite-dimensional with a nondegenerate symplectic form that is a product over a cut into two parts, each with every controller, clock or memory assigned to its side. Let one round be a symplectic map Φ(m,c)=(F(m,c),ψ(m,c)) on an open product. At each point, D_cF=0 if and only if D_mψ=0: local differential dependence across the cut is mutual. On connected open factors this also gives equivalence of global independence for the entire round ([UT80](../../../../Research/2026-10-10-use-leaves-a-trace.md)). A round whose global dependence crosses some cut of the whole in one direction only therefore needs a failed hypothesis in its physical realization, for example a symplectic form that is not a product over that cut, discrete or non-symplectic dynamics, a prepared closed layer, a disconnected class or a degenerate description. G14c's bound remains valid for every dependency graph. G14d restricts cuts crossed in only one direction under its hypotheses. Individual directed edges can be one-way. It concerns two complementary parts of the whole, not smaller subsystems.
 
 Matter M66 asks when a finite family of admitted partial records determines one fixed prerequisite order. Closure under union and intersection, with separation of occurrence addresses, is its exact criterion. Alternative support or incompatibility can require more than that order. M67 identifies its serializations and the questions preserved by exchanging adjacent incomparable occurrences. These results explain what has to be retained when G14a's dependency chains are used as a model of time. A chosen linear record can carry additional distinctions, and G14b preserves them in the complete history.
+
+### G15
 
 **G15 (Distance and resistance answer different questions).** W(candidate,target) is the minimum count of G2 edits between specified trees. It can measure an output discrepancy once the actual outputs and target are bound as in G13. It need not measure plan-execution time, physical inertia or the cost of finding a rule that realizes the target. G14a gives a different exact time count for the same trees under a different permitted transition.
 

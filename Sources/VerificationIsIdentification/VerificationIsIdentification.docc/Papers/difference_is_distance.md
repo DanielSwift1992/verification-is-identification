@@ -4,7 +4,44 @@ A form can contain distinctions, records and reference relations within one whol
 
 There are two questions here. Which relations constitute the form and constrain its possible contacts? Which numerical distance preserves the differences relevant to a particular inquiry? Liquid LQ16 addresses the first by reconstructing roles from substitution relations. The cache metric addresses the second. Neither requires a witness outside the whole.
 
+Statements on this page:
+
+- <doc:difference_is_distance#S1>: Invariance of a specified reading.
+- <doc:difference_is_distance#S2>: Perspective has a source and a context.
+- <doc:difference_is_distance#S3>: Joint coordinates need joint freedom.
+- <doc:difference_is_distance#S4>: A direction requires a variation relation.
+- <doc:difference_is_distance#S5>: The dimension belongs to the represented structure.
+- <doc:difference_is_distance#S6>: Depth relative to a tower.
+- <doc:difference_is_distance#S7>: Cache distance.
+- <doc:difference_is_distance#S8>: A metric does not supply an ambient space.
+- <doc:difference_is_distance#S25>: Transport reduces to endpoint identifications exactly when every loop is the identity.
+- <doc:difference_is_distance#S26>: Light incidence alone does not fix duration in the conformal family.
+- <doc:difference_is_distance#S27>: Order leaves interval ratios open, while retained bisections can determine them.
+- <doc:difference_is_distance#S28>: Separate bisection calibrations need a joint comparison law.
+- <doc:difference_is_distance#S29>: Strict internal comparison propagates attained extrema through its support.
+- <doc:difference_is_distance#S30>: Reversible division about one centre forces a composition law.
+- <doc:difference_is_distance#S31>: A cancellative division cannot be a complete centre-only joining law.
+- <doc:difference_is_distance#S32>: Unique reversible centres do not force medial division.
+- <doc:difference_is_distance#S9>: Translation is question-bound.
+- <doc:difference_is_distance#S10>: Shared facts and equal caches.
+- <doc:difference_is_distance#S11>: An encoding change is one possible change.
+- <doc:difference_is_distance#S12>: Stillness relative to a question.
+- <doc:difference_is_distance#S13>: Finite joint answers.
+- <doc:difference_is_distance#S14>: Independent roles.
+- <doc:difference_is_distance#S15>: An origin requires a reference relation.
+- <doc:difference_is_distance#S16>: Transfer count under a declared interface.
+- <doc:difference_is_distance#S17>: Depth under the tower premise.
+- <doc:difference_is_distance#S18>: A declared cost of changing encoding.
+- <doc:difference_is_distance#S19>: A bound relative to an update contract.
+- <doc:difference_is_distance#S20>: Agreement distance is not influence distance.
+- <doc:difference_is_distance#S21>: Retention can affect preference.
+- <doc:difference_is_distance#S22>: Cost changes need a resource model.
+- <doc:difference_is_distance#S23>: An explicit slot trade-off.
+- <doc:difference_is_distance#S24>: A conserved question needs the update relation.
+
 ## §0. An Internal Reading
+
+### S1
 
 **S1 (Invariance of a specified reading).** Fix an encoding E and a deterministic reading F. If E(x)=E(y), then F(E(x))=F(E(y)).
 
@@ -14,11 +51,15 @@ This is an equality of particular answers. Keeping the encoding rule fixed while
 
 ## §1. Encoding as Perspective
 
+### S2
+
 **S2 (Perspective has a source and a context).** A fixed joint reading E=(E₁,…,Eₙ) on a fixed source x has one image E(x). Two applications of that reading to that source agree. Changing the source, the available readings or the relevant context can change the image.
 
 An encoding can itself be an internal form. Its name alone does not supply its applications, a proposal policy or identical acquisition histories. Seeing SiE3–SiE4 and Verdict §6c state when a required answer factors through an actual image. Those factorization relations determine the scope of this perspective.
 
 ## §2. Quality: Joint Distinctions
+
+### S3
 
 **S3 (Joint coordinates need joint freedom).** A family of readings Eᵢ:W→Aᵢ supplies a joint image E(W)⊆∏ᵢ Aᵢ when the readings can be combined under one input contract. Every tuple of separately occurring answers is jointly available exactly when this image equals the product of the component images.
 
@@ -27,6 +68,8 @@ Pairwise nondetermination does not establish that equality. The three binary rea
 The number of channels consequently does not determine the dimension of their admitted image. A single channel can also have many answers. Numerical, topological and operational dimensions require their respective structures. A count of encoding names supplies none of them.
 
 ## §3. Direction: Related Variations
+
+### S4
 
 **S4 (A direction requires a variation relation).** A declared family E(t) supplies a way to vary an encoding. Holding specified other coordinates fixed states what this variation preserves. A parameter name alone supplies neither an available change nor its physical duration.
 
@@ -45,6 +88,8 @@ This is a kinematic contact model. It does not establish the force, energy, stab
 `AnchoredCycleForcesTranslation` in `Checks/Interactions.swift` constructs the short–long–short cycle using actual `AddZero`/`AddSuccessor` expressions. Extension retains the left endpoint, and contraction retains the right endpoint while taking its canonical predecessor. The resulting pair is proved equal to both original endpoints advanced by one. `RetainedLeftSupportReturns` derives the stationary alternative, and `BothSupportHistoriesRestoreLength` proves that both final pairs have the original short separation. A finite zero-rooted instance supplies a positive change of ground contact. In two negative controls, the compiler rejects equating shape return with contact return (`RejectedShapeReturnAsContactReturn`) and imposing extension with both endpoints retained (`RejectedBothSupportsExtension`). These generic constructor proofs cover the unit-length fragment of the argument above. They do not certify every open `IntegerValued` conformance as a finite numeral.
 
 LiR7's common-fixed-form test concerns simultaneous compatibility of specified return maps. A locomotor shape cycle asks another question: its image returns while its relation to a retained participant changes. If E records body shape and F represents the whole modeled cycle, E(F(x))=E(x) does not require F(x)=x. The location of the preserved contact belongs to the transition, rather than an annotation on an otherwise self-sufficient body update. A static VI proof can constrain the entire sequence at once without executing it or claiming that the physical motion takes no time.
+
+### S5
 
 **S5 (The dimension belongs to the represented structure).** In a declared product of d independently variable coordinate roles, the presentation has d such roles. Whether these are independent in the admitted forms is S3's joint question. A metric or a topology introduces a further notion of dimension. The `HasGrammar.Dimension` coordinate must state which one it represents.
 
@@ -74,17 +119,23 @@ The physical drive, fluid and any internal timing reference remain participants 
 
 ## §4. Depth: Retained Resolution
 
+### S6
+
 **S6 (Depth relative to a tower).** In a specified dependency tower, a certified initial segment identifies which levels have sufficient retained answers for their declared questions. A use at a higher level requires its own coverage and access witnesses. This is a depth of that inquiry, rather than a number of spatial dimensions or a proof that the entire domain is known.
 
 ## §5. Distance Between Records
 
 Let U be a common vocabulary of addressed comparison records. Each record includes the question, the relevant source and context, and its certified answer. Fix finite caches G,H⊆U. Sharing a raw token from different contexts does not identify two records.
 
+### S7
+
 **S7 (Cache distance).** Define d(G,H)=|G △ H|. This is a metric on finite cache sets. Applied to holders through their caches, it is a pseudometric: different holders can have the same cache.
 
 *Proof.* Symmetry and nonnegativity follow from symmetric difference. Zero means equality of the two sets. For any K, G △ K⊆(G △ H)∪(H △ K), so d(G,K)≤d(G,H)+d(H,K). If U is finite, d≤|U|. Finiteness of each represented record does not establish a finite U or a finite whole. QED
 
 The count assigns one unit to each differing record in this vocabulary. Semantically redundant records can count separately. Canonicalizing them, weighting them or charging for their actual acquisition changes the represented question. G2 derives a different metric from the actual node addresses of finite trees and its stipulated edit relation.
+
+### S8
 
 **S8 (A metric does not supply an ambient space).** The cache classes with d form a metric space. Two distinct classes supply a two-point metric space. They do not supply the other points of a line, an orientation or an available motion. More classes do not automatically supply a Euclidean embedding.
 
@@ -158,6 +209,8 @@ For VI, an additional premise and an external cause are different findings. A re
 
 A coordinate description can retain the action of transport along each path. Requiring that action to be nothing beyond the change between endpoint coordinates is stronger. The following theorem tests that extra identification. It is not a criterion for the existence of coordinates, one metric, or one reality. Even metric-compatible parallel transport can have a nonidentity return, as illustrated in [Tong's derivation of parallel transport and curvature, §3.3](https://www.damtp.cam.ac.uk/user/tong/gr/grhtml/S3.html).
 
+### S25
+
 **S25 (Transport reduces to endpoint identifications exactly when every loop is the identity).** Take a finite connected comparison graph with a nonempty set Fᵢ at each vertex and a bijection Tᵢⱼ:Fᵢ→Fⱼ on each directed edge. Parallel contacts and self-contacts are allowed and remain separately addressed: Tᵢⱼ denotes the map of the specified edge, not a merger of all contacts with those endpoints. The reverse edge is its inverse. All maps refer to the same specified comparison setup. There are bijections hᵢ:Fᵢ→K with Tᵢⱼ=hⱼ⁻¹∘hᵢ on every edge exactly when every closed path composes to the identity on its starting set.
 
 *Proof.* With such hᵢ, successive factors cancel around every closed path. Conversely choose one vertex r and one path from r to each i. Let Pᵢ:Fᵣ→Fᵢ be its composite. For an edge i→j, the closed path r→i→j→r gives Pⱼ⁻¹∘Tᵢⱼ∘Pᵢ=id. Therefore Tᵢⱼ=Pⱼ∘Pᵢ⁻¹. Put K=Fᵣ and hᵢ=Pᵢ⁻¹. A different chosen path gives the same Pᵢ because its comparison with the first is another closed path. QED
@@ -192,6 +245,8 @@ The whole is not this comparison graph. Its apparatus, source and calibration re
 
 ## §5e. Light Incidence and Clock Content
 
+### S26
+
 **S26 (Light incidence alone does not fix duration in the conformal family).** In the smooth Lorentzian setting, let g̃=Ω²g for a smooth positive Ω. For every tangent vector v, g̃(v,v)=Ω²g(v,v), so the null cones and the signs distinguishing causal directions agree. The unparameterized null geodesics agree as well: for a g-affinely parameterized null tangent k, the conformal connection gives ∇̃ₖk=2k(log Ω)k. This tangent acceleration changes the parameter along the same curve. For a timelike curve, however, dτ̃=Ωdτ in common units. Thus those light relations do not fix the proper-time functional.
 
 An explicit clock comparison removes dependence on a coordinate-only difference. In units c=1 take g=−dt²+dx²+dy²+dz² and Ω(x)=exp(ax), with aL≠0. Two ideal clock paths have x=0 and x=L>0, respectively, and y=z=0. Consecutive pulses emitted at the first and received at the second follow the same straight null paths under both metrics. Their coordinate separations obey Δt_received=Δt_emitted. With the same proper-time clock calibration in the two candidate accounts, the ratio of the receiver's elapsed ticks to the emitter's elapsed ticks is 1 for g and exp(aL) for g̃. This ratio uses two local pulse intervals. No external clock or remote simultaneity reading is needed. QED
@@ -207,6 +262,8 @@ There is a concrete measured constraint on that connection. [Bothwell et al., Na
 The next question is which actual light, free-fall and clock comparisons admit a common interval reading, and whether those relations determine it up to an internally calibrated unit. That asks what transport preserves, not whether all transport can be removed. Recovering that structure would still leave its dynamical law to establish. S25 separates those requirements, while S26 exhibits a clock distinction omitted by the light-incidence image.
 
 ## §5f. Order, Equal Intervals and Calibration
+
+### S27
 
 **S27 (Order leaves interval ratios open, while retained bisections can determine them).** An order specifies which occurrence precedes which. Additive duration additionally assigns a real value D(a,b) to an ordered pair, with D(a,c)=D(a,b)+D(b,c) for a<b<c. Positivity on every proper interval is another requirement. These relations are not supplied by naming a sequence a clock.
 
@@ -249,6 +306,8 @@ Conversely, positive elapsed duration around a loop of repeated configurations n
 Light Is a Ruler LiR8 supplies a complementary route without given midpoints. A commuting action and one cofinal internal reference determine a unique normalized monotone additive reading. It retains every ordered distinction exactly when each strictly advancing relative action eventually reaches the reference step through repetition. The criterion also explains why equal average rates can coexist with a retained phase difference, even on a real carrier. Neither changing to another cofinal unit nor renaming the difference restores what that scalar reading omits.
 
 ## §5g. When the Interval Relations Belong to One Reading
+
+### S28
 
 **S28 (Separate bisection calibrations need a joint comparison law).** Let T be ordered and let m:T×T→T name proposed equal divisions. A faithful common real reading is a strictly increasing t with t(m(a,b))=(t(a)+t(b))/2 for every retained pair. Even when every individual bisection hierarchy satisfies S27's separation criterion, the existence of one such t for all m does not follow.
 
@@ -302,6 +361,8 @@ If faithfulness is weakened, the same numerical calculations constrain the image
 
 ## §5h. Which Closed Supports Can Carry an Ordered Contrast
 
+### S29
+
 **S29 (Strict internal comparison propagates attained extrema through its support).** Let C be a nonempty finite family of addressed roles. Each x has a nonempty finite support N(x) contained in C. Draw x→y for each y∈N(x), from the dependent role to its support. Let r take values in one linearly ordered set. Require the following internal-comparison relation at every role: if its support readings all equal v, then r(x)=v. Otherwise r(x) is strictly between the least and greatest support readings. No equal weights, addition, metric or real-valued scale is assumed.
 
 The roles with greatest reading form a nonempty set closed under every support edge. The same is true of the least-reading roles. Indeed, if r(x) is a global maximum and one support reading were smaller, strict internality would put r(x) below the maximum of its supports, which cannot exceed that global maximum. Hence all its support readings equal r(x). Repeat along any finite support path.
@@ -353,6 +414,8 @@ The following obligations organize S27–S32. They are not automatic stages of o
 | Actions to one centre for any two ends | Existence and uniqueness of c solving r_c(a)=b |
 | Coherent centre exchanges to compatible scale changes | The additional medial crossing, refused by S32's six incidences |
 | Division to an ordered real calibration | The order, retained equal divisions and separation conditions of S27–S28 |
+
+### S30
 
 **S30 (Reversible division about one centre forces a composition law).** Let a nonempty X have a total operation m satisfying symmetry, idempotence, cancellation in either argument and the medial law of S28. These are laws of the proposed division relation, without a presumed real-valued reading. Choose c∈X and require h(x)=m(c,x) to be onto X. Cancellation makes h one-to-one. Write d for its inverse. Define
 
@@ -427,6 +490,8 @@ It fails the required composition. Conversely, dropping only the outer exchange 
 
 ## §5j. What a Centre Must Retain Across Scales
 
+### S31
+
 **S31 (a cancellative division cannot be a complete centre-only joining law).** Let X be nonempty and consider nonempty finite families of addressed occurrences carrying values in X. Different occurrences may carry the same value. Suppose a centre reading C assigns x to a singleton carrying x, ignores the grouping of a fixed family, and obeys
 
     C(U ⊔ V) = m(C(U),C(V))
@@ -466,6 +531,8 @@ This is equivalent to each multiplication-by-n map being a bijection. Necessity 
 Halves alone do less. The dyadic rationals admit unique halves but no centre solving 3c=1. In S29's three-label group, that equation also has no solution, while 3c=0 has three. Its valid binary division table therefore cannot supply these unique centres at every scale. The equal-part balance equation and availability at all finite arities are additional relations to establish, rather than consequences of naming the whole or drawing two links at a centre.
 
 ## §5k. A Centre Defined by an Internal Exchange
+
+### S32
 
 **S32 (unique reversible centres do not force medial division).** A pair of incidence legs need not carry a division law. Consider a stronger proposed relation: at each c there is an internal exchange r_c of the whole specified carrier X. Require
 
@@ -621,27 +688,45 @@ This gives a concrete way to study a hidden object through refusals. For each pr
 
 ## §6. Communication: Retaining the Required Answer
 
+### S9
+
 **S9 (Translation is question-bound).** A translation supports a requested answer when the original reading factors through the translated record by an actual decoder. Verdict §6c supplies this criterion. Equality of encoding names does not by itself establish common source and context, and different encodings can preserve a particular answer exactly.
 
 This factorization is a relation of the records. Finding, applying or verifying a translation has a cost only under a specified access and resource model. The relation itself does not force a separate search each time it is used.
+
+### S10
 
 **S10 (Shared facts and equal caches).** G=H gives equal cache sets at that point. Retaining updates preserve the common records G∩H, but separate later acquisitions can make the caches different. Continued equality requires an update relation that preserves it. An earlier fact's retention and a present question's unchanged answer are separate claims.
 
 ## §7. Change of Perspective
 
+### S11
+
 **S11 (An encoding change is one possible change).** Changing an encoding can change the available answers. Keeping it fixed while its source changes can do so as well. To identify two proposed accounts of a change, show that their relevant readings agree through all the permitted continuations. S1 gives only its stated equality.
+
+### S12
 
 **S12 (Stillness relative to a question).** A question q is unchanged along a specified transition T exactly when q(T(x))=q(x) on the admitted inputs. A form's internal records can support that comparison. Neither a fixed encoding nor a count of observers establishes this invariance.
 
 ## §8. Bounds and References
 
+### S13
+
 **S13 (Finite joint answers).** If n jointly available readings have finite answer sets of sizes k₁,…,kₙ, their joint image has at most ∏ᵢkᵢ members. The number of encoding names is not this bound. A finite constructor alphabet can describe an unbounded family of finite records.
+
+### S14
 
 **S14 (Independent roles).** The d-role assertion of S5 concerns a specified jointly variable product presentation. Dependence between the outputs can restrict its image, as S3 shows. Reading the number of syntactic parameters does not prove an intrinsic dimension.
 
+### S15
+
 **S15 (An origin requires a reference relation).** If the automorphisms of a structure act transitively on more than one possible origin, no single origin is fixed by all of them. An invariant selection would have to be fixed, so none exists. An actual internal reference can distinguish an origin by changing the relevant symmetry. VI1a states the general criterion. No reference outside the whole is required.
 
+### S16
+
 **S16 (Transfer count under a declared interface).** Suppose each missing addressed record can be delivered and retained in one permitted transfer. Bringing G and H to their common union requires exactly |G △ H| such deliveries: every record present on just one side must be delivered to the other, and this schedule suffices. Reading, transport and verification costs need their own units. This statement does not require a finite vocabulary of all possible records.
+
+### S17
 
 **S17 (Depth under the tower premise).** In a tower where each further unresolved level strictly reduces a finite nonnegative integer K, at most K₀ such reductions are possible. M16 requires that descent premise. A finite initial library alone does not establish termination of every possible tower.
 
@@ -651,11 +736,15 @@ The cache metric, an update rate, a dependency graph and a physical interpretati
 
 ### Switching Cost
 
+#### S18
+
 **S18 (A declared cost of changing encoding).** Fix the task distribution, the available records and operations, and a common cost unit. Compare the full cost of continuing with E against conversion and subsequent work under E′. Their difference can favor either choice. Retained answers can transfer when the relevant questions factor through a conversion, as in Verdict §6c. Switching therefore need not discard the whole library, and an empty library does not make all encodings equally costly.
 
 A large record alone supplies no switching-cost law. Its access procedure, useful coverage and conversion witnesses matter. This is a model of the cost of changing representation. Matter §5's physical examples have additional equations and interpretations, and do not identify a library size with physical mass or a vacuum parameter.
 
 ### Operation Rate
+
+#### S19
 
 **S19 (A bound relative to an update contract).** Fix the vocabulary of a cache and a permitted update that changes at most b≥1 entries per counted round. After n rounds, the symmetric difference between the initial and final caches is at most nb, by the triangle inequality for finite symmetric difference. Reaching a fixed target at distance k therefore requires at least ⌈k/b⌉ rounds. The special case b=1 gives k. This is a bound on full cache transformation under the stated update rule.
 
@@ -663,11 +752,15 @@ Matter M1's operation clock does not impose b=1. A compound comparison or a gene
 
 ### Influence and Agreement
 
+#### S20
+
 **S20 (Agreement distance is not influence distance).** Suppose one cache contains k>1 records and another contains none. Transferring the first record already changes the receiver, while full agreement still requires the remaining records under the one-entry rule. Thus a k-round lower bound for full agreement does not imply that no influence can occur before round k. The previous locality argument proved a transformation bound and then used it as a first-influence bound.
 
 A positive locality statement instead follows from actual input dependence. G14c models a whole whose internal components update only from specified input neighbors. The state at a component after n rounds factors through the corresponding initial dependency region. Two admitted initial whole states agreeing there give the same resulting answer. This is a conditional propagation bound, with every relevant controller and clock included in the state. Cache symmetric difference does not supply that dependency graph or convert its round count to physical duration. Under G14d's finite-dimensional nondegenerate symplectic-product hypotheses, local differential dependence across a cut into two complementary parts is mutual. The global independence statement also requires connected open factors.
 
 ### Selection of an Encoding
+
+#### S21
 
 **S21 (Retention can affect preference).** Under a specified cost model and proposal policy, usable retained results may make one encoding preferable for subsequent tasks. Different acquisition histories can produce different preferences. Coverage alone neither chooses an encoding nor makes it uniquely cheapest, as IiI CS1–CS3 and Form FiG3 explain.
 
@@ -675,17 +768,23 @@ Calling this symmetry breaking requires an actual symmetry action, an invariant 
 
 ### Cost Preferences
 
+#### S22
+
 **S22 (Cost changes need a resource model).** A retained library can reduce acquisition work where its actual records answer the needed questions. Access, conversion, checking and maintenance have their own costs. If use of the cache is optional, an optimal policy can ignore it, so adding that option cannot worsen the optimal cost. An implemented policy can still spend more work. This is the bound already stated in IiI §1, not a force directing every encoding toward a large library.
 
 Neither cache size nor its symmetric-difference distance specifies a curvature or an inverse-square interaction law. Such a connection would need a defined state space, update relation, measured response and invariant quantity, with equations connecting them to these resource costs. No such connection is derived here.
 
 ### Capacity and Questions
 
+#### S23
+
 **S23 (An explicit slot trade-off).** Suppose two disjoint required feature sets need f_x and f_p separate slots, an encoding has F slots, and this model permits only retaining or omitting those features. If r_x and r_p are retained, with r_x+r_p≤F, define deficits δ_x=f_x−r_x and δ_p=f_p−r_p. Then δ_x+δ_p≥f_x+f_p−F by subtraction. This is the consequence of the stipulated slot model.
 
 It gives no positive product bound: f_x=f_p=F=1 allows deficits 0 and 1, whose product is zero. Nor does it cover a representation that shares features, computes them from other retained data or encodes the required questions differently. Finite grammar alone therefore does not supply this slot contract, conjugate observables or wave-particle behavior. For exact question preservation, Verdict §6c instead asks whether both questions factor through the actual observation. Its joint-reading constructions express the positive case without identifying feature count with a physical uncertainty.
 
 ### Symmetry and Conservation
+
+#### S24
 
 **S24 (A conserved question needs the update relation).** Let q be a question on the admitted whole states and T their declared update. Conservation of its answer means q(T(x))=q(x) for every admitted x. Invariance under representation changes instead means q(g(x))=q(x) for the specified transformations g. To infer conservation from that invariance, one sufficient premise is that each T(x) lies in x's transformation orbit. Substituting that transformation gives the conserved answer. Without a relation between T and those orbits, representation symmetry alone supplies no such conclusion.
 

@@ -2,6 +2,13 @@
 
 This part contains the original derivations for program mediator.
 
+Statements on this page:
+
+- <doc:interference_is_substitution__program_mediator#IiS25>: Three program phases and three data rays force one successful operation up to scale.
+- <doc:interference_is_substitution__program_mediator#IiS26>: The overlap of neighboring program weights is the exact success capacity.
+- <doc:interference_is_substitution__program_mediator#IiS27>: Finite-copy exact use is possible precisely for a faithful phase program.
+- <doc:interference_is_substitution__program_mediator#IiS28>: Exact interleaving conditions for a borrowed qubit.
+
 Family and original section headings: <doc:interference_is_substitution>.
 
 Section setting: <doc:interference_is_substitution#16a-A-finite-contact-can-determine-the-programmed-operation>.
@@ -219,3 +226,5 @@ Several fixed channels may be inserted: if each satisfies the condition at its a
 ## Cross-page mentions
 
 Labels mentioned here: <doc:interference_is_substitution__models_calibration#IiS10>, <doc:interference_is_substitution__positive_channels#IiS17>, <doc:interference_is_substitution__global_obstructions#IiS20>, <doc:interference_is_substitution__models_calibration#IiS9>, <doc:permanence_is_resistance__cost#M25a>, <doc:permanence_is_resistance__recovery_remainder#M70>.
+
+Mentions of this page’s labels: <doc:interference_is_substitution> (IiS25), <doc:interference_is_substitution> (IiS28).

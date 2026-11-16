@@ -6,6 +6,24 @@ The distinction between a whole and its local state is essential. Matter M70 con
 
 Within the established scope, disagreements between surviving tables identify distinguishing transition cells. Whether those cells can be reached and recorded is a further part of the task. Certified trajectories and strategies can then use the law under their own navigation, metric and availability premises. A fixed law at a higher level can be another target; its existence alone does not prove that an internal learner can identify it.
 
+Statements on this page:
+
+- <doc:law_is_target#LT1>: Environment.
+- <doc:law_is_target#LT2>: The law has an encoding in Σ.
+- <doc:law_is_target#LT3>: Relocation.
+- <doc:law_is_target#LT4>: The transition game.
+- <doc:law_is_target#LT5>: Ambiguity is an exploration address.
+- <doc:law_is_target#LT6>: Convergence under attainable coverage.
+- <doc:law_is_target#LT7>: Trajectory.
+- <doc:law_is_target#LT8>: Editing a plan and executing it have different costs.
+- <doc:law_is_target#LT9>: Prediction is execution.
+- <doc:law_is_target#LT10>: The state graph.
+- <doc:law_is_target#LT11>: Goals are balls.
+- <doc:law_is_target#LT12>: Planning is greedy descent.
+- <doc:law_is_target#LT13>: Macro-actions are strategies, and the papers compose.
+- <doc:law_is_target#LT14>: Decomposition of the interactive task.
+- <doc:law_is_target#LT15>: Lawful drift, conditional.
+
 ## §0. Derivation
 
 No new postulate. One new premise: the environment is finite and deterministic (relaxations and their named failures in §6).
@@ -25,18 +43,28 @@ The framework's prior papers identified rules of static transformations. A law i
 
 ## §1. The Law as Structure
 
+### LT1
+
 **LT1 (Environment).** A finite deterministic environment is a triple (St, A, f): finite state set St, finite action set A, transition function f : St × A → St. Observation is the full state (partial observability: §6). All three components are finite (I1).
+
+### LT2
 
 **LT2 (The law has an encoding in Σ).** f is a finite function, and a finite function has an encoding as a lookup structure: a tree of PAIR((s, a), s′) entries terminating at NULL (V=I §2.1, the same move as the library's own encoding, PiR §2). Therefore:
 
 - ‖f‖ is defined (G1a): the number of distinctions in the law's encoding. Under M24's uniform maintenance model it prices the law per cycle. The norm measures the chosen encoding. A short feature description does not by itself bound the norm of the lookup structure above. That structure grows with |St|·|A| even for a constant law.
 - W(f₁, f₂) is defined (G2): the number of single-address edits between the two law encodings, disagreeing transition cells each counted with the magnitude of their disagreement. It is computable before any transfer is attempted. Reading it as a transfer cost needs LT8's execution premises.
 
+### LT3
+
 **LT3 (Relocation).** Under LT1's fixed complete state/action interpretation, the transition table remains fixed while a represented state changes. It can therefore be the target required by I2. For a local description E of a larger state, the corresponding requirement is descent of the whole transition through E, with its actual availability preserved where actions are partial (Verdict VC46–VC47). M70 supplies whole permutations for which a local reset holds for any prepared finite horizon and then fails. Identifying the fixed whole law and establishing an autonomous local law are different obligations.
 
 ## §2. Identification
 
+### LT4
+
 **LT4 (The transition game).** Examples are observed transitions {((sᵢ,aᵢ),s′ᵢ)} in LT1's fixed interpretation. Compare each candidate table in the declared finite F_dyn with those entries. Acceptance establishes agreement on the witnessed cells. If exactly one candidate survives, it is the only table in that family agreeing with the records. Identifying it with the actual law additionally requires that the actual law belongs to the family and that the records refer to this same state/action interpretation. A feature choice or a named encoding does not establish these requirements. System CS3 and Verdict VC74 already state the coverage boundary.
+
+### LT5
 
 **LT5 (Ambiguity is an exploration address).** |S| > 1 is true iff some (s, a) cell on which surviving candidates disagree is unobserved.
 
@@ -44,21 +72,35 @@ The framework's prior papers identified rules of static transformations. A law i
 
 The diagnostic is constructive: the system returns the distinguishing cells: WHICH state to reach, WHICH action to try there. Exploration is not a policy bolted onto the agent: it is the |S| > 1 diagnostic read back as an experiment plan. This is the dynamics-level instance of the series' one pattern: the failure names its own cure (V=I §1: REJECT carries the address, NiG N17: holes are the curriculum, and here: ambiguity is the experiment design).
 
+### LT6
+
 **LT6 (Convergence under attainable coverage).** Adding a sound observation can only remove candidates from a fixed F_dyn. Observing every distinct cell of the complete |St|×|A| table determines that table; repeated observations of a smaller region do not supply this coverage. Attaining the cells may require preparation, access and extra actions, and some can be unreachable in the stated experiment. Structural relations can determine unwitnessed cells from witnessed ones when the actual law is known to obey those relations. The resulting reduction in required observations follows from that family and its separating experiments, not from the word compression alone.
 
 ## §3. Behavior as Structure
 
+### LT7
+
 **LT7 (Trajectory).** A bounded-horizon trajectory T = (s₀, a₀, s₁, a₁, ..., s_h) is a finite sequence over finite alphabets: a finite tree in Σ. Behavior is a structure. Two consequences are immediate: ‖T‖ (the number of distinctions in the encoded trajectory, priced as a maintenance cost only under M24's model) and W(T₁, T₂) (the distance between behaviors, computable by one traversal, G2a).
 
+### LT8
+
 **LT8 (Editing a plan and executing it have different costs).** W(T₁,T₂) counts the single-address edits of G2 needed to change one encoded plan into another. It bounds operation ticks only for an interface allowing one such edit per tick. G14a instead permits compatible edits in parallel and counts dependent rounds. Executing a plan can also depend on the current state, action availability, committed effects and retained history. Its redirection cost must use those actual transitions. A distance between two plan descriptions alone does not determine that cost or a physical inertia.
+
+### LT9
 
 **LT9 (Prediction is execution).** Given certified f\*, a start state, and an action sequence, the future trajectory is computed by iterated application: predicted by execution, never estimation. The certificate's exact scope: Theorem 2 certifies f\* on the evidence closure, the cells witnessed or pinned by the encoding's features under R4. Within that closure, prediction cannot be wrong (a wrong prediction would witness a cell where f\* disagrees with the world, contradicting the gate). Outside it, |S| > 1 was the standing diagnostic, and the framework said so before the prediction was attempted. The system does not extrapolate silently: it either certifies or names the missing experiment (LT5).
 
 ## §4. Planning Is Navigation
 
+### LT10
+
 **LT10 (The state graph).** Under certified f\*, define Γ_state = (St, E) with action-labeled edges s →ᵃ f\*(s, a). Finite (I1), computed from f\* without further interaction: the agent plans offline on the crystal of its own experiments.
 
+### LT11
+
 **LT11 (Goals are balls).** A goal is a target region B(g, r) under W on states. For grid worlds the metric is already derived: taxicab (DiC G7). Proximity to the goal is a theorem of the encoding, never a designed reward. The author supplies no reward function anywhere in this document: the gradient toward the goal is the W-gradient, and it comes from the same primitives as everything else.
+
+### LT12
 
 **LT12 (Planning is greedy descent).** A plan is a walk in Γ_state decreasing W(·, g). The navigation stack applies by substitution (L → St, library entries → states, edges → actions):
 
@@ -74,7 +116,11 @@ The diagnostic is constructive: the system returns the distinguishing cells: WHI
 
 Local minima of W are exactly the states where greedy locomotion fails: walls, dead ends, puzzles. The framework does not promise their absence: it promises their addresses.
 
+### LT13
+
 **LT13 (Macro-actions are strategies, and the papers compose).** A certified sub-plan (a region of states, an action sequence, a guaranteed arrival region under f\*) is a strategy object in the sense of Order Is Object: a finite decision tree over observations (states) choosing moves (actions), certifiable by the strategy gate (O5) with cost = plan length, entering the library with norm and distance (O2). Therefore Order Is Object applies under its own premises: a ball in plan space can represent a family of motor skills (O15), skill space is navigable when it clusters (O16), and the optimal certification order of motor skills is computable (O21). Identification (papers 1–6), navigation (7), strategy (8), and dynamics (9) compose on shared primitives with no new axioms: where O14's strategy modulus is established on the represented rule classes, it bounds W(σ\*_k, σ\*_{k′}) by ω_σ(W(k, k′)). Finding and applying a strategy for a new class additionally requires the search and certification premises of O5/O15 and the execution premises of LT8–LT9.
+
+### LT14
 
 **LT14 (Decomposition of the interactive task).** Any task in a finite deterministic environment decomposes:
 
@@ -89,6 +135,8 @@ EXECUTE (one action per tick; prediction = execution, LT9)
 Under the preceding premises, law ambiguity identifies a distinguishing cell and a proposed plan can be checked against the represented state graph. A later transition disagreeing with the identified candidate refutes its continued application. It can leave the fixed family empty, exposing a failed family, observation or stationarity premise; it need not leave another correct candidate ready for selection. A controller does not detect every such failure from the presence of a gate alone. A question constant on all currently admitted laws can already be settled before complete law identification, so this decomposition is one sufficient route where its acquisition and planning obligations are met.
 
 ## §5. The Tower of Laws
+
+### LT15
 
 **LT15 (Lawful drift, conditional).** If a changing local rule is governed by a finite fixed law on a larger state, that larger law can serve as a target. The new state must include the relevant internal rule and control fields. Identification still requires a declared candidate family containing the actual law and attainable evidence that separates it. Merely moving the word law up a level supplies none of that evidence and no bound on the number of levels to inspect.
 

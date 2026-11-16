@@ -2,6 +2,14 @@
 
 This part contains the original derivations for global obstructions.
 
+Statements on this page:
+
+- <doc:interference_is_substitution__global_obstructions#IiS20>: A complete residual relation decides pure-output completion.
+- <doc:interference_is_substitution__global_obstructions#IiS21>: Equal overlap magnitudes leave a cycle obstruction.
+- <doc:interference_is_substitution__global_obstructions#IiS22>: One context-independent binary table cannot preserve this return diagram.
+- <doc:interference_is_substitution__global_obstructions#IiS23>: Exchanging two action roles forces an extension of this permutation representation.
+- <doc:interference_is_substitution__global_obstructions#IiS24>: A contact table can preserve local distributions without being quantum.
+
 Family and original section headings: <doc:interference_is_substitution>.
 
 Section setting: <doc:interference_is_substitution#12-When-no-internal-remainder-can-complete-the-proposed-change>.
@@ -395,4 +403,4 @@ The number-free core therefore retains source-bound contacts, their actual compo
 
 Labels mentioned here: <doc:interference_is_substitution__models_calibration#IiS10>, <doc:interference_is_substitution__models_calibration#IiS11>, <doc:interference_is_substitution__models_calibration#IiS12>, <doc:interference_is_substitution__models_calibration#IiS13>, <doc:interference_is_substitution__positive_channels#IiS14>, <doc:interference_is_substitution__positive_channels#IiS17>, <doc:interference_is_substitution__comparison_fluctuations#IiS29>, <doc:interference_is_substitution__models_calibration#IiS9>, <doc:learning_is_liquid__medium_contacts#LQ13>, <doc:permanence_is_resistance__records_entropy#M35>, <doc:permanence_is_resistance__recovery_remainder#M70>, <doc:permanence_is_resistance__forced_answers#M71>, <doc:verdict_is_invariant__finite_records#VC15>, <doc:verdict_is_invariant__reusable_images#VC46>, <doc:verdict_is_invariant__reusable_images#VC47>, <doc:verdict_is_invariant__finite_records#VC9>.
 
-Mentions of this page’s labels: <doc:interference_is_substitution__comparison_fluctuations> (IiS21), <doc:interference_is_substitution__models_calibration> (IiS21), <doc:interference_is_substitution__program_mediator> (IiS20), <doc:learning_is_liquid__reconstructed_sides> (IiS20), <doc:learning_is_liquid__reconstructed_sides> (IiS21), <doc:permanence_is_resistance__recovery_remainder> (IiS20), <doc:permanence_is_resistance__recovery_remainder> (IiS21).
+Mentions of this page’s labels: <doc:interference_is_substitution> (IiS20), <doc:interference_is_substitution> (IiS24), <doc:interference_is_substitution__comparison_fluctuations> (IiS21), <doc:interference_is_substitution__models_calibration> (IiS21), <doc:interference_is_substitution__program_mediator> (IiS20), <doc:learning_is_liquid__reconstructed_sides> (IiS20), <doc:learning_is_liquid__reconstructed_sides> (IiS21), <doc:permanence_is_resistance__recovery_remainder> (IiS20), <doc:permanence_is_resistance__recovery_remainder> (IiS21).

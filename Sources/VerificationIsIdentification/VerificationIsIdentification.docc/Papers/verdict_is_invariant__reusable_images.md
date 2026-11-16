@@ -2,6 +2,31 @@
 
 This part contains the original derivations for reusable images.
 
+Statements on this page:
+
+- <doc:verdict_is_invariant__reusable_images#VC44>: Complete image equality is exactly the two-swap behavioral relation.
+- <doc:verdict_is_invariant__reusable_images#VC45>: A future question factors through the present image.
+- <doc:verdict_is_invariant__reusable_images#VC46>: Exact descent preserves the operation's domain.
+- <doc:verdict_is_invariant__reusable_images#VC47>: Partial behavior preserves both availability and answers.
+- <doc:verdict_is_invariant__reusable_images#VC48>: A structural obstruction to the guard.
+- <doc:verdict_is_invariant__reusable_images#VC49>: Six classes are necessary and sufficient.
+- <doc:verdict_is_invariant__reusable_images#VC50>: Evidence can supply a derived class and its questions.
+- <doc:verdict_is_invariant__reusable_images#VC51>: Exact partial descent composes.
+- <doc:verdict_is_invariant__reusable_images#VC52>: Initial evidence answers every certified continuation.
+- <doc:verdict_is_invariant__reusable_images#VC53>: Representation composition commutes with path composition at the boundary.
+- <doc:verdict_is_invariant__reusable_images#VC54>: Enlarging the interaction family refines identification.
+- <doc:verdict_is_invariant__reusable_images#VC55>: Prepared acquisition is source-bound and recoverable.
+- <doc:verdict_is_invariant__reusable_images#VC56>: The least sufficient refinement retains exactly the new question distinctions.
+- <doc:verdict_is_invariant__reusable_images#VC57>: A local update alone cannot separate an unresolved pair.
+- <doc:verdict_is_invariant__reusable_images#VC58>: The selected acquisition can depend only on acquired memory.
+- <doc:verdict_is_invariant__reusable_images#VC59>: A reusable instrument can leave an accessible resident result.
+- <doc:verdict_is_invariant__reusable_images#VC60>: One common reading exists exactly on the question's agreement relation.
+- <doc:verdict_is_invariant__reusable_images#VC61>: Three interface classes suffice for the binary common-answer request.
+- <doc:verdict_is_invariant__reusable_images#VC62>: An acquired answer serves an agreed resident application without another acquisition.
+- <doc:verdict_is_invariant__reusable_images#VC63>: First-side evidence cannot certify common-answer admissibility on the unrestricted binary pair family.
+- <doc:verdict_is_invariant__reusable_images#VC64>: Comparing acquired evidence reflects agreement and obstruction to the source.
+- <doc:verdict_is_invariant__reusable_images#VC65>: Both component readings are necessary on the unrestricted binary domain.
+
 Family and original section headings: <doc:verdict_is_invariant>.
 
 Section setting: <doc:verdict_is_invariant#6o-A-finite-relation-basis-for-unbounded-continuations>.
@@ -89,7 +114,7 @@ The guarded swap has a smaller sufficient image than the complete triple. Fix th
 
 ### VC48
 
-**Claim VC48 (a structural obstruction to the guard).** In the declared numeral grammar, zero and a successor have distinct outer constructors. An ordered pair of these constructors, with its endpoints equal to the source's a and c, therefore witnesses that the equality guard cannot hold there. Reversing the pair gives the other orientation.
+**VC48 (a structural obstruction to the guard).** In the declared numeral grammar, zero and a successor have distinct outer constructors. An ordered pair of these constructors, with its endpoints equal to the source's a and c, therefore witnesses that the equality guard cannot hold there. Reversing the pair gives the other orientation.
 
 **Proof.** Zero is `Never`; a successor is `Examples.Succ<N>`. These are distinct nominal type constructors for every admissible N. Equality of their internal fields would not identify the constructors: in particular, the two fields of `Succ<Never>` are both `Never`, while the successor itself is still distinct from `Never`. Substituting the source coordinates into the ordered pair gives the claimed obstruction at that source. ∎
 
@@ -97,7 +122,7 @@ The guarded swap has a smaller sufficient image than the complete triple. Fix th
 
 ### VC49
 
-**Claim VC49 (six classes are necessary and sufficient).** The behavioral equivalence of VC47 on this carrier has exactly six classes. Write D(a) for an unavailable image retaining the present answer, and R(a,b) for an available image retaining both the present and the next answer. Define E(a,b,c)=D(a) when a≠c and E(a,b,c)=R(a,b) when a=c.
+**VC49 (six classes are necessary and sufficient).** The behavioral equivalence of VC47 on this carrier has exactly six classes. Write D(a) for an unavailable image retaining the present answer, and R(a,b) for an available image retaining both the present and the next answer. Define E(a,b,c)=D(a) when a≠c and E(a,b,c)=R(a,b) when a=c.
 
 | Source | Image | Image after T |
 |---|---|---|
@@ -124,7 +149,7 @@ The six-class image of VC49 can be obtained from the complete image without insp
 
 ### VC50
 
-**Claim VC50 (evidence can supply a derived class and its questions).** Let O:K→I be an observation, d:I→C a class decoder, and E=d∘O. Suppose A:K→M describes an acquired record with a decoder u:M→I such that u∘A=O. Then E=(d∘u)∘A. If an independently specified question q:K→V factors as q=r∘E, it also factors as q=(r∘d∘u)∘A.
+**VC50 (evidence can supply a derived class and its questions).** Let O:K→I be an observation, d:I→C a class decoder, and E=d∘O. Suppose A:K→M describes an acquired record with a decoder u:M→I such that u∘A=O. Then E=(d∘u)∘A. If an independently specified question q:K→V factors as q=r∘E, it also factors as q=(r∘d∘u)∘A.
 
 **Proof.** Substitute u∘A for O in E=d∘O, then substitute the resulting expression for E in q=r∘E. The composed decoders take M as their input. Neither substitution requires another application of O. The equation q=r∘E remains a premise about the independently specified question. Defining E by composition would not prove it. ∎
 
@@ -144,7 +169,7 @@ These two statements must coexist: equal complete images can have exactly the sa
 
 ### VC51
 
-**Claim VC51 (exact partial descent composes).** Let T:D→K descend exactly through E:K→I onto V:E(D)→I in the sense of VC46, with I=E(K). Let V descend exactly through H:I→J onto W:H(E(D))→J, with J=H(I). Then T descends exactly through H∘E onto W.
+**VC51 (exact partial descent composes).** Let T:D→K descend exactly through E:K→I onto V:E(D)→I in the sense of VC46, with I=E(K). Let V descend exactly through H:I→J onto W:H(E(D))→J, with J=H(I). Then T descends exactly through H∘E onto W.
 
 **Proof.** Domain reflection for H says H(E(x)) belongs to dom W exactly when E(x) belongs to dom V. Domain reflection for E says E(x) belongs to dom V exactly when x belongs to D. Thus H∘E reflects D. At x∈D, W(H(E(x)))=H(V(E(x)))=H(E(T(x))). This is the output equation required by VC46. ∎
 
@@ -158,7 +183,7 @@ The seam is the entire middle action reading, including its input, output, conte
 
 ### VC52
 
-**Claim VC52 (initial evidence answers every certified continuation).** Suppose E is an exact image for a declared family of partial actions and each target question q factors through E. Suppose acquired evidence M recovers the initial E-image. For every finite action word available at a source, the corresponding final question has a decoder from that same initial evidence. No new observation is required by the derivation. Availability is preserved at every prefix, not only at the final result.
+**VC52 (initial evidence answers every certified continuation).** Suppose E is an exact image for a declared family of partial actions and each target question q factors through E. Suppose acquired evidence M recovers the initial E-image. For every finite action word available at a source, the corresponding final question has a decoder from that same initial evidence. No new observation is required by the derivation. Availability is preserved at every prefix, not only at the final result.
 
 **Proof.** For the empty word, compose the target question's decoder with the evidence decoder as in VC50. For a nonempty word, exact descent preserves the first action's domain and gives its image successor. Apply the induction hypothesis to the remaining word at that successor. Composing the image steps followed by the final question decoder gives the answer from the initial image. Composing once more with the evidence decoder gives it from M. Domain reflection at each step makes the argument apply exactly to available words. ∎
 
@@ -178,7 +203,7 @@ This is a claim about finite paths constructed from the supplied clauses. It is 
 
 ### VC53
 
-**Claim VC53 (representation composition commutes with path composition at the boundary).** Suppose P₀,P₁ are two compatible source-to-image squares and Q₀,Q₁ are compatible image-to-class squares, with Qᵢ's source action equal to Pᵢ's image action. First composing each row and then changing representation has the same initial observation, final observation, source action, and class action as first changing representation in each column and then composing the resulting squares.
+**VC53 (representation composition commutes with path composition at the boundary).** Suppose P₀,P₁ are two compatible source-to-image squares and Q₀,Q₁ are compatible image-to-class squares, with Qᵢ's source action equal to Pᵢ's image action. First composing each row and then changing representation has the same initial observation, final observation, source action, and class action as first changing representation in each column and then composing the resulting squares.
 
 **Proof.** Write the source actions as T₀,T₁, the intermediate actions as V₀,V₁, and the class actions as W₀,W₁. Let Eᵢ be the source-to-image observations and Hᵢ the image-to-class observations at the three endpoints. In both constructions the initial observation is H₀∘E₀, the final observation is H₂∘E₂, the source action is T₁∘T₀, and the class action is W₁∘W₀. The matching middle readings justify each composition. If the square families reflect domains exactly, VC51 and the prefix argument of VC52 preserve the same available paths in both constructions. ∎
 
@@ -188,7 +213,7 @@ The generic Swift witness compares these four boundary types for `ReobservedTran
 
 ### VC54
 
-**Claim VC54 (enlarging the interaction family refines identification).** On a fixed source carrier, if the allowed action family and target-question family are enlarged, the behavioral equivalence of VC47 can only become finer. For the binary fragment of VC49, adding the total swap S(a,b,c)=(b,a,c) to the guarded action T refines the six classes into exactly eight.
+**VC54 (enlarging the interaction family refines identification).** On a fixed source carrier, if the allowed action family and target-question family are enlarged, the behavioral equivalence of VC47 can only become finer. For the binary fragment of VC49, adding the total swap S(a,b,c)=(b,a,c) to the guarded action T refines the six classes into exactly eight.
 
 **Proof of refinement.** Every old question, word, and domain comparison is among the new requirements. Agreement under the enlarged family therefore implies agreement under the old one. Equivalently, each new behavioral class lies within an old class, and sending a new class to its containing old class is well-defined. ∎
 
@@ -208,7 +233,7 @@ Fix a channel reading q(x) of the actual source x. Its context, encoding and que
 
 ### VC55
 
-**Claim VC55 (prepared acquisition is source-bound and recoverable).** For a fixed declared channel law, the relation W₀↦W₁ records q(x), preserves m and x, and has a left inverse on its constructed range. The new fact's decoder can answer q from the output memory alone. This does not make the relation a reset of arbitrary occupied memory.
+**VC55 (prepared acquisition is source-bound and recoverable).** For a fixed declared channel law, the relation W₀↦W₁ records q(x), preserves m and x, and has a left inverse on its constructed range. The new fact's decoder can answer q from the output memory alone. This does not make the relation a reset of arbitrary occupied memory.
 
 **Proof.** The inserted fact's answer is q(x) by construction. Projecting the output recovers x, p and m. Replacing the signal phase and the new fact slot with the prepared quiet phase and blank slot reconstructs exactly W₀. This recovery uses output coordinates and the specified preparation, without a separately retained copy of the entire input. Applying that recovery to equal outputs gives equal prepared inputs. Reading the fact returns q(x) at its actual memory address. An arbitrary previous slot value could not be recovered by replacing it with blank, so the argument is restricted to the prepared domain. ∎
 
@@ -222,7 +247,7 @@ For the new channel, `SpectrumBetaSource` reads the resident b coordinate. This 
 
 ### VC56
 
-**Claim VC56 (the least sufficient refinement retains exactly the new question distinctions).** For an old reading E:K→C and a new question q:K→V, define F(x)=(E(x),q(x)). F determines both readings. If another reading G determines both E and q, then F factors through G. Thus the partition induced by F is the coarsest refinement of E that determines q.
+**VC56 (the least sufficient refinement retains exactly the new question distinctions).** For an old reading E:K→C and a new question q:K→V, define F(x)=(E(x),q(x)). F determines both readings. If another reading G determines both E and q, then F factors through G. Thus the partition induced by F is the coarsest refinement of E that determines q.
 
 **Proof.** Projections of F give E and q. If E=e∘G and q=d∘G, the decoder z↦(e(z),d(z)) gives F from G. Equivalently, two sources have the same F-image exactly when they have the same E-image and the same q-answer. Any sufficient G must distinguish every pair for which one of those equalities fails. ∎
 
@@ -236,7 +261,7 @@ The resulting memory supplies `FullSpectrumReading` by a checked factorization. 
 
 ### VC57
 
-**Claim VC57 (a local update alone cannot separate an unresolved pair).** Suppose the participant's initial accessible state is M(x). Let its next accessible state be f(M(x)), where f is a fixed deterministic local rule with its program included in that state or held fixed across the compared sources. If M(x)=M(y), the updated accessible states are equal. No decoder from those updated states can give different answers to a question that distinguishes x and y.
+**VC57 (a local update alone cannot separate an unresolved pair).** Suppose the participant's initial accessible state is M(x). Let its next accessible state be f(M(x)), where f is a fixed deterministic local rule with its program included in that state or held fixed across the compared sources. If M(x)=M(y), the updated accessible states are equal. No decoder from those updated states can give different answers to a question that distinguishes x and y.
 
 **Proof.** Substitute the equal inputs into f, then into the proposed decoder. Both outputs are equal. This conflicts with distinct required answers. The same argument iterates through any finite sequence of local rules whose choices depend only on the accessible state. A rule that also receives a source-dependent channel answer has a different input and is outside this premise. ∎
 
@@ -248,7 +273,7 @@ This does not say that local reasoning cannot find an answer already determined 
 
 ### VC58
 
-**Claim VC58 (the selected acquisition can depend only on acquired memory).** In the binary model of VC56, let the available new channel be the declared beta reading. Define the decision on old class values by s(R(a,b))=reuse and s(D(a))=beta. Compose s with the decoder of the old class fact. This selects an adequate action for every source without using its hidden beta as a decision input. The selected beta reading must still share the actual source of that fact.
+**VC58 (the selected acquisition can depend only on acquired memory).** In the binary model of VC56, let the available new channel be the declared beta reading. Define the decision on old class values by s(R(a,b))=reuse and s(D(a))=beta. Compose s with the decoder of the old class fact. This selects an adequate action for every source without using its hidden beta as a decision input. The selected beta reading must still share the actual source of that fact.
 
 **Proof.** At R(a,b), the existing decoder gives (a,b,a), so reuse answers the complete-image question. At D(a), the two possible sources have the same old memory and hence the same decision. Their distinct beta answers separate them and recover the complete image on the binary carrier. Thus the decision is constant within each old-memory fiber, while the subsequent acquisition can distinguish that fiber's members. The source equality ties the selected reading to this acquisition, even when another source would give the same numerical answer. ∎
 
@@ -264,7 +289,7 @@ This exchanges the occupied content for a resident blank and retains the displac
 
 ### VC59
 
-**Claim VC59 (a reusable instrument can leave an accessible resident result).** After VC55's actual acquisition, write W_f=(x,p,signal,(m,f_q(x))). With one resident blank still available, define
+**VC59 (a reusable instrument can leave an accessible resident result).** After VC55's actual acquisition, write W_f=(x,p,signal,(m,f_q(x))). With one resident blank still available, define
 
 `(W_f, a, (blank,r)) → (W_blank, (a,f_q(x)), r)`.
 
@@ -290,7 +315,7 @@ EF8 leaves the admitted construction language explicit. A particular interface c
 
 ### VC60
 
-**Claim VC60 (one common reading exists exactly on the question's agreement relation).** At the level of this record contract, a common representation with a shared decoder exists for (x,y) if and only if q(x)=q(y). Thus its admissible source pairs are exactly D_q={(x,y):q(x)=q(y)}.
+**VC60 (one common reading exists exactly on the question's agreement relation).** At the level of this record contract, a common representation with a shared decoder exists for (x,y) if and only if q(x)=q(y). Thus its admissible source pairs are exactly D_q={(x,y):q(x)=q(y)}.
 
 **Proof.** If the same decoder application supplies both answers, q(x)=d(m)=q(y). Conversely, when q(x)=q(y)=a, choose the canonical fact f=(context,q,a) and its answer projection. It supplies a from the same input fact in both source-specific factorizations. Retain ((h,(x,y)),f) to keep both actual sources and the context h beside that local fact. The construction imposes no identity between x and y. ∎
 
@@ -314,7 +339,7 @@ For readings outside a covered family, the absence of a supplied agreement or ob
 
 ### VC61
 
-**Claim VC61 (three interface classes suffice for the binary common-answer request).** Restrict q's values to 0 and 1 and consider the four ordered answer pairs. The interface must report whether a common answer exists and, when it does, supply that answer. It has no other requests. Its minimum exact image has three classes: J₀ for (0,0), J₁ for (1,1), and B for both (0,1) and (1,0).
+**VC61 (three interface classes suffice for the binary common-answer request).** Restrict q's values to 0 and 1 and consider the four ordered answer pairs. The interface must report whether a common answer exists and, when it does, supply that answer. It has no other requests. Its minimum exact image has three classes: J₀ for (0,0), J₁ for (1,1), and B for both (0,1) and (1,0).
 
 **Proof.** J₀ and J₁ cannot merge because their required answers differ. Neither can merge with B because the common-answer request is defined on the former and undefined on the latter. These requirements force at least three classes. Three suffice: decode the common fact at J₀ or J₁, and report the positive failure at B. No request in this interface distinguishes the two orientations inside B. ∎
 
@@ -330,7 +355,7 @@ VC60 characterizes when one common fact is possible. Its acquisition also needs 
 
 ### VC62
 
-**Claim VC62 (an acquired answer serves an agreed resident application without another acquisition).** Suppose both applications are on the same actual source w, C establishes their agreement, and F factors q_L through an available observation E with decoder d. Then the same observation and the same decoder factor q_R. A prepared acquisition of q_L therefore supplies one fact sufficient for both applications. Parking that fact by VC59 preserves this sufficiency wherever its resident memory address is accessible.
+**VC62 (an acquired answer serves an agreed resident application without another acquisition).** Suppose both applications are on the same actual source w, C establishes their agreement, and F factors q_L through an available observation E with decoder d. Then the same observation and the same decoder factor q_R. A prepared acquisition of q_L therefore supplies one fact sufficient for both applications. Parking that fact by VC59 preserves this sufficiency wherever its resident memory address is accessible.
 
 **Proof.** On the stated domain, q_R(w)=q_L(w)=d(E(w)). Neither E nor d changes. In the prepared special case, E(w) is the trace memory (m,f_q_L(w)). Its last-fact decoder returns q_L(w), hence q_R(w). The acquisition keeps w and m. Parking moves that one fact to an existing reserve slot while returning the instrument to its prepared state. The resident view combining the old prefix with the archived fact equals the acquired trace memory. Thus exactly the same decoder still applies. Its input contains memory, not a separately supplied copy of either source. ∎
 
@@ -348,7 +373,7 @@ For the last case, compare the completed runs at a=0 and a=1. Their work views, 
 
 ### VC63
 
-**Claim VC63 (first-side evidence cannot certify common-answer admissibility on the unrestricted binary pair family).** Let e(a,b)=a on the four binary answer pairs, and let D={(a,b):a=b}. Evidence e determines the common answer on D. It does not determine membership in D on the full family. Adding the same source-independent memory or applying a deterministic transformation of that accessible evidence cannot repair the missing distinction.
+**VC63 (first-side evidence cannot certify common-answer admissibility on the unrestricted binary pair family).** Let e(a,b)=a on the four binary answer pairs, and let D={(a,b):a=b}. Evidence e determines the common answer on D. It does not determine membership in D on the full family. Adding the same source-independent memory or applying a deterministic transformation of that accessible evidence cannot repair the missing distinction.
 
 **Proof.** On D, the common answer equals a, so the identity decoder suffices. But e(0,0)=e(0,1)=0, while the former pair belongs to D and the latter has the positive 0/1 obstruction. Any decoder of e must return the same result at this shared input, so it cannot correctly decide admissibility on both pairs. Appending the same memory z gives (0,z) in both cases, and every deterministic transformation of that shared input still agrees. ∎
 
@@ -364,7 +389,7 @@ VC63 leaves the first-side fact insufficient to establish compatibility on the f
 
 ### VC64
 
-**Claim VC64 (comparing acquired evidence reflects agreement and obstruction to the source).** Suppose q_L=d_L∘E and q_R=d_R∘E on the same actual source domain and with a common question interpretation. Agreement of d_L and d_R at the acquired memory E(w) entails agreement of q_L and q_R at w. A positive distinction between these decoded answers likewise distinguishes the source answers. On the binary component grammar, the two acquired readings determine exactly the three common-answer classes of VC61.
+**VC64 (comparing acquired evidence reflects agreement and obstruction to the source).** Suppose q_L=d_L∘E and q_R=d_R∘E on the same actual source domain and with a common question interpretation. Agreement of d_L and d_R at the acquired memory E(w) entails agreement of q_L and q_R at w. A positive distinction between these decoded answers likewise distinguishes the source answers. On the binary component grammar, the two acquired readings determine exactly the three common-answer classes of VC61.
 
 **Proof.** At m=E(w), q_L(w)=d_L(m) and q_R(w)=d_R(m). Substituting these equalities into the memory comparison gives the corresponding source comparison. For binary answers the four ordered memory cases are (0,0), (1,1), (0,1) and (1,0). The first two give canonical common facts with answers 0 and 1. The last two have the positive zero/successor distinction, in opposite orientations, and give the same failure image. Their minimum interface is therefore J₀, J₁, B by VC61. The complete memory still distinguishes all four ordered answer pairs. ∎
 
@@ -388,7 +413,7 @@ This is a relation for a declared finite acquisition schedule. Its two slots are
 
 ### VC65
 
-**Claim VC65 (both component readings are necessary on the unrestricted binary domain).** Suppose the source is unchanged during acquisition, all four ordered binary pairs remain possible under the old evidence, and the only new source-reading operations return the first or second component. Every deterministic policy that correctly reports J₀, J₁ or B must read both components on every source. Consequently, after one component fact, exactly one further reading is necessary and sufficient. If accessible old evidence already determines the other component on this actual source, no further reading is needed to compare them.
+**VC65 (both component readings are necessary on the unrestricted binary domain).** Suppose the source is unchanged during acquisition, all four ordered binary pairs remain possible under the old evidence, and the only new source-reading operations return the first or second component. Every deterministic policy that correctly reports J₀, J₁ or B must read both components on every source. Consequently, after one component fact, exactly one further reading is necessary and sufficient. If accessible old evidence already determines the other component on this actual source, no further reading is needed to compare them.
 
 **Proof.** After a first-component result 0, sources (0,0) and (0,1) remain indistinguishable but require J₀ and B. After result 1, sources (1,0) and (1,1) require B and J₁. Repeating that component on an unchanged source adds no distinction. The argument is symmetric if the second component is read first. Hence a correct policy must acquire the other component before terminating. Reading it once gives both answers and suffices by VC64. If another accessible factorization already supplies that answer, apply the same memory comparison to the two existing decoders instead. ∎
 
@@ -398,4 +423,4 @@ The last case is exhibited with an old second-side fact in the trace prefix and 
 
 Labels mentioned here: <doc:permanence_is_resistance__records_entropy#M43>, <doc:permanence_is_resistance__records_entropy#M44>, <doc:permanence_is_resistance__uniform_routing#M65>, <doc:verdict_is_invariant__finite_records#VC15>, <doc:verdict_is_invariant__discovery_acquisition#VC39>, <doc:verdict_is_invariant__discovery_acquisition#VC40>, <doc:verdict_is_invariant__discovery_acquisition#VC41>.
 
-Mentions of this page’s labels: <doc:interference_is_substitution__global_obstructions> (VC46), <doc:interference_is_substitution__global_obstructions> (VC47), <doc:interference_is_substitution__models_calibration> (VC45), <doc:learning_is_liquid> (VC46), <doc:learning_is_liquid> (VC47), <doc:learning_is_liquid__atoms_continuations> (VC46), <doc:learning_is_liquid__medium_contacts> (VC46), <doc:learning_is_liquid__medium_contacts> (VC47), <doc:learning_is_liquid__medium_contacts> (VC60), <doc:learning_is_liquid__reconstructed_sides> (VC46), <doc:learning_is_liquid__reconstructed_sides> (VC47), <doc:permanence_is_resistance__cost> (VC59), <doc:permanence_is_resistance__forced_answers> (VC47), <doc:permanence_is_resistance__forced_answers> (VC60), <doc:permanence_is_resistance__forced_answers> (VC61), <doc:permanence_is_resistance__forced_answers> (VC65), <doc:permanence_is_resistance__records_entropy> (VC44), <doc:permanence_is_resistance__records_entropy> (VC45), <doc:permanence_is_resistance__records_entropy> (VC46), <doc:permanence_is_resistance__records_entropy> (VC47), <doc:permanence_is_resistance__records_entropy> (VC49), <doc:permanence_is_resistance__records_entropy> (VC55), <doc:permanence_is_resistance__records_entropy> (VC58), <doc:permanence_is_resistance__records_entropy> (VC59), <doc:permanence_is_resistance__recovery_remainder> (VC46), <doc:permanence_is_resistance__recovery_remainder> (VC47), <doc:permanence_is_resistance__recovery_remainder> (VC60), <doc:permanence_is_resistance__recovery_remainder> (VC62), <doc:permanence_is_resistance__uniform_routing> (VC58), <doc:verdict_is_invariant__finite_policies> (VC52), <doc:verdict_is_invariant__finite_records> (VC44), <doc:verdict_is_invariant__finite_records> (VC46), <doc:verdict_is_invariant__finite_records> (VC47), <doc:verdict_is_invariant__local_lifts> (VC44), <doc:verdict_is_invariant__local_lifts> (VC52), <doc:verdict_is_invariant__recovery_memory> (VC46), <doc:verdict_is_invariant__recovery_memory> (VC47), <doc:verdict_is_invariant__relative_questions> (VC60), <doc:verdict_is_invariant__relative_questions> (VC62), <doc:verdict_is_invariant__routing_laws> (VC61), <doc:verdict_is_invariant__routing_laws> (VC64).
+Mentions of this page’s labels: <doc:interference_is_substitution__global_obstructions> (VC46), <doc:interference_is_substitution__global_obstructions> (VC47), <doc:interference_is_substitution__models_calibration> (VC45), <doc:learning_is_liquid> (VC46), <doc:learning_is_liquid> (VC47), <doc:learning_is_liquid__atoms_continuations> (VC46), <doc:learning_is_liquid__medium_contacts> (VC46), <doc:learning_is_liquid__medium_contacts> (VC47), <doc:learning_is_liquid__medium_contacts> (VC60), <doc:learning_is_liquid__reconstructed_sides> (VC46), <doc:learning_is_liquid__reconstructed_sides> (VC47), <doc:permanence_is_resistance__cost> (VC59), <doc:permanence_is_resistance__forced_answers> (VC47), <doc:permanence_is_resistance__forced_answers> (VC60), <doc:permanence_is_resistance__forced_answers> (VC61), <doc:permanence_is_resistance__forced_answers> (VC65), <doc:permanence_is_resistance__records_entropy> (VC44), <doc:permanence_is_resistance__records_entropy> (VC45), <doc:permanence_is_resistance__records_entropy> (VC46), <doc:permanence_is_resistance__records_entropy> (VC47), <doc:permanence_is_resistance__records_entropy> (VC49), <doc:permanence_is_resistance__records_entropy> (VC55), <doc:permanence_is_resistance__records_entropy> (VC58), <doc:permanence_is_resistance__records_entropy> (VC59), <doc:permanence_is_resistance__recovery_remainder> (VC46), <doc:permanence_is_resistance__recovery_remainder> (VC47), <doc:permanence_is_resistance__recovery_remainder> (VC60), <doc:permanence_is_resistance__recovery_remainder> (VC62), <doc:permanence_is_resistance__uniform_routing> (VC58), <doc:verdict_is_invariant> (VC44), <doc:verdict_is_invariant> (VC65), <doc:verdict_is_invariant__finite_policies> (VC52), <doc:verdict_is_invariant__finite_records> (VC44), <doc:verdict_is_invariant__finite_records> (VC46), <doc:verdict_is_invariant__finite_records> (VC47), <doc:verdict_is_invariant__local_lifts> (VC44), <doc:verdict_is_invariant__local_lifts> (VC52), <doc:verdict_is_invariant__recovery_memory> (VC46), <doc:verdict_is_invariant__recovery_memory> (VC47), <doc:verdict_is_invariant__relative_questions> (VC60), <doc:verdict_is_invariant__relative_questions> (VC62), <doc:verdict_is_invariant__routing_laws> (VC61), <doc:verdict_is_invariant__routing_laws> (VC64).

@@ -2,37 +2,67 @@
 
 A light-based ruler compares emission, propagation and reception with an internal reference. A geometry summarizes specified path relations. Applying that geometry to a new contact requires retaining what the contact can distinguish, including the response at a join. The path, clock and material models below state those obligations. A written unit fixes the meaning of a result, while an actual instrument supplies evidence that the result applies.
 
+Statements on this page:
+
+- <doc:light_is_a_ruler#LiR1>: A type can name a unit.
+- <doc:light_is_a_ruler#LiR2>: Path counts compose.
+- <doc:light_is_a_ruler#LiR3>: Positive undirected path lengths give a metric.
+- <doc:light_is_a_ruler#LiR4>: A shared law is a modeling constraint.
+- <doc:light_is_a_ruler#LiR5>: Quotient and remainder identify an integer.
+- <doc:light_is_a_ruler#LiR6>: A second reading can separate a directional pair.
+- <doc:light_is_a_ruler#LiR7>: Agreement of descriptions and realizations are different questions.
+- <doc:light_is_a_ruler#LiR8>: Ordered repetitions determine one additive real reading under a cofinal commuting comparison law.
+- <doc:light_is_a_ruler#LiR9>: Uniform path bounds preserve finite access.
+- <doc:light_is_a_ruler#LiR10>: Equal bulk optical geometry need not survive a common join.
+- <doc:light_is_a_ruler#LiR11>: A conserved two-wave flux fixes an invariant response geometry.
+- <doc:light_is_a_ruler#LiR12>: A finite resonant attachment can defeat the transfer grammar without an infinite field.
+- <doc:light_is_a_ruler#LiR13>: Boundary overlap decides the resonant refusal.
+
 ## §0. Premises
 
 Seeing Is Encoding separates a declared reading from its physical realization. Program Is Path supplies path composition. The metric below additionally requires undirected edges and positive weights. These assumptions are explicit rather than consequences of the existence of a symbolic inverse.
 
 ## §1. A unit and its realization
 
+### LiR1
+
 **LiR1 (A type can name a unit).** A shared type can keep the same unit declaration across expressions. This establishes consistency of notation. It does not make all realizations of that unit identical, supply a clock trajectory or remove the need to retain a calibration record. `StandardIsType` names a Tick and inherits a presented-law interface. `SharedDeclaredTick` compares two such interfaces, requiring their actual Tick fields and the returned unit to be one type. This checks notation, without establishing a physical standard or calibration.
 
 ## §2. Counting paths
+
+### LiR2
 
 **LiR2 (Path counts compose).** Give each edge a nonnegative integer weight. Define a path's count as the sum of its edge weights. The empty path has count zero, and concatenating compatible paths adds their counts. Both statements follow from the definition of a finite sum. This is an additive map on the path category. All paths together need not form a monoid, since arbitrary endpoints need not compose.
 
 ## §3. A graph metric
 
+### LiR3
+
 **LiR3 (Positive undirected path lengths give a metric).** In a connected undirected graph with positive integer edge weights, define d(x,y) as the minimum path count. A path exists by connectedness, and a minimum exists because its counts form a nonempty subset of the nonnegative integers. The empty path gives d(x,x)=0. Any path between distinct vertices contains a positive edge, so its count is positive. Reversal preserves count by the undirected weight assumption. Concatenating minimizing paths gives d(x,z)≤d(x,y)+d(y,z). These prove the metric axioms.
 
 Dropping those premises changes the result. Zero-weight edges can identify distinct vertices at distance zero. Directed edges need not give symmetry. Disconnected vertices have no finite distance by this definition. Optical reversibility is not supplied by an arbitrary symbolic rule's inverse, as Seeing Is Encoding SiE6 explains. A graph metric becomes a physical ranging model only after its paths and weights are related to the apparatus.
+
+### LiR4
 
 **LiR4 (A shared law is a modeling constraint).** Reusing the same edge rule gives the same symbolic rule at every application. That equality neither derives the speed of light nor establishes that physical propagation is independent of location, medium or time. Such an invariance must enter through the physical model and its evidence.
 
 ## §4. Modular readings
 
+### LiR5
+
 **LiR5 (Quotient and remainder identify an integer).** For integer length n≥0 and integer unit U>0, Euclidean division gives unique q,r with n=qU+r and 0≤r<U. The pair identifies n, whereas the remainder alone leaves lengths separated by U indistinguishable. A finite phase grid can use that remainder as its coordinate. Its relation to physical phase requires wavelength and propagation assumptions. Time-of-flight and interferometry require their own response laws and uncertainty bounds, not just these integer names.
 
 ## §5. Direction and return paths
+
+### LiR6
 
 **LiR6 (A second reading can separate a directional pair).** In the finite example, the matte reading keeps the declared total and the mirror reading keeps the two directional slots. The supplied east and west inputs have equal totals and different slots. This proves a pair-specific separation for these maps. It does not make every physical diffuse surface direction-blind or every mirror a complete directional detector.
 
 Under a supplied reciprocal return-path model, an outward path and its reverse have total count twice the outward count. The example checks the corresponding doubling relation. Recovering a physical distance from return time additionally requires the propagation and clock relations. Including an observer's node in a path makes the modeled dependence explicit, without by itself deriving how a real glint moves.
 
 ## §6. Calibration
+
+### LiR7
 
 **LiR7 (Agreement of descriptions and realizations are different questions).** Two written laws can be compared under a declared mathematical relation. That comparison supplies no measurement of how either device realizes its law. Calibration connects the device, the reference and their records with an uncertainty model. All three may belong to one closed whole. A type's stable spelling does not make the implementing material immune to change.
 
@@ -68,7 +98,7 @@ The edge labels above are multiplicative conversion factors. The same numerals u
 
 The consistent assignments correspond exactly to the common fixed forms F=⋂ Fix(Lᵢⱼ). Indeed every assignment has xᵢ=Pᵢ(xᵣ), so its edge equations require xᵣ∈F. Conversely any xᵣ∈F gives a full assignment through those tree paths. Tree-edge return maps are identities, so only the remaining edges need testing. Thus F=∅ refuses a common assignment, and a singleton F determines it in these addressed domains. An additional root preparation restriction D⊆Xᵣ leaves exactly D∩F. A different tree changes the presentation, not the assignments. Changing the coordinates at each role conjugates the root return maps and transports F bijectively, together with any such restriction. No metric or multiplication of scalar readings entered this proof.
 
-When D∩F is nonempty, a specified question about the assembled assignment has one determined answer exactly when its reading agrees for every root form in D∩F. Recovering the entire assignment is unnecessary for that answer. An empty set instead refuses the proposed description and supplies no realized answer. This is S9's factorization question applied after joint consistency.
+When D∩F is nonempty, a specified question about the assembled assignment has one determined answer exactly when its reading agrees for every root form in D∩F. Recovering the entire assignment is unnecessary for that answer. An empty set instead refuses the proposed description and supplies no realized answer. This is Space S9's factorization question applied after joint consistency.
 
 Requiring every Lᵢⱼ=id would demand closure for every root form, a stronger condition. A nonidentity loop can fix a particular symmetric form. Positive scalar multiplication in the preceding calibration has no such nontrivial fixed form, which explains why its criterion reduced to loop products of 1. A physical contact that permits several answers is a relation rather than a bijection, and needs a joint assignment satisfying those relations. The bijective criterion cannot silently replace that wider contract.
 
@@ -79,6 +109,8 @@ For VI, a proposed physical constant therefore needs its compared processes, adm
 AC7 §6d applies this cancellation to specified path probabilities. Ratios p(x,y)/p(y,x) with unit closed products permit node factors, and reversal of a closed block then preserves its path weight under the declared factorization. Its joins and initial preparation are unchanged. This can justify comparisons of internal excursions without first requiring a stationary initial law. The probabilistic factorization remains a separate premise: a loop returning to the same displayed label can retain an orientation-dependent relation to the next loop. The scalar cancellation does not establish that the label exhausts this boundary.
 
 ## §6a. What Repeated Contacts Can Calibrate
+
+### LiR8
 
 **LiR8 (Ordered repetitions determine one additive real reading under a cofinal commuting comparison law).** Let a group of order-preserving bijections act on a linearly ordered carrier, and fix one internal occurrence p. Work on its orbit O. Select an action A with A(p)>p. A uniform real reading means a nondecreasing function t:O→ℝ and increments ρ(g) satisfying t(gx)=t(x)+ρ(g) for every retained action g and every x∈O. Normalize t(p)=0 and t(Ap)=1. Faithfulness here means strict increase on O, retaining every ordered distinction. This does not demand that one time coordinate distinguish all parts of reality.
 
@@ -126,11 +158,15 @@ The object being changed must be retained. Changing an incident field in a fixed
 
 For a stationary isotropic, lossless, nondispersive ray model with positive refractive index n, optical length is ℓ(γ)=∫γ n ds₀. The reference path element ds₀ and this response law are supplied physical structure. An extremal optical path need not be the globally shortest path. [Leonhardt, §2 and §4.3](https://arxiv.org/html/physics/0605227) gives an exact geometric example: on a plane the profile n(r)=2a/[1+(r/R)²], with a,R>0, produces the round-sphere line element of radius aR under stereographic projection. The omitted pole corresponds to the plane's infinity. A finite truncated device requires its own edge conditions. This identifies a spherical optical geometry for the stated ray family, not a spatial sphere experienced identically by every material process.
 
+### LiR9
+
 **LiR9 (Uniform path bounds preserve finite access).** Keep one family of admissible paths with the same endpoints and two nonnegative path lengths ℓ₀,ℓ₁. Suppose fixed constants 0<m≤M<∞ give mℓ₀(γ)≤ℓ₁(γ)≤Mℓ₀(γ) for every path. Define dⱼ(x,y)=infγ:x→y ℓⱼ(γ), with empty infimum +∞. Taking infima gives m d₀≤d₁≤M d₀. Thus finite access and zero-distance identifications agree. Where these are metrics, their topologies and Cauchy sequences agree. The result needs no attained minimizing path. In particular, a bounded positive reweighting alone cannot put a formerly finite reachable boundary at infinite distance. It must lose a uniform bound, change the allowed paths or change the question.
 
 For the optical model this applies when m≤n₁/n₀≤M along all retained paths. It permits changed distances and curved optical geometry while preserving these access properties. The ideal fish-eye profile has no positive uniform lower bound relative to the whole Euclidean plane, so it does not contradict LiR9. A change of refractive index alone is not a derivation of a causal horizon. The direction of allowed propagation, dispersion and the participation of the apparatus need their own relations.
 
 An ideal complementary profile is n(r)=2a/[1−(r/R)²] on r<R. For the conformal plane metric, K=−n⁻²Δ log n gives Gaussian curvature −1/(aR)². Its radial optical length from the centre is aR log[(R+r)/(R−r)], which diverges at R. This is the hyperbolic disk metric. Its index is unbounded at the edge, exactly where LiR9's upper bound fails. Truncating the profile gives a finite region of that optical geometry and restores finite path length to the truncation. The mathematical profile is not evidence that a finite apparatus realizes its divergent edge.
+
+### LiR10
 
 **LiR10 (Equal bulk optical geometry need not survive a common join).** Consider a fixed frequency, normally incident plane waves and a planar interface with no surface sources. Each region is homogeneous, isotropic and lossless with positive relative permittivity εᵣ and permeability μᵣ. Define its refractive index n=√(εᵣμᵣ) and relative wave impedance z=√(μᵣ/εᵣ). For incidence from a fixed vacuum port, continuity of tangential electric and magnetic fields gives
 
@@ -160,6 +196,8 @@ The resulting research question is concrete: which relation between preparation 
 
 ## §6c. Flux, Geometry and the Boundary of a Transfer Description
 
+### LiR11
+
 **LiR11 (A conserved two-wave flux fixes an invariant response geometry).** Use flux-normalized forward and backward complex amplitudes (a,b) at the two ports of LiR10's lossless reciprocal stack. Its conserved net flux is J=|a|²−|b|². Requiring a linear transfer M to preserve J on every input gives M†DM=D, where D=diag(1,−1). Together with det M=1 this forces
 
     M = [[α, β], [conj(β), conj(α)]],     |α|²−|β|²=1.
@@ -183,6 +221,8 @@ The equality 1/|α|²=sech²η follows from (|α|+|β|)(|α|−|β|)=1. No numer
 
 The response geometry also has a retained-phase limitation. M and −M act identically on every r but have opposite transmitted amplitudes. A coherent bypass can distinguish them. `ControlledPhaseRecovery` in `Checks/Seeing.swift` already constructs the relevant same-versus-opposite branch comparison and its dark output. The disk action is sufficient for its ratio questions, while a coherent extension needs the lift to the amplitude relation. This applies IiS10 rather than adding another completeness marker.
 
+### LiR12
+
 **LiR12 (A finite resonant attachment can defeat the transfer grammar without an infinite field).** Take the one-side-site specialization of the [Fano–Anderson model, §II.1](https://arxiv.org/html/cond-mat/0505023). With unit couplings and zero onsite detunings, its stationary equations are
 
     λφₙ = φₙ₋₁ + φₙ₊₁ + δₙ₀ d,       λd = φ₀.
@@ -198,6 +238,8 @@ For λ≠0, eliminating d introduces φ₀/λ. At resonance that elimination fai
 This refines the search for a fundamental wall. First derive the refusal under stated internal relations. Then test whether another internal attachment preserves those relations and the question. Here a finite resonant attachment changes the contact grammar, and the omitted mode explains precisely why the old finite-transfer premise fails. A singular reduced coefficient alone cannot establish a universal boundary of reality.
 
 ## §6d. Which Internal Modes Constrain a Boundary?
+
+### LiR13
 
 **LiR13 (Boundary overlap decides the resonant refusal).** Replace LiR12's one side site by a finite Hermitian matrix H and a coupling vector w. The retained equations are
 

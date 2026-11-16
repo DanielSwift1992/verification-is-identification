@@ -4,6 +4,12 @@
 
 **Result.** The retained boundary must answer the declared future questions and preserve their admission. The actual source and residue must meet at each seam. One joint law can then make the receiver's entire behavior correct while the source keeps moving. A correct current answer alone supplies neither this law nor its availability.
 
+Statements on this page:
+
+- <doc:continuation_carries_the_relation#E1>: The future determines the sufficient boundary.
+- <doc:continuation_carries_the_relation#E2>: An exact late answer cannot emerge from a boundary that merged its source distinction.
+- <doc:continuation_carries_the_relation#E3>: The receiver uses the relation without a stage signal.
+
 ## A boundary is complete for a declared continuation
 
 Fix a carrier K, questions Q on K and partial deterministic contacts O. K includes the context needed by those questions and contacts. For each finite word w, let D_w contain exactly the states where every successive contact is available. Include the empty word. Define
@@ -11,6 +17,8 @@ Fix a carrier K, questions Q on K and partial deterministic contacts O. K includ
     x ≈ y  iff, for every w,
         x∈D_w ⇔ y∈D_w,
         and, when available, q(w(x))=q(w(y)) for every q∈Q.                 (E1)
+
+### E1
 
 **E1 (The future determines the sufficient boundary).** A reading e can answer every declared future question and decide every word's availability exactly when ker(e)⊆≈. The quotient K/≈ carries well-defined partial contacts and questions. This is VC15/VC47 with admission retained.
 
@@ -31,6 +39,8 @@ Let P be source prefixes, F future continuations, and J⊆P×F the actual admitt
 Suppose the late answer r is exact on every admitted pair:
 
     (p,f)∈J ⇒ r(f)=q(p).                                                (E2b)
+
+### E2
 
 **E2 (An exact late answer cannot emerge from a boundary that merged its source distinction).** Then q=d∘c on the reached image, as in Matter M72 and RN27a–b.
 
@@ -59,6 +69,8 @@ Let 𝒰 be a supplied unitary relation on SD, W=𝒰†, and H_S a self-adjoint
     H=W(H_S+B)W†,       Dom H=W Dom(H_S+B).                              (E3a)
 
 Tensor identities are suppressed. W need not commute with H_S. The required receiver behavior is independently specified: the behavior under B with the transformed joint input 𝒰ρ𝒰†.
+
+### E3
 
 **E3 (The receiver uses the relation without a stage signal).** For every ρ and t,
 

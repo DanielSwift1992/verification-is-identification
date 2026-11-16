@@ -2,6 +2,15 @@
 
 This part contains the original derivations for cost.
 
+Statements on this page:
+
+- <doc:permanence_is_resistance__cost#M24>: Physical cost requires an implementation.
+- <doc:permanence_is_resistance__cost#M25>: Conditional cost management.
+- <doc:permanence_is_resistance__cost#M25a>: A future restriction can force an order of response profiles.
+- <doc:permanence_is_resistance__cost#M26>: Novel-comparison bound.
+- <doc:permanence_is_resistance__cost#M27>: Cost transformation.
+- <doc:permanence_is_resistance__cost#M28>: Conditional finite discovery budget.
+
 Family and original section headings: <doc:permanence_is_resistance>.
 
 Section setting: <doc:permanence_is_resistance#4-Levels>.
@@ -145,4 +154,4 @@ M16 provides tower termination only under its compression premise. Formal compar
 
 Labels mentioned here: <doc:learning_is_liquid__medium_contacts#LQ13>, <doc:learning_is_liquid__coordination_blocks#LQ15>, <doc:permanence_is_resistance#M15>, <doc:permanence_is_resistance#M16>, <doc:permanence_is_resistance__forced_answers#M71>, <doc:verdict_is_invariant__finite_records#VC15>, <doc:verdict_is_invariant__recovery_memory#VC23>, <doc:verdict_is_invariant__reusable_images#VC59>.
 
-Mentions of this page’s labels: <doc:interference_is_substitution__program_mediator> (M25a), <doc:learning_is_liquid__medium_contacts> (M25a), <doc:permanence_is_resistance> (M26), <doc:permanence_is_resistance> (M27), <doc:permanence_is_resistance__forced_answers> (M25a), <doc:verdict_is_invariant__finite_records> (M25), <doc:verdict_is_invariant__recovery_memory> (M25a), <doc:verdict_is_invariant__relative_questions> (M25).
+Mentions of this page’s labels: <doc:interference_is_substitution__program_mediator> (M25a), <doc:learning_is_liquid__medium_contacts> (M25a), <doc:permanence_is_resistance> (M24), <doc:permanence_is_resistance> (M26), <doc:permanence_is_resistance> (M27), <doc:permanence_is_resistance> (M28), <doc:permanence_is_resistance__forced_answers> (M25a), <doc:verdict_is_invariant__finite_records> (M25), <doc:verdict_is_invariant__recovery_memory> (M25a), <doc:verdict_is_invariant__relative_questions> (M25).

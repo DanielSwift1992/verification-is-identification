@@ -2,6 +2,13 @@
 
 This part contains the original derivations for support memory.
 
+Statements on this page:
+
+- <doc:interference_is_substitution__support_memory#IiS40>: A robust witness against mixtures of unitary channels.
+- <doc:interference_is_substitution__support_memory#IiS41>: A sharp support certificate and an optimal two-branch acquisition.
+- <doc:interference_is_substitution__support_memory#IiS42>: Sharp support testing with arbitrary correlated memory.
+- <doc:interference_is_substitution__support_memory#IiS43>: A reusable repair construction and its continuation boundary.
+
 Family and original section headings: <doc:interference_is_substitution>.
 
 Section setting: <doc:interference_is_substitution#16o-A-finite-reading-of-whether-classical-environmental-correction-can-suffice>.
@@ -683,4 +690,4 @@ The result supplies a coherent repair cycle under declared error and resource re
 
 Labels mentioned here: <doc:interference_is_substitution__models_calibration#IiS11>, <doc:interference_is_substitution__models_calibration#IiS13>, <doc:interference_is_substitution__comparison_fluctuations#IiS32>, <doc:interference_is_substitution__support_calibration#IiS34>, <doc:interference_is_substitution__support_calibration#IiS36>, <doc:interference_is_substitution__acquired_programs#IiS37>, <doc:interference_is_substitution__acquired_programs#IiS38>, <doc:interference_is_substitution__acquired_programs#IiS39>.
 
-Mentions of this page’s labels: <doc:interference_is_substitution__acquired_programs> (IiS40), <doc:interference_is_substitution__repair_continuation> (IiS42), <doc:interference_is_substitution__repair_continuation> (IiS43).
+Mentions of this page’s labels: <doc:interference_is_substitution> (IiS40), <doc:interference_is_substitution> (IiS43), <doc:interference_is_substitution__acquired_programs> (IiS40), <doc:interference_is_substitution__repair_continuation> (IiS42), <doc:interference_is_substitution__repair_continuation> (IiS43).

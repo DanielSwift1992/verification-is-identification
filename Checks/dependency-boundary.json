@@ -2714,7 +2714,7 @@
     {
       "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/form_is_gauge.md",
       "channel": "text",
-      "line": 75,
+      "line": 102,
       "name": "showcase",
       "text": "| The record | [the curve page of the showcase](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/curve) (historical measurements), CodeForm (selected parameters) |",
       "occurrence": 1,
@@ -2724,7 +2724,7 @@
     {
       "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/form_is_gauge.md",
       "channel": "text",
-      "line": 75,
+      "line": 102,
       "name": "verification-is-identification-showcase",
       "text": "| The record | [the curve page of the showcase](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/curve) (historical measurements), CodeForm (selected parameters) |",
       "occurrence": 1,
@@ -2734,7 +2734,7 @@
     {
       "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/halt_is_ignition.md",
       "channel": "text",
-      "line": 115,
+      "line": 151,
       "name": "Organization",
       "text": "**HF6 (The examples carry particular continuation relations).** Organization's keypad describes missing and available outgoing links. `ReviewCycle.swift` separately connects each displayed year to its predecessor and committed cut, through Y2030. These are concrete declared continuations. The listed examples do not exhibit every cardinality class, and compiling their constraints does not prove an exhaustive physical fate or uniqueness among every possible successor encoding. They illustrate where a successor relation must be written.",
       "occurrence": 1,

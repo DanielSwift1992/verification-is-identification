@@ -4,11 +4,27 @@ A record inside a fixed finite family of facts can grow strictly only finitely m
 
 The keypad on this very site is the whole paper in miniature. A wrong walk ends on a page with no onward link: a dead end, and nothing follows from it. The right walk's last keypress also ends the game, and it has exactly one continuation: the unlocked card. Both are halts. They differ in what they open, and that difference is not a property of the halt's own level at all.
 
+Statements on this page:
+
+- <doc:halt_is_ignition#HF1>: Strict bounded progress limits nonterminal steps.
+- <doc:halt_is_ignition#HF2>: An infinite deterministic finite-state run is eventually periodic.
+- <doc:halt_is_ignition#HF7>: An exact finite image that reads the target supplies the horizon.
+- <doc:halt_is_ignition#HF8>: Three sufficient forms.
+- <doc:halt_is_ignition#HF9>: A target predecessor separates the forms.
+- <doc:halt_is_ignition#HF10>: Exact criterion.
+- <doc:halt_is_ignition#HF11>: When re-admission is excluded.
+- <doc:halt_is_ignition#HF3>: Each continuation claim needs its own premise.
+- <doc:halt_is_ignition#HF4>: Terminality is relative to a transition relation.
+- <doc:halt_is_ignition#HF5>: A unique admitted successor can be identified under its own contract.
+- <doc:halt_is_ignition#HF6>: The examples carry particular continuation relations.
+
 ## §0. Derivation
 
 The finite progress argument requires strict growth on every nonterminal step. The recurrence argument requires an infinite run of a deterministic finite-state law. A successor game requires its own admitted construction. These premises are distinct. Liquid LQ9–LQ11 and Matter M8 already separate retention, acquisition and handoff.
 
 ## §1. Bounded Progress
+
+### HF1
 
 **HF1 (Strict bounded progress limits nonterminal steps).** Suppose G ranges over subsets of a fixed finite fact family F, and every nonterminal step strictly enlarges G. Then there are at most |F|−|G₀| such steps. If the process continues whenever nonterminal, it must terminate by that bound. Repeated comparison can add no fact, so retention alone does not supply the strict-progress premise (LQ3, LQ9).
 
@@ -17,6 +33,8 @@ The finite progress argument requires strict growth on every nonterminal step. T
 The remaining count |F|−|G| is a nonnegative strictly decreasing variant under these premises. A retaining update that adds nothing leaves it unchanged.
 
 ## §2. Recurrence of an Infinite Run
+
+### HF2
 
 **HF2 (An infinite deterministic finite-state run is eventually periodic).** An infinite run in a finite state space repeats a state. Determinism then repeats the segment between its occurrences. The premise is an infinite run, not absence of a permanent record. A partial transition 0→1 with no successor from 1 terminates without such a record. A finite retaining process with an unchanged cache can instead repeat forever. Neither retention nor its absence alone decides termination.
 
@@ -33,7 +51,11 @@ HF2 settles the fate of an infinite run when the complete state space is finite.
 2. Evidence from finite prefixes, without a proved transfer, certifies those prefixes. A finite proof of a transfer can certify the whole future. Three sufficient forms of such a proof are known: an invariant set without periodic points, an independent barrier, and a category argument over the success sets (HF8). The list makes no claim of completeness. The category form certifies that starts without success exist and form a residual set. It does not certify the failure of a start given in advance.
 3. A fully invariant set through the start contains its actual predecessor. When that predecessor is a target, conserved readings cannot exclude the target, and a barrier must exclude it. The start then belongs to the barrier's entry cut and never returns exactly. When an invariant measure is finite on a measurable barrier, the barrier's entry cut is null (HF9).
 
+### HF7
+
 **HF7 (An exact finite image that reads the target supplies the horizon).** Let K be the declared domain of complete configurations, including the controller, its memory and the question's context. Let E map K onto a finite set Y, let one autonomous law U satisfy ET=UE on K, and let the target test be a function of E. An infinite deterministic run in a finite space is eventually periodic (Halt HF2). An exact finite image of a bijection is a permutation (VC20). When the target is an actual predecessor and the start is outside it, a positive forward hit then occurs within |Y|−1 steps (VC20b). If the start already lies in the target, its image returns to that target within at most |Y| steps. For termination, a complete finite control configuration bounds every guaranteed procedure by its size under the conditions of VC93 on legal commands and dead ends. An image that does not read the target supplies no horizon for it. The shift k↦k+1 on the integers has an exact one-point image, and that image leaves the test k=0 undecided.
+
+### HF8
 
 **HF8 (Three sufficient forms).** A finite rule can name an infinite extension (Existence EF1). A bound for each candidate does not supply one bound for all candidates (EF6). Failure certified separately on every finite prefix leaves the unbounded claim open (history FPR86). Let R be a bijection on the actual domain, and let success at step n be the exact equality R^n x₀ = Jx₀ with R(Jx₀) = x₀. Success at some n is then exact periodicity of x₀ (history SL163a, TI53e). Injectivity belongs to this equivalence. Without injectivity, with R(x₀) = x₀ = R(Jx₀) and x₀ ≠ Jx₀, the start is periodic and never visits Jx₀. Each of the following forms certifies that success never occurs.
 - **(a) Invariant set without periodic points.** A closed Γ through x₀ with R(Γ)=Γ and no periodic point. An invariant curve with irrational rotation is an example (history B11, IV155).
@@ -41,6 +63,8 @@ HF2 settles the fate of an infinite run when the complete state space is finite.
 - **(c) Category.** Let the parameter range over a nonempty space I with the category property: a countable union of closed sets with empty interior has empty interior. Let the runs be continuous. Let Z_n be the closed set of parameters that succeed at step n. If every Z_n has empty interior, the parameters that never succeed form a dense G_δ set (history BC191, ZB81). The obligation is the empty interior of each Z_n on the same domain. It needs no common radius or gap across n. The conclusion is existence and residuality, which answers the question ∃x∀n without selecting a particular x.
 
 **The category form belongs to a dichotomy** (history ZB81a). Let M be a nonempty space with the category property and relatively closed success sets S_n. Exactly one of two cases occurs. Either some S_n has a nonempty interior, so one fixed step succeeds throughout an open piece, or the union of the S_n is meagre, and a residual set of starts succeeds at no return under any stopping rule. The boundary of each S_n is nowhere dense, so adaptive stopping adds only a meagre set to the pieces with a fixed step. The second case is form (c). The first case leaves room for starts that never succeed outside the piece. On an open piece U inside S_N with no early return of memory carrying a wrong field, the rule "stop at the first literal return of memory" is correct, because that return comes no later than step N (history PC99c, MR95b). The rule needs a detector of the return and an end of contact. These form a separate executive link (history PC100a). A piece chosen after the proof is not thereby acquired from the original unknown class.
+
+### HF9
 
 **HF9 (A target predecessor separates the forms).** Let T be a bijection on K with y=T⁻¹x in the target set G.
 - Every reading C with C∘T=C gives C(y)=C(x), so no conserved reading excludes G (VC20a). A fully invariant set through x contains y (SL163a, correction B1). Form (a) keeps the target in Γ and excludes periodicity.
@@ -63,6 +87,8 @@ The barrier certifies the absence of a return. A record that a participant can r
 
 **Setting.** Let P be an injective step on a set K and A⊆K the admitted starts. Each start x has a set of success times among k≥1, and n(x) is the least of them, or ∞. A terminal set T⊆K stops x at τ_T(x), the least k≥1 with P^k x in T. T is correct on A when τ_T(x)=n(x)<∞ for every x in A. Correctness here means stopping at the first success. A weaker requirement, stopping at some success, also appears in the history (SS92a). The two are compared after HF11.
 
+### HF10
+
 **HF10 (Exact criterion).** A correct terminal set exists exactly when both conditions are true:
 1. Every start has a first success, n(x)<∞.
 2. Success times compose along re-admission: if P^j x lies in A with 1≤j<n(x), then n(x)=j+n(P^j x). The terminal times of one test compose in the same way (history SS92b).
@@ -76,6 +102,8 @@ The barrier certifies the absence of a return. A record that a participant can r
 
 The first point of T on each run is therefore its first success. ∎
 
+### HF11
+
 **HF11 (When re-admission is excluded).** In the field model of the research history the step is a bijection with an autonomous factor (u,m,I) that conserves I, and J is injective. Success of a start means the field Ju₀ of that same start together with the literal memory m₀, and every admitted start carries m₀. Suppose a re-admission x′=P^j x with j<n(x) satisfied condition 2. The runs of x and x′ would then share their first success state, which carries both Ju₀ and Ju_j. Injectivity of J gives u_j=u₀, and the factor would be periodic with period j. The success of x at n(x) would then reappear at the step i=n(x) mod j. For i>0 this step precedes j, and for i=0 the step j itself is a success, because then u₀=Ju₀. Both contradict j<n(x). Condition 2 therefore excludes every re-admission before the first success, and HF10 reduces to "every start succeeds and no start is admitted again before its first success" (history AD97a, AD97.1). For the full ready layer this is MR95b: the rule "stop at the first literal return of memory" is correct exactly when every first return is a success.
 
 **First success and some success.** In the field model a test that stops every run at some success exists exactly when one stopping at the first success exists, because AD97a builds the set of first successes. A correct test in the weaker sense need not stop at the first success: a returning counter can skip an early success (history MR95c). The §12 contract asks for a success, so HF10 adds no ban on skipping to it.
@@ -83,6 +111,8 @@ The first point of T on each run is therefore its first success. ∎
 **Scope of §2b.** HF10 certifies the existence of a terminal set. It does not supply a detector for T, an end of contact, or an observation that prepares T (history PC100a). The test may need parts of the state that a given executor cannot read. A rule blind to part of the state sees only the projection of the admission (history AD97g).
 
 ## §3. Retention and Reach Do Not Determine Fate
+
+### HF3
 
 **HF3 (Each continuation claim needs its own premise).**
 
@@ -96,9 +126,13 @@ An unbounded space can contain a stopped or repeating process that never visits 
 
 ## §4. A Terminal Is Read by Two Relations
 
+### HF4
+
 **HF4 (Terminality is relative to a transition relation).** A form σ can satisfy Moves(σ)=∅ while a separately declared successor relation admits (σ,τ). These are different predicates on the same form. Their decidability requires the corresponding finite or otherwise decidable descriptions. The gate and its context can also change internally, as LQ12–LQ14 show. No immutability of every gate is required for a fixed relation to have a determinate answer.
 
 ## §5. Succession Is a Game One Level Up
+
+### HF5
 
 **HF5 (A unique admitted successor can be identified under its own contract).** Specify a finite candidate family of successor games and a terminating relation deciding which may use σ as their board. Let Ignites(σ) be its survivors. Finite σ alone does not bound all possible encodings over it. Within the declared family, a terminal is one of three:
 
@@ -111,6 +145,8 @@ An unbounded space can contain a stopped or repeating process that never visits 
 The successor relation can be carried by internal forms and changed through their actual constructions. Naming another level does not introduce an outside designer or make the successor available. A static singleton proof identifies a declared possibility. Its realization needs a binding to the continuing process.
 
 ## §6. Declared Continuations in the Repository
+
+### HF6
 
 **HF6 (The examples carry particular continuation relations).** Organization's keypad describes missing and available outgoing links. `ReviewCycle.swift` separately connects each displayed year to its predecessor and committed cut, through Y2030. These are concrete declared continuations. The listed examples do not exhibit every cardinality class, and compiling their constraints does not prove an exhaustive physical fate or uniqueness among every possible successor encoding. They illustrate where a successor relation must be written.
 

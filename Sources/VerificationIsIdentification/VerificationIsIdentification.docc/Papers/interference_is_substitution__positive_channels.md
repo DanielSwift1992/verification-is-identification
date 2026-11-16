@@ -2,6 +2,15 @@
 
 This part contains the original derivations for positive channels.
 
+Statements on this page:
+
+- <doc:interference_is_substitution__positive_channels#IiS14>: Ordinary positivity does not support the probe criterion.
+- <doc:interference_is_substitution__positive_channels#IiS15>: A Gram construction supplies a positive matrix.
+- <doc:interference_is_substitution__positive_channels#IiS16>: The same operator source normalizes, records and reduces.
+- <doc:interference_is_substitution__positive_channels#IiS17>: Choi identification and admissibility.
+- <doc:interference_is_substitution__positive_channels#IiS18>: Recovering a question through an admissible measurement.
+- <doc:interference_is_substitution__positive_channels#IiS19>: Finite-dimensional closure of future effects.
+
 Family and original section headings: <doc:interference_is_substitution>.
 
 Section setting: <doc:interference_is_substitution#7-Why-the-joint-context-constrains-a-local-rule>.
@@ -253,4 +262,4 @@ This locates a precise constraint on compression. A quotient of known state desc
 
 Labels mentioned here: <doc:interference_is_substitution__models_calibration#IiS10>, <doc:interference_is_substitution__models_calibration#IiS11>, <doc:interference_is_substitution__models_calibration#IiS12>, <doc:permanence_is_resistance__records_entropy#M32>, <doc:permanence_is_resistance__retention#M64>, <doc:verdict_is_invariant__finite_records#VC15>, <doc:verdict_is_invariant__discovery_acquisition#VC38>.
 
-Mentions of this page’s labels: <doc:interference_is_substitution__comparison_fluctuations> (IiS15), <doc:interference_is_substitution__global_obstructions> (IiS14), <doc:interference_is_substitution__global_obstructions> (IiS17), <doc:interference_is_substitution__models_calibration> (IiS16), <doc:interference_is_substitution__models_calibration> (IiS17), <doc:interference_is_substitution__models_calibration> (IiS18), <doc:interference_is_substitution__program_mediator> (IiS17), <doc:learning_is_liquid__atoms_continuations> (IiS19), <doc:learning_is_liquid__medium_contacts> (IiS15), <doc:permanence_is_resistance__forced_answers> (IiS18), <doc:permanence_is_resistance__forced_answers> (IiS19), <doc:permanence_is_resistance__records_entropy> (IiS14), <doc:permanence_is_resistance__records_entropy> (IiS15), <doc:permanence_is_resistance__records_entropy> (IiS16), <doc:permanence_is_resistance__records_entropy> (IiS19), <doc:permanence_is_resistance__recovery_remainder> (IiS14), <doc:permanence_is_resistance__uniform_routing> (IiS18), <doc:permanence_is_resistance__uniform_routing> (IiS19), <doc:verdict_is_invariant__discovery_acquisition> (IiS19).
+Mentions of this page’s labels: <doc:interference_is_substitution> (IiS14), <doc:interference_is_substitution> (IiS19), <doc:interference_is_substitution__comparison_fluctuations> (IiS15), <doc:interference_is_substitution__global_obstructions> (IiS14), <doc:interference_is_substitution__global_obstructions> (IiS17), <doc:interference_is_substitution__models_calibration> (IiS16), <doc:interference_is_substitution__models_calibration> (IiS17), <doc:interference_is_substitution__models_calibration> (IiS18), <doc:interference_is_substitution__program_mediator> (IiS17), <doc:learning_is_liquid__atoms_continuations> (IiS19), <doc:learning_is_liquid__medium_contacts> (IiS15), <doc:permanence_is_resistance__forced_answers> (IiS18), <doc:permanence_is_resistance__forced_answers> (IiS19), <doc:permanence_is_resistance__records_entropy> (IiS14), <doc:permanence_is_resistance__records_entropy> (IiS15), <doc:permanence_is_resistance__records_entropy> (IiS16), <doc:permanence_is_resistance__records_entropy> (IiS19), <doc:permanence_is_resistance__recovery_remainder> (IiS14), <doc:permanence_is_resistance__uniform_routing> (IiS18), <doc:permanence_is_resistance__uniform_routing> (IiS19), <doc:verdict_is_invariant__discovery_acquisition> (IiS19).

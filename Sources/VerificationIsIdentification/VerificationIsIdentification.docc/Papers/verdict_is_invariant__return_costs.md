@@ -2,6 +2,13 @@
 
 This part contains the original derivations for return costs.
 
+Statements on this page:
+
+- <doc:verdict_is_invariant__return_costs#VC100n>: Exact residue and the price of stronger return contracts.
+- <doc:verdict_is_invariant__return_costs#VC100o>: Ten primitive contacts suffice and are necessary for full return.
+- <doc:verdict_is_invariant__return_costs#VC100p>: A complete basis preserving all twelve optimal costs.
+- <doc:verdict_is_invariant__return_costs#VC100q>: Four local replacements give a unique optimal boundary word.
+
 Family and original section headings: <doc:verdict_is_invariant>.
 
 Section setting: <doc:verdict_is_invariant#6zzd-Available-interventions-constrain-the-hidden-carrier>.
@@ -205,3 +212,5 @@ This closes the normalization problem for the supplied interface. Its next appli
 ## Cross-page mentions
 
 Labels mentioned here: <doc:verdict_is_invariant__action_interfaces#VC100k>, <doc:verdict_is_invariant__action_interfaces#VC100m>.
+
+Mentions of this page’s labels: <doc:verdict_is_invariant> (VC100n), <doc:verdict_is_invariant> (VC100q).

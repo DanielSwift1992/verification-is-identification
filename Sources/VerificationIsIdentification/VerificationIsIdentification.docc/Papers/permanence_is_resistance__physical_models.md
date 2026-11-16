@@ -2,6 +2,11 @@
 
 This part contains the original derivations for physical models.
 
+Statements on this page:
+
+- <doc:permanence_is_resistance__physical_models#M68>: Which edge readings remove every alternative.
+- <doc:permanence_is_resistance__physical_models#M69>: Finite witnesses without assuming a finite whole.
+
 Family and original section headings: <doc:permanence_is_resistance>.
 
 Section setting: <doc:permanence_is_resistance#5-Candidate-Physical-Correspondences>.
@@ -248,4 +253,4 @@ The supplied [Comparator configuration](https://github.com/openai/NavierStokesAn
 
 Labels mentioned here: <doc:interference_is_substitution__models_calibration#IiS10>, <doc:interference_is_substitution__models_calibration#IiS12>, <doc:permanence_is_resistance__records_entropy#M32>, <doc:permanence_is_resistance__retention#M63>, <doc:verdict_is_invariant__relative_questions#VC84>.
 
-Mentions of this page’s labels: <doc:verdict_is_invariant__finite_records> (M68).
+Mentions of this page’s labels: <doc:permanence_is_resistance> (M68), <doc:permanence_is_resistance> (M69), <doc:verdict_is_invariant__finite_records> (M68).

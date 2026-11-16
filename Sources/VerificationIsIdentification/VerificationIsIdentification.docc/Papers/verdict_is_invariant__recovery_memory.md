@@ -2,6 +2,21 @@
 
 This part contains the original derivations for recovery memory.
 
+Statements on this page:
+
+- <doc:verdict_is_invariant__recovery_memory#VC20>: An exact finite autonomous image is reversible.
+- <doc:verdict_is_invariant__recovery_memory#VC20a>: A target predecessor passes every conserved reading.
+- <doc:verdict_is_invariant__recovery_memory#VC20b>: A finite exact image of a predecessor target gives a bounded forward hit.
+- <doc:verdict_is_invariant__recovery_memory#VC21>: Observation windows can complete a state.
+- <doc:verdict_is_invariant__recovery_memory#VC22>: A ready memory is part of the premise.
+- <doc:verdict_is_invariant__recovery_memory#VC23>: Compatible local records need not admit a common state.
+- <doc:verdict_is_invariant__recovery_memory#VC23a>: A binary Boolean constraint medium cannot express ternary parity.
+- <doc:verdict_is_invariant__recovery_memory#VC23b>: Existence and internal acquisition impose different witness capacities.
+- <doc:verdict_is_invariant__recovery_memory#VC23c>: A finite contact language determines its least forced admission.
+- <doc:verdict_is_invariant__recovery_memory#VC23d>: Parity and binary contacts jointly express every finite Boolean relation.
+- <doc:verdict_is_invariant__recovery_memory#VC23e>: Exact admission, refusal and uncertainty under a language contract.
+- <doc:verdict_is_invariant__recovery_memory#VC24>: The residual needed for prediction.
+
 Family and original section headings: <doc:verdict_is_invariant>.
 
 Section setting: <doc:verdict_is_invariant#6g-Reversibility-memory-and-a-common-whole>.
@@ -360,4 +375,4 @@ This suggests investigating objects as families of distinctions whose reduced up
 
 Labels mentioned here: <doc:learning_is_liquid__coordination_blocks#LQ15>, <doc:permanence_is_resistance__cost#M25a>, <doc:permanence_is_resistance__records_entropy#M29>, <doc:permanence_is_resistance__records_entropy#M32>, <doc:permanence_is_resistance__records_entropy#M33>, <doc:permanence_is_resistance__records_entropy#M34>, <doc:permanence_is_resistance__records_entropy#M35>, <doc:permanence_is_resistance__retention#M55>, <doc:permanence_is_resistance__forced_answers#M71>, <doc:verdict_is_invariant__finite_records#VC10>, <doc:verdict_is_invariant__finite_records#VC13>, <doc:verdict_is_invariant__finite_records#VC15>, <doc:verdict_is_invariant__finite_records#VC16>, <doc:verdict_is_invariant__reusable_images#VC46>, <doc:verdict_is_invariant__reusable_images#VC47>, <doc:verdict_is_invariant__finite_records#VC5>, <doc:verdict_is_invariant__finite_records#VC9>, <doc:verdict_is_invariant#VI1a>.
 
-Mentions of this page’s labels: <doc:learning_is_liquid> (VC23), <doc:learning_is_liquid> (VC23b), <doc:learning_is_liquid__coordination_blocks> (VC23a), <doc:learning_is_liquid__medium_contacts> (VC23a), <doc:learning_is_liquid__medium_contacts> (VC23b), <doc:learning_is_liquid__reconstructed_sides> (VC23a), <doc:permanence_is_resistance__contact_rigidity> (VC23a), <doc:permanence_is_resistance__cost> (VC23), <doc:permanence_is_resistance__forced_answers> (VC23), <doc:permanence_is_resistance__forced_answers> (VC23a), <doc:permanence_is_resistance__records_entropy> (VC20), <doc:permanence_is_resistance__records_entropy> (VC21), <doc:permanence_is_resistance__records_entropy> (VC23), <doc:permanence_is_resistance__recovery_remainder> (VC23b), <doc:verdict_is_invariant> (VC23a), <doc:verdict_is_invariant__discovery_acquisition> (VC20), <doc:verdict_is_invariant__discovery_acquisition> (VC24), <doc:verdict_is_invariant__finite_policies> (VC21), <doc:verdict_is_invariant__finite_policies> (VC23), <doc:verdict_is_invariant__finite_records> (VC21), <doc:verdict_is_invariant__finite_records> (VC23).
+Mentions of this page’s labels: <doc:learning_is_liquid> (VC23), <doc:learning_is_liquid> (VC23b), <doc:learning_is_liquid__coordination_blocks> (VC23a), <doc:learning_is_liquid__medium_contacts> (VC23a), <doc:learning_is_liquid__medium_contacts> (VC23b), <doc:learning_is_liquid__reconstructed_sides> (VC23a), <doc:permanence_is_resistance__contact_rigidity> (VC23a), <doc:permanence_is_resistance__cost> (VC23), <doc:permanence_is_resistance__forced_answers> (VC23), <doc:permanence_is_resistance__forced_answers> (VC23a), <doc:permanence_is_resistance__records_entropy> (VC20), <doc:permanence_is_resistance__records_entropy> (VC21), <doc:permanence_is_resistance__records_entropy> (VC23), <doc:permanence_is_resistance__recovery_remainder> (VC23b), <doc:verdict_is_invariant> (VC20), <doc:verdict_is_invariant> (VC23a), <doc:verdict_is_invariant> (VC24), <doc:verdict_is_invariant__discovery_acquisition> (VC20), <doc:verdict_is_invariant__discovery_acquisition> (VC24), <doc:verdict_is_invariant__finite_policies> (VC21), <doc:verdict_is_invariant__finite_policies> (VC23), <doc:verdict_is_invariant__finite_records> (VC21), <doc:verdict_is_invariant__finite_records> (VC23).

@@ -2,6 +2,14 @@
 
 This part contains the original derivations for joint laws.
 
+Statements on this page:
+
+- <doc:permanence_is_resistance__joint_laws#M64ai>: Uniform reversible movement can use the request without learning the values.
+- <doc:permanence_is_resistance__joint_laws#M64aj>: One shared ternary carrier forces the uniform binary rule.
+- <doc:permanence_is_resistance__joint_laws#M64ak>: The common law is forced, not assigned to both channels.
+- <doc:permanence_is_resistance__joint_laws#M64al>: One missing joint possibility is the restrictive relation.
+- <doc:permanence_is_resistance__joint_laws#M64am>: Exact acquisition using only the profiles needed by the proof.
+
 Family and original section headings: <doc:permanence_is_resistance>.
 
 Section setting: <doc:permanence_is_resistance#4g-Which-future-must-carry-a-real-distinction>.
@@ -142,4 +150,4 @@ If arbitrary ternary preparations are independently available, the same signatur
 
 Labels mentioned here: <doc:permanence_is_resistance__reusable_requests#M64ah>, <doc:permanence_is_resistance__uniform_routing#M65>.
 
-Mentions of this page’s labels: <doc:learning_is_liquid__reconstructed_sides> (M64ak), <doc:permanence_is_resistance__reacquisition_residue> (M64ai), <doc:permanence_is_resistance__reacquisition_residue> (M64ak), <doc:permanence_is_resistance__reacquisition_residue> (M64al), <doc:permanence_is_resistance__reacquisition_residue> (M64am).
+Mentions of this page’s labels: <doc:learning_is_liquid__reconstructed_sides> (M64ak), <doc:permanence_is_resistance> (M64ai), <doc:permanence_is_resistance> (M64am), <doc:permanence_is_resistance__reacquisition_residue> (M64ai), <doc:permanence_is_resistance__reacquisition_residue> (M64ak), <doc:permanence_is_resistance__reacquisition_residue> (M64al), <doc:permanence_is_resistance__reacquisition_residue> (M64am).

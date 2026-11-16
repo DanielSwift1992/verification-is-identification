@@ -4,6 +4,29 @@ Seam Is Game judges a pair of declarations at the addresses the two sides speak 
 
 The claim is one construction, two laws, and one impossibility. The construction: a reach written on both sides makes alignment a finite decidable game, and at an exact birth the admissible alignments form a torsor under the automorphism group of the carried content, so any ambiguity at birth is pure symmetry, and where more than one candidate survives in that symmetry orbit, choosing one equivariantly needs the additional relation identified by VI1a. The court's law: judgment runs on the admissible class. A verdict does not require knowing which correspondence holds; it requires the verdict to be invariant across every correspondence the records permit, and where it is not invariant the state is open, naming a missing distinguishing premise. The act's law: an act records the distinctions it performs, and only those. The impossibility: provenance is not a function of state history in the counterfamily of §5. A state record replays compatibility there, while origin needs a distinguishing event relation. Identification is sufficient for judgment. It is necessary only when the requested answer distinguishes the remaining correspondences. Otherwise invariance can suffice. One prohibition does the work throughout: a distinction the records have not made is never filled in; the court first asks whether the asked answer depends on it at all.
 
+Statements on this page:
+
+- <doc:verdict_is_invariant#VI1>: Torsor.
+- <doc:verdict_is_invariant#VI1a>: A determined selection requires enough internal distinction.
+- <doc:verdict_is_invariant#VI2>: Alignment court, then relation court.
+- <doc:verdict_is_invariant#VI3>: Replay decomposition, conditional.
+
+Parts in reading order:
+
+- <doc:verdict_is_invariant__finite_records>: VC1–VC19, 19 statements.
+- <doc:verdict_is_invariant__recovery_memory>: VC20–VC24, 12 statements.
+- <doc:verdict_is_invariant__discovery_acquisition>: VC25–VC43, 20 statements.
+- <doc:verdict_is_invariant__reusable_images>: VC44–VC65, 22 statements.
+- <doc:verdict_is_invariant__routing_laws>: VC66–VC79, 14 statements.
+- <doc:verdict_is_invariant__relative_questions>: VC80–VC89, 10 statements.
+- <doc:verdict_is_invariant__finite_policies>: VC90–VC94a, 6 statements.
+- <doc:verdict_is_invariant__local_lifts>: VC95–VC100, 8 statements.
+- <doc:verdict_is_invariant__four_phase_catalogue>: VC100a–VC100e, 5 statements.
+- <doc:verdict_is_invariant__action_interfaces>: VC100f–VC100m, 8 statements.
+- <doc:verdict_is_invariant__return_costs>: VC100n–VC100q, 4 statements.
+- <doc:verdict_is_invariant__calibration_residence>: VC101–VC106, 10 statements.
+- <doc:verdict_is_invariant__bounded_calibration>: VC107–VC109, 4 statements.
+
 ## §0. Derivation
 
 No new postulate. From Existence Is Finite: Part III ("A space is not a process": the medium holds records, never acts), Theorem 3 (decidable COMPARE on Σ). From V=I: §5.4 (the semantics-preserving premise is external), §5.13 and §5.15 (the recursion licences Seam Is Game used, reused one level down), §5.20 (revelation, not creation), §5.21 (the admission rule for comparison events). From Seam Is Game: SG1 (the finite cardinality classification), SG2 (a revision-independent answer is constant over the admitted pairs), consequences (a) (acquisition and answer resolution differ) and (c) (a waiver does not prove semantic agreement). From Agreement Is Comparison: Definition 2 (the shared reach, assumed given: the assumption this paper grounds), AC4 (the edit model's independence), AC5 (local evidence suffices on constant answer fibers), AC6 (actual construction can establish output relations). From Merge Is Commutation: Definition 1 (the declared support must carry the actual reading). From Distance Is Cost: G2 (W is a metric). From Record Is System: SW1 (every act is a write or a reading: an act writes its result, never itself), SW3 (a reading cannot drift), SW4 (a test estimates by sample, with no word off-sample), §8 (the collapse is per position). Declared imports, standard and named where used: torsors of finite group actions; the tree matching complexity results of §6 (Aho, Hopcroft, and Ullman, 1974; Zhang and Shasha, 1989; Zhang, Statman, and Shasha, 1992).
@@ -495,7 +518,7 @@ Kin outside the corpus, imported as nothing. The relation court's universal quan
 
 ## Cross-page mentions
 
-Labels mentioned here: <doc:learning_is_liquid__medium_contacts#LQ13>, <doc:permanence_is_resistance__retention#M58>, <doc:permanence_is_resistance__retention#M59>, <doc:permanence_is_resistance__retention#M60>, <doc:verdict_is_invariant__finite_records#VC1>, <doc:verdict_is_invariant__finite_records#VC12>, <doc:verdict_is_invariant__finite_records#VC15>, <doc:verdict_is_invariant__recovery_memory#VC23a>, <doc:verdict_is_invariant__discovery_acquisition#VC42>, <doc:verdict_is_invariant__discovery_acquisition#VC43>, <doc:verdict_is_invariant__finite_records#VC9>.
+Labels mentioned here: <doc:learning_is_liquid__medium_contacts#LQ13>, <doc:permanence_is_resistance__retention#M58>, <doc:permanence_is_resistance__retention#M59>, <doc:permanence_is_resistance__retention#M60>, <doc:verdict_is_invariant__finite_records#VC1>, <doc:verdict_is_invariant__local_lifts#VC100>, <doc:verdict_is_invariant__four_phase_catalogue#VC100a>, <doc:verdict_is_invariant__four_phase_catalogue#VC100e>, <doc:verdict_is_invariant__action_interfaces#VC100f>, <doc:verdict_is_invariant__action_interfaces#VC100m>, <doc:verdict_is_invariant__return_costs#VC100n>, <doc:verdict_is_invariant__return_costs#VC100q>, <doc:verdict_is_invariant__calibration_residence#VC101>, <doc:verdict_is_invariant__calibration_residence#VC106>, <doc:verdict_is_invariant__bounded_calibration#VC107>, <doc:verdict_is_invariant__bounded_calibration#VC109>, <doc:verdict_is_invariant__finite_records#VC12>, <doc:verdict_is_invariant__finite_records#VC15>, <doc:verdict_is_invariant__finite_records#VC19>, <doc:verdict_is_invariant__recovery_memory#VC20>, <doc:verdict_is_invariant__recovery_memory#VC23a>, <doc:verdict_is_invariant__recovery_memory#VC24>, <doc:verdict_is_invariant__discovery_acquisition#VC25>, <doc:verdict_is_invariant__discovery_acquisition#VC42>, <doc:verdict_is_invariant__discovery_acquisition#VC43>, <doc:verdict_is_invariant__reusable_images#VC44>, <doc:verdict_is_invariant__reusable_images#VC65>, <doc:verdict_is_invariant__routing_laws#VC66>, <doc:verdict_is_invariant__routing_laws#VC79>, <doc:verdict_is_invariant__relative_questions#VC80>, <doc:verdict_is_invariant__relative_questions#VC89>, <doc:verdict_is_invariant__finite_records#VC9>, <doc:verdict_is_invariant__finite_policies#VC90>, <doc:verdict_is_invariant__finite_policies#VC94a>, <doc:verdict_is_invariant__local_lifts#VC95>.
 
 Mentions of this page’s labels: <doc:interference_is_substitution__models_calibration> (VI1), <doc:learning_is_liquid> (VI1), <doc:learning_is_liquid> (VI1a), <doc:learning_is_liquid__atoms_continuations> (VI1), <doc:learning_is_liquid__medium_contacts> (VI1), <doc:learning_is_liquid__medium_contacts> (VI1a), <doc:learning_is_liquid__reconstructed_sides> (VI1), <doc:learning_is_liquid__reconstructed_sides> (VI1a), <doc:permanence_is_resistance__forced_answers> (VI1a), <doc:permanence_is_resistance__forced_answers> (VI2), <doc:permanence_is_resistance__records_entropy> (VI1), <doc:verdict_is_invariant__discovery_acquisition> (VI2), <doc:verdict_is_invariant__finite_records> (VI1), <doc:verdict_is_invariant__recovery_memory> (VI1a).
 

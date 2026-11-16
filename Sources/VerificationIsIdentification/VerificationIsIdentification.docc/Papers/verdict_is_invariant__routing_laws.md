@@ -2,6 +2,23 @@
 
 This part contains the original derivations for routing laws.
 
+Statements on this page:
+
+- <doc:verdict_is_invariant__routing_laws#VC66>: Side exchange preserves the common-answer interface.
+- <doc:verdict_is_invariant__routing_laws#VC67>: One prepared exchange refines the required initial image from three classes to four.
+- <doc:verdict_is_invariant__routing_laws#VC68>: The four working coordinates close under every finite word in E and S.
+- <doc:verdict_is_invariant__routing_laws#VC69>: Φ is the coarsest exact image for all common-answer continuations on X.
+- <doc:verdict_is_invariant__routing_laws#VC70>: The prepared closure has fourteen configurations and thirteen common-behavior classes.
+- <doc:verdict_is_invariant__routing_laws#VC71>: Sufficient retained evidence determines every common continuation, with an exact component-reading boundary.
+- <doc:verdict_is_invariant__routing_laws#VC72>: Changing the interaction boundary can force a finer object without changing the question.
+- <doc:verdict_is_invariant__routing_laws#VC73>: One prepared response determines the E/K law, conditionally on the family.
+- <doc:verdict_is_invariant__routing_laws#VC74>: Two complete binary probe images determine routing, and one cannot.
+- <doc:verdict_is_invariant__routing_laws#VC75>: Acquired routing and a read new input determine the routed output.
+- <doc:verdict_is_invariant__routing_laws#VC76>: Two prepared resident records suffice for acquired routing and reuse.
+- <doc:verdict_is_invariant__routing_laws#VC77>: Acquired law evidence transports across a certified mechanism change.
+- <doc:verdict_is_invariant__routing_laws#VC78>: The exact coordinate-reading demand is the selected-address set.
+- <doc:verdict_is_invariant__routing_laws#VC79>: Probe facts identify the composite routing without necessarily identifying its components.
+
 Family and original section headings: <doc:verdict_is_invariant>.
 
 Section setting: <doc:verdict_is_invariant#6ze-Transport-an-acquired-boundary-through-a-source-change>.
@@ -12,7 +29,7 @@ An acquired agreement concerns addressed applications on its actual source. Chan
 
 ### VC66
 
-**Claim VC66 (side exchange preserves the common-answer interface).** Let S exchange the two actual source components. Then A(Sw)=s(Aw), where s(a,b)=(b,a), and c(s(a,b))=c(a,b) on the binary carrier. Consequently the three-class image preserves the common-answer value and its domain through every finite repetition of S.
+**VC66 (side exchange preserves the common-answer interface).** Let S exchange the two actual source components. Then A(Sw)=s(Aw), where s(a,b)=(b,a), and c(s(a,b))=c(a,b) on the binary carrier. Consequently the three-class image preserves the common-answer value and its domain through every finite repetition of S.
 
 **Proof.** Component projection gives A(Sw)=(alpha(y),alpha(x)). The equal pairs (0,0) and (1,1) are fixed by s. The pairs (0,1) and (1,0) exchange places but both classify as B. Thus every class is fixed, and agreement a=b is preserved and reflected. Induction gives the same class after every finite repetition. ∎
 
@@ -28,7 +45,7 @@ For a different intervention, exchange the first component's alpha and beta. `Ex
 
 ### VC67
 
-**Claim VC67 (one prepared exchange refines the required initial image from three classes to four).** On the four binary alpha pairs with a resident zero in the first beta, a representation that determines both the present common-answer class and its class after this exchange must distinguish all four ordered alpha pairs. The acquired ordered pair (a,b) is sufficient. The old three-class image is insufficient.
+**VC67 (one prepared exchange refines the required initial image from three classes to four).** On the four binary alpha pairs with a resident zero in the first beta, a representation that determines both the present common-answer class and its class after this exchange must distinguish all four ordered alpha pairs. The acquired ordered pair (a,b) is sufficient. The old three-class image is insufficient.
 
 **Proof.** The current classes already distinguish (0,0), (1,1), and the group {(0,1),(1,0)}. The exchange sends (0,1) to (0,1), with class B, and (1,0) to (0,0), with class J₀. Hence the previously grouped pair must split. Four classes are necessary. They suffice because the ordered pair determines both c(a,b) and c(0,b). ∎
 
@@ -50,7 +67,7 @@ The total actions are E(a,c,b,d)=(c,a,b,d) and S(a,c,b,d)=(b,d,a,c). The observe
 
 ### VC68
 
-**Claim VC68 (the four working coordinates close under every finite word in E and S).** The coordinate observation W has commuting squares for both actions on every current source p in the declared structural beam family. Composing them gives W(wp)=w̄(Wp) for every finite action word w. Both actions retain the displaced coordinate and are involutions on working configurations.
+**VC68 (the four working coordinates close under every finite word in E and S).** The coordinate observation W has commuting squares for both actions on every current source p in the declared structural beam family. Composing them gives W(wp)=w̄(Wp) for every finite action word w. Both actions retain the displaced coordinate and are involutions on working configurations.
 
 **Proof.** Projection after E gives ((c,a),(b,d)), exchange inside the first row of W(x). Projection after S gives ((b,d),(a,c)), exchange of its rows. These formulas apply to the successors themselves, with no zero premise. Their squares compose at the actual intermediate source. Identity is the empty word, and appending either generator supplies the induction step. Applying either permutation twice restores all four coordinates. ∎
 
@@ -72,7 +89,7 @@ E exchanges its rows. S transposes it because each elementary comparison is symm
 
 ### VC69
 
-**Claim VC69 (Φ is the coarsest exact image for all common-answer continuations on X).** Two configurations have equal Φ images exactly when every finite E/S continuation gives the same common class. Φ has fifteen values: it merges only (0,0,1,1) with (1,1,0,0). All fourteen remaining configurations have separate images.
+**VC69 (Φ is the coarsest exact image for all common-answer continuations on X).** Two configurations have equal Φ images exactly when every finite E/S continuation gives the same common class. Φ has fifteen values: it merges only (0,0,1,1) with (1,1,0,0). All fourteen remaining configurations have separate images.
 
 **Proof of sufficiency.** Row exchange and transposition determine both generator updates from Φ alone. Each update is again a table of the same form. The upper-left entry determines the common-answer value and its availability. Induction on finite words proves sufficiency for all continuations.
 
@@ -90,7 +107,7 @@ Fifteen counts distinct values of the minimal image. The table is a convenient s
 
 ### VC70
 
-**Claim VC70 (the prepared closure has fourteen configurations and thirteen common-behavior classes).** The E/S closure of P contains every element of X except (0,0,0,0) and (1,1,1,1). Restricting Φ to that closure gives thirteen classes. Adding direct first-alpha readings to the continuation interface gives sixteen classes on X and fourteen on the prepared closure.
+**VC70 (the prepared closure has fourteen configurations and thirteen common-behavior classes).** The E/S closure of P contains every element of X except (0,0,0,0) and (1,1,1,1). Restricting Φ to that closure gives thirteen classes. Adding direct first-alpha readings to the continuation interface gives sixteen classes on X and fourteen on the prepared closure.
 
 **Proof.** E and S permute coordinates. Every seed contains a zero and a one, excluding both constant configurations. The seed (0,0,0,1) reaches the four placements of a single one. The seed (1,0,1,1) reaches the four placements of a single zero. The seed (0,0,1,1) reaches the two opposite homogeneous blocks. The seed (1,0,0,1) reaches the four configurations with one zero and one one in each block: E flips the first block, and SES flips the second. These disjoint families contain 4+4+2+4=14 configurations, exhausting the nonconstant carrier. They contain VC69's merged pair and twelve singleton classes. A direct first-alpha reading distinguishes that pair. Every other pair was already separated by a common continuation. ∎
 
@@ -100,7 +117,7 @@ The reachable object belongs to the closed current carrier, not just to the four
 
 ### VC71
 
-**Claim VC71 (sufficient retained evidence determines every common continuation, with an exact component-reading boundary).** A trace of four addressed component readings at one actual source determines W and therefore Φ. Given a certified finite continuation, it determines that continuation's common class without another acquisition. On X, with no prior restrictions and only individual-coordinate channels, four distinct coordinate readings are necessary on every input to determine Φ exactly. If the original preparation P is established, the old two alpha facts suffice.
+**VC71 (sufficient retained evidence determines every common continuation, with an exact component-reading boundary).** A trace of four addressed component readings at one actual source determines W and therefore Φ. Given a certified finite continuation, it determines that continuation's common class without another acquisition. On X, with no prior restrictions and only individual-coordinate channels, four distinct coordinate readings are necessary on every input to determine Φ exactly. If the original preparation P is established, the old two alpha facts suffice.
 
 **Proof of reuse.** Retain each acquired fact in the next same-source trace. Four decoders of that one memory determine a,c,b,d, so their paired result is W. Compose with the table decoder to obtain Φ. Compose that acquired factorization with a transition square and the endpoint common-class projection. Both paths return the same future class. The memory decoder takes only the acquired memory, and its question retains the operation word.
 
@@ -116,7 +133,7 @@ Keep the common question and add K(a,c,b,d)=(d,c,b,a), exchange of first alpha w
 
 ### VC72
 
-**Claim VC72 (changing the interaction boundary can force a finer object without changing the question).** For all E/S/K continuations, the exact common-behavior image has sixteen values on X and fourteen on the prepared reachable carrier. If Φ is known, only its all-B class needs a further distinction to obtain this finer image. On that class, one first-alpha reading is necessary and sufficient. An accessible original four-coordinate trace supplies it without another acquisition.
+**VC72 (changing the interaction boundary can force a finer object without changing the question).** For all E/S/K continuations, the exact common-behavior image has sixteen values on X and fourteen on the prepared reachable carrier. If Φ is known, only its all-B class needs a further distinction to obtain this finer image. On that class, one first-alpha reading is necessary and sufficient. An accessible original four-coordinate trace supplies it without another acquisition.
 
 **Proof.** K sends (0,0,1,1) to (1,0,1,0), whose current common class is J₁. It sends (1,1,0,0) to (0,1,0,1), whose class is J₀. The only pair merged by Φ must therefore split. All other pairs were already separated under E/S, and the four coordinates suffice under the new permutation. K preserves the nonconstant carrier, giving fourteen values there. The old singleton classes already determine all coordinates. On the all-B pair, identical old images cannot select the two K answers, while first alpha is respectively 0 and 1. That one acquired distinction completes the image. The full trace already contains it. ∎
 
@@ -128,7 +145,7 @@ The mechanism family is now part of the declared scope. Let E exchange the first
 
 ### VC73
 
-**Claim VC73 (one prepared response determines the E/K law, conditionally on the family).** In the exact family {E,K}, the first output coordinate is 0 for E and 1 for K. The two clauses 0↦E and 1↦K therefore factor the operation-code question through the common output observation for every admitted prepared source. Acquiring that observation supplies the decoder's input. The decoder does not take the actual application or its operation tag as a hidden parameter.
+**VC73 (one prepared response determines the E/K law, conditionally on the family).** In the exact family {E,K}, the first output coordinate is 0 for E and 1 for K. The two clauses 0↦E and 1↦K therefore factor the operation-code question through the common output observation for every admitted prepared source. Acquiring that observation supplies the decoder's input. The decoder does not take the actual application or its operation tag as a hidden parameter.
 
 **Derivation.** E(a,0,b,1)=(0,a,b,1), while K(a,0,b,1)=(1,0,b,a). Their observed coordinates are the two distinct constructor cases. `ExchangeLawFromProbe` and `CrossLawFromProbe` derive the two factorizations from preparation alone. Their declarations do not require equality of the final law answers as an extra premise. `AcquiredExchangeLaw` and `AcquiredCrossLaw` compose those factorizations with recording. `ExchangeLawFromTrace` and `CrossLawFromTrace` obtain the same answers from the actual prepared trace. The recorded fact contains the common output question and coordinate answer, with neither an E/K question label nor an application parameter. Source agreement is supplied by the acquisition relation, not by equality of fact payloads.
 
@@ -144,7 +161,7 @@ Prepare the two binary input vectors p=(0,0,1,1) and q=(0,1,0,1). The input addr
 
 ### VC74
 
-**Claim VC74 (two complete binary probe images determine routing, and one cannot).** On the declared family, the pair of output vectors determines the selected input at every output, hence the entire routing behavior. Two probes suffice for all twenty-four permutations, and also for all 4⁴ coordinate-selection maps. One binary probe cannot identify all permutations. The bound counts complete four-coordinate images, not individual bit reads or memory writes.
+**VC74 (two complete binary probe images determine routing, and one cannot).** On the declared family, the pair of output vectors determines the selected input at every output, hence the entire routing behavior. Two probes suffice for all twenty-four permutations, and also for all 4⁴ coordinate-selection maps. One binary probe cannot identify all permutations. The bound counts complete four-coordinate images, not individual bit reads or memory writes.
 
 **Derivation.** Zip the two observed vectors at each fixed output address. Each resulting signature is one of the four distinct prepared input signatures, so it identifies exactly one input address. For any binary probe on four inputs, two input addresses have the same bit. Exchanging those addresses is a nonidentity permutation fixing that probe. Identity and that exchange therefore have the same complete output, so one probe cannot distinguish all permutations. For the proposed p, exchanging the first two inputs is a concrete witness, and q separates them at the first output. This proves the lower bound for any choice of a single binary probe, not only p.
 
@@ -162,7 +179,7 @@ A routing signature determines which input address supplies an output. It does n
 
 ### VC75
 
-**Claim VC75 (acquired routing and a read new input determine the routed output).** In the four-clause coordinate-selection grammar, the application to (I,X) factors through (recorded probe images of I, X). The decoder's input explicitly contains X. For every admitted routing and all supplied X, reconstruction of the signatures followed by their coordinate selections agrees with direct application of that same I to X. The equality is derived without requiring the final output as a premise.
+**VC75 (acquired routing and a read new input determine the routed output).** In the four-clause coordinate-selection grammar, the application to (I,X) factors through (recorded probe images of I, X). The decoder's input explicitly contains X. For every admitted routing and all supplied X, reconstruction of the signatures followed by their coordinate selections agrees with direct application of that same I to X. The equality is derived without requiring the final output as a premise.
 
 **Derivation.** `Route00`, `Route01`, `Route10` and `Route11` read respectively x₀,x₁,x₂,x₃ from a pair consisting of their address signature and X. `RoutingApplication` assembles the four independently selected outputs. Its admissible clauses form the product of the four address choices, including repeated choices. The generic body does not restrict the data values to calibration bits. `RoutingApplicationFromProbes` applies VC74's reconstruction and then those same four clauses. Its direct reading uses the actual I, while its decoder uses the canonical signatures reconstructed from the observed bit planes.
 
@@ -186,7 +203,7 @@ The joint observation of VC74 can be realized in a finite prepared relation with
 
 ### VC76
 
-**Claim VC76 (two prepared resident records suffice for acquired routing and reuse).** Starting from this prepared whole, recording the first probe, exchanging the instrument addresses and recording the second produces two source-bound facts. Those facts decode the joint probe images and hence the routing. With the explicitly read input from VC75, the same two facts also decode its routed output. The initial preparation can be recovered from the final whole on the constructed range.
+**VC76 (two prepared resident records suffice for acquired routing and reuse).** Starting from this prepared whole, recording the first probe, exchanging the instrument addresses and recording the second produces two source-bound facts. Those facts decode the joint probe images and hence the routing. With the explicitly read input from VC75, the same two facts also decode its routed output. The initial preparation can be recovered from the final whole on the constructed range.
 
 **Derivation.** `TwoResidentReadings<A,B>` requires A and B to read the same actual source. Its first step is `PreparedTraceExtension` beside the untouched second instrument. `ExchangeResidentInstruments` exchanges their addresses while retaining the source and both complete instrument states. Its second step records B beside the retained first record. `FollowedPair` checks both exact intermediate objects. `ResidentProbeFacts` selects the two final records in original question order, and `TwoResidentAnswers` derives their joint decoded answer. `AnswerOnRefinement` supplies routing reconstruction. `EvidenceBesideInput` then supplies the new-input reuse. The final decoder receives two facts, with no source parameter. `AnswerInResidentProbePair` checks the retained source, signalled instrument states, channels and record addresses before naming that decoder at the whole.
 
@@ -200,7 +217,7 @@ VC75's shared routing does not require every internal state of a mechanism to re
 
 ### VC77
 
-**Claim VC77 (acquired law evidence transports across a certified mechanism change).** The routing observation commutes with this internal state exchange through an identity update of its image. Old source-bound probe evidence therefore answers the law question after the exchange, and after every correctly composed finite repetition. When a new data image is explicitly supplied beside the whole, that same evidence also supplies the routed output after the change. No equality H=J is required.
+**VC77 (acquired law evidence transports across a certified mechanism change).** The routing observation commutes with this internal state exchange through an identity update of its image. Old source-bound probe evidence therefore answers the law question after the exchange, and after every correctly composed finite repetition. When a new data image is explicitly supplied beside the whole, that same evidence also supplies the routed output after the change. No equality H=J is required.
 
 **Derivation.** `FactorOnSource` pulls an existing factorization back through a specified reading of the larger source, preserving its decoder. `ResidentRoutingFactors` applies it to the routing inside the module. `RoutingModuleExchange` derives a commuting square: the actual source step exchanges H and J while both endpoint observations read I. The compiler verifies the generic square without a final-answer equality premise. `FutureOnEvidence` transports an acquired instance of the initial observation through that square. `JoinedTransition` composes repetitions at their exact endpoints. `TransitionBesideInput` carries the square beside a supplied X, and the endpoint `RoutingApplication` selects its values by the transported law.
 
@@ -216,7 +233,7 @@ VC75 supplies a complete new data image. That is sufficient but can exceed what 
 
 ### VC78
 
-**Claim VC78 (the exact coordinate-reading demand is the selected-address set).** To determine the complete routed output on this domain, reading every address in S is sufficient and necessary. Thus a permutation requires four coordinate readings, while the route selecting the first address at all four outputs requires one. The count concerns this input-channel family. It does not count VC74's complete probe images as individual coordinate reads, nor assign four calls to an instrument that already exposes all of X at once.
+**VC78 (the exact coordinate-reading demand is the selected-address set).** To determine the complete routed output on this domain, reading every address in S is sufficient and necessary. Thus a permutation requires four coordinate readings, while the route selecting the first address at all four outputs requires one. The count concerns this input-channel family. It does not count VC74's complete probe images as individual coordinate reads, nor assign four calls to an instrument that already exposes all of X at once.
 
 **Derivation.** Each output copies the value at one selected input address. Reading the distinct selected addresses therefore supplies all outputs, reusing a read value wherever its address repeats. If a selected address remains unread, change only that coordinate to another permitted value. Every acquired coordinate answer is unchanged while an output selecting the changed address differs. The same argument applies to a proposed adaptive reading sequence: those identical earlier answers select the same sequence, so it cannot stop correctly with a selected address unread. This proves necessity throughout the declared product domain. Existing evidence relating the input coordinates can reduce the requirement and is outside this premise.
 
@@ -234,7 +251,7 @@ VC74 fixes the input signatures and the order of the recorded output addresses. 
 
 ### VC79
 
-**Claim VC79 (probe facts identify the composite routing without necessarily identifying its components).** Compare a routing I followed by a frame that exchanges the first two outputs, with routing E(I) followed by a direct frame. The two complete probe images coincide for every admitted I. In particular, identity with the crossed frame and E with the direct frame have distinct module routings but the same records. They also produce the same framed response on every supplied data input. Probe facts alone therefore cannot identify the bare module routing across this enlarged family.
+**VC79 (probe facts identify the composite routing without necessarily identifying its components).** Compare a routing I followed by a frame that exchanges the first two outputs, with routing E(I) followed by a direct frame. The two complete probe images coincide for every admitted I. In particular, identity with the crossed frame and E with the direct frame have distinct module routings but the same records. They also produce the same framed response on every supplied data input. Probe facts alone therefore cannot identify the bare module routing across this enlarged family.
 
 **Derivation.** `ProbeThroughCrossedFrame` applies the first-two-coordinate exchange to each bit-plane output. `ProbeThroughDirectFrame` reports the bit planes unchanged. `RoutingFrameAgreement` derives their equality when the same exchange instead acts on I's output-address ordering. Its generic body does not assume equality of the observed images or of the actual sources. In the identity/E case, both data-response paths produce (x₁,x₀,x₂,x₃) for arbitrary data values. The module routings themselves differ at a positively distinguished signature bit.
 
@@ -246,4 +263,4 @@ This locates the address premise in VC74: its recovered object is a relation bet
 
 Labels mentioned here: <doc:verdict_is_invariant__reusable_images#VC61>, <doc:verdict_is_invariant__reusable_images#VC64>.
 
-Mentions of this page’s labels: <doc:interference_is_substitution__models_calibration> (VC74), <doc:permanence_is_resistance__forced_answers> (VC66), <doc:permanence_is_resistance__forced_answers> (VC67), <doc:permanence_is_resistance__records_entropy> (VC68), <doc:permanence_is_resistance__records_entropy> (VC69), <doc:permanence_is_resistance__records_entropy> (VC70), <doc:permanence_is_resistance__records_entropy> (VC71), <doc:permanence_is_resistance__records_entropy> (VC72), <doc:permanence_is_resistance__records_entropy> (VC74), <doc:permanence_is_resistance__records_entropy> (VC75), <doc:permanence_is_resistance__records_entropy> (VC76), <doc:permanence_is_resistance__records_entropy> (VC77), <doc:verdict_is_invariant__relative_questions> (VC78), <doc:verdict_is_invariant__relative_questions> (VC79).
+Mentions of this page’s labels: <doc:interference_is_substitution__models_calibration> (VC74), <doc:permanence_is_resistance__forced_answers> (VC66), <doc:permanence_is_resistance__forced_answers> (VC67), <doc:permanence_is_resistance__records_entropy> (VC68), <doc:permanence_is_resistance__records_entropy> (VC69), <doc:permanence_is_resistance__records_entropy> (VC70), <doc:permanence_is_resistance__records_entropy> (VC71), <doc:permanence_is_resistance__records_entropy> (VC72), <doc:permanence_is_resistance__records_entropy> (VC74), <doc:permanence_is_resistance__records_entropy> (VC75), <doc:permanence_is_resistance__records_entropy> (VC76), <doc:permanence_is_resistance__records_entropy> (VC77), <doc:verdict_is_invariant> (VC66), <doc:verdict_is_invariant> (VC79), <doc:verdict_is_invariant__relative_questions> (VC78), <doc:verdict_is_invariant__relative_questions> (VC79).

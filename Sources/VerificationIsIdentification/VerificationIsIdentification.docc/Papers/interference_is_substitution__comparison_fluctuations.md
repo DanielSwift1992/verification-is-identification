@@ -2,6 +2,13 @@
 
 This part contains the original derivations for comparison fluctuations.
 
+Statements on this page:
+
+- <doc:interference_is_substitution__comparison_fluctuations#IiS29>: A sharp finite comparison determines its real Gram without a dimension premise.
+- <doc:interference_is_substitution__comparison_fluctuations#IiS30>: Fixed pair averaging has a finite test for universal joint positivity.
+- <doc:interference_is_substitution__comparison_fluctuations#IiS31>: Four channels are the first obstruction, with a sharp residual witness.
+- <doc:interference_is_substitution__comparison_fluctuations#IiS32>: The scalar realization of H* has a sharp minimum intensity variance.
+
 Family and original section headings: <doc:interference_is_substitution>.
 
 Section setting: <doc:interference_is_substitution#16d-An-extremal-joint-comparison-forces-a-cosine-profile>.
@@ -388,4 +395,4 @@ These are predictions conditional on a scalar-record explanation. Four fixed vec
 
 Labels mentioned here: <doc:interference_is_substitution__positive_channels#IiS15>, <doc:interference_is_substitution__global_obstructions#IiS21>.
 
-Mentions of this page’s labels: <doc:interference_is_substitution__acquired_programs> (IiS32), <doc:interference_is_substitution__global_obstructions> (IiS29), <doc:interference_is_substitution__support_calibration> (IiS31), <doc:interference_is_substitution__support_memory> (IiS32).
+Mentions of this page’s labels: <doc:interference_is_substitution> (IiS29), <doc:interference_is_substitution> (IiS32), <doc:interference_is_substitution__acquired_programs> (IiS32), <doc:interference_is_substitution__global_obstructions> (IiS29), <doc:interference_is_substitution__support_calibration> (IiS31), <doc:interference_is_substitution__support_memory> (IiS32).

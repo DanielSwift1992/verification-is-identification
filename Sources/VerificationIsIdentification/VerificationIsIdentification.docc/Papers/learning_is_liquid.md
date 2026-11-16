@@ -4,9 +4,36 @@ Learning changes what a system can distinguish and use. A retained record, a new
 
 The liquid/crystal language in §§0–6 describes unresolved and certified regions of a declared task domain. Retention makes a certified region monotone only while its questions, model, keys and interpretation remain fixed. Progress additionally requires observations that separate the remaining alternatives. Neither continued activity nor a finite domain supplies those observations by itself. Sections 6a–6e ask a different question: what constitutes the state of a medium whose own admissible forms and rearrangements can change? They derive contact boundaries, necessary coordination scales and conditions under which an internal relation determines a decomposition. The conditions enter before assigning physical phase names.
 
+Statements on this page:
+
+- <doc:learning_is_liquid#LQ0>: The compatible set and a settled question.
+- <doc:learning_is_liquid#LQ1>: An infinite table differs from a finite generative description.
+- <doc:learning_is_liquid#LQ2>: Resolution has a domain.
+- <doc:learning_is_liquid#LQ3>: The new-record bound is relative to prior knowledge.
+- <doc:learning_is_liquid#LQ11>: Finite completion is equivalent to eventual separation.
+- <doc:learning_is_liquid#LQ4>: Geometry needs an acquisition model.
+- <doc:learning_is_liquid#LQ5>: Alignment is a policy condition.
+- <doc:learning_is_liquid#LQ6>: Ruggedness statistics need a sampling measure.
+- <doc:learning_is_liquid#LQ7>: Composition depth and counting growth.
+- <doc:learning_is_liquid#LQ8>: Feedback requires an implemented update.
+- <doc:learning_is_liquid#LQ8a>: Current agreement does not identify acquisition.
+- <doc:learning_is_liquid#LQ9>: Retention gives a weak monotone quantity.
+- <doc:learning_is_liquid#LQ10>: Certification is scoped, and compatible with statistical proposal.
+
+This page has two parts. Part I, §0–§5 with LQ0–LQ11, is about learning as retained records: what a learner knows, when a question settles and what retention gives. Part II, §6a–§6m with LQ12–LQ22, is about the state of a medium: contacts, independent blocks, atoms and return. The derivations of Part II are on the four detail pages.
+
+Parts in reading order:
+
+- <doc:learning_is_liquid__medium_contacts>: LQ12–LQ13, 2 statements.
+- <doc:learning_is_liquid__coordination_blocks>: LQ14–LQ15, 2 statements.
+- <doc:learning_is_liquid__reconstructed_sides>: LQ16–LQ18, 6 statements.
+- <doc:learning_is_liquid__atoms_continuations>: LQ19–LQ22, 4 statements.
+
 ## §0. Setting
 
-Fix a finite nonempty candidate set K, an actual candidate x ∈ K, a question q: K → A, and a finite vocabulary of static total queries f_i. A sound cache G records keyed answers f_i(x). Its compatible set is B_G = {y ∈ K: f_i(y) = G(i) for every cached key i}. Soundness keeps x in B_G. The question is settled when q is constant on B_G, even if several candidates remain.
+### LQ0
+
+**LQ0 (The compatible set and a settled question).** Fix a finite nonempty candidate set K, an actual candidate x ∈ K, a question q: K → A, and a finite vocabulary of static total queries f_i. A sound cache G records keyed answers f_i(x). Its compatible set is B_G = {y ∈ K: f_i(y) = G(i) for every cached key i}. Soundness keeps x in B_G. The question is settled when q is constant on B_G, even if several candidates remain.
 
 A retaining update preserves old keyed answers and may add new ones. These premises describe an inference interface. They do not assert that the whole is a finite query table, that every interaction is nondisturbing, or that physical memory grows without bound. If an interaction changes the target, its state transition and the question about the original state must be included, as in Verdict VC30–VC34.
 
@@ -262,6 +289,7 @@ Section 6m relates the standard trace distance to a fixed family of supported qu
 
 | Statement | Depends on |
 |---|---|
+| LQ0 | declared finite candidate set, static total queries and a sound retaining cache |
 | LQ1 | B6–B8, declared completion criterion |
 | LQ2 | §0, fixed Q and sound retaining update |
 | LQ12 | admitted forms and reversible rearrangements, addressed product structure, VC46–VC47, VC23b and M67 |

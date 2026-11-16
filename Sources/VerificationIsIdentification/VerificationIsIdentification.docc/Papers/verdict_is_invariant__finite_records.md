@@ -2,6 +2,28 @@
 
 This part contains the original derivations for finite records.
 
+Statements on this page:
+
+- <doc:verdict_is_invariant__finite_records#VC1>: Same question.
+- <doc:verdict_is_invariant__finite_records#VC2>: Binary certificate.
+- <doc:verdict_is_invariant__finite_records#VC3>: Singleton.
+- <doc:verdict_is_invariant__finite_records#VC4>: Finite composition.
+- <doc:verdict_is_invariant__finite_records#VC5>: Selection.
+- <doc:verdict_is_invariant__finite_records#VC6>: Reordering.
+- <doc:verdict_is_invariant__finite_records#VC7>: Support follows construction.
+- <doc:verdict_is_invariant__finite_records#VC8>: Coverage of a declared tree.
+- <doc:verdict_is_invariant__finite_records#VC9>: Supplied factorization.
+- <doc:verdict_is_invariant__finite_records#VC10>: Shared decoder.
+- <doc:verdict_is_invariant__finite_records#VC11>: A family without enumeration.
+- <doc:verdict_is_invariant__finite_records#VC12>: Boundary under change.
+- <doc:verdict_is_invariant__finite_records#VC13>: One commuting step.
+- <doc:verdict_is_invariant__finite_records#VC14>: Composition without another output premise.
+- <doc:verdict_is_invariant__finite_records#VC15>: The coarsest compatible object relation.
+- <doc:verdict_is_invariant__finite_records#VC16>: An added capability can split an object.
+- <doc:verdict_is_invariant__finite_records#VC17>: Unrestricted action forces identification.
+- <doc:verdict_is_invariant__finite_records#VC18>: More information need not preserve execution closure.
+- <doc:verdict_is_invariant__finite_records#VC19>: Operational identity can exceed symmetry.
+
 Family and original section headings: <doc:verdict_is_invariant>.
 
 Section setting: <doc:verdict_is_invariant#6a-A-finite-certificate-in-the-type-lattice>.
@@ -361,4 +383,4 @@ Thus a quotient by behavior can identify more sources than the symmetry orbits o
 
 Labels mentioned here: <doc:learning_is_liquid__coordination_blocks#LQ14>, <doc:learning_is_liquid__coordination_blocks#LQ15>, <doc:permanence_is_resistance__cost#M25>, <doc:permanence_is_resistance__records_entropy#M29>, <doc:permanence_is_resistance__records_entropy#M35>, <doc:permanence_is_resistance__physical_models#M68>, <doc:permanence_is_resistance__forced_answers#M71>, <doc:verdict_is_invariant__recovery_memory#VC21>, <doc:verdict_is_invariant__recovery_memory#VC23>, <doc:verdict_is_invariant__discovery_acquisition#VC30>, <doc:verdict_is_invariant__discovery_acquisition#VC31>, <doc:verdict_is_invariant__reusable_images#VC44>, <doc:verdict_is_invariant__reusable_images#VC46>, <doc:verdict_is_invariant__reusable_images#VC47>, <doc:verdict_is_invariant#VI1>.
 
-Mentions of this page’s labels: <doc:interference_is_substitution__global_obstructions> (VC15), <doc:interference_is_substitution__global_obstructions> (VC9), <doc:interference_is_substitution__models_calibration> (VC15), <doc:interference_is_substitution__positive_channels> (VC15), <doc:learning_is_liquid> (VC15), <doc:learning_is_liquid__atoms_continuations> (VC15), <doc:learning_is_liquid__coordination_blocks> (VC15), <doc:learning_is_liquid__medium_contacts> (VC15), <doc:learning_is_liquid__medium_contacts> (VC9), <doc:learning_is_liquid__reconstructed_sides> (VC15), <doc:permanence_is_resistance__cost> (VC15), <doc:permanence_is_resistance__forced_answers> (VC15), <doc:permanence_is_resistance__forced_answers> (VC9), <doc:permanence_is_resistance__frame_acquisition> (VC12), <doc:permanence_is_resistance__records_entropy> (VC15), <doc:permanence_is_resistance__records_entropy> (VC18), <doc:permanence_is_resistance__retention> (VC18), <doc:permanence_is_resistance__reusable_requests> (VC15), <doc:permanence_is_resistance__uniform_routing> (VC15), <doc:verdict_is_invariant> (VC1), <doc:verdict_is_invariant> (VC12), <doc:verdict_is_invariant> (VC15), <doc:verdict_is_invariant> (VC9), <doc:verdict_is_invariant__bounded_calibration> (VC12), <doc:verdict_is_invariant__discovery_acquisition> (VC15), <doc:verdict_is_invariant__discovery_acquisition> (VC2), <doc:verdict_is_invariant__finite_policies> (VC19), <doc:verdict_is_invariant__recovery_memory> (VC10), <doc:verdict_is_invariant__recovery_memory> (VC13), <doc:verdict_is_invariant__recovery_memory> (VC15), <doc:verdict_is_invariant__recovery_memory> (VC16), <doc:verdict_is_invariant__recovery_memory> (VC5), <doc:verdict_is_invariant__recovery_memory> (VC9), <doc:verdict_is_invariant__relative_questions> (VC9), <doc:verdict_is_invariant__reusable_images> (VC15).
+Mentions of this page’s labels: <doc:interference_is_substitution__global_obstructions> (VC15), <doc:interference_is_substitution__global_obstructions> (VC9), <doc:interference_is_substitution__models_calibration> (VC15), <doc:interference_is_substitution__positive_channels> (VC15), <doc:learning_is_liquid> (VC15), <doc:learning_is_liquid__atoms_continuations> (VC15), <doc:learning_is_liquid__coordination_blocks> (VC15), <doc:learning_is_liquid__medium_contacts> (VC15), <doc:learning_is_liquid__medium_contacts> (VC9), <doc:learning_is_liquid__reconstructed_sides> (VC15), <doc:permanence_is_resistance__cost> (VC15), <doc:permanence_is_resistance__forced_answers> (VC15), <doc:permanence_is_resistance__forced_answers> (VC9), <doc:permanence_is_resistance__frame_acquisition> (VC12), <doc:permanence_is_resistance__records_entropy> (VC15), <doc:permanence_is_resistance__records_entropy> (VC18), <doc:permanence_is_resistance__retention> (VC18), <doc:permanence_is_resistance__reusable_requests> (VC15), <doc:permanence_is_resistance__uniform_routing> (VC15), <doc:verdict_is_invariant> (VC1), <doc:verdict_is_invariant> (VC12), <doc:verdict_is_invariant> (VC15), <doc:verdict_is_invariant> (VC19), <doc:verdict_is_invariant> (VC9), <doc:verdict_is_invariant__bounded_calibration> (VC12), <doc:verdict_is_invariant__discovery_acquisition> (VC15), <doc:verdict_is_invariant__discovery_acquisition> (VC2), <doc:verdict_is_invariant__finite_policies> (VC19), <doc:verdict_is_invariant__recovery_memory> (VC10), <doc:verdict_is_invariant__recovery_memory> (VC13), <doc:verdict_is_invariant__recovery_memory> (VC15), <doc:verdict_is_invariant__recovery_memory> (VC16), <doc:verdict_is_invariant__recovery_memory> (VC5), <doc:verdict_is_invariant__recovery_memory> (VC9), <doc:verdict_is_invariant__relative_questions> (VC9), <doc:verdict_is_invariant__reusable_images> (VC15).

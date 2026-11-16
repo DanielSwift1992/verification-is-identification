@@ -2,6 +2,12 @@
 
 This part contains the original derivations for acquired programs.
 
+Statements on this page:
+
+- <doc:interference_is_substitution__acquired_programs#IiS37>: Retained comparisons reduce configuration acquisitions.
+- <doc:interference_is_substitution__acquired_programs#IiS38>: Question-preserving normalization separates learning from retained control cost.
+- <doc:interference_is_substitution__acquired_programs#IiS39>: Three-contact scalar indistinguishability.
+
 Family and original section headings: <doc:interference_is_substitution>.
 
 Section setting: <doc:interference_is_substitution#16l-Acquiring-the-relation-that-the-next-control-needs>.
@@ -486,4 +492,4 @@ This bound is not asserted sharp. The example prevents extending the four-mode r
 
 Labels mentioned here: <doc:interference_is_substitution__comparison_fluctuations#IiS32>, <doc:interference_is_substitution__support_calibration#IiS34>, <doc:interference_is_substitution__support_calibration#IiS35>, <doc:interference_is_substitution__support_calibration#IiS36>, <doc:interference_is_substitution__support_memory#IiS40>.
 
-Mentions of this page’s labels: <doc:interference_is_substitution__support_memory> (IiS37), <doc:interference_is_substitution__support_memory> (IiS38), <doc:interference_is_substitution__support_memory> (IiS39).
+Mentions of this page’s labels: <doc:interference_is_substitution> (IiS37), <doc:interference_is_substitution> (IiS39), <doc:interference_is_substitution__support_memory> (IiS37), <doc:interference_is_substitution__support_memory> (IiS38), <doc:interference_is_substitution__support_memory> (IiS39).

@@ -4,6 +4,14 @@ A fixed structure can be traversed in different orders. Whether those orders giv
 
 The grammar supplies a zipper and fold/unfold constructions. It does not choose the question or prove that every physical reading leaves its source unchanged. R3 states the conditions for an invariant answer. R4 excludes a proposed derivation of the discriminator from initiality. R5 gives a precise accumulation result and distinguishes the questions asked of a cyclic process.
 
+Statements on this page:
+
+- <doc:reading_is_order#R1>: Two one-layer contexts.
+- <doc:reading_is_order#R2>: Unfold and fold require their respective structures.
+- <doc:reading_is_order#R3>: Uniqueness within a fixed reading contract.
+- <doc:reading_is_order#R4>: Canonical map to a chosen algebra.
+- <doc:reading_is_order#R5>: Fair accumulation under fixed finitary rules.
+
 ## §0. Scope
 
 Work in sets with `F(X) = 1 + X²`. Its initial algebra `Σ = μF` consists of finite ordered binary trees. Its final coalgebra `νF` consists of finite and infinite ordered binary trees. These are specified mathematical carriers. Finiteness of an individual tree does not make Σ a finite set, and the two carriers do not classify everything actual and everything possible in reality.
@@ -11,6 +19,8 @@ Work in sets with `F(X) = 1 + X²`. Its initial algebra `Σ = μF` consists of f
 Existence Is Finite's distinction between a space and a process applies here: changing the candidate domain, predicate, available observations or stopping rule changes the problem. Fixing an encoding alone does not fix all these relations.
 
 ## §1. The Reading Position
+
+### R1
 
 **R1 (Two one-layer contexts).** Removing one child of a binary node leaves its sibling and the side of the hole. Thus `∂F(X) = 2X`. A position inside a finite tree retains a finite stack of such layers back to its root:
 
@@ -22,6 +32,8 @@ At an internal focus with a parent, down-left, down-right and up are three disti
 
 ## §2. Specified Generators and Readers
 
+### R2
+
 **R2 (Unfold and fold require their respective structures).** A coalgebra `c:A→FA` gives a unique unfolding `h:A→νF` satisfying `out ∘ h = Fh ∘ c`. An algebra `a:FB→B` gives a unique fold `k:Σ→B` satisfying `k ∘ in = a ∘ Fk`. The equations specify how observations or constructors are preserved. The standard recursion schemes are developed in [Meijer, Fokkinga and Paterson](https://maartenfokkinga.github.io/utwente/mmf91m.pdf).
 
 A chosen algebra can express a structural answer. The constructor `in:FΣ→Σ` does not by itself select a predicate on trees. A claim that a particular discriminator is such a fold must provide its answer algebra and show agreement with the intended question. Likewise a proposed generator needs its coalgebra, not just the name unfold.
@@ -29,6 +41,8 @@ A chosen algebra can express a structural answer. The constructor `in:FΣ→Σ` 
 The canonical map `μF→νF` embeds finite trees while preserving their structure. It supplies neither a cost bound nor a division of all tasks into one inevitable discriminator and freely chosen generators. Reversing the direction of the structure map explains the algebra/coalgebra distinction. No adjunction between the proposed generator and discriminator is constructed here.
 
 ## §3. Which Answers Ignore Order
+
+### R3
 
 **R3 (Uniqueness within a fixed reading contract).** Finality equates two maps from the *same* coalgebra when both satisfy its homomorphism equation. To use this for two schedules, each schedule must first be shown to implement that coalgebra with the specified output interpretation. Fairness alone does not establish this premise.
 
@@ -42,6 +56,8 @@ Verdict VC92 and VC94a provide a constructive contrast. One resident phase disti
 
 ## §4. Initiality Does Not Choose the Question
 
+### R4
+
 **R4 (Canonical map to a chosen algebra).** Initiality states `∀(B,a) ∃!k` with the fold equation. It does not state `∃!(B,a)`. Two algebras on B={0,1} show the missing implication even with the same leaf answer. Let both return 0 on a leaf. Let the first return 0 at every branch and the second return 1 at every branch. Each has its unique fold. On `node(leaf,leaf)` their answers are 0 and 1.
 
 Thus neither the grammar nor its initiality chooses a discriminator. Finality also supplies a canonical carrier for fixed F while leaving many source coalgebras. There is no initial/free asymmetry establishing inevitable checking semantics on one side. Proposal Is Order GD3–GD4 separately distinguish coverage, dispatch and cost. Their premises cannot be replaced by uniqueness of a map after its algebra has been chosen.
@@ -49,6 +65,8 @@ Thus neither the grammar nor its initiality chooses a discriminator. Finality al
 Relations can still force an answer. This objection locates the required work: specify the relations that exclude the second algebra for this question. The generic existence of folds does not exclude it.
 
 ## §5. Accumulation and Cycles
+
+### R5
 
 **R5 (Fair accumulation under fixed finitary rules).** Start with a finite seed set D₀ and fixed inference rules, each with finitely many premises. Suppose D₀⊆D₁⊆… retains earlier facts and each stage adds finitely many conclusions of rule instances whose premises belong to the preceding stage. Require that every rule instance whose premises become available eventually has its conclusion added. Then `⋃ₙDₙ` is exactly the set of facts with finite derivations from D₀.
 

@@ -2,6 +2,16 @@
 
 This part contains the original derivations for reacquisition residue.
 
+Statements on this page:
+
+- <doc:permanence_is_resistance__reacquisition_residue#M64an>: Unlimited successful available probes need not acquire the class.
+- <doc:permanence_is_resistance__reacquisition_residue#M64ao>: Recovering the positions from the compatibility relation.
+- <doc:permanence_is_resistance__reacquisition_residue#M64ap>: The incompatible channel forces an exact residue requirement.
+- <doc:permanence_is_resistance__reacquisition_residue#M64aq>: Certifying an unrestricted candidate costs more than learning a member.
+- <doc:permanence_is_resistance__reacquisition_residue#M64ar>: The protection of a relative answer is the cut separating its sources.
+- <doc:permanence_is_resistance__reacquisition_residue#M64as>: Acquire a joint change without identifying its individual changes.
+- <doc:permanence_is_resistance__reacquisition_residue#M64at>: Joint correction need not decompose into independent sufficient readings.
+
 Family and original section headings: <doc:permanence_is_resistance>.
 
 Section setting: <doc:permanence_is_resistance#4g-Which-future-must-carry-a-real-distinction>.
@@ -238,4 +248,4 @@ The result identifies a concrete limitation of repetition as an architecture of 
 
 Labels mentioned here: <doc:learning_is_liquid__medium_contacts#LQ13>, <doc:permanence_is_resistance__frame_acquisition#M64a>, <doc:permanence_is_resistance__joint_laws#M64ai>, <doc:permanence_is_resistance__joint_laws#M64ak>, <doc:permanence_is_resistance__joint_laws#M64al>, <doc:permanence_is_resistance__joint_laws#M64am>, <doc:permanence_is_resistance__frame_acquisition#M64b>.
 
-Mentions of this page’s labels: <doc:permanence_is_resistance__balance_clock> (M64at), <doc:permanence_is_resistance__frame_acquisition> (M64as).
+Mentions of this page’s labels: <doc:permanence_is_resistance> (M64an), <doc:permanence_is_resistance> (M64at), <doc:permanence_is_resistance__balance_clock> (M64at), <doc:permanence_is_resistance__frame_acquisition> (M64as).

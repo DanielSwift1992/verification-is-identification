@@ -16,6 +16,9 @@ Statements on this page:
 - <doc:record_is_system#SW5>: The typed region is crystal, and adoption is a front.
 - <doc:record_is_system#SW6>: The medium's next floor writes its law in the floor below.
 - <doc:record_is_system#SW7>: What the medium cannot carry bounds what may be claimed.
+- <doc:record_is_system#SW8>: The pure source text reads as rows.
+- <doc:record_is_system#SW9>: A copy printed from the rows keeps the judged relations.
+- <doc:record_is_system#SW10>: One table of pairs carries the rows.
 
 ## §0. The Projection Basis
 
@@ -160,6 +163,28 @@ The trace's next record is not a proof that an instrument has a fresh slot. The 
 
 The sharpest wall is a scope law: **an open axis carries no verdict.** A type whose reading is pinned by several `where` clauses reads its specific case only at a site where every pin is closed. Through any generic layer, the reading falls to the base case ([Surface history S12](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L185), [Surface history S17](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L251)). This is V=I §5.24 surfacing in the medium: the reading reads exactly what its encoding carries, and a generic site's encoding does not carry the pin. The working rule (a non-generic proxy, resolved once at a literal site) is "fix the encoding, then read," stated as engineering. **[solid**: each wall checked directly in the medium, and the §5.24 identification is the projection**]**
 
+## §7a. The Source Text Is Rows
+
+SW0 says that the pure record consists of types and relations between their addresses. This section measures how far the source text of this repository already has that form, and what a copy printed from that form keeps.
+
+### SW8
+
+**SW8 (The pure source text reads as rows).** Take a source file of the pure part. A declaration gives a name, its parameters with their bounds, the protocols it conforms to, its where-conditions and its members. A member `name = type` gives a name, its parameters, its where-conditions and a type. The type is a tree: a head, its arguments and the member steps after a dot. A reader records these rows. Only the type of a member is read as a tree. A bound, a conformance and each side of a where-condition are kept as text. A comment becomes a label on the row it precedes or on the row whose line it ends. Whatever is none of these rows is kept as text, with the comments inside it. At revision 037195d7 the text printed from the rows equals the file up to whitespace for all 222 files of `Sources/Examples` and all 36 files of the lattice. The rows and labels carry 99.73% of the non-blank characters of the examples and 99.98% of those of the lattice. Comments, kept word for word as labels, are 17.0% and 85.2% of those characters. Of the remaining characters the rows carry 99.67% and 99.87%. The text kept unread is 73 places in the examples: 24 conditional-compilation lines, 23 values of the form `T.self`, 15 computed properties, 10 string values and one function. In the lattice it is one place, an attributed import.
+
+`python3 Checks/record-rows.py` repeats the count and the comparison, and refuses a file whose printed rows differ from it. The reader is fitted to the constructs of these two folders. It refuses a block comment and a multi-line string. Its header names the constructs it is known to misread without notice. None of them occurs in the two folders at this revision.
+
+### SW9
+
+**SW9 (A copy printed from the rows keeps the judged relations).** Replace every file of the examples and of the lattice by the text printed from its rows, labels included. The laws `artifacts` and `dependencies` refuse the printed tree: each keeps a derived record tied to source bytes or to line numbers. Their own commands rewrite those records, and the whole roster of 34 laws then accepts the printed tree at revision 037195d7. The grammar law grants a `where` only at the head of its line (Permission Is Existence PE3), and the printer writes it so.
+
+The printed copy is a reading in the sense of SW2, and SW3 applies to it: printing removes a hand-kept copy that could lag. Printing does not show that the rows say what was intended. The printer has one layout. A file replaced by its printed copy moves its lines, so every record that addresses a line has to be rewritten with it.
+
+### SW10
+
+**SW10 (One table of pairs carries the rows).** Let a table send an address to a left address and a right address. A Null place is a row whose two sides are its own address. A piece of text is one Null place with a label, shared by every use of that text. Every other place is an occurrence with its own address. A list is a pair of its first member and the rest, down to one end place, and a row of SW8 is a pair of its kind and the list of its fields. At revision 037195d7 the 258 files of SW8 fill one such table of 393 607 rows: 11 047 Null places and 382 560 pairs. Read back from the table, the rows are the same and the printed text equals the files. If equal structures shared one place, the table would have 141 591 distinct structures.
+
+The relations of the table are addresses only, and a change of a label's text changes none of them. The Null places are 4 983 comment lines, 4 831 single words, 1 215 pieces of unread text and 18 marks. A single word is one place, so a new label on it renames every such use. Inside unread text (a where-side such as `B.S`, a bound, a place of SW8 kept as text) a word has no place of its own: about one word occurrence in six outside comments is of this kind. The reading program tells the kind of a row, the relation of a where-condition and the keyword of a declaration by the text of a mark, and it tells one field from another by position. The table does not record which declaration a word refers to. That reference is the compiler's. This is one encoding that works. It does not select the form of the record.
+
 ## §8. Boundaries
 
 **The scope is the pure part.** The claims are true over the determinate part written as pure types. The encoding (carving the world into those types) is the craft the framework names and does not do (E2 §5). Performance, IO, the running application are outside the record's claims, and where they matter, the liquid instruments are in force.
@@ -177,6 +202,7 @@ The sharpest wall is a scope law: **an open axis carries no verdict.** A type wh
 5. Trust grows by region: the typed part is crystal, the boundary is visible where the types stop, and adoption is a front (SW5).
 6. The laws are a tower: the surface writes its own law in the floor below, same shape, enforced the same way (SW6).
 7. The medium's walls bound the claims, and an open axis carries no verdict: scope-bounded reading, engineered (SW7).
+8. The pure source text of this repository reads as rows, a copy printed from the rows keeps the judged relations, and one table of pairs carries the rows. The table records the text by rows and leaves reference to the compiler (SW8–SW10).
 
 > **A shared source removes duplicate maintenance where proof, documentation and audit are justified readings of it. After a correction, reuse follows the questions whose answers remain established on the new scope.**
 
@@ -192,6 +218,7 @@ The sharpest wall is a scope law: **an open axis carries no verdict.** A type wh
 | LL | crystal / front / liquid (LQ3, LQ10), §6 (tool discipline) |
 | E2 | §0 (difficulty targets the encoder), §5 (the delegated remainder, where tests keep standing) |
 | NiG | the anchor graph (linked pages over one monolith) |
+| Permission Is Existence | PE3 (a `where` is granted only at the head of its line), the layout the printed copy of SW9 has to meet |
 | AI paper | the projection format (coordinates present/absent → guarantees derived, not assessed) |
 | [SurfaceLaw (historical source)](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift) | [Surface history S11](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L174), [Surface history S12](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L185), [Surface history S15](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L219)–[Surface history S17](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L251) (the walls, each checked directly in the medium) |
 

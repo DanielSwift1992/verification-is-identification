@@ -13,7 +13,7 @@ This page lists the thirty-five papers under seven themes. It adds no claim. Eac
 
 ### Records and agreement
 
-- <doc:record_is_system>: 10 statements. Permanence Is Resistance §5 projects the framework onto physical systems, and The Architecture of Learning Machines projects it onto learners.
+- <doc:record_is_system>: 13 statements. Permanence Is Resistance §5 projects the framework onto physical systems, and The Architecture of Learning Machines projects it onto learners.
 - <doc:agreement_is_comparison>: 7 statements. Two independently maintained records can drift between comparisons.
 - <doc:merge_is_commutation>: 4 statements. Independent edits can share their results and the evidence for those results.
 - <doc:seam_is_game>: 5 statements. V=I proves a claim within its declared encoding and checking scope.

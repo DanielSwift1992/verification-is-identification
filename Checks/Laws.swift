@@ -154,14 +154,14 @@ enum LawTopics: LawRecord {
 }
 
 enum LawFamiliesName: LawText { static var typeName: String { #"families"# } }
-enum LawFamiliesDescription: LawText { static var typeName: String { #"every paper part has an owner and its readers reject lost addresses"# } }
+enum LawFamiliesDescription: LawText { static var typeName: String { #"every paper part has an owner, its readers reject lost addresses, and the lists of statements match the statements"# } }
 enum LawFamilies: LawRecord {
     typealias Command = Self
     typealias Name = LawFamiliesName
     typealias Description = LawFamiliesDescription
     typealias Profile = VI
     typealias Group = Serial
-    static var typeName: String { #"bash Checks/tools.sh papers && python3 Checks/paper_families.py --tools .build/debug/Tools --graph auto"# }
+    static var typeName: String { #"bash Checks/tools.sh papers && python3 Checks/paper_families.py --tools .build/debug/Tools --graph auto && python3 Checks/statement-lists.py --selftest && python3 Checks/statement-lists.py"# }
 }
 
 enum LawLightName: LawText { static var typeName: String { #"light"# } }

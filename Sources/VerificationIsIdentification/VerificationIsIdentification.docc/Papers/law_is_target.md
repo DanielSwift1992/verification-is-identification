@@ -23,6 +23,7 @@ Statements on this page:
 - <doc:law_is_target#LT13>: Macro-actions are strategies, and the papers compose.
 - <doc:law_is_target#LT14>: Decomposition of the interactive task.
 - <doc:law_is_target#LT15>: Lawful drift, conditional.
+- <doc:law_is_target#LT16>: Partial observation under a declared bound of places.
 
 ## §0. Derivation
 
@@ -154,6 +155,25 @@ Agreement AC7 supplies an exact finite error bound under a stated conditional la
 
 **Continuity.** Continuous state must be finitely encoded, and what the encoding discards, no theorem recovers (IiI §4, finiteness boundary, verbatim).
 
+## §6a. Partial Observation Under a Declared Bound
+
+### LT16
+
+**LT16 (Partial observation under a declared bound of places).** Keep LT1's finite St, A and deterministic law. Let the state be hidden. At the start and after each action the participant reads one answer to one question of a declared finite set Q, each question having a declared finite set of answers. Its record is the history of actions with the answers read at its prefixes, retained as in Path PiP2. For n≥1 let F_n be the family of deterministic processes over A with a start place and at most n places, each place carrying one answer to each question of Q. Two processes that differ only in the names of their places are one member. Let B_n be the members of F_n that agree with every recorded answer. Write N* for the number of places reachable from the start in the actual process after VC15's reduction by Q and A. N* is taken for the whole of Q, including the questions asked later in the run.
+
+(i) If n≥N*, then B_n is nonempty, and an answer that every member of B_n gives at the next event is the actual answer.
+
+(ii) Start with n=1. Whenever B_n is empty, replace n by n+1 and form B_n again from the whole record, until B_n is nonempty. A participant that, before each reading, states the answer to the question about to be read only when every member of B_n gives it, and otherwise states none, has n≤N* at every event, states at most N*−1 wrong answers in the whole run, and states no wrong answer after n has reached N*.
+
+(iii) Before a question of Q is first read, B_n contains with each member every member of F_n that differs from it only in the answers to that question. When the question has two or more possible answers, the participant of (ii) states no answer at its first reading.
+
+(iv) Let S be a set of recorded answers on a row of actions of the actual process such that B_n formed from S for n=N* has exactly one member. Equivalently, every process of at most N* places that agrees with S has, up to the names of places, the same steps and the same answers. For N*≥2 this requires that the row of S take every step of the reduced actual process and that S carry, at every place, the answer to every question with two or more possible answers. These are necessary and not sufficient. A second participant on the same process, whose own history begins at the same start place, and which forms n from S by the rule of (ii), states the actual answer at every later event.
+
+*Proof.* (i) The reduced actual process has N* reachable places and agrees with every sound record, so it belongs to B_n for n≥N*. An answer given by every member is given by it. (ii) Suppose a stated answer is wrong. Every member of B_n gave that answer to the question read at this event. The recorded actual answer disagrees with each of them, so B_n is empty after the event and n rises. By (i) B_n is never empty for n=N*, so n does not pass N*. It starts at 1, so it rises at most N*−1 times, and each wrong answer is followed by a rise. From n=N* on, a stated answer is the actual one by (i). (iii) Agreement with a recorded answer to another question does not depend on the answers a member gives to a question that was never read. Take a member and change its answer to that question at the place it reaches. The result is a member too, so with two or more possible answers no answer is given by all. (iv) By (i) the reduced actual process is a member of B_n for n=N*, so it is the one member, and it has N* places. A member of B_m for m<N* would be a second member of B_n, so the rule of (ii) ends at n=N*. Every answer the one member gives at a later event, on any history from the start place and to any question of Q, is the actual answer. ∎
+
+**Scope.** The record must be sound and the law fixed and deterministic. The bound N* is counted for all of Q. For the questions asked up to an earlier event the count can be smaller, and wrong answers can follow the moment n reaches that smaller count. A bound declared in advance at or above N* removes the wrong answers of (ii). A declared bound above N* does not give (iv): the same set S can leave many members. With F_n for n=N* as LQ0's candidate set, the sets S of (iv) are certificates on one actual process in the sense of Liquid LQ3. They are not the uniformly adequate subsets of Verdict VC84, which that statement sets apart. When some question of Q has two or more possible answers, no participant can certify from a finite record that its n has reached N*: for every finite record and every number K, a process with more than K places after the reduction agrees with it. Verdict VC107 states the parallel fact for its own interface, and VC108 states the complement under a supplied bound. The statement gives no bound on the size of B_n and none on the number of events at which no answer is stated.
+
+**Witnesses (measured on 16.11.2026, given as examples and no part of the proof).** On counters modulo 3 and 4, on two flipped values and on two set values, with actions arriving at random, the wrong answers numbered 1 to 3 against bounds of 1 to 3. On the counter modulo 4, when the question with four places was asked first, a later change of question cost exactly four events without a stated answer and no wrong one, and the return to the first question cost none. When the question with two places was asked first, the change cost two wrong answers. With Q the one question "below 2", sets S of 7 to 11 answers on rows of 68 to 394 randomly arriving actions met the condition of (iv) for the ring of four places, and a chosen row of 11 actions with its 12 answers met it as well. The measuring program held up to 87 214 partial tables at once, each one for every process that completes it, on a process of four places and nine actions.
 
 ## §7. Statement
 
@@ -164,6 +184,7 @@ Agreement AC7 supplies an exact finite error bound under a stated conditional la
 5. Motor skills are certified strategies: papers 8 and 9 compose under their stated premises. An established strategy modulus bounds the distance between optimal strategy codes. Finding, certifying and executing a strategy for a new environment additionally requires the corresponding access and execution premises (LT13).
 6. Identify–plan–execute is a sufficient route under its acquisition, model and planning premises. An invariant question can be settled with the law still unresolved (LT14).
 7. A fixed law at a larger internal level is another possible target. Its finite existence alone does not establish learnability or certify a continuing local law (LT15, M70).
+8. With the state hidden and a bound of places declared, a participant that answers only when every compatible process agrees states at most N*−1 wrong answers, and a record that leaves one process serves a second participant (LT16).
 
 ## §8. Dependency
 
@@ -178,6 +199,9 @@ Agreement AC7 supplies an exact finite error bound under a stated conditional la
 | DiC | G1a (norm), G2/G2a (W, one traversal), G7 (taxicab on grids, derived goal gradient), G14 (travel time) |
 | NiG | N5–N9, N15–N17 (imported into the state graph by substitution) |
 | OiO | O2 (strategies in Σ), O5 (strategy gate), O14–O16 (skills as balls, skill navigation), O21 (certification order) |
+| Liquid | LQ0 (the compatible set), LQ3 (certificates on one actual process) |
+| Verdict | VC15 (the reduction by questions and actions), VC84, VC107, VC108 (the neighbouring statements LT16 is set apart from) |
+| Path | PiP2 (the retained history) |
 
 ### Internal
 
@@ -197,6 +221,7 @@ Agreement AC7 supplies an exact finite error bound under a stated conditional la
 | LT13 | LT12, OiO O2, O5, O14–O16, O21 |
 | LT14 | LT5, LT9, LT12, V=I §5.22 |
 | LT15 | LT1–LT14, PiR M70, EiF EF6–EF7, Verdict VC74, OiO O19 |
+| LT16 | LT1, LT4, LT6, Liquid LQ0, LQ3, Verdict VC15, Path PiP2 |
 
 The fixed target can be a law of change. The representation must still account for the internal relations that make it that law's state, including the preparation and records on which repeated use depends.
 

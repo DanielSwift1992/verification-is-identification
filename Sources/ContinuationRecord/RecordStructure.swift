@@ -29,10 +29,15 @@ enum RecordStructure {
         let ordered = edges.sorted { a,b in
             a.address.map { $0 == .left ? 0 : 1 }.lexicographicallyPrecedes(b.address.map { $0 == .left ? 0 : 1 })
         }
-        return "[" + ordered.map { e in
-            "{\"at\":" + RecordContinuation.wire(e.address) + ",\"left\":" + RecordContinuation.wire(e.left)
-                + ",\"right\":" + RecordContinuation.wire(e.right) + ",\"basis\":\"declared\"}"
-        }.joined(separator: ",") + "]"
+        let rows: [String] = ordered.map { e in
+            let at: String = RecordContinuation.wire(e.address)
+            let left: String = RecordContinuation.wire(e.left)
+            let right: String = RecordContinuation.wire(e.right)
+            var row: String = "{\"at\":"
+            row += at; row += ",\"left\":"; row += left; row += ",\"right\":"; row += right; row += ",\"basis\":\"declared\"}"
+            return row
+        }
+        return "[" + rows.joined(separator: ",") + "]"
     }
     static func familyText(_ members: [C.ActionMember]) -> String {
         "[" + members.map { m in

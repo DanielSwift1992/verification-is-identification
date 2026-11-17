@@ -74,6 +74,8 @@ Statements on what a finite test certifies with and without a supplied bound.
 - <doc:verdict_is_invariant__bounded_calibration#VC107a>: The exact first distinguishing experiment in this family.
 - <doc:verdict_is_invariant__bounded_calibration#VC108>: Complete finite test on a bounded continuation scope.
 - <doc:verdict_is_invariant__bounded_calibration#VC109>: A finite observed action forces an aliased pair of paths.
+- <doc:verdict_is_invariant__bounded_calibration#VC110>: With exact repetition and replacement, execution answers the declared questions.
+- <doc:verdict_is_invariant__bounded_calibration#VC111>: Absence of use at each address does not give absence of joint use.
 
 ### A record and its source
 

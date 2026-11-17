@@ -21,7 +21,7 @@ This page lists the thirty-five papers under seven themes. It adds no claim. Eac
 
 ### Records, objects and acquisition
 
-- <doc:verdict_is_invariant>: 146 statements on 14 pages. Seam Is Game judges a pair of declarations at the addresses the two sides speak about.
+- <doc:verdict_is_invariant>: 148 statements on 14 pages. Seam Is Game judges a pair of declarations at the addresses the two sides speak about.
 - <doc:acquisition_keeps_its_question>: named statements without numbers. What must an experiment leave for the next action to meet the original requirement?
 - <doc:continuation_carries_the_relation>: 3 statements. After an answer has become exact, what makes the actual residue fit for the next action?
 

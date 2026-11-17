@@ -25,7 +25,7 @@ Parts in reading order:
 - <doc:verdict_is_invariant__action_interfaces>: VC100f–VC100m, 8 statements.
 - <doc:verdict_is_invariant__return_costs>: VC100n–VC100q, 4 statements.
 - <doc:verdict_is_invariant__calibration_residence>: VC101–VC106, 10 statements.
-- <doc:verdict_is_invariant__bounded_calibration>: VC107–VC109, 4 statements.
+- <doc:verdict_is_invariant__bounded_calibration>: VC107–VC111, 6 statements.
 
 ## §0. Derivation
 
@@ -466,6 +466,10 @@ Derivations: <doc:verdict_is_invariant__bounded_calibration#Detail-6zzr-A-suppli
 
 Derivations: <doc:verdict_is_invariant__bounded_calibration#Detail-6zzs-The-residence-argument-depends-on-the-observed-action-not-the-star>.
 
+### §6zzt. Repetition and replacement let the process answer the declared questions
+
+Derivations: <doc:verdict_is_invariant__bounded_calibration#Detail-6zzt-Repetition-and-replacement-let-the-process-answer-the-declared-questions>.
+
 ## §7. Statement
 
 1. A reach written on both sides creates the finite space in which alignment is decidable; a one-sided reach poses a fibered game in which location and correspondence confound, and the second side is part of the declaration, never of a scan (§1, §2).
@@ -495,6 +499,8 @@ Sections 6zl–6zr acquire an E/K law from a prepared response and reconstruct f
 
 Sections 6zs–6zzs develop question-relative acquisition, available probes and distributed choices, transport through local contacts, carried-phase obstructions and residence costs. Their finite calibrations and lower bounds retain the original question, admitted actions, initial preparation and actual residue. A finite passing experiment supplies its stated certificate. A supplied bound can make a stronger calibration finite, but success on a tested prefix does not establish that bound. Each result keeps the scope of its local statement and proof.
 
+Section 6zzt assumes exact repetition and the replacement of a record at an address for a process given without a description of its law. Execution then supplies the declared questions as point queries, and the classes and the test of a reading are those of §6c and §6f on the declared occurrences, addresses and questions. Its two statements are mathematical arguments with one finite witness. Repetition, replacement, the ending of every continuation and the coverage of the declaration are premises.
+
 Kin outside the corpus, imported as nothing. The relation court's universal quantification has ancestors in certain answers over incomplete databases and over uncertain schema mappings (Imielinski and Lipski, 1984; Dong, Halevy, and Yu, 2009), where a query is answered under every world or mapping the records permit. The three verdicts are the supervaluationist's (van Fraassen, 1966; Fine, 1975): truth on every admissible precisification, falsity on every one, indeterminacy between; the relation court supervaluates over correspondences, and the remark that open is not a truth value is that tradition's own boundary against three-valued logic. The bitorsor of isomorphisms under the two automorphism groups is classical. Provenance attestation formats (W3C PROV; in-toto and SLSA) record event witnesses for build artifacts in practice, and rename-reconstruction tools document their own threshold sensitivity and confusion classes, living the joint underdetermination of §2. The works surveyed here do not state the composition claimed here: the class of correspondences derived from a written reach and the symmetry of a birth; the two-floor court with parted and open as first-class verdicts and the witness measured by sufficiency; and the non-identifiability of provenance from state history as a theorem rather than a practice. No priority is claimed over any of them, and the derivation above uses none of their steps.
 
 ## §8. Dependency
@@ -502,12 +508,13 @@ Kin outside the corpus, imported as nothing. The relation court's universal quan
 | Source | Used |
 |---|---|
 | Existence Is Finite | Part III (a space is not a process), Theorem 3 |
-| V=I | §5.4, §5.13, §5.15, §5.20, §5.21 |
+| V=I | §5.4, §5.13, §5.15, §5.20, §5.21, CS3 (point queries on an unrestricted family, used in VC110 and VC111) |
 | Seam Is Game | SG1, SG2, consequences (a) and (c) |
 | Agreement Is Comparison | Definition 2, AC4, AC5, AC6 |
 | Merge Is Commutation | Definition 1 (the reach is written) |
 | Distance Is Cost | G2 |
 | Record Is System | SW1, SW3, SW4, §8 |
+| Continuation Carries the Relation | E1 (the two-sided kernel condition, used without operations in VC110) |
 | Seeing Is Encoding | visible projection and its hidden coordinate, used in VC9–VC12 |
 | Colour Is a Quotient | equality of encoded images and the question-relative loss in §6c |
 | Basis Is Residue | finite basis versus unbounded reach, compared with finite proof size in §§6c–6d |
@@ -518,7 +525,7 @@ Kin outside the corpus, imported as nothing. The relation court's universal quan
 
 ## Cross-page mentions
 
-Labels mentioned here: <doc:learning_is_liquid__medium_contacts#LQ13>, <doc:permanence_is_resistance__retention#M58>, <doc:permanence_is_resistance__retention#M59>, <doc:permanence_is_resistance__retention#M60>, <doc:verdict_is_invariant__finite_records#VC1>, <doc:verdict_is_invariant__local_lifts#VC100>, <doc:verdict_is_invariant__four_phase_catalogue#VC100a>, <doc:verdict_is_invariant__four_phase_catalogue#VC100e>, <doc:verdict_is_invariant__action_interfaces#VC100f>, <doc:verdict_is_invariant__action_interfaces#VC100m>, <doc:verdict_is_invariant__return_costs#VC100n>, <doc:verdict_is_invariant__return_costs#VC100q>, <doc:verdict_is_invariant__calibration_residence#VC101>, <doc:verdict_is_invariant__calibration_residence#VC106>, <doc:verdict_is_invariant__bounded_calibration#VC107>, <doc:verdict_is_invariant__bounded_calibration#VC109>, <doc:verdict_is_invariant__finite_records#VC12>, <doc:verdict_is_invariant__finite_records#VC15>, <doc:verdict_is_invariant__finite_records#VC19>, <doc:verdict_is_invariant__recovery_memory#VC20>, <doc:verdict_is_invariant__recovery_memory#VC23a>, <doc:verdict_is_invariant__recovery_memory#VC24>, <doc:verdict_is_invariant__discovery_acquisition#VC25>, <doc:verdict_is_invariant__discovery_acquisition#VC42>, <doc:verdict_is_invariant__discovery_acquisition#VC43>, <doc:verdict_is_invariant__reusable_images#VC44>, <doc:verdict_is_invariant__reusable_images#VC65>, <doc:verdict_is_invariant__routing_laws#VC66>, <doc:verdict_is_invariant__routing_laws#VC79>, <doc:verdict_is_invariant__relative_questions#VC80>, <doc:verdict_is_invariant__relative_questions#VC89>, <doc:verdict_is_invariant__finite_records#VC9>, <doc:verdict_is_invariant__finite_policies#VC90>, <doc:verdict_is_invariant__finite_policies#VC94a>, <doc:verdict_is_invariant__local_lifts#VC95>.
+Labels mentioned here: <doc:learning_is_liquid__medium_contacts#LQ13>, <doc:permanence_is_resistance__retention#M58>, <doc:permanence_is_resistance__retention#M59>, <doc:permanence_is_resistance__retention#M60>, <doc:verdict_is_invariant__finite_records#VC1>, <doc:verdict_is_invariant__local_lifts#VC100>, <doc:verdict_is_invariant__four_phase_catalogue#VC100a>, <doc:verdict_is_invariant__four_phase_catalogue#VC100e>, <doc:verdict_is_invariant__action_interfaces#VC100f>, <doc:verdict_is_invariant__action_interfaces#VC100m>, <doc:verdict_is_invariant__return_costs#VC100n>, <doc:verdict_is_invariant__return_costs#VC100q>, <doc:verdict_is_invariant__calibration_residence#VC101>, <doc:verdict_is_invariant__calibration_residence#VC106>, <doc:verdict_is_invariant__bounded_calibration#VC107>, <doc:verdict_is_invariant__bounded_calibration#VC110>, <doc:verdict_is_invariant__bounded_calibration#VC111>, <doc:verdict_is_invariant__finite_records#VC12>, <doc:verdict_is_invariant__finite_records#VC15>, <doc:verdict_is_invariant__finite_records#VC19>, <doc:verdict_is_invariant__recovery_memory#VC20>, <doc:verdict_is_invariant__recovery_memory#VC23a>, <doc:verdict_is_invariant__recovery_memory#VC24>, <doc:verdict_is_invariant__discovery_acquisition#VC25>, <doc:verdict_is_invariant__discovery_acquisition#VC42>, <doc:verdict_is_invariant__discovery_acquisition#VC43>, <doc:verdict_is_invariant__reusable_images#VC44>, <doc:verdict_is_invariant__reusable_images#VC65>, <doc:verdict_is_invariant__routing_laws#VC66>, <doc:verdict_is_invariant__routing_laws#VC79>, <doc:verdict_is_invariant__relative_questions#VC80>, <doc:verdict_is_invariant__relative_questions#VC89>, <doc:verdict_is_invariant__finite_records#VC9>, <doc:verdict_is_invariant__finite_policies#VC90>, <doc:verdict_is_invariant__finite_policies#VC94a>, <doc:verdict_is_invariant__local_lifts#VC95>.
 
 Mentions of this page’s labels: <doc:interference_is_substitution__models_calibration> (VI1), <doc:learning_is_liquid> (VI1), <doc:learning_is_liquid> (VI1a), <doc:learning_is_liquid__atoms_continuations> (VI1), <doc:learning_is_liquid__medium_contacts> (VI1), <doc:learning_is_liquid__medium_contacts> (VI1a), <doc:learning_is_liquid__reconstructed_sides> (VI1), <doc:learning_is_liquid__reconstructed_sides> (VI1a), <doc:permanence_is_resistance__forced_answers> (VI1a), <doc:permanence_is_resistance__forced_answers> (VI2), <doc:permanence_is_resistance__records_entropy> (VI1), <doc:verdict_is_invariant__discovery_acquisition> (VI2), <doc:verdict_is_invariant__finite_records> (VI1), <doc:verdict_is_invariant__recovery_memory> (VI1a).
 

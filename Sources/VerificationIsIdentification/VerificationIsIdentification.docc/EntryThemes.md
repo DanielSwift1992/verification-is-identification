@@ -49,7 +49,7 @@ This page lists the thirty-five papers under seven themes. It adds no claim. Eac
 
 ### Dynamics and time
 
-- <doc:law_is_target>: 16 statements. I2 requires the identified target and the interpretation of its evidence to remain fixed.
+- <doc:law_is_target>: 19 statements. I2 requires the identified target and the interpretation of its evidence to remain fixed.
 - <doc:reading_is_order>: 5 statements. A fixed structure can be traversed in different orders.
 - <doc:dynamics_is_substitution>: 11 statements. A written system is a text: named slots, one term per slot.
 - <doc:program_is_path>: 11 statements. A string, a numeral, a PIN code and a program can each be represented by a finite chain of tokens.

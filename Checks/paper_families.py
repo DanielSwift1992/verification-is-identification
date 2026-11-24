@@ -29,7 +29,7 @@ with tempfile.TemporaryDirectory(prefix='vi-paper-families-') as scratch:
     docc = Path(scratch) / 'test.docc'
     shutil.copytree(PAPERS.parent, docc)
     papers = docc / 'Papers'
-    run('complete corpus', ['papers', papers], diagnostic='35 papers, 75 pages, 351 labelled addresses')
+    run('complete corpus', ['papers', papers], diagnostic='35 papers, 75 pages, 352 labelled addresses')
     run('quotes in complete corpus', ['quotes', papers])
     run('provenance in complete corpus', ['lint', ROOT / 'Sources/VerificationIsIdentification', '--docc', docc, '--strict'])
     addresses = json.loads(run('actual declarations', ['papers', papers, '--addresses']).stdout)
@@ -67,20 +67,20 @@ with tempfile.TemporaryDirectory(prefix='vi-paper-families-') as scratch:
     example = papers / 'permanence_is_resistance__support_renewal.md'
     original = example.read_bytes()
     example.write_text(example.read_text() + '\n```markdown\n### M99999\n\n**M99999 (example only).**\n```\n')
-    run('fenced label is not a declaration', ['papers', papers], diagnostic='351 labelled addresses')
+    run('fenced label is not a declaration', ['papers', papers], diagnostic='352 labelled addresses')
     example.write_bytes(original)
     fake = '\n### M99999\n\n**M99999 (example only).**\n'
     fence_cases = [
-        ('long backticks contain short backticks', '````markdown\n```\n' + fake + '````\n', 351),
-        ('long tildes contain short tildes', '~~~~markdown\n~~~\n' + fake + '~~~~\n', 351),
-        ('wrong fence mark cannot close', '````\n~~~~\n' + fake + '````\n', 351),
-        ('closing fence cannot carry info', '```\n```markdown\n' + fake + '```\n', 351),
-        ('three spaces admit a fence', '   ```\n' + fake + '   ```\n', 351),
-        ('four spaces do not open a fence', '    ```\n' + fake, 352),
-        ('backtick info cannot contain backticks', '```bad`info\n' + fake, 352),
-        ('longer fence closes', '````\nexample\n`````\n' + fake, 352),
-        ('fenced doc links do not resolve', '```\n<doc:learning_is_liquid__missing>\n```\n', 351),
-        ('fenced own heading is not a duplicate', '```\n### M64o\n```\n', 351),
+        ('long backticks contain short backticks', '````markdown\n```\n' + fake + '````\n', 352),
+        ('long tildes contain short tildes', '~~~~markdown\n~~~\n' + fake + '~~~~\n', 352),
+        ('wrong fence mark cannot close', '````\n~~~~\n' + fake + '````\n', 352),
+        ('closing fence cannot carry info', '```\n```markdown\n' + fake + '```\n', 352),
+        ('three spaces admit a fence', '   ```\n' + fake + '   ```\n', 352),
+        ('four spaces do not open a fence', '    ```\n' + fake, 353),
+        ('backtick info cannot contain backticks', '```bad`info\n' + fake, 353),
+        ('longer fence closes', '````\nexample\n`````\n' + fake, 353),
+        ('fenced doc links do not resolve', '```\n<doc:learning_is_liquid__missing>\n```\n', 352),
+        ('fenced own heading is not a duplicate', '```\n### M64o\n```\n', 352),
     ]
     for name, appendix, count in fence_cases:
         example.write_text(original.decode() + '\n' + appendix)

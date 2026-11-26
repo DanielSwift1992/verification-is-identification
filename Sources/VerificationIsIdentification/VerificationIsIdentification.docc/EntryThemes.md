@@ -57,7 +57,7 @@ This page lists the thirty-five papers under seven themes. It adds no claim. Eac
 
 ### Matter and medium
 
-- <doc:permanence_is_resistance>: 133 statements on 15 pages. This paper studies a retained result as a constraint on later operations.
+- <doc:permanence_is_resistance>: 134 statements on 15 pages. This paper studies a retained result as a constraint on later operations.
 - <doc:interference_is_substitution>: 46 statements on 10 pages. Waves can cancel.
 
 Two pages gather statements across papers on one theme: <doc:EntryLearning> and <doc:EntryAcquisition>. The second half of <doc:learning_is_liquid>, on the state of a medium, belongs with the last theme.
